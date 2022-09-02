@@ -23,30 +23,30 @@
       "patterns": [
         {
           "name": "keyword.control.vcl",
-          "match": "#FASTLY.*"
+          "match": "#FASTLY.+"
         }
       ]
     },
     "comments": {
       "patterns": [
         {
-          "name": "comment.line.number-sign.vtc",
-          "match": "#.*"
+          "name": "comment.line.number-sign.vcl",
+          "match": "#.+"
         },
         {
-          "name": "comment.line.double-slash.vtc",
-          "match": "//.*"
+          "name": "comment.line.double-slash.vcl",
+          "match": "\\.+"
         }
       ]
     },
     "constants": {
       "patterns": [
         {
-          "name": "constant.numeric.vtc",
+          "name": "constant.numeric.vcl",
           "match": "\\b(\\d+)\\b"
         },
         {
-          "name": "constant.language.vtc",
+          "name": "constant.language.vcl",
           "match": "\\b(true|false)\\b"
         }
       ]
@@ -58,7 +58,7 @@
           "match": "\\b(if|else|return|set|sub|unset)\\b"
         },
         {
-          "name": "keyword.operator.vtc",
+          "name": "keyword.operator.vcl",
           "match": "(=|==|!=|>=|<=|>|<|~|!~|\\|\\||&&)"
         }
       ]
