@@ -41,7 +41,7 @@
         },
         {
           "name": "comment.line.double-slash.vcl",
-          "match": "\\.+"
+          "match": "//.+"
         },
         {
           "name": "comment.line.block.vcl",
