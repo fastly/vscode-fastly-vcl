@@ -16,6 +16,12 @@
     },
     {
       "include": "#strings"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#variables"
     }
   ],
   "repository": {
@@ -71,6 +77,22 @@
         {
           "name": "constant.character.escape.vcl",
           "match": "\\\\."
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "storage.type.vcl",
+          "match": "\\b(ACL|BACKEND|BOOL|FLOAT|ID|INTEGER|IP|RTIME|STRING|TIME)\\b"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.language.vcl",
+          "match": "\\b(bereq|beresp|obj|req|resp)\\.[a-zA-Z0-9_.-]+"
         }
       ]
     }
