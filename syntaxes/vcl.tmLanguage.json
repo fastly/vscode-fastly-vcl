@@ -91,8 +91,12 @@
     "variables": {
       "patterns": [
         {
-          "name": "variable.language.vcl",
+          "name": "support.variable.vcl",
           "match": "\\b(bereq|beresp|obj|req|resp)\\.[a-zA-Z0-9_.-]+"
+        },
+        {
+          "name": "variable.other.vcl",
+          "match": "\\b(var)\\.[a-zA-Z0-9_.-]+"
         }
       ]
     }
