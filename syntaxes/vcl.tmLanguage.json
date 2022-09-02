@@ -1,0 +1,79 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Varnish Configuration Language",
+  "patterns": [
+    {
+      "include": "#macros"
+    },
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#strings"
+    }
+  ],
+  "repository": {
+    "macros": {
+      "patterns": [
+        {
+          "name": "keyword.control.vcl",
+          "match": "#FASTLY.*"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.vtc",
+          "match": "#.*"
+        },
+        {
+          "name": "comment.line.double-slash.vtc",
+          "match": "//.*"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.numeric.vtc",
+          "match": "\\b(\\d+)\\b"
+        },
+        {
+          "name": "constant.language.vtc",
+          "match": "\\b(true|false)\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.vcl",
+          "match": "\\b(if|else|return|set|sub|unset)\\b"
+        },
+        {
+          "name": "keyword.operator.vtc",
+          "match": "(=|==|!=|>=|<=|>|<|~|!~|\\|\\||&&)"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.vcl",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.vcl",
+          "match": "\\\\."
+        }
+      ]
+    }
+  },
+  "scopeName": "source.vcl"
+}
