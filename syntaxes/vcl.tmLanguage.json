@@ -83,13 +83,28 @@
       ]
     },
     "strings": {
-      "name": "string.quoted.double.vcl",
-      "begin": "\"",
-      "end": "\"",
       "patterns": [
         {
-          "name": "constant.character.escape.vcl",
-          "match": "\\\\."
+          "name": "string.quoted.double.vcl",
+          "begin": "{([a-z]+)?\"",
+          "end": "\"\\1}",
+          "patterns": [
+            {
+              "name": "constant.character.escape.vcl",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.double.vcl",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.vcl",
+              "match": "\\\\."
+            }
+          ]
         }
       ]
     },
