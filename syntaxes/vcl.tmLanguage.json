@@ -42,6 +42,11 @@
         {
           "name": "comment.line.double-slash.vcl",
           "match": "\\.+"
+        },
+        {
+          "name": "comment.line.block.vcl",
+          "begin": "/\\*",
+          "end": "\\*/"
         }
       ]
     },
@@ -96,7 +101,7 @@
         },
         {
           "name": "variable.other.vcl",
-          "match": "\\b(var)\\.[a-zA-Z0-9_.-]+"
+          "match": "\\b(var)\\.[a-zA-Z0-9_-]+"
         }
       ]
     }
