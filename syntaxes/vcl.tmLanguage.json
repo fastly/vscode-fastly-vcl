@@ -202,6 +202,10 @@
         {
           "name": "support.variable.vcl",
           "match": "\\b(req.grace|req.is_clustering|req.max_stale_if_error|req.max_stale_while_revalidate|req.restarts|server.datacenter|server.hostname|server.identity|server.ip|server.port|server.region)\\b"
+        },
+        {
+          "name": "support.variable.vcl",
+          "match": "\\b(waf.anomaly_score|waf.blocked|waf.counter|waf.executed|waf.failures|waf.http_violation_score|waf.inbound_anomaly_score|waf.lfi_score|waf.logdata|waf.logged|waf.message|waf.passed|waf.php_injection_score|waf.rce_score|waf.rfi_score|waf.rule_id|waf.session_fixation_score|waf.severity|waf.sql_injection_score|waf.xss_score)\\b"
         }
       ]
     },
