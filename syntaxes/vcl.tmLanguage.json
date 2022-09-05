@@ -194,6 +194,10 @@
         {
           "name": "support.variable.vcl",
           "match": "\\b(ratecounter)\\.[^.]+\\.(bucket.10s|bucket.20s|bucket.30s|bucket.40s|bucket.50s|bucket.60s|rate.10s|rate.1s|rate.60s)\\b"
+        },
+        {
+          "name": "support.variable.vcl",
+          "match": "\\b(segmented_caching.autopurged|segmented_caching.block_number|segmented_caching.block_size|segmented_caching.cancelled|segmented_caching.client_req.is_open_ended|segmented_caching.client_req.is_range|segmented_caching.client_req.range_high|segmented_caching.client_req.range_low|segmented_caching.completed|segmented_caching.error|segmented_caching.failed|segmented_caching.is_inner_req|segmented_caching.is_outer_req|segmented_caching.obj.complete_length|segmented_caching.rounded_req.range_high|segmented_caching.rounded_req.range_low|segmented_caching.total_blocks)\\b"
         }
       ]
     },
