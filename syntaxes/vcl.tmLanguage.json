@@ -12,6 +12,9 @@
       "include": "#constants"
     },
     {
+      "include": "#functions"
+    },
+    {
       "include": "#keywords"
     },
     {
@@ -74,6 +77,14 @@
         }
       ]
     },
+    "functions": {
+      "patterns": [
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(accept.charset_lookup|accept.encoding_lookup|accept.language_filter_basic|accept.language_lookup|accept.media_lookup)\\b"
+        }
+      ]
+    },
     "keywords": {
       "patterns": [
         {
@@ -82,7 +93,7 @@
         },
         {
           "name": "keyword.other.vcl",
-          "match": "\\b(acl|backend|declare local|director|log|penaltybox|ratecounter|set|sin|unset)\\b"
+          "match": "\\b(acl|backend|declare local|director|log|penaltybox|ratecounter|set|table|unset)\\b"
         },
         {
           "name": "keyword.operator.vcl",
