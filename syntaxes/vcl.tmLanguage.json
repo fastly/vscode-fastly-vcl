@@ -94,6 +94,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(math.is_finite|math.is_infinite|math.is_nan|math.is_normal|math.is_subnormal)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(math.exp|math.exp2|math.log|math.log10|math.log2)\\b"
         }
       ]
     },
