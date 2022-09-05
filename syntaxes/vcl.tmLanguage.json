@@ -142,6 +142,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(re.group.\\d+)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(backend.conn.is_tls|backend.conn.tls_protocol|backend.socket.congestion_algorithm|backend.socket.cwnd|backend.socket.tcpi_advmss|backend.socket.tcpi_bytes_acked|backend.socket.tcpi_bytes_received|backend.socket.tcpi_data_segs_in|backend.socket.tcpi_data_segs_out|backend.socket.tcpi_delivery_rate|backend.socket.tcpi_delta_retrans|backend.socket.tcpi_last_data_sent|backend.socket.tcpi_max_pacing_rate|backend.socket.tcpi_min_rtt|backend.socket.tcpi_notsent_bytes|backend.socket.tcpi_pacing_rate|backend.socket.tcpi_pmtu|backend.socket.tcpi_rcv_mss|backend.socket.tcpi_rcv_rtt|backend.socket.tcpi_rcv_space|backend.socket.tcpi_rcv_ssthresh|backend.socket.tcpi_reordering|backend.socket.tcpi_rtt|backend.socket.tcpi_rttvar|backend.socket.tcpi_segs_in|backend.socket.tcpi_segs_out|backend.socket.tcpi_snd_cwnd|backend.socket.tcpi_snd_mss|backend.socket.tcpi_snd_ssthresh|backend.socket.tcpi_total_retrans|backend.{NAME}.connections_open|backend.{NAME}.connections_used|backend.{NAME}.healthy|bereq.between_bytes_timeout|bereq.connect_timeout|bereq.first_byte_timeout|beresp.backend.alternate_ips|beresp.backend.ip|beresp.backend.port|beresp.backend.requests|beresp.backend.src_ip|beresp.handshake_time_to_origin_ms|beresp.used_alternate_path_to_origin|req.backend|req.backend.healthy|req.backend.is_origin|req.backend.is_shield)\\b"
         }
       ]
     },
