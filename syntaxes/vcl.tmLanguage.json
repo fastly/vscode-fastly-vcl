@@ -129,7 +129,7 @@
       "patterns": [
         {
           "name": "keyword.control.vcl",
-          "match": "\\b(else|if|return|sub)\\b"
+          "match": "\\b(else|error|if|return|sub)\\b"
         },
         {
           "name": "keyword.other.vcl",
