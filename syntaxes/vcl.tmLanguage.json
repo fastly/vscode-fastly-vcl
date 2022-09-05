@@ -198,6 +198,10 @@
         {
           "name": "support.variable.vcl",
           "match": "\\b(segmented_caching.autopurged|segmented_caching.block_number|segmented_caching.block_size|segmented_caching.cancelled|segmented_caching.client_req.is_open_ended|segmented_caching.client_req.is_range|segmented_caching.client_req.range_high|segmented_caching.client_req.range_low|segmented_caching.completed|segmented_caching.error|segmented_caching.failed|segmented_caching.is_inner_req|segmented_caching.is_outer_req|segmented_caching.obj.complete_length|segmented_caching.rounded_req.range_high|segmented_caching.rounded_req.range_low|segmented_caching.total_blocks)\\b"
+        },
+        {
+          "name": "support.variable.vcl",
+          "match": "\\b(req.grace|req.is_clustering|req.max_stale_if_error|req.max_stale_while_revalidate|req.restarts|server.datacenter|server.hostname|server.identity|server.ip|server.port|server.region)\\b"
         }
       ]
     },
