@@ -114,6 +114,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(boltsort.sort|querystring.add|querystring.clean|querystring.filter_except|querystring.filter|querystring.filtersep|querystring.get|querystring.globfilter_except|querystring.globfilter|querystring.regfilter_except|querystring.regfilter|querystring.remove|querystring.set|querystring.sort)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(randombool_seeded|randombool|randomint_seeded|randomint|randomstr)\\b"
         }
       ]
     },
