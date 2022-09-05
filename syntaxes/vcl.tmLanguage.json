@@ -190,6 +190,10 @@
         {
           "name": "support.variable.vcl",
           "match": "\\b(backend|director)\\.[^.]+\\.healthy\\b"
+        },
+        {
+          "name": "support.variable.vcl",
+          "match": "\\b(ratecounter)\\.[^.]+\\.(bucket.10s|bucket.20s|bucket.30s|bucket.40s|bucket.50s|bucket.60s|rate.10s|rate.1s|rate.60s)\\b"
         }
       ]
     },
