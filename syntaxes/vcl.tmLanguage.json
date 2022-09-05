@@ -82,7 +82,7 @@
         },
         {
           "name": "keyword.other.vcl",
-          "match": "\\b(acl|backend|declare local|director|log|set|sin|unset)\\b"
+          "match": "\\b(acl|backend|declare local|director|log|penaltybox|ratecounter|set|sin|unset)\\b"
         },
         {
           "name": "keyword.operator.vcl",
