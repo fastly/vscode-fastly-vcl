@@ -86,6 +86,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(bin.base64_to_hex|bin.hex_to_base64|crypto.decrypt_base64|crypto.decrypt_hex|crypto.encrypt_base64|crypto.encrypt_hex|digest.awsv4_hmac|digest.base64_decode|digest.base64|digest.base64url_decode|digest.base64url_nopad|digest.base64url_nopad_decode|digest.base64url|digest.hash_crc32|digest.hash_crc32b|digest.hash_md5|digest.hash_sha1_from_base64|digest.hash_sha1|digest.hash_sha224|digest.hash_sha256_from_base64|digest.hash_sha256|digest.hash_sha384|digest.hash_sha512_from_base64|digest.hash_sha512|digest.hmac_md5_base64|digest.hmac_md5|digest.hmac_sha1_base64|digest.hmac_sha1|digest.hmac_sha256_base64|digest.hmac_sha256|digest.hmac_sha512_base64|digest.hmac_sha512|digest.rsa_verify|digest.secure_is_equal|digest.time_hmac_md5|digest.time_hmac_sha1|digest.time_hmac_sha256|digest.time_hmac_sha512)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(parse_time_delta|std.integer2time|std.time|strftime|time.add|time.hex_to_time|time.is_after|time.runits|time.sub|time.units)\\b"
         }
       ]
     },
