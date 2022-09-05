@@ -259,7 +259,7 @@
         },
         {
           "name": "support.variable.vcl",
-          "match": "\\b(now)\\b"
+          "match": "\\b(now.sec|now)\\b"
         }
       ]
     }
