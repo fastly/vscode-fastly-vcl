@@ -54,15 +54,19 @@
       "patterns": [
         {
           "name": "constant.numeric.vcl",
-          "match": "(\\b|-)?[0-9]+(\\.[0-9])?\\s*(ms|s|m|h|d|y)\\b"
+          "match": "\\b-?[0-9]+(\\.[0-9])?\\s*(ms|s|m|h|d|y)\\b"
         },
         {
           "name": "constant.numeric.vcl",
-          "match": "(\\b|-)?[0-9]+(\\.[0-9])?(e[+-]?[0-9]+)?\\b"
+          "match": "\\b-?[0-9]+(\\.[0-9])?\\s*%"
         },
         {
           "name": "constant.numeric.vcl",
-          "match": "(\\b|-)?0x[0-9A-Fa-f]+(\\.[0-9A-Fa-f]+)?(p[+-]?[0-9]+)?\\b\\b"
+          "match": "\\b-?[0-9]+(\\.[0-9])?(e[+-]?[0-9]+)?\\b"
+        },
+        {
+          "name": "constant.numeric.vcl",
+          "match": "\\b-?0x[0-9A-Fa-f]+(\\.[0-9A-Fa-f]+)?(p[+-]?[0-9]+)?\\b\\b"
         },
         {
           "name": "constant.language.vcl",
@@ -78,7 +82,7 @@
         },
         {
           "name": "keyword.other.vcl",
-          "match": "\\b(acl|backend|declare local|log|set|sin|unset)\\b"
+          "match": "\\b(acl|backend|declare local|director|log|set|sin|unset)\\b"
         },
         {
           "name": "keyword.operator.vcl",
@@ -117,6 +121,10 @@
         {
           "name": "storage.type.vcl",
           "match": "\\b(ACL|BACKEND|BOOL|FLOAT|ID|INTEGER|IP|RTIME|STRING|TIME)\\b"
+        },
+        {
+          "name": "storage.type.vcl",
+          "match": "\\b(chash|client|fallback|hash|random)\\b"
         }
       ]
     },
@@ -131,12 +139,20 @@
           "match": "\\b(var)\\.[a-zA-Z0-9_-]+"
         },
         {
+          "name": "variable.other.vcl",
+          "match": "\\bF_[a-zA-Z0-9_-]+"
+        },
+        {
           "name": "support.other.vcl",
           "match": "\\.(address|always_use_host_header|auto_loadbalance|between_bytes_timeout|bypass_local_route_table|client_cert|comment|connect_timeout|dynamic|first_byte_timeout|healthcheck|hostname|host_header|host|ipv4|ipv6|max_connections|max_tls_version|min_tls_version|name|override_host|port|probe|share_key|ssl_ca_cert|ssl_cert_hostname|ssl_check_cert|ssl_cipehers|ssl_client_cert|ssl_client_key|ssl_sni_hostname|ssl|use_ssl|weight)"
         },
         {
           "name": "support.other.vcl",
           "match": "\\.(dummy|expected_response|initial|interval|request|timeout|threshold|window)"
+        },
+        {
+          "name": "support.other.vcl",
+          "match": "\\.(id|key|quorum|seed|retries|vnodes_per_node)"
         },
         {
           "name": "support.variable.vcl",
