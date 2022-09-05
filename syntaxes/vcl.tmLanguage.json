@@ -106,6 +106,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(math.acosh|math.acos|math.asinh|math.asin|math.atan2|math.atanh|math.atan|math.cosh|math.cos|math.sinh|math.sin|math.sqrt|math.tanh|math.tan)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(addr.extract_bits|addr.is_ipv4|addr.is_ipv6|fastly.hash|http_status_matches|resp.tarpit|setcookie.delete_by_name|setcookie.get_value_by_name|std.collect|std.count|subfield)\\b"
         }
       ]
     },
