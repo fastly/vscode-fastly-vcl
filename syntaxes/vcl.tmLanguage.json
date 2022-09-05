@@ -154,6 +154,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(beresp.backend.name|beresp.brotli|beresp.cacheable|beresp.do_stream|beresp.grace|beresp.gzip|beresp.hipaa|beresp.pci|beresp.proto|beresp.response|beresp.saintmode|beresp.stale_if_error|beresp.stale_while_revalidate|beresp.status|beresp.ttl)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(obj.age|obj.cacheable|obj.entered|obj.grace|obj.hits|obj.is_pci|obj.lastuse|obj.proto|obj.response|obj.stale_if_error|obj.stale_while_revalidate|obj.status|obj.ttl|req.digest|req.digest.ratio|req.hash|stale.exists)\\b"
         }
       ]
     },
