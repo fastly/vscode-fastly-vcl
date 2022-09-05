@@ -182,6 +182,10 @@
         {
           "name": "support.variable.vcl",
           "match": "\\b(math.1_PI|math.2PI|math.2_PI|math.2_SQRTPI|math.E|math.FLOAT_DIG|math.FLOAT_EPSILON|math.FLOAT_MANT_DIG|math.FLOAT_MAX_10_EXP|math.FLOAT_MAX_EXP|math.FLOAT_MAX|math.FLOAT_MIN_10_EXP|math.FLOAT_MIN_EXP|math.FLOAT_MIN|math.FLOAT_RADIX|math.INTEGER_BIT|math.INTEGER_MAX|math.INTEGER_MIN|math.LN10|math.LN2|math.LOG10E|math.LOG2E|math.NAN|math.NEG_HUGE_VAL|math.NEG_INFINITY|math.PHI|math.PI_2|math.PI_4|math.PI|math.POS_HUGE_VAL|math.POS_INFINITY|math.SQRT1_2|math.SQRT2|math.TAU)\\b"
+        },
+        {
+          "name": "support.variable.vcl",
+          "match": "\\b(fastly.error|fastly.ff.visits_this_pop_this_service|fastly.ff.visits_this_service|fastly_info.state|req.backend.ip|req.backend.name|req.backend.port|req.service_id|req.vcl.generation|req.vcl.md5|req.vcl.version|req.vcl|resp.stale.is_error|resp.stale.is_revalidating|resp.stale|workspace.bytes_free|workspace.bytes_total|workspace.overflowed)\\b"
         }
       ]
     },
