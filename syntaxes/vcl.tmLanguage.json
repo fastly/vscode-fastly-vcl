@@ -141,7 +141,7 @@
         },
         {
           "name": "support.variable.vcl",
-          "match": "\\b(re.group.\\d+)\\b"
+          "match": "\\b(re.group.[0-9])\\b"
         },
         {
           "name": "support.variable.vcl",
