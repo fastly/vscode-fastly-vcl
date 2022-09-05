@@ -118,6 +118,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(randombool_seeded|randombool|randomint_seeded|randomint|randomstr)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(ratelimit.check_rates|ratelimit.check_rate|ratelimit.penaltybox_add|ratelimit.penaltybox_has|ratelimit.ratecounter_increment)\\b"
         }
       ]
     },
