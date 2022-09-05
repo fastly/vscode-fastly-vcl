@@ -170,6 +170,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(resp.body_bytes_written|resp.bytes_written|resp.completed|resp.header_bytes_written|resp.is_locally_generated|resp.proto|resp.response|resp.status|time.to_first_byte)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(beresp.do_esi|esi.allow_inside_cdata|req.esi_level|req.esi|req.is_esi_subreq|req.topurl)\\b"
         }
       ]
     },
