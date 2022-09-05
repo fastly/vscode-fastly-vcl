@@ -110,6 +110,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(addr.extract_bits|addr.is_ipv4|addr.is_ipv6|fastly.hash|http_status_matches|resp.tarpit|setcookie.delete_by_name|setcookie.get_value_by_name|std.collect|std.count|subfield)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(boltsort.sort|querystring.add|querystring.clean|querystring.filter_except|querystring.filter|querystring.filtersep|querystring.get|querystring.globfilter_except|querystring.globfilter|querystring.regfilter_except|querystring.regfilter|querystring.remove|querystring.set|querystring.sort)\\b"
         }
       ]
     },
