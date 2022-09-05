@@ -66,7 +66,7 @@
         },
         {
           "name": "constant.language.vcl",
-          "match": "\\b(true|false)\\b"
+          "match": "\\b(false|true)\\b"
         }
       ]
     },
@@ -125,6 +125,10 @@
         {
           "name": "variable.other.vcl",
           "match": "\\b(var)\\.[a-zA-Z0-9_-]+"
+        },
+        {
+          "name": "support.variable.vcl",
+          "match": "\\b(now)\\b"
         }
       ]
     }
