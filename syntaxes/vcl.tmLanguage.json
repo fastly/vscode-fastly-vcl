@@ -138,6 +138,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(uuid.dns|uuid.is_valid|uuid.is_version3|uuid.is_version4|uuid.is_version5|uuid.oid|uuid.url|uuid.version3|uuid.version4|uuid.version5|uuid.x500)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(re.group.\\d+)\\b"
         }
       ]
     },
