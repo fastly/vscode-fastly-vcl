@@ -102,6 +102,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(math.ceil|math.floor|math.roundeven|math.roundhalfdown|math.roundhalfup|math.round|math.trunc)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(math.acosh|math.acos|math.asinh|math.asin|math.atan2|math.atanh|math.atan|math.cosh|math.cos|math.sinh|math.sin|math.sqrt|math.tanh|math.tan)\\b"
         }
       ]
     },
