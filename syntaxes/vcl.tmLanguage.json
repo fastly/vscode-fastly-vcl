@@ -178,6 +178,10 @@
         {
           "name": "support.variable.vcl",
           "match": "\\b(client.geo.area_code|client.geo.city.ascii|client.geo.city.latin1|client.geo.city.utf8|client.geo.city|client.geo.conn_speed|client.geo.conn_type|client.geo.continent_code|client.geo.country_code3|client.geo.country_code|client.geo.country_name.ascii|client.geo.country_name.latin1|client.geo.country_name.utf8|client.geo.country_name|client.geo.gmt_offset|client.geo.ip_override|client.geo.latitude|client.geo.longitude|client.geo.metro_code|client.geo.postal_code|client.geo.proxy_description|client.geo.proxy_type|client.geo.region.ascii|client.geo.region.latin1|client.geo.region.utf8|client.geo.region|client.geo.utc_offset)\\b"
+        },
+        {
+          "name": "support.variable.vcl",
+          "match": "\\b(math.1_PI|math.2PI|math.2_PI|math.2_SQRTPI|math.E|math.FLOAT_DIG|math.FLOAT_EPSILON|math.FLOAT_MANT_DIG|math.FLOAT_MAX_10_EXP|math.FLOAT_MAX_EXP|math.FLOAT_MAX|math.FLOAT_MIN_10_EXP|math.FLOAT_MIN_EXP|math.FLOAT_MIN|math.FLOAT_RADIX|math.INTEGER_BIT|math.INTEGER_MAX|math.INTEGER_MIN|math.LN10|math.LN2|math.LOG10E|math.LOG2E|math.NAN|math.NEG_HUGE_VAL|math.NEG_INFINITY|math.PHI|math.PI_2|math.PI_4|math.PI|math.POS_HUGE_VAL|math.POS_INFINITY|math.SQRT1_2|math.SQRT2|math.TAU)\\b"
         }
       ]
     },
