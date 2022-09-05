@@ -126,6 +126,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(cstr_escape|json.escape|regsub|regsuball|std.anystr2ip|std.atof|std.atoi|std.basename|std.dirname|std.ip2str|std.ip|std.itoa|std.itoa_charset|std.prefixof|std.replace|std.replace_prefix|std.replace_suffix|std.replaceall|std.str2ip|std.strlen|std.strpad|std.strrep|std.strrev|std.strstr|std.strtof|std.strtol|std.suffixof|std.tolower|std.toupper|substr|urldecode|urlencode|utf8.codepoint_count|utf8.is_valid|utf8.strpad|utf8.substr|xml_escape)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(early_hints|h2.disable_header_compression|h2.push|h3.alt_svc)\\b"
         }
       ]
     },
