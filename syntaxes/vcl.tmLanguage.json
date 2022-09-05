@@ -98,6 +98,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(math.exp|math.exp2|math.log10|math.log2|math.log)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(math.ceil|math.floor|math.roundeven|math.roundhalfdown|math.roundhalfup|math.round|math.trunc)\\b"
         }
       ]
     },
