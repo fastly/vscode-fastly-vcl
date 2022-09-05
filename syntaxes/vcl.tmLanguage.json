@@ -150,6 +150,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(bereq.body_bytes_written|bereq.bytes_written|bereq.header_bytes_written|bereq.is_clustering|bereq.method|bereq.proto|bereq.request|bereq.url|bereq.url.basename|bereq.url.dirname|bereq.url.ext|bereq.url.path|bereq.url.qs)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(beresp.backend.name|beresp.brotli|beresp.cacheable|beresp.do_stream|beresp.grace|beresp.gzip|beresp.hipaa|beresp.pci|beresp.proto|beresp.response|beresp.saintmode|beresp.stale_if_error|beresp.stale_while_revalidate|beresp.status|beresp.ttl)\\b"
         }
       ]
     },
