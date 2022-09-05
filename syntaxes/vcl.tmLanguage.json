@@ -264,6 +264,10 @@
         {
           "name": "storage.type.vcl",
           "match": "\\b(chash|client|fallback|hash|random)\\b"
+        },
+        {
+          "name": "storage.type.vcl",
+          "match": "\\b(deliver|fetch|hash|pass)\\b"
         }
       ]
     },
