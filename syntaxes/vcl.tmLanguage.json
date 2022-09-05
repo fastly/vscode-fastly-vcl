@@ -90,6 +90,10 @@
         {
           "name": "support.function.vcl",
           "match": "\\b(parse_time_delta|std.integer2time|std.time|strftime|time.add|time.hex_to_time|time.is_after|time.runits|time.sub|time.units)\\b"
+        },
+        {
+          "name": "support.function.vcl",
+          "match": "\\b(math.is_finite|math.is_infinite|math.is_nan|math.is_normal|math.is_subnormal)\\b"
         }
       ]
     },
