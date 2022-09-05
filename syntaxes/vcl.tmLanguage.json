@@ -153,7 +153,11 @@
         },
         {
           "name": "keyword.other.vcl",
-          "match": "\\b(acl|add|backend|declare local|director|log|penaltybox|ratecounter|set|table|unset)\\b"
+          "match": "\\b(acl|backend|director|penaltybox|ratecounter|table)\\b"
+        },
+        {
+          "name": "keyword.other.vcl",
+          "match": "\\b(add|call|declare local|error|esi|include|log|remove|restart|return|set|synthetic|synthetic.base64|unset)\\b"
         },
         {
           "name": "keyword.operator.vcl",
