@@ -171,7 +171,7 @@
       "patterns": [
         {
           "name": "support.variable.vcl",
-          "match": "\\b(bereq|beresp|obj|req|resp)\\.[a-zA-Z0-9_.-]+"
+          "match": "\\b(bereq|beresp|obj|req|resp)\\.[a-zA-Z0-9_.-]+(:[a-zA-Z0-9_.-]+)?"
         },
         {
           "name": "variable.other.vcl",
