@@ -186,6 +186,10 @@
         {
           "name": "support.variable.vcl",
           "match": "\\b(fastly.error|fastly.ff.visits_this_pop_this_service|fastly.ff.visits_this_service|fastly_info.state|req.backend.ip|req.backend.name|req.backend.port|req.service_id|req.vcl.generation|req.vcl.md5|req.vcl.version|req.vcl|resp.stale.is_error|resp.stale.is_revalidating|resp.stale|workspace.bytes_free|workspace.bytes_total|workspace.overflowed)\\b"
+        },
+        {
+          "name": "support.variable.vcl",
+          "match": "\\b(backend|director)\\.[^.]+\\.healthy\\b"
         }
       ]
     },
