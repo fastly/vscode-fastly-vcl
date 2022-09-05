@@ -74,7 +74,11 @@
       "patterns": [
         {
           "name": "keyword.control.vcl",
-          "match": "\\b(declare local|else|if|log|return|set|sub|unset)\\b"
+          "match": "\\b(else|if|return)\\b"
+        },
+        {
+          "name": "keyword.other.vcl",
+          "match": "\\b(acl|declare local|log|set|sin|unset)\\b"
         },
         {
           "name": "keyword.operator.vcl",
