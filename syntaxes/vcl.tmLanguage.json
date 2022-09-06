@@ -32,7 +32,7 @@
       "patterns": [
         {
           "name": "keyword.control.vcl",
-          "match": "#FASTLY\\.+"
+          "match": "#FASTLY.+"
         }
       ]
     },
