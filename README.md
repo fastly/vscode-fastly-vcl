@@ -1,70 +1,62 @@
-# vscode-vcl README
+# vscode-vcl
 
-This is the README for your extension "vscode-vcl". After writing up a brief description, we recommend including the following sections.
+<img src="https://github.com/fastly/vscode-vcl/blob/main/icon.png" alt="Icon" width=128 height=128/>
+
+A Visual Studio Code extension which adds syntax highlighting for Fastly Varnish Configuration Language (VCL) files.
+
+![Dark and light screenshots](screenshots.png)
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+This uses a JSON [TextMate language grammar](https://macromates.com/manual/en/language_grammars): [syntaxes/vtc.tmLanguage.json](syntaxes/vtc.tmLanguage.json), a structured collection of regular expressions, to tokenize the text into scopes. Visual Studio Code themes map scopes to colours and styles.
 
-For example if there is an image subfolder under your extension project workspace:
+This was built entirely from the public [VCL reference](https://developer.fastly.com/reference/vcl/).
 
-\!\[feature X\]\(images/feature-x.png\)
+The screenshots above are of [VCL boilerplate](https://developer.fastly.com/learning/vcl/using/#adding-vcl-to-your-service-configuration) using the [GitHub Dark Default](https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme) theme and the [JetBrains Mono](https://www.jetbrains.com/lp/mono/) font and using Visual Studio Code's default Light+ theme and the [Cascadia Code](https://github.com/microsoft/cascadia-code) font.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Installation
+
+Download the [latest GitHub release](https://github.com/fastly/vscode-vcl/releases/) and then run:
+
+```bash
+code --install-extension vscode-vcl-1.0.0.vsix
+```
+
+## Testing
+
+To run the grammar tests:
+
+```bash
+npm test
+```
+
+The test cases are stored as markdown files under `test/colorize-fixtures`. Grammar test results are stored under `test/colorize-results`, which are automatically generated from the fixtures.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+None.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-- `myExtension.enable`: Enable/disable this extension.
-- `myExtension.thing`: Set to `blah` to do something.
+None.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+None.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+## [Unreleased]
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Initial release.
 
 ---
 
 ## TODO
 
-Syntax highlight VCL embedded into Markdown documents.
-Syntax highlight regular expressions
+- Syntax highlight VCL embedded into Markdown documents.
+- Syntax highlight regular expressions.
 
-## Working with Markdown
+## Future
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-- Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-- Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-- Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Is this useful? Let me know! Leon Brocard <<leon@fastly.com>>

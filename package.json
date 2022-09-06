@@ -1,10 +1,20 @@
 {
   "name": "vscode-vcl",
-  "displayName": "vscode-vcl",
-  "description": "Syntax highlight Varnish Configuration Language files",
-  "version": "0.0.1",
+  "displayName": "Varnish Configuration Language (VCL)",
+  "description": "Syntax highlight Varnish Configuration Language (VCL) files",
+  "publisher": "Leon Brocard",
+  "homepage": "https://github.com/fastly/vscode-vcl",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fastly/vscode-vcl.git"
+  },
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.70.0"
+  },
+  "scripts": {
+    "test": "node ./test/runTest.mjs"
   },
   "categories": [
     "Programming Languages"
@@ -30,5 +40,10 @@
         "path": "./syntaxes/vcl.tmLanguage.json"
       }
     ]
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.70.0",
+    "@vscode/test-electron": "^2.1.5",
+    "mocha": "^10.0.0"
   }
 }
