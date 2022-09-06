@@ -213,7 +213,20 @@
       "patterns": [
         {
           "name": "keyword.control.vcl",
-          "match": "\\b(else|error|if|return|sub)\\b"
+          "match": "\\b(else|error|if|return)\\b"
+        },
+        {
+          "name": "meta.function.vcl",
+          "begin": "^\\s*(sub)\\s+([a-zA-Z_]+)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.vcl"
+            },
+            "2": {
+              "name": "entity.name.function.vcl"
+            }
+          },
+          "end": "{"
         },
         {
           "name": "keyword.other.vcl",
