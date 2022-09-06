@@ -309,7 +309,7 @@
     "variables": {
       "patterns": [
         {
-          "name": "variable.parameter.vcl",
+          "name": "variable.other.vcl",
           "match": "\\b(bereq|beresp|obj|req|resp)\\.http\\.[a-zA-Z0-9_.-]+(:[a-zA-Z0-9_.-]+)?"
         },
         {
