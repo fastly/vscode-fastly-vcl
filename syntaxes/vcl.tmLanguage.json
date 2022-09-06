@@ -297,7 +297,7 @@
     "types": {
       "patterns": [
         {
-          "name": "storage.type.vcl",
+          "name": "entity.name.type.vcl",
           "match": "\\b(ACL|BACKEND|BOOL|FLOAT|ID|INTEGER|IP|RTIME|STRING|TIME)\\b"
         },
         {
