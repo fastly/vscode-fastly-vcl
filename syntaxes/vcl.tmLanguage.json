@@ -217,7 +217,7 @@
         },
         {
           "name": "meta.function.vcl",
-          "begin": "^\\s*(sub)\\s+([a-zA-Z_]+)",
+          "begin": "^\\s*(sub)\\s+([a-zA-Z_0-9]+)",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.vcl"
