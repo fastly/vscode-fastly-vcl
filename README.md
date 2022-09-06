@@ -52,7 +52,6 @@ Added features X, Y, and Z.
 ## TODO
 
 Syntax highlight VCL embedded into Markdown documents.
-req.http.cookie:user_name
 Syntax highlight regular expressions
 
 ## Working with Markdown
