@@ -234,7 +234,20 @@
         },
         {
           "name": "keyword.other.vcl",
-          "match": "\\b(add|call|declare local|error|esi|include|log|remove|restart|return|set|synthetic|synthetic\\.base64|unset)\\b"
+          "match": "\\b(add|declare local|error|esi|include|log|remove|restart|return|set|synthetic|synthetic\\.base64|unset)\\b"
+        },
+        {
+          "name": "meta.function.vcl",
+          "begin": "^\\s*(call)\\s+([a-zA-Z_0-9]+)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.vcl"
+            },
+            "2": {
+              "name": "entity.name.function.vcl"
+            }
+          },
+          "end": ";"
         },
         {
           "name": "keyword.operator.vcl",
@@ -279,7 +292,7 @@
           "match": "\\b(chash|client|fallback|hash|random)\\b"
         },
         {
-          "name": "storage.type.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(deliver|fetch|hash|pass)\\b"
         }
       ]
