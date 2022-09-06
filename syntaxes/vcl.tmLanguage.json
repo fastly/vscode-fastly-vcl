@@ -213,7 +213,7 @@
       "patterns": [
         {
           "name": "keyword.control.vcl",
-          "match": "\\b(else|error|if|return)\\b"
+          "match": "\\b(else|error|if)\\b"
         },
         {
           "name": "meta.function.vcl",
@@ -227,6 +227,19 @@
             }
           },
           "end": "{"
+        },
+        {
+          "name": "meta.function.vcl",
+          "begin": "^\\s*(return)\\s*\\((deliver|fetch|hash|lookup|pass)\\s*\\)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.vcl"
+            },
+            "2": {
+              "name": "entity.name.function.vcl"
+            }
+          },
+          "end": ";"
         },
         {
           "name": "keyword.other.vcl",
@@ -290,10 +303,6 @@
         {
           "name": "storage.type.vcl",
           "match": "\\b(chash|client|fallback|hash|random)\\b"
-        },
-        {
-          "name": "entity.name.function.vcl",
-          "match": "\\b(deliver|fetch|hash|pass)\\b"
         }
       ]
     },
