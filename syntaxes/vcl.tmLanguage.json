@@ -80,63 +80,63 @@
     "functions": {
       "patterns": [
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(accept\\.charset_lookup|accept\\.encoding_lookup|accept\\.language_filter_basic|accept\\.language_lookup|accept\\.media_lookup)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(bin\\.base64_to_hex|bin\\.hex_to_base64|crypto\\.decrypt_base64|crypto\\.decrypt_hex|crypto\\.encrypt_base64|crypto\\.encrypt_hex|digest\\.awsv4_hmac|digest\\.base64_decode|digest\\.base64|digest\\.base64url_decode|digest\\.base64url_nopad|digest\\.base64url_nopad_decode|digest\\.base64url|digest\\.hash_crc32|digest\\.hash_crc32b|digest\\.hash_md5|digest\\.hash_sha1_from_base64|digest\\.hash_sha1|digest\\.hash_sha224|digest\\.hash_sha256_from_base64|digest\\.hash_sha256|digest\\.hash_sha384|digest\\.hash_sha512_from_base64|digest\\.hash_sha512|digest\\.hmac_md5_base64|digest\\.hmac_md5|digest\\.hmac_sha1_base64|digest\\.hmac_sha1|digest\\.hmac_sha256_base64|digest\\.hmac_sha256|digest\\.hmac_sha512_base64|digest\\.hmac_sha512|digest\\.rsa_verify|digest\\.secure_is_equal|digest\\.time_hmac_md5|digest\\.time_hmac_sha1|digest\\.time_hmac_sha256|digest\\.time_hmac_sha512)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(parse_time_delta|std\\.integer2time|std\\.time|strftime|time\\.add|time\\.hex_to_time|time\\.is_after|time\\.runits|time\\.sub|time\\.units)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(math\\.is_finite|math\\.is_infinite|math\\.is_nan|math\\.is_normal|math\\.is_subnormal)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(math\\.exp|math\\.exp2|math\\.log10|math\\.log2|math\\.log)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(math\\.ceil|math\\.floor|math\\.roundeven|math\\.roundhalfdown|math\\.roundhalfup|math\\.round|math\\.trunc)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(math\\.acosh|math\\.acos|math\\.asinh|math\\.asin|math\\.atan2|math\\.atanh|math\\.atan|math\\.cosh|math\\.cos|math\\.sinh|math\\.sin|math\\.sqrt|math\\.tanh|math\\.tan)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(addr\\.extract_bits|addr\\.is_ipv4|addr\\.is_ipv6|fastly\\.hash|http_status_matches|resp\\.tarpit|setcookie\\.delete_by_name|setcookie\\.get_value_by_name|std\\.collect|std\\.count|subfield)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(boltsort\\.sort|querystring\\.add|querystring\\.clean|querystring\\.filter_except|querystring\\.filter|querystring\\.filtersep|querystring\\.get|querystring\\.globfilter_except|querystring\\.globfilter|querystring\\.regfilter_except|querystring\\.regfilter|querystring\\.remove|querystring\\.set|querystring\\.sort)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(randombool_seeded|randombool|randomint_seeded|randomint|randomstr)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(ratelimit\\.check_rates|ratelimit\\.check_rate|ratelimit\\.penaltybox_add|ratelimit\\.penaltybox_has|ratelimit\\.ratecounter_increment)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(cstr_escape|json\\.escape|regsub|regsuball|std\\.anystr2ip|std\\.atof|std\\.atoi|std\\.basename|std\\.dirname|std\\.ip2str|std\\.ip|std\\.itoa|std\\.itoa_charset|std\\.prefixof|std\\.replace|std\\.replace_prefix|std\\.replace_suffix|std\\.replaceall|std\\.str2ip|std\\.strlen|std\\.strpad|std\\.strrep|std\\.strrev|std\\.strstr|std\\.strtof|std\\.strtol|std\\.suffixof|std\\.tolower|std\\.toupper|substr|urldecode|urlencode|utf8\\.codepoint_count|utf8\\.is_valid|utf8\\.strpad|utf8\\.substr|xml_escape)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(early_hints|h2\\.disable_header_compression|h2\\.push|h3\\.alt_svc)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(table\\.contains|table\\.lookup_acl|table\\.lookup_backend|table\\.lookup_bool|table\\.lookup_float|table\\.lookup_integer|table\\.lookup_ip|table\\.lookup_rtime|table\\.lookup)\\b"
         },
         {
-          "name": "support.function.vcl",
+          "name": "entity.name.function.vcl",
           "match": "\\b(uuid\\.dns|uuid\\.is_valid|uuid\\.is_version3|uuid\\.is_version4|uuid\\.is_version5|uuid\\.oid|uuid\\.url|uuid\\.version3|uuid\\.version4|uuid\\.version5|uuid\\.x500)\\b"
         },
         {
