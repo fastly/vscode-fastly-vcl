@@ -52,7 +52,7 @@ None.
 
 ### Added
 
-Documented that only one VCL extension should be installed.
+- Documented that only one VCL extension should be installed.
 
 ### Changed
 

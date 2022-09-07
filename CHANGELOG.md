@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Added
 
-Documented that only one VCL extension should be installed.
+- Documented that only one VCL extension should be installed.
 
 ### Changed
 
