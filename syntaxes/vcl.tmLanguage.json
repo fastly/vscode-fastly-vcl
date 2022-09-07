@@ -32,7 +32,7 @@
       "patterns": [
         {
           "name": "keyword.control.vcl",
-          "match": "#FASTLY.+"
+          "match": "^\\s*#FASTLY\\s+(deliver|error|fetch|hash|hit|log|miss|pass|recv)\\s*$"
         }
       ]
     },

@@ -4,6 +4,12 @@ All notable changes to the "vscode-vcl" extension will be documented in this fil
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.1] - 2022-09-07
+
+### Added
+
+- Tighten up `#FASTLY` macro matching.
+
 ## [1.0.0] - 2022-09-06
 
 - Initial release.

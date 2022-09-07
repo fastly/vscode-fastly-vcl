@@ -21,7 +21,7 @@ Uninstall any previously-enabled VCL extensions.
 Download the [latest GitHub release](https://github.com/fastly/vscode-vcl/releases/) and then run:
 
 ```bash
-code --install-extension vscode-vcl-1.0.0.vsix
+code --install-extension vscode-vcl-1.0.1.vsix
 ```
 
 ## Testing
@@ -47,6 +47,12 @@ None.
 None.
 
 ## Release Notes
+
+## [1.0.1] - 2022-09-07
+
+### Added
+
+- Tighten up `#FASTLY` macro matching.
 
 ## [1.0.0] - 2022-09-06
 
