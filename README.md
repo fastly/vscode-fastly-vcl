@@ -52,6 +52,10 @@ None.
 
 ### Added
 
+Documented that only one VCL extension should be installed.
+
+### Changed
+
 - Tighten up `#FASTLY` macro matching.
 
 ## [1.0.0] - 2022-09-06
