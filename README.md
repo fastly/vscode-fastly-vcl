@@ -16,6 +16,8 @@ The screenshots above are of [VCL boilerplate](https://developer.fastly.com/lear
 
 ## Installation
 
+Uninstall any previously-enabled VCL extensions.
+
 Download the [latest GitHub release](https://github.com/fastly/vscode-vcl/releases/) and then run:
 
 ```bash
