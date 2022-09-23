@@ -26,6 +26,8 @@ code --install-extension vscode-fastly-vcl-1.0.2.vsix
 
 ## Development
 
+Please open a pull request with your changes.
+
 To build and test a release:
 
 ```bash
