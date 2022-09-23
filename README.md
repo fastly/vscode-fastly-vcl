@@ -1,4 +1,4 @@
-# vscode-vcl
+# vscode-fastly-vcl
 
 ![.vcl icon](icon.png)
 
@@ -18,10 +18,18 @@ The screenshots above are of [VCL boilerplate](https://developer.fastly.com/lear
 
 Uninstall (or disable) any previously-enabled VCL extensions.
 
-Download the [latest GitHub release](https://github.com/fastly/vscode-vcl/releases/) and then run:
+Download the [latest GitHub release](https://github.com/fastly/vscode-fastly-vcl/releases/) and then run:
 
 ```bash
-code --install-extension vscode-vcl-1.0.1.vsix
+code --install-extension vscode-fastly-vcl-1.0.2.vsix
+```
+
+## Development
+
+To build and test a release:
+
+```bash
+vsce package && code --install-extension vscode-fastly-vcl-1.0.2.vsix
 ```
 
 ## Testing
@@ -47,6 +55,13 @@ None.
 None.
 
 ## Release Notes
+
+## UNRELEASED
+
+### Changed
+
+- Note that previously-enabled VCL extensions can be disabled as well as uninstalled.
+- Clarify that this is an extension specifically for Fastly VCL, not general VCL.
 
 ## [1.0.1] - 2022-09-07
 
