@@ -1,6 +1,6 @@
 # vscode-vcl
 
-<img src="https://github.com/fastly/vscode-vcl/blob/main/icon.png" alt="Icon" width=128 height=128/>
+![.vcl icon](icon.png)
 
 A Visual Studio Code extension which adds syntax highlighting for Fastly Varnish Configuration Language (VCL) files.
 
