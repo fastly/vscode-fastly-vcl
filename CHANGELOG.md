@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Note that previously-enabled VCL extensions can be disabled as well as uninstalled.
 - Clarify that this is an extension specifically for Fastly VCL, not general VCL.
+- Rename from vscode-vcl to vscode-fastly-vcl.
 
 ## [1.0.1] - 2022-09-07
 
