@@ -26,9 +26,28 @@ code --install-extension vscode-fastly-vcl-1.0.1.vsix
 
 ## Development
 
+### Contributing
 Please open a pull request with your changes.
 
-To build and test a release:
+### Dependencies
+
+Install NPM - Node.js Package Manager
+
+```bash
+brew install npm
+```
+
+Install VSCE - Visual Studio Code Extensions", is a command-line tool for packaging, publishing and managing VS Code extensions
+```bash
+npm install -g vsce
+```
+
+Install Electron - Node module helps you test VS Code extensions
+```bash
+npm i @vscode/test-electron
+```
+
+### Building and Installing
 
 ```bash
 vsce package && code --install-extension vscode-fastly-vcl-1.0.2.vsix
