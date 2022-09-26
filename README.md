@@ -37,7 +37,7 @@ Install NPM - Node.js Package Manager
 brew install npm
 ```
 
-Install VSCE - Visual Studio Code Extensions", is a command-line tool for packaging, publishing and managing VS Code extensions
+Install VSCE - Visual Studio Code Extensions is a command-line tool for packaging, publishing and managing VS Code extensions
 ```bash
 npm install -g vsce
 ```
