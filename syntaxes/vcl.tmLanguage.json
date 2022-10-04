@@ -40,11 +40,11 @@
       "patterns": [
         {
           "name": "comment.line.number-sign.vcl",
-          "match": "#.+"
+          "match": "#.*"
         },
         {
           "name": "comment.line.double-slash.vcl",
-          "match": "//.+"
+          "match": "//.*"
         },
         {
           "name": "comment.line.block.vcl",
