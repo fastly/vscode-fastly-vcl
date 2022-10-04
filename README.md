@@ -89,6 +89,7 @@ None.
 - Rename from vscode-vcl to vscode-fastly-vcl.
 - Colorize "#" and "//" as comments even if there are no letters behind.
 - Add more dependencies to the README.
+- Add list of contributors.
 
 ## [1.0.1] - 2022-09-07
 
@@ -110,6 +111,14 @@ None.
 
 - Syntax highlight VCL embedded into Markdown documents.
 - Syntax highlight regular expressions.
+
+## Contributors
+
+Special thanks to all contributors:
+
+- [Ed Thurgood](https://github.com/ejthurgo)
+- [Hiromasa Kakehashi](https://github.com/hrmsk66)
+- [Leon Brocard](https://github.com/acme)
 
 ## Future
 

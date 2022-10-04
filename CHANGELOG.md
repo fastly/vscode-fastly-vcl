@@ -13,6 +13,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Rename from vscode-vcl to vscode-fastly-vcl.
 - Colorize "#" and "//" as comments even if there are no letters behind.
 - Add more dependencies to the README.
+- Add list of contributors.
 
 ## [1.0.1] - 2022-09-07
 
