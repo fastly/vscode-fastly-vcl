@@ -4,7 +4,7 @@ All notable changes to the "vscode-fastly-vcl" extension will be documented in t
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [1.0.2] - UNRELEASED
+## [1.0.2] - 2022-10-04
 
 ### Changed
 

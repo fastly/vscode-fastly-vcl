@@ -80,7 +80,7 @@ None.
 
 ## Release Notes
 
-## [1.0.2] - UNRELEASED
+## [1.0.2] - 2022-10-04
 
 ### Changed
 
