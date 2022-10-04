@@ -27,6 +27,7 @@ code --install-extension vscode-fastly-vcl-1.0.1.vsix
 ## Development
 
 ### Contributing
+
 Please open a pull request with your changes.
 
 ### Dependencies
@@ -38,11 +39,13 @@ brew install npm
 ```
 
 Install VSCE - Visual Studio Code Extensions is a command-line tool for packaging, publishing and managing VS Code extensions
+
 ```bash
 npm install -g vsce
 ```
 
 Install Electron - Node module helps you test VS Code extensions
+
 ```bash
 npm i @vscode/test-electron
 ```
@@ -84,6 +87,8 @@ None.
 - Note that previously-enabled VCL extensions can be disabled as well as uninstalled.
 - Clarify that this is an extension specifically for Fastly VCL, not general VCL.
 - Rename from vscode-vcl to vscode-fastly-vcl.
+- Colorize "#" and "//" as comments even if there are no letters behind.
+- Add more dependencies to the README.
 
 ## [1.0.1] - 2022-09-07
 
