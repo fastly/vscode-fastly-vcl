@@ -213,7 +213,7 @@
       "patterns": [
         {
           "name": "keyword.control.vcl",
-          "match": "\\b(else|error|if)\\b"
+          "match": "\\b(else|elseif|elsif|error|if)\\b"
         },
         {
           "name": "meta.function.vcl",

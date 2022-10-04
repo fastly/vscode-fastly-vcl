@@ -4,6 +4,12 @@ All notable changes to the "vscode-fastly-vcl" extension will be documented in t
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## UNRELEASED
+
+### Added
+
+- Add highlighting for elseif and elsif.
+
 ## [1.0.2] - 2022-10-04
 
 ### Changed

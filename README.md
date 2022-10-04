@@ -80,6 +80,12 @@ None.
 
 ## Release Notes
 
+## UNRELEASED
+
+### Added
+
+- Add highlighting for elseif and elsif.
+
 ## [1.0.2] - 2022-10-04
 
 ### Changed
