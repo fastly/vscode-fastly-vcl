@@ -1,6 +1,7 @@
-node_modules
-*.vsix
 .vscode-test
+*.vsix
 dark.png
+icon.xcf
 light.png
+node_modules
 screenshots.xcf
