@@ -1,0 +1,49 @@
+{
+  "name": "vscode-fastly-vcl",
+  "displayName": "Fastly Varnish Configuration Language (VCL)",
+  "description": "Syntax highlight Fastly Varnish Configuration Language (VCL) files",
+  "publisher": "Leon Brocard",
+  "homepage": "https://github.com/fastly/vscode-fastly-vcl",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fastly/vscode-fastly-vcl.git"
+  },
+  "version": "1.0.3",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "scripts": {
+    "test": "node ./test/runTest.mjs"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "vcl",
+        "aliases": [
+          "Fastly VCL",
+          "vcl"
+        ],
+        "extensions": [
+          ".vcl"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "vcl",
+        "scopeName": "source.vcl",
+        "path": "./syntaxes/vcl.tmLanguage.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.70.0",
+    "@vscode/test-electron": "^2.1.5",
+    "mocha": "^10.0.0"
+  }
+}

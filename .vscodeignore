@@ -1,0 +1,8 @@
+.gitignore
+.vscode-test/**
+.vscode/**
+dark.png
+icon.xcf
+light.png
+screenshots.xcf
+vsc-extension-quickstart.md
