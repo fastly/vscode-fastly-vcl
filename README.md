@@ -21,7 +21,7 @@ Uninstall (or disable) any previously-enabled VCL extensions.
 Download the [latest GitHub release](https://github.com/fastly/vscode-fastly-vcl/releases/) and then run:
 
 ```bash
-code --install-extension vscode-fastly-vcl-1.0.2.vsix
+code --install-extension vscode-fastly-vcl-1.0.3.vsix
 ```
 
 ## Development
@@ -53,7 +53,7 @@ npm i @vscode/test-electron
 ### Building and Installing
 
 ```bash
-vsce package && code --install-extension vscode-fastly-vcl-1.0.2.vsix
+vsce package && code --install-extension vscode-fastly-vcl-1.0.3.vsix
 ```
 
 ## Testing
@@ -80,7 +80,7 @@ None.
 
 ## Release Notes
 
-## UNRELEASED
+## [1.0.3] - 2022-10-10
 
 ### Added
 
