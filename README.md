@@ -8,7 +8,34 @@ A Visual Studio Code extension which adds syntax highlighting for Fastly Varnish
 
 ## Features
 
-This uses a JSON [TextMate language grammar](https://macromates.com/manual/en/language_grammars): [syntaxes/vtc.tmLanguage.json](syntaxes/vtc.tmLanguage.json), a structured collection of regular expressions, to tokenize the text into scopes. Visual Studio Code themes map scopes to colours and styles.
+This uses a JSON [TextMate language grammar](https://macromates.com/manual/en/language_grammars): [syntaxes/vcl.tmLanguage.json](syntaxes/vcl.tmLanguage.json), a structured collection of regular expressions, to tokenize the text into scopes such as:
+
+- `keyword.control.vcl`
+- `variable.other.vcl`
+- `string.quoted.double.vcl`
+- `comment.line.number-sign.vcl`
+
+For example, the extension scopes Fastly code macros as control keywords using a regular expression in JSON:
+
+```json
+{
+  "name": "keyword.control.vcl",
+  "match": "^\\s*#FASTLY\\s+(deliver|error|fetch|hash|hit|log|miss|pass|recv)\\s*$"
+}
+```
+
+Visual Studio Code themes such as GitHub Dark Default or the default Light+ map scopes to colours and styles.
+
+The GitHub Dark default theme maps the keyword scope to red using a JavaScript object:
+
+```js
+{
+  scope: "keyword",
+  settings: {
+    foreground: lightDark(scale.red[5], scale.red[3])
+  }
+}
+```
 
 This was built entirely from the public [VCL reference](https://developer.fastly.com/reference/vcl/).
 
