@@ -8,7 +8,7 @@ A Visual Studio Code extension which adds syntax highlighting for Fastly Varnish
 
 ## Features
 
-This uses a JSON [TextMate language grammar](https://macromates.com/manual/en/language_grammars): [syntaxes/vtc.tmLanguage.json](syntaxes/vtc.tmLanguage.json), a structured collection of regular expressions, to tokenize the text into scopes such as:
+This uses a JSON [TextMate language grammar](https://macromates.com/manual/en/language_grammars): [syntaxes/vcl.tmLanguage.json](syntaxes/vcl.tmLanguage.json), a structured collection of regular expressions, to tokenize the text into scopes such as:
 
 - `keyword.control.vcl`
 - `variable.other.vcl`
