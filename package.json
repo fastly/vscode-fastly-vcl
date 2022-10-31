@@ -2,7 +2,7 @@
   "name": "vscode-fastly-vcl",
   "displayName": "Fastly Varnish Configuration Language (VCL)",
   "description": "Syntax highlight Fastly Varnish Configuration Language (VCL) files",
-  "publisher": "Leon Brocard",
+  "publisher": "fastly",
   "homepage": "https://github.com/fastly/vscode-fastly-vcl",
   "icon": "icon.png",
   "repository": {
