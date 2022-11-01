@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg fill="none" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+ <text x="5.8879809" y="17.703279" fill="#ff282d" font-family="Inter Bold" font-size="7.193px" stroke-width="1.1988" style="line-height:1.25" xml:space="preserve"><tspan x="5.8879809" y="17.703279" fill="#ff282d" font-family="Inter" font-size="7.193px" font-weight="bold" stroke-width="1.1988">VCL</tspan></text>
+ <path d="m19.791 1.2125c0.65936 0 1.1988 0.53948 1.1988 1.1988v19.181c0 0.65936-0.53948 1.1988-1.1988 1.1988h-13.187c-0.65936 0-1.1988-0.53948-1.1988-1.1988v-15.789c0-0.32369 0.11988-0.6234 0.34766-0.85118l3.3927-3.3927a1.1869 1.1869 0 0 1 0.85118-0.34766zm0-1.1988h-9.7945c-0.63539 0-1.2468 0.25176-1.7024 0.70732l-3.3807 3.3807c-0.45556 0.45556-0.70732 1.067-0.70732 1.7024v15.789c0 1.3187 1.079 2.3977 2.3977 2.3977h13.187c1.3187 0 2.3977-1.079 2.3977-2.3977v-19.181c0-1.3187-1.079-2.3977-2.3977-2.3977z" fill="#ff282d" stroke-width="1.1988"/>
+ <g stroke="#ff282d" stroke-miterlimit="10" stroke-width="1.1988">
+  <path d="m4.8053 5.4084h3.5965c0.65936 0 1.1988-0.53948 1.1988-1.1988v-2.9971"/>
+  <path d="m4.8053 1.8119c-1.3187 0-2.3977 1.079-2.3977 2.3977v17.383" stroke-linecap="round"/>
+  <path d="m7.8024 8.4055h10.79m-10.79 2.3977h10.79m-10.79 8.3919h10.79" stroke-linecap="round" stroke-linejoin="round"/>
+ </g>
+</svg>
