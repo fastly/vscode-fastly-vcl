@@ -54,7 +54,7 @@ Uninstall (or disable) any previously-enabled VCL extensions.
 Download the [latest GitHub release](https://github.com/fastly/vscode-fastly-vcl/releases/) and then run:
 
 ```bash
-code --install-extension vscode-fastly-vcl-1.0.3.vsix
+code --install-extension vscode-fastly-vcl-1.0.4.vsix
 ```
 
 ## Development
@@ -86,7 +86,7 @@ npm i @vscode/test-electron
 ### Building and Installing
 
 ```bash
-vsce package && code --install-extension vscode-fastly-vcl-1.0.3.vsix
+vsce package && code --install-extension vscode-fastly-vcl-1.0.4.vsix
 ```
 
 ## Testing
@@ -112,6 +112,15 @@ None.
 None.
 
 ## Release Notes
+
+## [1.0.4] - 2022-11-03
+
+### Changed
+
+- Document that the extension in now in the Visual Studio Marketplace.
+- Add a beautiful new icon.
+- Document how the extension works.
+- Fix link to the language file in the README.
 
 ## [1.0.3] - 2022-10-10
 

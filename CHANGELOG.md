@@ -4,6 +4,15 @@ All notable changes to the "vscode-fastly-vcl" extension will be documented in t
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.4] - 2022-11-03
+
+### Changed
+
+- Document that the extension in now in the Visual Studio Marketplace.
+- Add a beautiful new icon.
+- Document how the extension works.
+- Fix link to the language file in the README.
+
 ## [1.0.3] - 2022-10-10
 
 ### Added
