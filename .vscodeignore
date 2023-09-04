@@ -1,4 +1,4 @@
-.gitignore
+.git*
 .vscode-test/**
 .vscode/**
 dark.png
@@ -6,3 +6,18 @@ icon.xcf
 light.png
 screenshots.xcf
 vsc-extension-quickstart.md
+**/tsconfig.json
+**/tsconfig.base.json
+client/node_modules/**
+!client/node_modules/vscode-jsonrpc/**
+!client/node_modules/vscode-languageclient/**
+!client/node_modules/vscode-languageserver-protocol/**
+!client/node_modules/vscode-languageserver-types/**
+!client/node_modules/{minimatch,brace-expansion,concat-map,balanced-match}/**
+!client/node_modules/{semver,lru-cache,yallist}/**
+.dora
+client/testFixture
+client/src/test
+*.vsix
+.tmp
+.tmp*
