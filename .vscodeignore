@@ -5,7 +5,7 @@ dark.png
 icon.xcf
 light.png
 screenshots.xcf
-vsc-extension-quickstart.md
+DEVELOPMENT.md
 **/tsconfig.json
 **/tsconfig.base.json
 client/node_modules/**
