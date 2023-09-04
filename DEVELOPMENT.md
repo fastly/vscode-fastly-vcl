@@ -1,13 +1,5 @@
 # Development
 
-## Building and running this extension
-
-```term
-gh repo clone fastly/vscode-fastly-vcl
-cd vscode-fastly-vcl
-npm i
-```
-
 ## What's in the folder
 
 - `package.json` - this is the manifest file in which you declare your language support and define the location of the grammar file that has been copied into your extension.
@@ -15,7 +7,24 @@ npm i
 - `language-configuration.json` - this is the language configuration, defining the tokens that are used for comments and brackets.
 - `client/` - this is the Language Server Protocol client that talks to the LSP server ([`fastly-vcl-lsp`](https://www.npmjs.com/package/fastly-vcl-lsp)).
 
-### Debugging
+## Building and running this extension
+
+You'll need [Node.js](https://nodejs.org) and [npm](https://www.npmjs.com/): 
+
+```term
+brew install npm
+npm i node@lts
+```
+
+To develop this extension on your machine, clone this repository and install its dependencies:
+
+```term
+gh repo clone fastly/vscode-fastly-vcl
+cd vscode-fastly-vcl
+npm i
+```
+
+### Local development server
 
 1. Open this folder in VS Code.
 1. Run `Cmd+Shift+B` to start compiling the client in watch mode.
@@ -26,6 +35,22 @@ npm i
 1. Save the file with a `.vcl` extension. 
 1. Use it as a scratchpad to try out all the features!
 
+### Testing
+
+To run the grammar tests:
+
+```bash
+npm test
+```
+
+The test cases are stored as markdown files under `test/colorize-fixtures`. Grammar test results are stored under `test/colorize-results`, which are automatically generated from the fixtures.
+
+To run the LSP tests:
+
+```bash
+npm run test-client
+```
+
 ### Packaging and installation
 
 Run the following command to compile the VSCode extension as a `.vsix` file.
@@ -34,18 +59,55 @@ Run the following command to compile the VSCode extension as a `.vsix` file.
 npm run package
 ```
 
+Then, either run `code --install-extension vscode-fastly-vcl-{VERSION}.vsix` or follow the steps below to install the extension: 
+
 1. Press `Cmd+Shift+X` to go to the VS Code extension tab.
 1. Click the ellipsis (above "Search Extensions in Marketplace") and pick `Install from VSIX...` from the dropdown.
 1. Install the `.vsix` file you created.
 
 ![How to install a VSIX](https://github.com/doramatadora/vscode-fastly-vcl/assets/12828487/090175b9-ae10-4982-a6b8-81f42998e587)
 
+### Contributing
+
+Please open a pull request with your changes.
+
 ## Functionality
+
+### Syntax highlighting (VSCode capability)
+
+This uses a JSON [TextMate language grammar](https://macromates.com/manual/en/language_grammars): [syntaxes/vcl.tmLanguage.json](syntaxes/vcl.tmLanguage.json), a structured collection of regular expressions, to tokenize the text into scopes such as:
+
+- `keyword.control.vcl`
+- `variable.other.vcl`
+- `string.quoted.double.vcl`
+- `comment.line.number-sign.vcl`
+
+For example, the extension scopes Fastly code macros as control keywords using a regular expression in JSON:
+
+```json
+{
+  "name": "keyword.control.vcl",
+  "match": "^\\s*#FASTLY\\s+(deliver|error|fetch|hash|hit|log|miss|pass|recv)\\s*$"
+}
+```
+
+Visual Studio Code themes such as GitHub Dark Default or the default Light+ map scopes to colours and styles.
+
+The GitHub Dark default theme maps the keyword scope to red using a JavaScript object:
+
+```js
+{
+  scope: "keyword",
+  settings: {
+    foreground: lightDark(scale.red[5], scale.red[3])
+  }
+}
+```
 
 
 ### Fastly VCL LSP capabilities
 
-The [Fastly VCL LSP server](https://www.npmjs.com/package/fastly-vcl-lsp) works for `.vcl` files. The server is still in an early state. The following list tracks the protocol features that are supported:
+The [Fastly VCL Language Server Protocol (LSP) server](https://www.npmjs.com/package/fastly-vcl-lsp) works for `.vcl` files. The server is still in an early state. The following list tracks the protocol features that are supported:
 
 - [ ] `textDocument/codeAction`
 - [x] `textDocument/completion` (incl. `completion/resolve`)
