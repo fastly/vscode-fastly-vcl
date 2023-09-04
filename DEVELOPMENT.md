@@ -8,6 +8,13 @@ cd vscode-fastly-vcl
 npm i
 ```
 
+## What's in the folder
+
+- `package.json` - this is the manifest file in which you declare your language support and define the location of the grammar file that has been copied into your extension.
+- `syntaxes/vcl.tmLanguage.json` - this is the Text mate grammar file that is used for tokenization.
+- `language-configuration.json` - this is the language configuration, defining the tokens that are used for comments and brackets.
+- `client/` - this is the Language Server Protocol client that talks to the LSP server ([`fastly-vcl-lsp`](https://www.npmjs.com/package/fastly-vcl-lsp)).
+
 ### Debugging
 
 1. Open this folder in VS Code.
@@ -34,6 +41,9 @@ npm run package
 ![How to install a VSIX](https://github.com/doramatadora/vscode-fastly-vcl/assets/12828487/090175b9-ae10-4982-a6b8-81f42998e587)
 
 ## Functionality
+
+
+### Fastly VCL LSP capabilities
 
 The [Fastly VCL LSP server](https://www.npmjs.com/package/fastly-vcl-lsp) works for `.vcl` files. The server is still in an early state. The following list tracks the protocol features that are supported:
 
