@@ -79,6 +79,7 @@ Special thanks to all contributors:
 - [Ed Thurgood](https://github.com/ejthurgo)
 - [Hiromasa Kakehashi](https://github.com/hrmsk66)
 - [Leon Brocard](https://github.com/acme)
+- [Dora Militaru](https://github.com/doramatadora)
 
 ## Future
 
