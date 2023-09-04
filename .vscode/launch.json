@@ -22,7 +22,7 @@
       }
     },
     {
-      "name": "Extension E2E Test",
+      "name": "Client E2E Test",
       "type": "extensionHost",
       "request": "launch",
       "runtimeExecutable": "${execPath}",
