@@ -18,7 +18,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Changed
 
-- Removed `//` from
+- Comments must start with `//`.
 
 ## [1.0.4] - 2022-11-03
 
