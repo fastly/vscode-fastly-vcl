@@ -18,6 +18,7 @@ client/node_modules/**
 .dora
 client/testFixture
 client/src/test
+client/README.md
 *.vsix
 .tmp
 .tmp*

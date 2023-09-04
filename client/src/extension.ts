@@ -36,11 +36,10 @@ export function activate (_context: ExtensionContext) {
     }
   }
 
-  console.log("IN CLIENT")
   // Create the language client and start the client.
   client = new LanguageClient(
     'vcl',
-    'Fastly VCL Server 2',
+    'Fastly VCL Server',
     serverOptions,
     clientOptions
   )
