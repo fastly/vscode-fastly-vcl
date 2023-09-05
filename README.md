@@ -76,10 +76,10 @@ None. Use our [Github issues](https://github.com/fastly/vscode-fastly-vcl/new) t
 
 Special thanks to all contributors:
 
+- [Dora Militaru](https://github.com/doramatadora)
 - [Ed Thurgood](https://github.com/ejthurgo)
 - [Hiromasa Kakehashi](https://github.com/hrmsk66)
 - [Leon Brocard](https://github.com/acme)
-- [Dora Militaru](https://github.com/doramatadora)
 
 ## Future
 
