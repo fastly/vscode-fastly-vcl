@@ -1,4 +1,4 @@
-# Fastly Varnish Configuration Language (VCL) Support for VSCode
+# Fastly Varnish Configuration Language (VCL) Support for Visual Studio Code
 
 ![.vcl icon](icon.png)
 
