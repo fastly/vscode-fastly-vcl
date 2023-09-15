@@ -25,5 +25,6 @@ node_modules/**/*.txt
 node_modules/**/*.d.ts
 node_modules/@*/**
 node_modules/fastly-vcl-lsp/src/**
-node_modules/fastly-vcl-language-client/src/**
+node_modules/fastly-vcl-language-client/src/test/**
+node_modules/fastly-vcl-language-client/out/test/**
 node_modules/fastly-vcl-language-client/testFixture/**
