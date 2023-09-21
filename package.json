@@ -11,7 +11,7 @@
   },
   "version": "2.0.0",
   "engines": {
-    "vscode": "^1.75.0",
+    "vscode": "^1.82.0",
     "node": ">=18"
   },
   "activationEvents": [],
@@ -74,14 +74,14 @@
     }
   },
   "devDependencies": {
-    "@types/vscode": "^1.75.0",
+    "@types/vscode": "^1.82.0",
     "@vscode/test-electron": "^2.3.4",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.17.6",
-    "@typescript-eslint/eslint-plugin": "^6.6.0",
-    "@typescript-eslint/parser": "^6.6.0",
+    "@types/node": "^18.17.18",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
     "@vscode/vsce": "^2.21.0",
-    "eslint": "^8.48.0",
+    "eslint": "^8.49.0",
     "husky": "^8.0.3",
     "mocha": "^10.2.0",
     "typescript": "^5.2.2"
