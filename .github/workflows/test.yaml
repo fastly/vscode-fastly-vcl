@@ -2,6 +2,10 @@ name: Test
 
 on: pull_request
 
+concurrency:
+  group: ${{ github.ref_name }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: macos-latest
