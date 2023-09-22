@@ -4,6 +4,22 @@ All notable changes to the "vscode-fastly-vcl" extension will be documented in t
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## UNRELEASED
+
+### Added
+
+- Integration with [`fastly-vcl-lsp`](https://www.npmjs.com/package/fastly-vcl-lsp).
+- Support for completions, including context-aware completions (functions, variables, headers, Fastly macros).
+- Signature help for functions.
+- Boilerplate snippets for subroutines.
+- Show documentation on hover.
+- Diagnostics (using [`falco`](https://github.com/ysugimoto/falco) – Linux & Darwin, ARM/AMD64 only).
+- Indentation and folding range directives in the language configuration.
+
+### Changed
+
+- Comments must start with `//`.
+
 ## [1.0.4] - 2022-11-03
 
 ### Changed

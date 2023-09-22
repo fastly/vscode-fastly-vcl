@@ -5,3 +5,8 @@ icon.xcf
 light.png
 node_modules
 screenshots.xcf
+.DS_Store
+.tmp
+.tmp*
+.dora
+client/out

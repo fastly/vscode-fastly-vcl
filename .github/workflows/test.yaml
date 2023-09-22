@@ -1,0 +1,29 @@
+name: Test
+
+on: pull_request
+
+concurrency:
+  group: ${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+      - name: Install dependencies
+        run: npm install
+      - name: Compile the language client
+        run: npm run compile
+      - name: Test syntax highlighting
+        run: npm test
+      - name: Test LSP features
+        run: npm run test-client
+      - name: Test package
+        run: npm run package

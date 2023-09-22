@@ -1,7 +1,7 @@
 {
   "name": "vscode-fastly-vcl",
   "displayName": "Fastly Varnish Configuration Language (VCL)",
-  "description": "Syntax highlight Fastly Varnish Configuration Language (VCL) files",
+  "description": "Fastly Varnish Configuration Language (VCL) language support for Visual Studio Code",
   "publisher": "fastly",
   "homepage": "https://github.com/fastly/vscode-fastly-vcl",
   "icon": "icon.png",
@@ -9,15 +9,28 @@
     "type": "git",
     "url": "https://github.com/fastly/vscode-fastly-vcl.git"
   },
-  "version": "1.0.4",
+  "version": "2.0.0",
   "engines": {
-    "vscode": "^1.70.0"
+    "vscode": "^1.82.0",
+    "node": ">=18"
   },
+  "activationEvents": [],
+  "main": "./client/out/extension",
+  "workspaces": [ "./client" ],
   "scripts": {
-    "test": "node ./test/runTest.mjs"
+    "test": "node ./test/runTest.mjs",
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -b",
+    "watch": "tsc -b -w",
+    "lint": "eslint ./client/src --ext .ts,.tsx",
+    "test-client": "sh ./scripts/e2e.sh",
+    "package": "vsce package",
+    "publish": "vsce package",
+    "prepare": "husky install"
   },
   "categories": [
-    "Programming Languages"
+    "Programming Languages",
+    "Language Packs"
   ],
   "contributes": {
     "languages": [
@@ -28,7 +41,8 @@
           "vcl"
         ],
         "extensions": [
-          ".vcl"
+          ".vcl",
+          ".VCL"
         ],
         "configuration": "./language-configuration.json"
       }
@@ -39,11 +53,37 @@
         "scopeName": "source.vcl",
         "path": "./syntaxes/vcl.tmLanguage.json"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Fastly VCL",
+      "properties": {
+        "fastly.vcl.lintingEnabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Experimental: Enable linting."
+        },
+        "fastly.vcl.maxLintingIssues": {
+          "scope": "resource",
+          "type": "number",
+          "default": 100,
+          "description": "Specifies the maximum number of linting issues that the server will return."
+        }
+      }
+    }
   },
   "devDependencies": {
-    "@types/vscode": "^1.70.0",
-    "@vscode/test-electron": "^2.1.5",
-    "mocha": "^10.0.0"
+    "@types/vscode": "^1.82.0",
+    "@vscode/test-electron": "^2.3.4",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.17.18",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
+    "@vscode/vsce": "^2.21.0",
+    "eslint": "^8.49.0",
+    "husky": "^8.0.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2"
   }
 }
