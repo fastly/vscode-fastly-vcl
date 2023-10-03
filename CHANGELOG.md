@@ -4,7 +4,13 @@ All notable changes to the "vscode-fastly-vcl" extension will be documented in t
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## UNRELEASED
+## [2.0.1] - 2023-10-03
+
+### Changed
+
+- "Toggle Line Comment" now adds `#` rather than `//`.
+
+## [2.0.0] - 2023-09-23
 
 ### Added
 

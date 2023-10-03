@@ -1,7 +1,7 @@
 {
   "comments": {
     // symbol used for single line comment
-    "lineComment": "//",
+    "lineComment": "#",
     // symbols used for start and end a block comment.
     "blockComment": ["/*", "*/"]
   },
@@ -13,9 +13,9 @@
   ],
   // symbols that are auto closed when typing
   "autoClosingPairs": [
-    { "open": "{", "close": "}"},
-    { "open": "[", "close": "]"},
-    { "open": "(", "close": ")"},
+    { "open": "{", "close": "}" },
+    { "open": "[", "close": "]" },
+    { "open": "(", "close": ")" },
     { "open": "\"", "close": "\"", "notIn": ["string"] },
     { "open": "'", "close": "'", "notIn": ["string", "comment"] }
   ],
@@ -29,14 +29,14 @@
   ],
   // folding ranges
   "folding": {
-      "markers": {
-        "start": "^\\s*//\\s*#?region\\b",
-        "end": "^\\s*//\\s*#?endregion\\b"
-      }
+    "markers": {
+      "start": "^\\s*//\\s*#?region\\b",
+      "end": "^\\s*//\\s*#?endregion\\b"
+    }
   },
   // auto-indentation
   "indentationRules": {
-      "increaseIndentPattern": "^((?!\\/\\/).)*(\\{[^}\"'`]*|\\([^)\"'`]*|\\[[^\\]\"'`]*)$",
-      "decreaseIndentPattern": "^((?!.*?\\/\\*).*\\*/)?\\s*[\\)\\}\\]].*$"
+    "increaseIndentPattern": "^((?!\\/\\/).)*(\\{[^}\"'`]*|\\([^)\"'`]*|\\[[^\\]\"'`]*)$",
+    "decreaseIndentPattern": "^((?!.*?\\/\\*).*\\*/)?\\s*[\\)\\}\\]].*$"
   }
 }
