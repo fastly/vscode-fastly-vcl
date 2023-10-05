@@ -9,14 +9,16 @@
     "type": "git",
     "url": "https://github.com/fastly/vscode-fastly-vcl.git"
   },
-  "version": "2.0.0",
+  "version": "2.0.1",
   "engines": {
     "vscode": "^1.82.0",
     "node": ">=18"
   },
   "activationEvents": [],
   "main": "./client/out/extension",
-  "workspaces": [ "./client" ],
+  "workspaces": [
+    "./client"
+  ],
   "scripts": {
     "test": "node ./test/runTest.mjs",
     "vscode:prepublish": "npm run compile",
