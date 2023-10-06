@@ -16,27 +16,29 @@ The screenshots above are of [VCL boilerplate](https://developer.fastly.com/lear
 
 ### Diagnostics (with [`falco`](https://github.com/ysugimoto/falco))
 
-![Diagnostics](https://github.com/doramatadora/vscode-fastly-vcl/assets/12828487/844e7f9d-63d7-4d32-9716-5a8e6cc871f5)
+![Diagnostics](diagnostics.png)
 
 ### Contextual completions
 
 Completions include:
-* VCL functions
-* VCL variables
-* HTTP headers
-* Subroutine snippets
-* Fastly macros
 
-![Completions](https://github.com/doramatadora/vscode-fastly-vcl/assets/12828487/79a02caa-6307-4785-b717-a9b508aee4f5)
+- VCL functions
+- VCL variables
+- HTTP headers
+- Subroutine snippets
+- Fastly macros
+
+![Completions](completions.png)
 
 ### Signature help
 
-![Signature help](https://github.com/doramatadora/vscode-fastly-vcl/assets/12828487/e52612d1-4429-4371-8da1-4f7aa352a56b)
+![Signature help](signatures.png)
 
 ### Documentation on hover
 
-![Hover](https://github.com/doramatadora/vscode-fastly-vcl/assets/12828487/73c0148f-f7bc-4708-a34f-2aad17fde9da)
-## Installation 
+![Hover](hover.png)
+
+## Installation
 
 ### From Marketplace
 
@@ -51,7 +53,7 @@ Uninstall (or disable) any previously-enabled VCL extensions.
 Download the [latest GitHub release](https://github.com/fastly/vscode-fastly-vcl/releases/) and then run:
 
 ```bash
-code --install-extension vscode-fastly-vcl-2.0.0.vsix
+code --install-extension vscode-fastly-vcl-2.0.2.vsix
 ```
 
 ## Requirements
@@ -60,8 +62,8 @@ code --install-extension vscode-fastly-vcl-2.0.0.vsix
 
 ## Extension Settings
 
-* `fastly.vcl.lintingEnabled` (default: `true`) – Enables linter diagnostics.
-* `fastly.vcl.maxLintingIssues` (default: `100`) - Specifies the maximum number of linting issues that the server will return.
+- `fastly.vcl.lintingEnabled` (default: `true`) – Enables linter diagnostics.
+- `fastly.vcl.maxLintingIssues` (default: `100`) - Specifies the maximum number of linting issues that the server will return.
 
 ## Known Issues
 
