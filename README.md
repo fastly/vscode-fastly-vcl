@@ -67,7 +67,7 @@ code --install-extension vscode-fastly-vcl-2.0.2.vsix
 
 ## Known Issues
 
-Use our [GitHub issues](https://github.com/fastly/vscode-fastly-vcl/new) to report a problem or request a feature.
+Use our [GitHub issues](https://github.com/fastly/vscode-fastly-vcl/issues/new) to report a problem or request a feature.
 
 ## TODO
 
