@@ -4,6 +4,16 @@ All notable changes to the "vscode-fastly-vcl" extension will be documented in t
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## Unreleased
+
+### Changed
+
+- Syntax highlighting improvements:
+  - Add 'w' (week) time unit to duration pattern
+  - Add std.strcasecmp to function pattern
+  - Add hit_for_pass to return statements
+  - Fix operator pattern to correctly handle -=
+
 ## [2.0.2] - 2023-10-06
 
 ### Changed

@@ -57,7 +57,7 @@
       "patterns": [
         {
           "name": "constant.numeric.vcl",
-          "match": "\\b-?[0-9]+(\\.[0-9])?\\s*(ms|s|m|h|d|y)\\b"
+          "match": "\\b-?[0-9]+(\\.[0-9])?\\s*(ms|s|m|h|d|w|y)\\b"
         },
         {
           "name": "constant.numeric.vcl",
@@ -109,7 +109,7 @@
         },
         {
           "name": "entity.name.function.vcl",
-          "match": "\\b(addr\\.extract_bits|addr\\.is_ipv4|addr\\.is_ipv6|fastly\\.hash|http_status_matches|resp\\.tarpit|setcookie\\.delete_by_name|setcookie\\.get_value_by_name|std\\.collect|std\\.count|subfield)\\b"
+          "match": "\\b(addr\\.extract_bits|addr\\.is_ipv4|addr\\.is_ipv6|fastly\\.hash|http_status_matches|resp\\.tarpit|setcookie\\.delete_by_name|setcookie\\.get_value_by_name|std\\.collect|std\\.count|std\\.strcasecmp|subfield)\\b"
         },
         {
           "name": "entity.name.function.vcl",
@@ -230,7 +230,7 @@
         },
         {
           "name": "meta.function.vcl",
-          "begin": "^\\s*(return)\\s*\\((deliver|fetch|hash|lookup|pass)\\s*\\)",
+          "begin": "^\\s*(return)\\s*\\((deliver|fetch|hash|hit_for_pass|lookup|pass)\\s*\\)",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.vcl"
@@ -264,7 +264,7 @@
         },
         {
           "name": "keyword.operator.vcl",
-          "match": "(!|=|==|!=|>=|<=|>|<|~|!~|\\|\\||&&|[+*/%&^-|]=|rol=|ror=|\\|\\|=|\\+)"
+          "match": "(!|=|==|!=|>=|<=|>|<|~|!~|\\|\\||&&|[+*/%&^|-]=|rol=|ror=|\\|\\|=|\\+)"
         }
       ]
     },
