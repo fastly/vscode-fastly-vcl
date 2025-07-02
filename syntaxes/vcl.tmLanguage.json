@@ -57,7 +57,7 @@
       "patterns": [
         {
           "name": "constant.numeric.vcl",
-          "match": "\\b-?[0-9]+(\\.[0-9])?\\s*(ms|s|m|h|d|y)\\b"
+          "match": "\\b-?[0-9]+(\\.[0-9])?\\s*(ms|s|m|h|d|w|y)\\b"
         },
         {
           "name": "constant.numeric.vcl",
@@ -85,7 +85,7 @@
         },
         {
           "name": "entity.name.function.vcl",
-          "match": "\\b(bin\\.base64_to_hex|bin\\.hex_to_base64|crypto\\.decrypt_base64|crypto\\.decrypt_hex|crypto\\.encrypt_base64|crypto\\.encrypt_hex|digest\\.awsv4_hmac|digest\\.base64_decode|digest\\.base64|digest\\.base64url_decode|digest\\.base64url_nopad|digest\\.base64url_nopad_decode|digest\\.base64url|digest\\.hash_crc32|digest\\.hash_crc32b|digest\\.hash_md5|digest\\.hash_sha1_from_base64|digest\\.hash_sha1|digest\\.hash_sha224|digest\\.hash_sha256_from_base64|digest\\.hash_sha256|digest\\.hash_sha384|digest\\.hash_sha512_from_base64|digest\\.hash_sha512|digest\\.hmac_md5_base64|digest\\.hmac_md5|digest\\.hmac_sha1_base64|digest\\.hmac_sha1|digest\\.hmac_sha256_base64|digest\\.hmac_sha256|digest\\.hmac_sha512_base64|digest\\.hmac_sha512|digest\\.rsa_verify|digest\\.secure_is_equal|digest\\.time_hmac_md5|digest\\.time_hmac_sha1|digest\\.time_hmac_sha256|digest\\.time_hmac_sha512)\\b"
+          "match": "\\b(bin\\.base64_to_hex|bin\\.hex_to_base64|crypto\\.decrypt_base64|crypto\\.decrypt_hex|crypto\\.encrypt_base64|crypto\\.encrypt_hex|digest\\.awsv4_hmac|digest\\.base64_decode|digest\\.base64|digest\\.base64url_decode|digest\\.base64url_nopad|digest\\.base64url_nopad_decode|digest\\.base64url|digest\\.ecdsa_verify|digest\\.hash_crc32|digest\\.hash_crc32b|digest\\.hash_md5|digest\\.hash_sha1_from_base64|digest\\.hash_sha1|digest\\.hash_sha224|digest\\.hash_sha256_from_base64|digest\\.hash_sha256|digest\\.hash_sha384|digest\\.hash_sha512_from_base64|digest\\.hash_sha512|digest\\.hmac_md5_base64|digest\\.hmac_md5|digest\\.hmac_sha1_base64|digest\\.hmac_sha1|digest\\.hmac_sha256_base64|digest\\.hmac_sha256|digest\\.hmac_sha512_base64|digest\\.hmac_sha512|digest\\.rsa_verify|digest\\.secure_is_equal|digest\\.time_hmac_md5|digest\\.time_hmac_sha1|digest\\.time_hmac_sha256|digest\\.time_hmac_sha512)\\b"
         },
         {
           "name": "entity.name.function.vcl",
@@ -109,7 +109,7 @@
         },
         {
           "name": "entity.name.function.vcl",
-          "match": "\\b(addr\\.extract_bits|addr\\.is_ipv4|addr\\.is_ipv6|fastly\\.hash|http_status_matches|resp\\.tarpit|setcookie\\.delete_by_name|setcookie\\.get_value_by_name|std\\.collect|std\\.count|subfield)\\b"
+          "match": "\\b(addr\\.extract_bits|addr\\.is_ipv4|addr\\.is_ipv6|fastly\\.hash|fastly\\.try_select_shield|http_status_matches|resp\\.tarpit|setcookie\\.delete_by_name|setcookie\\.get_value_by_name|std\\.collect|std\\.count|std\\.strcasecmp|subfield)\\b"
         },
         {
           "name": "entity.name.function.vcl",
@@ -137,7 +137,7 @@
         },
         {
           "name": "entity.name.function.vcl",
-          "match": "\\b(uuid\\.dns|uuid\\.is_valid|uuid\\.is_version3|uuid\\.is_version4|uuid\\.is_version5|uuid\\.oid|uuid\\.url|uuid\\.version3|uuid\\.version4|uuid\\.version5|uuid\\.x500)\\b"
+          "match": "\\b(uuid\\.dns|uuid\\.is_valid|uuid\\.is_version3|uuid\\.is_version4|uuid\\.is_version5|uuid\\.is_version7|uuid\\.oid|uuid\\.url|uuid\\.version3|uuid\\.version4|uuid\\.version5|uuid\\.version7|uuid\\.x500)\\b"
         },
         {
           "name": "support.variable.vcl",
@@ -145,11 +145,11 @@
         },
         {
           "name": "support.variable.vcl",
-          "match": "\\b(backend\\.conn\\.is_tls|backend\\.conn\\.tls_protocol|backend\\.socket\\.congestion_algorithm|backend\\.socket\\.cwnd|backend\\.socket\\.tcpi_advmss|backend\\.socket\\.tcpi_bytes_acked|backend\\.socket\\.tcpi_bytes_received|backend\\.socket\\.tcpi_data_segs_in|backend\\.socket\\.tcpi_data_segs_out|backend\\.socket\\.tcpi_delivery_rate|backend\\.socket\\.tcpi_delta_retrans|backend\\.socket\\.tcpi_last_data_sent|backend\\.socket\\.tcpi_max_pacing_rate|backend\\.socket\\.tcpi_min_rtt|backend\\.socket\\.tcpi_notsent_bytes|backend\\.socket\\.tcpi_pacing_rate|backend\\.socket\\.tcpi_pmtu|backend\\.socket\\.tcpi_rcv_mss|backend\\.socket\\.tcpi_rcv_rtt|backend\\.socket\\.tcpi_rcv_space|backend\\.socket\\.tcpi_rcv_ssthresh|backend\\.socket\\.tcpi_reordering|backend\\.socket\\.tcpi_rtt|backend\\.socket\\.tcpi_rttvar|backend\\.socket\\.tcpi_segs_in|backend\\.socket\\.tcpi_segs_out|backend\\.socket\\.tcpi_snd_cwnd|backend\\.socket\\.tcpi_snd_mss|backend\\.socket\\.tcpi_snd_ssthresh|backend\\.socket\\.tcpi_total_retrans|backend\\.{NAME}\\.connections_open|backend\\.{NAME}\\.connections_used|backend\\.{NAME}\\.healthy|bereq\\.between_bytes_timeout|bereq\\.connect_timeout|bereq\\.first_byte_timeout|beresp\\.backend\\.alternate_ips|beresp\\.backend\\.ip|beresp\\.backend\\.port|beresp\\.backend\\.requests|beresp\\.backend\\.src_ip|beresp\\.handshake_time_to_origin_ms|beresp\\.used_alternate_path_to_origin|req\\.backend\\.healthy|req\\.backend\\.is_origin|req\\.backend\\.is_shield|req\\.backend)\\b"
+          "match": "\\b(backend\\.conn\\.is_tls|backend\\.conn\\.tls_protocol|backend\\.socket\\.congestion_algorithm|backend\\.socket\\.cwnd|backend\\.socket\\.tcpi_advmss|backend\\.socket\\.tcpi_bytes_acked|backend\\.socket\\.tcpi_bytes_received|backend\\.socket\\.tcpi_data_segs_in|backend\\.socket\\.tcpi_data_segs_out|backend\\.socket\\.tcpi_delivery_rate|backend\\.socket\\.tcpi_delta_retrans|backend\\.socket\\.tcpi_last_data_sent|backend\\.socket\\.tcpi_max_pacing_rate|backend\\.socket\\.tcpi_min_rtt|backend\\.socket\\.tcpi_notsent_bytes|backend\\.socket\\.tcpi_pacing_rate|backend\\.socket\\.tcpi_pmtu|backend\\.socket\\.tcpi_rcv_mss|backend\\.socket\\.tcpi_rcv_rtt|backend\\.socket\\.tcpi_rcv_space|backend\\.socket\\.tcpi_rcv_ssthresh|backend\\.socket\\.tcpi_reordering|backend\\.socket\\.tcpi_rtt|backend\\.socket\\.tcpi_rttvar|backend\\.socket\\.tcpi_segs_in|backend\\.socket\\.tcpi_segs_out|backend\\.socket\\.tcpi_snd_cwnd|backend\\.socket\\.tcpi_snd_mss|backend\\.socket\\.tcpi_snd_ssthresh|backend\\.socket\\.tcpi_total_retrans|backend\\.{NAME}\\.connections_open|backend\\.{NAME}\\.connections_used|backend\\.{NAME}\\.healthy|bereq\\.between_bytes_timeout|bereq\\.connect_timeout|bereq\\.first_byte_timeout|beresp\\.backend\\.alternate_ips|beresp\\.backend\\.ip|beresp\\.backend\\.port|beresp\\.backend\\.requests|beresp\\.backend\\.src_ip|beresp\\.handshake_time_to_origin_ms|beresp\\.used_alternate_path_to_origin|req\\.backend\\.healthy|req\\.backend.ip|req\\.backend\\.is_origin|req\\.backend\\.is_shield|req\\.backend)\\b"
         },
         {
           "name": "support.variable.vcl",
-          "match": "\\b(bereq\\.body_bytes_written|bereq\\.bytes_written|bereq\\.header_bytes_written|bereq\\.is_clustering|bereq\\.method|bereq\\.proto|bereq\\.request|bereq\\.url|bereq\\.url\\.basename|bereq\\.url\\.dirname|bereq\\.url\\.ext|bereq\\.url\\.path|bereq\\.url\\.qs)\\b"
+          "match": "\\b(bereq\\.body_bytes_written|bereq\\.bytes_written|bereq\\.header_bytes_written|bereq\\.is_clustering|bereq\\.method|bereq\\.proto|bereq\\.request|bereq\\.url\\.basename|bereq\\.url\\.dirname|bereq\\.url\\.ext|bereq\\.url\\.path|bereq\\.url\\.qs|bereq\\.url)\\b"
         },
         {
           "name": "support.variable.vcl",
@@ -157,7 +157,7 @@
         },
         {
           "name": "support.variable.vcl",
-          "match": "\\b(obj\\.age|obj\\.cacheable|obj\\.entered|obj\\.grace|obj\\.hits|obj\\.is_pci|obj\\.lastuse|obj\\.proto|obj\\.response|obj\\.stale_if_error|obj\\.stale_while_revalidate|obj\\.status|obj\\.ttl|req\\.digest|req\\.digest\\.ratio|req\\.hash|stale\\.exists)\\b"
+          "match": "\\b(obj\\.age|obj\\.cacheable|obj\\.entered|obj\\.grace|obj\\.hits|obj\\.is_pci|obj\\.lastuse|obj\\.proto|obj\\.response|obj\\.stale_if_error|obj\\.stale_while_revalidate|obj\\.status|obj\\.ttl|req\\.digest\\.ratio|req\\.digest|req\\.hash|stale\\.exists)\\b"
         },
         {
           "name": "support.variable.vcl",
@@ -165,7 +165,7 @@
         },
         {
           "name": "support.variable.vcl",
-          "match": "\\b(client\\.bot\\.name|client\\.browser\\.name|client\\.browser\\.version|client\\.class\\.bot|client\\.class\\.browser|client\\.class\\.checker|client\\.class\\.downloader|client\\.class\\.feedreader|client\\.class\\.filter|client\\.class\\.masquerading|client\\.class\\.spam|client\\.display\\.height|client\\.display\\.ppi|client\\.display\\.touchscreen|client\\.display\\.width|client\\.identified|client\\.os\\.name|client\\.os\\.version|client\\.platform\\.ereader|client\\.platform\\.gameconsole|client\\.platform\\.hwtype|client\\.platform\\.mediaplayer|client\\.platform\\.mobile|client\\.platform\\.smarttv|client\\.platform\\.tablet|client\\.platform\\.tvplayer|fastly_info\\.h2\\.is_push|fastly_info\\.host_header|req\\.body\\.base64|req\\.body_bytes_read|req\\.body|req\\.bytes_read|req\\.enable_range_on_pass|req\\.enable_segmented_caching|req\\.hash_always_miss|req\\.hash_ignore_busy|req\\.header_bytes_read|req\\.is_background_fetch|req\\.is_purge|req\\.method|req\\.postbody|req\\.proto|req\\.request|req\\.url\\.basename|req\\.url\\.dirname|req\\.url\\.ext|req\\.url\\.path|req\\.url\\.qs|req\\.url|req\\.xid|time\\.elapsed\\.msec|time\\.elapsed\\.msec_frac|time\\.elapsed\\.sec|time\\.elapsed\\.usec|time\\.elapsed\\.usec_frac|time\\.elapsed|time\\.end\\.msec|time\\.end\\.msec_frac|time\\.end\\.sec|time\\.end\\.usec|time\\.end\\.usec_frac|time\\.end|time\\.start\\.msec|time\\.start\\.msec_frac|time\\.start\\.sec|time\\.start\\.usec|time\\.start\\.usec_frac|time\\.start)\\b"
+          "match": "\\b(client\\.bot\\.name|client\\.browser\\.name|client\\.browser\\.version|client\\.class\\.bot|client\\.class\\.browser|client\\.class\\.checker|client\\.class\\.downloader|client\\.class\\.feedreader|client\\.class\\.filter|client\\.class\\.masquerading|client\\.class\\.spam|client\\.display\\.height|client\\.display\\.ppi|client\\.display\\.touchscreen|client\\.display\\.width|client\\.identified|client\\.os\\.name|client\\.os\\.version|client\\.platform\\.ereader|client\\.platform\\.gameconsole|client\\.platform\\.hwtype|client\\.platform\\.mediaplayer|client\\.platform\\.mobile|client\\.platform\\.smarttv|client\\.platform\\.tablet|client\\.platform\\.tvplayer|fastly_info\\.h2\\.is_push|fastly_info\\.host_header|req\\.body\\.base64|req\\.body_bytes_read|req\\.body|req\\.bytes_read|req\\.enable_range_on_pass|req\\.enable_segmented_caching|req\\.hash_always_miss|req\\.hash_ignore_busy|req\\.header_bytes_read|req\\.is_background_fetch|req\\.is_purge|req\\.method|req\\.postbody|req\\.proto|req\\.request|req\\.url\\.basename|req\\.url\\.dirname|req\\.url\\.ext|req\\.url\\.path|req\\.url\\.qs|req\\.url|req\\.xid|time\\.elapsed\\.msec|time\\.elapsed\\.msec_frac|time\\.elapsed\\.sec|time\\.elapsed\\.usec|time\\.elapsed\\.usec_frac|time\\.elapsed|time\\.end\\.msec|time\\.end\\.msec_frac|time\\.end\\.sec|time\\.end\\.usec|time\\.end\\.usec_frac|time\\.end|time\\.interval_elapsed_ratio|time\\.start\\.msec|time\\.start\\.msec_frac|time\\.start\\.sec|time\\.start\\.usec|time\\.start\\.usec_frac|time\\.start)\\b"
         },
         {
           "name": "support.variable.vcl",
@@ -206,6 +206,10 @@
         {
           "name": "support.variable.vcl",
           "match": "\\b(waf\\.anomaly_score|waf\\.blocked|waf\\.counter|waf\\.executed|waf\\.failures|waf\\.http_violation_score|waf\\.inbound_anomaly_score|waf\\.lfi_score|waf\\.logdata|waf\\.logged|waf\\.message|waf\\.passed|waf\\.php_injection_score|waf\\.rce_score|waf\\.rfi_score|waf\\.rule_id|waf\\.session_fixation_score|waf\\.severity|waf\\.sql_injection_score|waf\\.xss_score)\\b"
+        },
+        {
+          "name": "support.variable.vcl",
+          "match": "\\b(header\\.filter_except|header\\.filter|header\\.get|header\\.set|header\\.unset)\\b"
         }
       ]
     },
@@ -230,7 +234,7 @@
         },
         {
           "name": "meta.function.vcl",
-          "begin": "^\\s*(return)\\s*\\((deliver|fetch|hash|lookup|pass)\\s*\\)",
+          "begin": "^\\s*(return)\\s*\\((deliver_stale|deliver|fetch|hash|hit_for_pass|lookup|pass)\\s*\\)",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.vcl"
@@ -247,7 +251,7 @@
         },
         {
           "name": "keyword.other.vcl",
-          "match": "\\b(add|declare local|error|esi|include|log|remove|restart|return|set|synthetic|synthetic\\.base64|unset)\\b"
+          "match": "\\b(add|declare local|error|esi|include|log|remove|restart|return|set|synthetic\\.base64|synthetic|unset)\\b"
         },
         {
           "name": "meta.function.vcl",
@@ -264,7 +268,7 @@
         },
         {
           "name": "keyword.operator.vcl",
-          "match": "(!|=|==|!=|>=|<=|>|<|~|!~|\\|\\||&&|[+*/%&^-|]=|rol=|ror=|\\|\\|=|\\+)"
+          "match": "(!|=|==|!=|>=|<=|>|<|~|!~|\\|\\||&&|[+*/%&^|-]=|rol=|ror=|\\|\\|=|\\+)"
         }
       ]
     },

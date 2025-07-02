@@ -4,6 +4,23 @@ All notable changes to the "vscode-fastly-vcl" extension will be documented in t
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## Unreleased
+
+### Changed
+
+- Syntax highlighting improvements:
+  - Add 'w' (week) time unit to duration pattern
+  - Add std.strcasecmp to function pattern
+  - Add hit_for_pass to return statements
+  - Fix operator pattern to correctly handle -=
+  - Add support for digest.ecdsa_verify function
+  - Add support for fastly.try_select_shield function
+  - Add support for UUID version 7 functions
+  - Add support for time.interval_elapsed_ratio variable
+  - Add support for header manipulation functions
+  - Add deliver_stale to return statements
+  - Fix ordering in some variable patterns
+
 ## [2.0.2] - 2023-10-06
 
 ### Changed
