@@ -10,3 +10,5 @@ screenshots.xcf
 .tmp*
 .dora
 client/out
+.aider*
+*.vcl
