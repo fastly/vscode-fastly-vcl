@@ -21,9 +21,7 @@ jobs:
         run: npm install
       - name: Build the language client
         run: npm run build
-      - name: Test syntax highlighting
+      - name: Run all tests
         run: npm test
-      - name: Test LSP features
-        run: npm run test-client
       - name: Test package
         run: npm run package
