@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Changed
 
+- Update @vscode/test-electron to handle new VS Code builds
 - Syntax highlighting improvements:
   - Add 'w' (week) time unit to duration pattern
   - Add std.strcasecmp to function pattern
