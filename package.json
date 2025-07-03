@@ -20,15 +20,20 @@
     "./client"
   ],
   "scripts": {
-    "test": "node ./test/runTest.mjs",
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -b",
-    "watch": "tsc -b -w",
+    "build": "tsc -b",
+    "clean": "rm -rf client/out",
+    "dev": "tsc -b -w",
     "lint": "eslint ./client/src --ext .ts,.tsx",
-    "test-client": "sh ./scripts/e2e.sh",
     "package": "vsce package",
+    "prebuild": "npm run clean",
+    "prepackage": "npm run build && npm run lint",
+    "prepare": "husky install",
+    "pretest:e2e": "npm run build",
     "publish": "vsce package",
-    "prepare": "husky install"
+    "test:colorization": "node ./test/runTest.mjs",
+    "test:e2e": "sh ./scripts/e2e.sh",
+    "test": "npm run test:colorization && npm run test:e2e",
+    "vscode:prepublish": "npm run build && npm run lint && npm run test"
   },
   "categories": [
     "Programming Languages",

@@ -19,8 +19,8 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm install
-      - name: Compile the language client
-        run: npm run compile
+      - name: Build the language client
+        run: npm run build
       - name: Test syntax highlighting
         run: npm test
       - name: Test LSP features
