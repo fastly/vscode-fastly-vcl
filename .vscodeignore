@@ -28,3 +28,8 @@ node_modules/fastly-vcl-lsp/src/**
 node_modules/fastly-vcl-language-client/src/test/**
 node_modules/fastly-vcl-language-client/out/test/**
 node_modules/fastly-vcl-language-client/testFixture/**
+.aider*
+.aider*/*
+.eslintignore
+.github/workflows/test.yaml
+*.vcl

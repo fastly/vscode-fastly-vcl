@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Changed
 
+- Refactor npm scripts and GitHub workflow configuration
 - Update @vscode/test-electron to handle new VS Code builds
 - Syntax highlighting improvements:
   - Add 'w' (week) time unit to duration pattern
