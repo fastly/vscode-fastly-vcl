@@ -40,7 +40,7 @@ npm i
 To run the grammar tests:
 
 ```bash
-npm test:colorization
+npm run test:colorization
 ```
 
 The test cases are stored as markdown files under `test/colorize-fixtures`. Grammar test results are stored under `test/colorize-results`, which are automatically generated from the fixtures.
