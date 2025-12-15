@@ -33,6 +33,7 @@
     "publish": "vsce package",
     "test:colorization": "node ./test/runTest.mjs",
     "test:e2e": "sh ./scripts/e2e.sh",
+    "test:e2e:coverage": "c8 sh ./scripts/e2e.sh",
     "test": "npm run test:colorization && npm run test:e2e",
     "vscode:prepublish": "npm run build && npm run lint && npm run test"
   },
@@ -88,6 +89,7 @@
     "@types/vscode": "^1.82.0",
     "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.7.1",
+    "c8": "^10.1.3",
     "eslint": "^9.39.2",
     "mocha": "^11.7.5",
     "prettier": "^3.7.4",
@@ -96,5 +98,19 @@
   },
   "dependencies": {
     "vscode-jsonrpc": "^8.2.1"
+  },
+  "c8": {
+    "include": [
+      "client/out/**/*.js"
+    ],
+    "exclude": [
+      "client/out/test/**"
+    ],
+    "reporter": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "report-dir": "coverage"
   }
 }

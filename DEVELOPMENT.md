@@ -51,6 +51,14 @@ To run the LSP tests:
 npm run test:e2e
 ```
 
+To run the LSP tests with code coverage:
+
+```bash
+npm run test:e2e:coverage
+```
+
+Coverage reports are generated in `coverage/` (text, lcov, and HTML formats).
+
 ### Linting and formatting
 
 To check for lint errors:
