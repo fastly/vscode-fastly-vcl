@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Refactor npm scripts and GitHub workflow configuration
 - Update @vscode/test-electron to handle new VS Code builds
 - Update development dependencies
+- Remove development husky git hooks
 - Syntax highlighting improvements:
   - Add 'w' (week) time unit to duration pattern
   - Add std.strcasecmp to function pattern
