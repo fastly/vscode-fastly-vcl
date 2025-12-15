@@ -29,9 +29,11 @@ export async function activate(context: ExtensionContext) {
       { scheme: "file", language: "vcl", pattern: "**/*.vcl" },
     ],
     diagnosticCollectionName: "vcl",
+    initializationOptions: workspace.getConfiguration("fastly.vcl"),
     synchronize: {
       // Notify the server about file changes to config files contained in the workspace.
       fileEvents: [workspace.createFileSystemWatcher("**/.vclrc")],
+      configurationSection: "fastly.vcl",
     },
     outputChannel,
   };
