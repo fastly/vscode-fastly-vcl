@@ -35,6 +35,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Replace hard-coded sleep in tests with LSP readiness polling
 - Enable stricter TypeScript ESLint rules (no-unused-vars, no-explicit-any, no-non-null-assertion)
 - Add startup message to output channel for debugging visibility
+- Synchronize extension configuration settings to the language server
 - Add hover, signature help, document symbols, and configuration test coverage
 
 ## [2.0.2] - 2023-10-06
