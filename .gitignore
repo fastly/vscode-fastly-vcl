@@ -10,4 +10,5 @@ screenshots.xcf
 .tmp*
 .dora
 client/out
+coverage
 boilerplate.vcl

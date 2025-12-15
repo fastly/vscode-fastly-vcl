@@ -32,3 +32,4 @@ node_modules/fastly-vcl-lsp/src/**
 screenshots.xcf
 scripts/**
 test/**
+coverage/**
