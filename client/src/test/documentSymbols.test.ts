@@ -1,0 +1,46 @@
+/* --------------------------------------------------------------------------------------------
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ * ------------------------------------------------------------------------------------------ */
+
+import * as vscode from "vscode";
+import * as assert from "assert";
+import { getDocUri, activate } from "./helper";
+
+suite("Should provide document symbols", () => {
+  const docUri = getDocUri("boilerplate.vcl");
+
+  test("Returns subroutine symbols", async () => {
+    await activate(docUri);
+
+    const symbols = (await vscode.commands.executeCommand(
+      "vscode.executeDocumentSymbolProvider",
+      docUri,
+    )) as vscode.DocumentSymbol[] | vscode.SymbolInformation[];
+
+    assert.ok(symbols, "Expected symbols to be returned");
+    assert.ok(symbols.length > 0, "Expected at least one symbol");
+
+    const symbolNames = symbols.map((s) => s.name);
+
+    // boilerplate.vcl contains these subroutines
+    const expectedSubroutines = [
+      "vcl_recv",
+      "vcl_hash",
+      "vcl_hit",
+      "vcl_miss",
+      "vcl_pass",
+      "vcl_fetch",
+      "vcl_error",
+      "vcl_deliver",
+      "vcl_log",
+    ];
+
+    for (const sub of expectedSubroutines) {
+      assert.ok(
+        symbolNames.includes(sub),
+        `Expected symbol "${sub}" to be present, got: ${symbolNames.join(", ")}`,
+      );
+    }
+  });
+});

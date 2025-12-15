@@ -10,4 +10,4 @@ screenshots.xcf
 .tmp*
 .dora
 client/out
-*.vcl
+boilerplate.vcl

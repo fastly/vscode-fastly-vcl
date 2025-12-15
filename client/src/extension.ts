@@ -32,6 +32,7 @@ export async function activate(context: ExtensionContext) {
     synchronize: {
       // Notify the server about file changes to config files contained in the workspace.
       fileEvents: [workspace.createFileSystemWatcher("**/.vclrc")],
+      configurationSection: "fastly.vcl",
     },
     outputChannel,
   };
