@@ -29,6 +29,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Remove development husky git hooks
 - Approach VS Code's linting rules
 - Enforce code style with Prettier
+- Enable TypeScript strict mode
 
 ## [2.0.2] - 2023-10-06
 
