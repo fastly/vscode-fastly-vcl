@@ -21,7 +21,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   - Add deliver_stale to return statements
   - Fix ordering in some variable patterns
 
-#### Development
+#### Fixed
 
 - Refactor npm scripts and GitHub workflow configuration
 - Update @vscode/test-electron to handle new VS Code builds
@@ -30,6 +30,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Approach VS Code's linting rules
 - Enforce code style with Prettier
 - Enable TypeScript strict mode
+- Add error handling for LSP server startup failures
 
 ## [2.0.2] - 2023-10-06
 
