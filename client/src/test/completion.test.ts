@@ -42,7 +42,7 @@ async function testCompletion(
 
   assert.ok(actualCompletionList.items.length >= 2);
 
-  expectedCompletionList.items.forEach((expectedItem, i) => {
+  expectedCompletionList.items.forEach((expectedItem) => {
     assert.ok(
       actualCompletionList.items.find(
         (actualItem) =>

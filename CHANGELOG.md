@@ -33,6 +33,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Add error handling for LSP server startup failures
 - Fix VS Code default build task to use existing `dev` script
 - Replace hard-coded sleep in tests with LSP readiness polling
+- Enable stricter TypeScript ESLint rules (no-unused-vars, no-explicit-any, no-non-null-assertion)
 
 ## [2.0.2] - 2023-10-06
 
