@@ -23,6 +23,8 @@
     "build": "tsc -b",
     "clean": "rm -rf client/out",
     "dev": "tsc -b -w",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint ./client/src --ext .ts,.tsx",
     "package": "vsce package",
     "prebuild": "npm run clean",
@@ -88,6 +90,7 @@
     "@vscode/vsce": "^3.7.1",
     "eslint": "^9.39.2",
     "mocha": "^11.7.5",
+    "prettier": "^3.7.4",
     "typescript": "~5.1.6",
     "typescript-eslint": "^8.36.0"
   },

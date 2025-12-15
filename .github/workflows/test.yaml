@@ -23,6 +23,8 @@ jobs:
         run: npm run build
       - name: Lint
         run: npm run lint
+      - name: Check formatting
+        run: npm run format:check
       - name: Run all tests
         run: npm test
       - name: Test package

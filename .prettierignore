@@ -1,0 +1,6 @@
+.vscode-test
+*.vsix
+node_modules
+client/out
+*.vcl
+*.json

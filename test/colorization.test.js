@@ -19,14 +19,14 @@ function assertUnchangedTokens(testFixurePath, done) {
       try {
         let resultsFolderPath = join(
           dirname(dirname(testFixurePath)),
-          "colorize-results"
+          "colorize-results",
         );
         if (!fs.existsSync(resultsFolderPath)) {
           fs.mkdirSync(resultsFolderPath);
         }
         let resultPath = join(
           resultsFolderPath,
-          fileName.replace(".", "_") + ".json"
+          fileName.replace(".", "_") + ".json",
         );
         if (fs.existsSync(resultPath)) {
           let previousData = JSON.parse(fs.readFileSync(resultPath).toString());
@@ -82,7 +82,7 @@ suite("colorization", () => {
       test(fixturesFile, function (done) {
         assertUnchangedTokens(
           join(extensionColorizeFixturePath, fixturesFile),
-          done
+          done,
         );
       });
     });
