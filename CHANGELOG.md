@@ -38,6 +38,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Synchronize extension configuration settings to the language server
 - Add hover, signature help, document symbols, and configuration test coverage
 - Update CI to use Node 22 (matching package.json requirement) and actions/setup-node@v6
+- Update TypeScript to 5.9.3 and typescript-eslint to 8.49.0
 
 ## [2.0.2] - 2023-10-06
 
