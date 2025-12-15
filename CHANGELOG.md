@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Changed
 
+- Refactor npm scripts and GitHub workflow configuration
 - Update @vscode/test-electron to handle new VS Code builds
 - Update development dependencies
 - Syntax highlighting improvements:
