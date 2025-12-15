@@ -13,10 +13,8 @@ suite("Should provide document symbols", () => {
   test("Returns subroutine symbols", async () => {
     await activate(docUri);
 
-    const symbols = (await vscode.commands.executeCommand(
-      "vscode.executeDocumentSymbolProvider",
-      docUri,
-    )) as vscode.DocumentSymbol[] | vscode.SymbolInformation[];
+    // Wait for symbols to be available (LSP may need time to parse)
+    const symbols = await waitForSymbols(docUri);
 
     assert.ok(symbols, "Expected symbols to be returned");
     assert.ok(symbols.length > 0, "Expected at least one symbol");
@@ -44,3 +42,21 @@ suite("Should provide document symbols", () => {
     }
   });
 });
+
+async function waitForSymbols(
+  docUri: vscode.Uri,
+  timeout = 5000,
+): Promise<vscode.DocumentSymbol[] | vscode.SymbolInformation[]> {
+  const start = Date.now();
+  while (Date.now() - start < timeout) {
+    const symbols = (await vscode.commands.executeCommand(
+      "vscode.executeDocumentSymbolProvider",
+      docUri,
+    )) as vscode.DocumentSymbol[] | vscode.SymbolInformation[] | undefined;
+    if (symbols && symbols.length > 0) {
+      return symbols;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+  return [];
+}
