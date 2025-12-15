@@ -1,6 +1,8 @@
 .claude/
 .dora
+.eslintignore
 .git*
+.github/workflows/test.yaml
 .husky
 .tmp
 .tmp*
