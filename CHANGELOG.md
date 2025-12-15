@@ -32,6 +32,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Enable TypeScript strict mode
 - Add error handling for LSP server startup failures
 - Fix VS Code default build task to use existing `dev` script
+- Replace hard-coded sleep in tests with LSP readiness polling
 
 ## [2.0.2] - 2023-10-06
 
