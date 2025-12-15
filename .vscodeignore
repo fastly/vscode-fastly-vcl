@@ -12,11 +12,13 @@
 *.vsix
 **/tsconfig.base.json
 **/tsconfig.json
+CLAUDE.md
 client/README.md
 client/src/**
 client/testFixture
 dark.png
 DEVELOPMENT.md
+eslint.config.js
 icon.xcf
 light.png
 node_modules/@*/**
