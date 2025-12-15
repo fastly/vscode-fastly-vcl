@@ -8,11 +8,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Changed
 
-- Refactor npm scripts and GitHub workflow configuration
-- Update @vscode/test-electron to handle new VS Code builds
-- Update development dependencies
-- Remove development husky git hooks
-- Approach VS Code's linting rules
 - Syntax highlighting improvements:
   - Add 'w' (week) time unit to duration pattern
   - Add std.strcasecmp to function pattern
@@ -25,6 +20,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   - Add support for header manipulation functions
   - Add deliver_stale to return statements
   - Fix ordering in some variable patterns
+
+#### Development
+
+- Refactor npm scripts and GitHub workflow configuration
+- Update @vscode/test-electron to handle new VS Code builds
+- Update development dependencies
+- Remove development husky git hooks
+- Approach VS Code's linting rules
+- Enforce code style with Prettier
 
 ## [2.0.2] - 2023-10-06
 

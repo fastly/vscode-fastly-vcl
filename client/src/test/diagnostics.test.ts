@@ -3,41 +3,41 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 
-import * as vscode from 'vscode';
-import * as assert from 'assert';
-import { getDocUri, activate } from './helper';
+import * as vscode from "vscode";
+import * as assert from "assert";
+import { getDocUri, activate } from "./helper";
 
-suite('Should get diagnostics', () => {
-  const docUri = getDocUri('diagnostics.vcl');
+suite("Should get diagnostics", () => {
+  const docUri = getDocUri("diagnostics.vcl");
 
-  test('Diagnoses linting problems', async () => {
+  test("Diagnoses linting problems", async () => {
     await testDiagnostics(docUri, [
       {
         message:
           'Subroutine "vcl_fetch" is missing Fastly boilerplate comment "FASTLY FETCH" inside definition',
         range: toRange(0, 0, 0, 0),
         severity: vscode.DiagnosticSeverity.Warning,
-        source: 'vcl'
+        source: "vcl",
       },
       {
-        message: 'Error code 999: use a code between 600-699 instead',
+        message: "Error code 999: use a code between 600-699 instead",
         range: toRange(1, 8, 1, 8),
         severity: vscode.DiagnosticSeverity.Information,
-        source: 'vcl'
-      }
+        source: "vcl",
+      },
     ]);
   });
 });
 
-function toRange (sLine: number, sChar: number, eLine: number, eChar: number) {
+function toRange(sLine: number, sChar: number, eLine: number, eChar: number) {
   const start = new vscode.Position(sLine, sChar);
   const end = new vscode.Position(eLine, eChar);
   return new vscode.Range(start, end);
 }
 
-async function testDiagnostics (
+async function testDiagnostics(
   docUri: vscode.Uri,
-  expectedDiagnostics: vscode.Diagnostic[]
+  expectedDiagnostics: vscode.Diagnostic[],
 ) {
   await activate(docUri);
 

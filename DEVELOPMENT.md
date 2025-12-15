@@ -51,6 +51,26 @@ To run the LSP tests:
 npm run test:e2e
 ```
 
+### Linting and formatting
+
+To check for lint errors:
+
+```bash
+npm run lint
+```
+
+To check code formatting:
+
+```bash
+npm run format:check
+```
+
+To auto-fix formatting:
+
+```bash
+npm run format
+```
+
 ### Packaging and installation
 
 Run the following command to compile the VSCode extension as a `.vsix` file.
