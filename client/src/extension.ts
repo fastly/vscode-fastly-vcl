@@ -1,16 +1,16 @@
-import { workspace, ExtensionContext } from 'vscode'
+import { workspace, ExtensionContext } from 'vscode';
 
 import {
   LanguageClient,
   LanguageClientOptions,
   ServerOptions,
   TransportKind
-} from 'vscode-languageclient/node'
+} from 'vscode-languageclient/node';
 
-let client: LanguageClient
+let client: LanguageClient;
 
 export function activate (_context: ExtensionContext) {
-  const serverModule = require.resolve('fastly-vcl-lsp')
+  const serverModule = require.resolve('fastly-vcl-lsp');
   // If the extension is launched in debug mode then the debug server options are used.
   // Otherwise run options are used.
   const serverOptions: ServerOptions = {
@@ -19,7 +19,7 @@ export function activate (_context: ExtensionContext) {
       module: serverModule,
       transport: TransportKind.ipc
     }
-  }
+  };
 
   // Options to control the language client.
   const clientOptions: LanguageClientOptions = {
@@ -34,7 +34,7 @@ export function activate (_context: ExtensionContext) {
         workspace.createFileSystemWatcher('**/.vclrc')
       ]
     }
-  }
+  };
 
   // Create the language client and start the client.
   client = new LanguageClient(
@@ -42,12 +42,12 @@ export function activate (_context: ExtensionContext) {
     'Fastly VCL Server',
     serverOptions,
     clientOptions
-  )
+  );
 
   // Start the client. This will also launch the server.
-  client.start()
+  client.start();
 }
 
 export function deactivate (): Thenable<void> | undefined {
-  return client?.stop()
+  return client?.stop();
 }

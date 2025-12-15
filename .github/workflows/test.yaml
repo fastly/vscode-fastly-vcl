@@ -21,6 +21,8 @@ jobs:
         run: npm install
       - name: Build the language client
         run: npm run build
+      - name: Lint
+        run: npm run lint
       - name: Run all tests
         run: npm test
       - name: Test package
