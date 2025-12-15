@@ -1,8 +1,8 @@
-const path = require("path");
-const Mocha = require("mocha");
-const glob = require("glob");
+import path from "path";
+import Mocha from "mocha";
+import { glob } from "node:fs";
 
-module.exports.run = function (testsRoot, cb) {
+export function run(testsRoot, cb) {
   // Create the mocha test
   const mocha = new Mocha({
     ui: "tdd",
@@ -27,4 +27,4 @@ module.exports.run = function (testsRoot, cb) {
       cb(err);
     }
   });
-};
+}
