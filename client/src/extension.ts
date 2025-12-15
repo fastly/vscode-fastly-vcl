@@ -46,6 +46,7 @@ export async function activate(context: ExtensionContext) {
 
   context.subscriptions.push(client);
 
+  outputChannel.appendLine("Starting Fastly VCL language server...");
   try {
     await client.start();
   } catch (e) {
