@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## Unreleased
 
+### Changed
+
 ## [2.0.3] - 2025-12-16
 
 ### Changed
@@ -23,7 +25,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   - Add deliver_stale to return statements
   - Fix ordering in some variable patterns
 
-#### Fixed
+### Fixed
 
 - Refactor npm scripts and GitHub workflow configuration
 - Update @vscode/test-electron to handle new VS Code builds

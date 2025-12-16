@@ -107,6 +107,8 @@ To publish a new version to the [VS Code Marketplace](https://marketplace.visual
    - You must be a member of the `fastly` publisher on the VS Code Marketplace
 
 2. **Prepare the release**
+   - Run `vsce ls --tree` to check additional files are not unintentionally
+     added
    - Update `version` in `package.json`
    - Move items from "Unreleased" to a new version section in `CHANGELOG.md`
    - Commit these changes: `git commit -am "chore: prepare release vX.Y.Z"`
@@ -128,10 +130,15 @@ To publish a new version to the [VS Code Marketplace](https://marketplace.visual
    - Drag the
 
 5. **Tag the release**
+
    ```bash
    git tag vX.Y.Z
    git push origin main --tags
    ```
+
+6. **Upload a new GitHub release**
+   Visit https://github.com/fastly/vscode-fastly-vcl/releases and upload the
+   .vsix file with a changelog.
 
 ## Functionality
 
