@@ -5,7 +5,13 @@ const eslint = require("@eslint/js");
 
 module.exports = tseslint.config(
   {
-    ignores: ["node_modules/**", "client/node_modules/**", "client/out/**"],
+    ignores: [
+      "node_modules/**",
+      "client/node_modules/**",
+      "client/out/**",
+      "server/node_modules/**",
+      "server/out/**",
+    ],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,

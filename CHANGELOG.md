@@ -8,6 +8,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Changed
 
+- Embed LSP server source directly in extension (previously depended on external `fastly-vcl-lsp` npm package)
+- Enable TypeScript strict mode for server
+
+### Fixed
+
+- Fix document symbols crashing when subroutine closing brace not found
+
 ## [2.0.3] - 2025-12-16
 
 ### Changed

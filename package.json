@@ -17,12 +17,13 @@
   "activationEvents": [],
   "main": "./client/out/extension",
   "workspaces": [
-    "./client"
+    "./client",
+    "./server"
   ],
   "scripts": {
-    "build": "tsc -b",
-    "clean": "rm -rf client/out",
-    "dev": "tsc -b -w",
+    "build": "tsc -b ./client && tsc -b ./server",
+    "clean": "rm -rf client/out server/out",
+    "dev": "tsc -b -w ./client ./server",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint ./client/src --ext .ts,.tsx",
@@ -97,11 +98,15 @@
     "typescript-eslint": "^8.49.0"
   },
   "dependencies": {
-    "vscode-jsonrpc": "^8.2.1"
+    "falco-js": "^0.23.2",
+    "vscode-jsonrpc": "^8.2.1",
+    "vscode-languageserver": "^9.0.0",
+    "vscode-languageserver-textdocument": "^1.0.8"
   },
   "c8": {
     "include": [
-      "client/out/**/*.js"
+      "client/out/**/*.js",
+      "server/out/**/*.js"
     ],
     "exclude": [
       "client/out/test/**"

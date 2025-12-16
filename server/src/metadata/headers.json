@@ -1,0 +1,364 @@
+{
+  "Accept-Encoding": {
+    "desc": "Indicates the content encoding (usually a compression algorithm) that the client can understand",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Accept-Language": {
+    "desc": "Indicates the natural language and locale that the client prefers",
+    "deprecated": false,
+    "available": []
+  },
+  "Accept": {
+    "desc": "Indicates which content types, expressed as MIME types, the client is able to understand",
+    "deprecated": false,
+    "available": []
+  },
+  "Age": {
+    "desc": "The amount of time (in seconds) a response has been cached (in all nodes)",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "Alt-Svc": {
+    "desc": "Allows a server to direct a client to load a resource from a different server, usually to upgrade to HTTP/2 or HTTP/3",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "CDN-Loop": {
+    "desc": "Lists entities that have forwarded the request, to detect loops",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Cache-Control": {
+    "desc": "Directives that affect the operation of caches",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "Content-Length": {
+    "desc": "The anticipated size of the request or response body, as a decimal number of octets, sent to the recipient",
+    "deprecated": false,
+    "available": [
+      "req",
+      "resp"
+    ]
+  },
+  "Content-Range": {
+    "desc": "For partial responses, indicates which portion of the resource is included in the response",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "Cookie": {
+    "desc": "List of cookies attached to a request",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Date": {
+    "desc": "Time when the response was generated",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "Expect": {
+    "desc": "Expectations that need to be fulfilled by the server in order to properly handle the request",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Expires": {
+    "desc": "Time when the response is no longer fresh",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "Fastly-Cachetype": {
+    "desc": "Describes whether the request resulted in a cache hit / miss / pass / etc",
+    "deprecated": true,
+    "available": [
+      "req"
+    ]
+  },
+  "Fastly-Client-IP": {
+    "desc": "The 'true' client IP address",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Fastly-Client": {
+    "desc": "Indicates that a request came from Fastly",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Fastly-Cookie-Overflow": {
+    "desc": "Set when a cookie header is stripped because it is too large",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Fastly-Debug-Digest": {
+    "desc": "A digest of the cache key",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "Fastly-Debug-Path": {
+    "desc": "Details of the Fastly cache servers that processed the request",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "Fastly-Debug-TTL": {
+    "desc": "Provides timing information for cached resources",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "Fastly-Debug": {
+    "desc": "Ask for more debug information",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Fastly-FF": {
+    "desc": "A list of Fastly cache nodes that have processed a request",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Fastly-Force-Shield": {
+    "desc": "Enable clustering",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Fastly-IO-Error": {
+    "desc": "Errors encountered during Image Optimizer processing",
+    "deprecated": null,
+    "available": [
+      "resp"
+    ]
+  },
+  "Fastly-IO-Info": {
+    "desc": "Information on transformations made by Image Optimizer",
+    "deprecated": null,
+    "available": [
+      "resp"
+    ]
+  },
+  "Fastly-IO-Warning": {
+    "desc": "Potential issues with Image Optimizer processing",
+    "deprecated": null,
+    "available": [
+      "resp"
+    ]
+  },
+  "Fastly-Key": {
+    "desc": "Contains a token to validate API clients",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Fastly-No-Shield": {
+    "desc": "Disables clustering",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Fastly-SSL": {
+    "desc": "Indicates whether the client-side connection used TLS to connect to Fastly",
+    "deprecated": true,
+    "available": [
+      "req"
+    ]
+  },
+  "Fastly-Stats": {
+    "desc": "A list of Fastly applications that a response has been transformed by",
+    "deprecated": null,
+    "available": [
+      "resp"
+    ]
+  },
+  "Host": {
+    "desc": "The authority that the request is intended for",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Proxy-Authenticate": {
+    "desc": "A challenge that indicates the authentication scheme(s) that should be used to gain access to a resource behind a proxy server",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "Proxy-Authorization": {
+    "desc": "The credentials to authenticate a user agent to a proxy server",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Surrogate-Control": {
+    "desc": "Alternative to Cache-Control response header for CDNs and reverse proxies",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "Surrogate-Key": {
+    "desc": "Additional, space-separated purge keys for the response",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "TE": {
+    "desc": "The transfer codings the user agent is willing to accept",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Trailer": {
+    "desc": "Allows the sender to include additional fields at the end of chunked responses",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "Transfer-Encoding": {
+    "desc": "The codings used to form the payload body send to the recipient",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "Upgrade": {
+    "desc": "Used by the client to indicate the supported protocols to the server",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "Vary": {
+    "desc": "Adds the specified request headers to the cache key for the resource",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "X-Cache-Hits": {
+    "desc": "List indicating number of cache hits in each node",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "X-Cache": {
+    "desc": "Indicates whether the request was a HIT or a MISS",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "X-Compress-Hint": {
+    "desc": "Direct Fastly to compress a response before emitting it",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "X-Fastly-Imageopto-API": {
+    "desc": "Contains configuration for Image Optimizer",
+    "deprecated": null,
+    "available": [
+      "req"
+    ]
+  },
+  "X-Fastly-Imageopto-Montage": {
+    "desc": "Provides the ability to combine up to four images into a single image",
+    "deprecated": null,
+    "available": [
+      "req"
+    ]
+  },
+  "X-Fastly-Imageopto-Overlay": {
+    "desc": "Provides the ability to overlay one image on top of another image",
+    "deprecated": null,
+    "available": [
+      "req"
+    ]
+  },
+  "X-Forwarded-For": {
+    "desc": "The originating IP address of a client request",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "X-Forwarded-Host": {
+    "desc": "The originating host of a client request",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "X-Forwarded-Server": {
+    "desc": "The originating server of a client request",
+    "deprecated": false,
+    "available": [
+      "req"
+    ]
+  },
+  "X-Served-By": {
+    "desc": "Identity of the Fastly cache servers processing the response",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "X-Timer": {
+    "desc": "Timing information about the response",
+    "deprecated": false,
+    "available": [
+      "resp"
+    ]
+  },
+  "X-Varnish": {
+    "desc": "Varnish-generated transaction ID for a request or response",
+    "deprecated": false,
+    "available": [
+      "req",
+      "resp"
+    ]
+  }
+}

@@ -1,0 +1,3288 @@
+{
+  "header.get": {
+    "category": "headers",
+    "desc": "Get a header value by name",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "ID",
+        "name": "where"
+      },
+      {
+        "type": "STRING",
+        "name": "header_name"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "header.unset": {
+    "category": "headers",
+    "desc": "Delete a header by name",
+    "type": "VOID",
+    "args": [
+      {
+        "type": "ID",
+        "name": "where"
+      },
+      {
+        "type": "STRING",
+        "name": "header_name"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "header.set": {
+    "category": "headers",
+    "desc": "Set a header by name",
+    "type": "VOID",
+    "args": [
+      {
+        "type": "ID",
+        "name": "where"
+      },
+      {
+        "type": "STRING",
+        "name": "header_name"
+      },
+      {
+        "type": "STRING",
+        "name": "value"
+      }
+    ],
+    "methods": [
+      "all"
+    ],
+    "notes": [
+      "The string `value` behaviour here substitutes '(null)' in the style of set req.http.x = ...;"
+    ]
+  },
+  "header.filter": {
+    "category": "headers",
+    "desc": "Remove all headers in the provided argument list",
+    "type": "VOID",
+    "args": [
+      {
+        "type": "ID",
+        "name": "where"
+      },
+      {
+        "type": "STRING",
+        "name": "headers",
+        "arity": "variadic"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "header.filter_except": {
+    "category": "headers",
+    "desc": "Remove all headers except those in the provided argument list",
+    "type": "VOID",
+    "args": [
+      {
+        "type": "ID",
+        "name": "where"
+      },
+      {
+        "type": "STRING",
+        "name": "headers",
+        "arity": "variadic"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "urlencode": {
+    "category": "strings",
+    "desc": "Encode a string for use in a URL",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "input"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "urldecode": {
+    "category": "strings",
+    "desc": "Decode a URL-encoded string",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "input"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "regsub": {
+    "category": "strings",
+    "desc": "Replace the first occurrence of a regular expression",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "input"
+      },
+      {
+        "type": "STRING",
+        "name": "pattern"
+      },
+      {
+        "type": "STRING",
+        "name": "replacement"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "regsuball": {
+    "category": "strings",
+    "desc": "Replace all occurrences of a regular expression",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "input"
+      },
+      {
+        "type": "STRING",
+        "name": "pattern"
+      },
+      {
+        "type": "STRING",
+        "name": "replacement"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.replace": {
+    "category": "strings",
+    "desc": "Replace the first occurrence of a substring",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "STRING",
+        "name": "target"
+      },
+      {
+        "type": "STRING",
+        "name": "replacement"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.replaceall": {
+    "category": "strings",
+    "desc": "Replace the first occurrence of a substring",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "STRING",
+        "name": "target"
+      },
+      {
+        "type": "STRING",
+        "name": "replacement"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.replace_prefix": {
+    "category": "strings",
+    "desc": "Replace a substring at the start of a string",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "STRING",
+        "name": "target"
+      },
+      {
+        "type": "STRING",
+        "name": "replacement"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.replace_suffix": {
+    "category": "strings",
+    "desc": "Replace a substring at the end of a string",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "STRING",
+        "name": "target"
+      },
+      {
+        "type": "STRING",
+        "name": "replacement"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "randomstr": {
+    "category": "randomness",
+    "desc": "Produce a string from the PRNG, given a character set",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "INTEGER",
+        "name": "len"
+      },
+      {
+        "type": "STRING",
+        "name": "characters",
+        "arity": "optional"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "randombool": {
+    "category": "randomness",
+    "desc": "Produce a boolean from the PRNG",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "INTEGER",
+        "name": "numerator"
+      },
+      {
+        "type": "INTEGER",
+        "name": "denominator"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "randombool_seeded": {
+    "category": "randomness",
+    "desc": "Produce a boolean from the PRNG (seeded)",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "INTEGER",
+        "name": "numerator"
+      },
+      {
+        "type": "INTEGER",
+        "name": "denominator"
+      },
+      {
+        "type": "INTEGER",
+        "name": "seed"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "randomint": {
+    "category": "randomness",
+    "desc": "Produce an integer from the PRNG",
+    "type": "INTEGER",
+    "args": [
+      {
+        "type": "INTEGER",
+        "name": "from"
+      },
+      {
+        "type": "INTEGER",
+        "name": "to"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "randomint_seeded": {
+    "category": "randomness",
+    "desc": "Produce an integer from the PRNG (seeded)",
+    "type": "INTEGER",
+    "args": [
+      {
+        "type": "INTEGER",
+        "name": "from"
+      },
+      {
+        "type": "INTEGER",
+        "name": "to"
+      },
+      {
+        "type": "INTEGER",
+        "name": "seed"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "http_status_matches": {
+    "category": "miscellaneous",
+    "desc": "Determine whether a HTTP status code matches a pattern",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "INTEGER",
+        "name": "status"
+      },
+      {
+        "type": "STRING",
+        "name": "fmt"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "accept.charset_lookup": {
+    "category": "content-negotiation",
+    "desc": "Find the accepted character set from a list",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "requested_charsets"
+      },
+      {
+        "type": "STRING",
+        "name": "default"
+      },
+      {
+        "type": "STRING",
+        "name": "accept_header"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "accept.encoding_lookup": {
+    "category": "content-negotiation",
+    "desc": "Find the accepted content encoding from a list",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "requested_content_encodings"
+      },
+      {
+        "type": "STRING",
+        "name": "default"
+      },
+      {
+        "type": "STRING",
+        "name": "accept_header"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "accept.language_filter_basic": {
+    "category": "content-negotiation",
+    "desc": "Find a single accepted language from a list",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "requested_languages"
+      },
+      {
+        "type": "STRING",
+        "name": "default"
+      },
+      {
+        "type": "STRING",
+        "name": "accept_header"
+      },
+      {
+        "type": "INTEGER",
+        "name": "nmatches"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "accept.language_lookup": {
+    "category": "content-negotiation",
+    "desc": "Find one or more accepted languages from a list",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "requested_languages"
+      },
+      {
+        "type": "STRING",
+        "name": "default"
+      },
+      {
+        "type": "STRING",
+        "name": "accept_header"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "accept.media_lookup": {
+    "category": "content-negotiation",
+    "desc": "Find the preferred media type from a list",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "requested_media_types"
+      },
+      {
+        "type": "STRING",
+        "name": "default"
+      },
+      {
+        "type": "STRING",
+        "name": "range_defaults"
+      },
+      {
+        "type": "STRING",
+        "name": "accept_header"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "addr.extract_bits": {
+    "category": "miscellaneous",
+    "desc": "Extract a sequence of bits from an IP address",
+    "type": "INTEGER",
+    "args": [
+      {
+        "type": "IP",
+        "name": "ip"
+      },
+      {
+        "type": "INTEGER",
+        "name": "start_bit"
+      },
+      {
+        "type": "INTEGER",
+        "name": "bit_count"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "addr.is_ipv4": {
+    "category": "miscellaneous",
+    "desc": "True if an IP address is IPv4",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "IP",
+        "name": "ip"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "addr.is_ipv6": {
+    "category": "miscellaneous",
+    "desc": "True if an IP address is IPv6",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "IP",
+        "name": "ip"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "boltsort.sort": {
+    "category": "query-string",
+    "desc": "Alias of `querystring.sort`",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "url"
+      }
+    ],
+    "methods": [
+      "all"
+    ],
+    "deprecated": true
+  },
+  "querystring.sort": {
+    "category": "query-string",
+    "desc": "Sort URL query string parameters",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "url"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "ratelimit.check_rate": {
+    "category": "rate-limiting",
+    "desc": "Determine if a user has exceeded a specified number of requests per second",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "entry"
+      },
+      {
+        "type": "ID",
+        "name": "rc"
+      },
+      {
+        "type": "INTEGER",
+        "name": "delta"
+      },
+      {
+        "type": "INTEGER",
+        "name": "window"
+      },
+      {
+        "type": "INTEGER",
+        "name": "limit"
+      },
+      {
+        "type": "ID",
+        "name": "pb"
+      },
+      {
+        "type": "TIME",
+        "name": "ttl"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "ratelimit.check_rates": {
+    "category": "rate-limiting",
+    "desc": "Determine if a user has exceeded either one of two specified number of requests per second",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "entry"
+      },
+      {
+        "type": "ID",
+        "name": "rc1"
+      },
+      {
+        "type": "INTEGER",
+        "name": "delta1"
+      },
+      {
+        "type": "INTEGER",
+        "name": "window1"
+      },
+      {
+        "type": "INTEGER",
+        "name": "limit1"
+      },
+      {
+        "type": "ID",
+        "name": "rc2"
+      },
+      {
+        "type": "INTEGER",
+        "name": "delta2"
+      },
+      {
+        "type": "INTEGER",
+        "name": "window2"
+      },
+      {
+        "type": "INTEGER",
+        "name": "limit2"
+      },
+      {
+        "type": "ID",
+        "name": "pb"
+      },
+      {
+        "type": "TIME",
+        "name": "ttl"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "ratelimit.ratecounter_increment": {
+    "category": "rate-limiting",
+    "desc": "Increment a value within a rate counter",
+    "type": "INTEGER",
+    "args": [
+      {
+        "type": "ID",
+        "name": "rc"
+      },
+      {
+        "type": "STRING",
+        "name": "entry"
+      },
+      {
+        "type": "INTEGER",
+        "name": "delta"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "ratelimit.penaltybox_add": {
+    "category": "rate-limiting",
+    "desc": "Add an entry to a penalty box",
+    "type": "VOID",
+    "args": [
+      {
+        "type": "ID",
+        "name": "pb"
+      },
+      {
+        "type": "STRING",
+        "name": "entry"
+      },
+      {
+        "type": "TIME",
+        "name": "ttl"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "ratelimit.penaltybox_has": {
+    "category": "rate-limiting",
+    "desc": "See if a penalty box contains a value",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "ID",
+        "name": "pb"
+      },
+      {
+        "type": "STRING",
+        "name": "entry"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.awsv4_hmac": {
+    "category": "cryptographic",
+    "desc": "Construct an AWSv4 message authentication code",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "STRING",
+        "name": "date_stamp"
+      },
+      {
+        "type": "STRING",
+        "name": "region"
+      },
+      {
+        "type": "STRING",
+        "name": "service"
+      },
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.base64": {
+    "category": "cryptographic",
+    "desc": "Encode Base64",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "input"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.base64_decode": {
+    "category": "cryptographic",
+    "desc": "Decode Base64",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.base64url": {
+    "category": "cryptographic",
+    "desc": "Encode Base64 with URL encoding",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.base64url_decode": {
+    "category": "cryptographic",
+    "desc": "Decode Base64 with URL decoding",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.base64url_nopad": {
+    "category": "cryptographic",
+    "desc": "Encode Base64 (non length-padded) with URL encoding",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.base64url_nopad_decode": {
+    "category": "cryptographic",
+    "desc": "Decode Base64 (non length-padded) with URL decoding",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_crc32": {
+    "category": "cryptographic",
+    "desc": "CRC-32 digest",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_crc32b": {
+    "category": "cryptographic",
+    "desc": "CRC-32b digest",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_md5": {
+    "category": "cryptographic",
+    "desc": "MD5 hash",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_sha1": {
+    "category": "cryptographic",
+    "desc": "SHA-1 hash",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_sha224": {
+    "category": "cryptographic",
+    "desc": "SHA-224 hash",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_sha256": {
+    "category": "cryptographic",
+    "desc": "SHA-256 hash",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_sha384": {
+    "category": "cryptographic",
+    "desc": "SHA-384 hash",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_sha512": {
+    "category": "cryptographic",
+    "desc": "SHA-512 hash",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_sha1_from_base64": {
+    "category": "cryptographic",
+    "desc": "SHA-1 hash (Base64-encoded input)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_sha256_from_base64": {
+    "category": "cryptographic",
+    "desc": "SHA-256 hash (Base64-encoded input)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_sha512_from_base64": {
+    "category": "cryptographic",
+    "desc": "SHA-512 hash (Base64-encoded input)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hmac_md5": {
+    "category": "cryptographic",
+    "desc": "MD5 message authentication code",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hmac_md5_base64": {
+    "category": "cryptographic",
+    "desc": "MD5 message authentication code (Base64-encoded)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hmac_sha1": {
+    "category": "cryptographic",
+    "desc": "SHA-1 message authentication code",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hmac_sha1_base64": {
+    "category": "cryptographic",
+    "desc": "SHA-1 message authentication code (Base64-encoded)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hmac_sha256": {
+    "category": "cryptographic",
+    "desc": "SHA-256 message authentication code",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hmac_sha256_base64": {
+    "category": "cryptographic",
+    "desc": "SHA-256 message authentication code (Base64-encoded)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hmac_sha512": {
+    "category": "cryptographic",
+    "desc": "SHA-512 message authentication code",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "STRING",
+        "name": "input"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hmac_sha512_base64": {
+    "category": "cryptographic",
+    "desc": "SHA-512 message authentication code (Base64-encoded)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "STRING",
+        "name": "input"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.rsa_verify": {
+    "category": "cryptographic",
+    "desc": "Verify that a key and payload match an RSA digest",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "ID",
+        "name": "hash_method"
+      },
+      {
+        "type": "STRING",
+        "name": "public_key"
+      },
+      {
+        "type": "STRING",
+        "name": "payload"
+      },
+      {
+        "type": "STRING",
+        "name": "digest"
+      },
+      {
+        "type": "ID",
+        "name": "base64_method",
+        "arity": "optional"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.secure_is_equal": {
+    "category": "cryptographic",
+    "desc": "String comparison (constant time)",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s1"
+      },
+      {
+        "type": "STRING",
+        "name": "s2"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.time_hmac_md5": {
+    "category": "cryptographic",
+    "desc": "Time-based MD5 message authentication code",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "INTEGER",
+        "name": "interval"
+      },
+      {
+        "type": "INTEGER",
+        "name": "offset"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.time_hmac_sha1": {
+    "category": "cryptographic",
+    "desc": "Time-based SHA-1 message authentication code",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "INTEGER",
+        "name": "interval"
+      },
+      {
+        "type": "INTEGER",
+        "name": "offset"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.time_hmac_sha256": {
+    "category": "cryptographic",
+    "desc": "Time-based SHA-256 message authentication code",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "INTEGER",
+        "name": "interval"
+      },
+      {
+        "type": "INTEGER",
+        "name": "offset"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.time_hmac_sha512": {
+    "category": "cryptographic",
+    "desc": "Time-based SHA-512 message authentication code",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "INTEGER",
+        "name": "interval"
+      },
+      {
+        "type": "INTEGER",
+        "name": "offset"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "bin.hex_to_base64": {
+    "category": "cryptographic",
+    "desc": "Convert a binary string encoded in hexadecimal to being encoded in Base64",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "bin.base64_to_hex": {
+    "category": "cryptographic",
+    "desc": "Convert a binary string encoded in Base64 to being encoded in hexadecimal",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "crypto.encrypt_hex": {
+    "category": "cryptographic",
+    "desc": "Symmetric encryption (hex-encoded)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "ID",
+        "name": "cipher"
+      },
+      {
+        "type": "ID",
+        "name": "mode"
+      },
+      {
+        "type": "ID",
+        "name": "padding"
+      },
+      {
+        "type": "STRING",
+        "name": "key_hex"
+      },
+      {
+        "type": "STRING",
+        "name": "iv_hex"
+      },
+      {
+        "type": "STRING",
+        "name": "plaintext_hex"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "crypto.encrypt_base64": {
+    "category": "cryptographic",
+    "desc": "Symmetric encryption (Base64-encoded)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "ID",
+        "name": "cipher"
+      },
+      {
+        "type": "ID",
+        "name": "mode"
+      },
+      {
+        "type": "ID",
+        "name": "padding"
+      },
+      {
+        "type": "STRING",
+        "name": "key_hex"
+      },
+      {
+        "type": "STRING",
+        "name": "iv_hex"
+      },
+      {
+        "type": "STRING",
+        "name": "plaintext_base64"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "crypto.decrypt_hex": {
+    "category": "cryptographic",
+    "desc": "Symmetric decryption (hex-encoded)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "ID",
+        "name": "cipher"
+      },
+      {
+        "type": "ID",
+        "name": "mode"
+      },
+      {
+        "type": "ID",
+        "name": "padding"
+      },
+      {
+        "type": "STRING",
+        "name": "key_hex"
+      },
+      {
+        "type": "STRING",
+        "name": "iv_hex"
+      },
+      {
+        "type": "STRING",
+        "name": "plaintext_base64"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "crypto.decrypt_base64": {
+    "category": "cryptographic",
+    "desc": "Symmetric decryption (Base64-encoded)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "ID",
+        "name": "cipher"
+      },
+      {
+        "type": "ID",
+        "name": "mode"
+      },
+      {
+        "type": "ID",
+        "name": "padding"
+      },
+      {
+        "type": "STRING",
+        "name": "key_hex"
+      },
+      {
+        "type": "STRING",
+        "name": "iv_hex"
+      },
+      {
+        "type": "STRING",
+        "name": "plaintext_base64"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "fastly.hash": {
+    "category": "miscellaneous",
+    "desc": "A MurmurHash-based hash function",
+    "type": "INTEGER",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "INTEGER",
+        "name": "seed"
+      },
+      {
+        "type": "INTEGER",
+        "name": "from"
+      },
+      {
+        "type": "INTEGER",
+        "name": "to"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.collect": {
+    "category": "miscellaneous",
+    "desc": "Combine multiple instances of the same header into one",
+    "type": "VOID",
+    "args": [
+      {
+        "type": "ID",
+        "name": "header"
+      },
+      {
+        "type": "STRING",
+        "name": "separator_character",
+        "arity": "optional"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.count": {
+    "category": "miscellaneous",
+    "desc": "Count the number of elements in a collection",
+    "type": "INTEGER",
+    "args": [
+      {
+        "type": "ID",
+        "name": "collection"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "h2.push": {
+    "category": "tls-and-http",
+    "desc": "HTTP/2 server push",
+    "type": "VOID",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "resource"
+      },
+      {
+        "type": "STRING",
+        "name": "as",
+        "arity": "optional"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "early_hints": {
+    "category": "tls-and-http",
+    "desc": "HTTP early hint",
+    "type": "VOID",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "resource"
+      },
+      {
+        "type": "STRING",
+        "name": "resource",
+        "arity": "variadic"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "h3.alt_svc": {
+    "category": "tls-and-http",
+    "desc": "Send an Alt-Svc header advertising HTTP/3 support",
+    "type": "VOID",
+    "args": [],
+    "methods": [
+      "all"
+    ]
+  },
+  "h2.disable_header_compression": {
+    "category": "tls-and-http",
+    "desc": "Disable header compression for HTTP/2",
+    "type": "VOID",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "resource"
+      },
+      {
+        "type": "STRING",
+        "name": "...",
+        "arity": "variadic"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "json.escape": {
+    "category": "strings",
+    "desc": "Encode a string using JSON-style escape sequences (UTF-8 encoded)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "string"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.acos": {
+    "category": "math-trig",
+    "desc": "Arc cosine",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.acosh": {
+    "category": "math-trig",
+    "desc": "Inverse hyperbolic cosine",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.asin": {
+    "category": "math-trig",
+    "desc": "Arc sine",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.asinh": {
+    "category": "math-trig",
+    "desc": "Inverse hyperbolic sine",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.atan": {
+    "category": "math-trig",
+    "desc": "Arc tangent",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.atan2": {
+    "category": "math-trig",
+    "desc": "Arc tangent of two variables",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "y"
+      },
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.atanh": {
+    "category": "math-trig",
+    "desc": "Inverse hyperbolic tangent",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.cos": {
+    "category": "math-trig",
+    "desc": "Cosine",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.cosh": {
+    "category": "math-trig",
+    "desc": "Hyperbolic cosine",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.sin": {
+    "category": "math-trig",
+    "desc": "Sine",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.sinh": {
+    "category": "math-trig",
+    "desc": "Hyperbolic sine",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.tan": {
+    "category": "math-trig",
+    "desc": "Tangent",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.sqrt": {
+    "category": "math-trig",
+    "desc": "Square root",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.tanh": {
+    "category": "math-trig",
+    "desc": "Hyperbolic tangent",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.is_finite": {
+    "category": "floating-point-classifications",
+    "desc": "Finite classification",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.is_subnormal": {
+    "category": "floating-point-classifications",
+    "desc": "Subnormal classification",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.is_nan": {
+    "category": "floating-point-classifications",
+    "desc": "NaN classification",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.is_normal": {
+    "category": "floating-point-classifications",
+    "desc": "Normal classification",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.is_infinite": {
+    "category": "floating-point-classifications",
+    "desc": "Infinity classification",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.roundeven": {
+    "category": "math-rounding",
+    "desc": "Round to nearest, ties to even",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.ceil": {
+    "category": "math-rounding",
+    "desc": "Ceiling (round up)",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.floor": {
+    "category": "math-rounding",
+    "desc": "Floor (round down)",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.trunc": {
+    "category": "math-rounding",
+    "desc": "Truncate (round towards zero)",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.round": {
+    "category": "math-rounding",
+    "desc": "Round to nearest, ties away from zero",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.roundhalfup": {
+    "category": "math-rounding",
+    "desc": "Round to nearest, ties to +∞",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.roundhalfdown": {
+    "category": "math-rounding",
+    "desc": "Round to nearest, ties to -∞",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.exp": {
+    "category": "math-logexp",
+    "desc": "Calculate the natural exponent e^x",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.exp2": {
+    "category": "math-logexp",
+    "desc": "Calculate the base-2 exponent 2^x",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.log": {
+    "category": "math-logexp",
+    "desc": "Calculate the natural logarithm ln(x)",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.log2": {
+    "category": "math-logexp",
+    "desc": "Calculate the base-2 logarithm log2(x)",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "math.log10": {
+    "category": "math-logexp",
+    "desc": "Calculate the base-10 logarithm log10(x)",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "FLOAT",
+        "name": "x"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "querystring.add": {
+    "category": "query-string",
+    "desc": "Append a name and value to a URL query string",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "url"
+      },
+      {
+        "type": "STRING",
+        "name": "name"
+      },
+      {
+        "type": "STRING",
+        "name": "value"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "querystring.get": {
+    "desc": "Read a parameter from a URL query string",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "url"
+      },
+      {
+        "type": "STRING",
+        "name": "name"
+      }
+    ],
+    "methods": [
+      "all"
+    ],
+    "category": "query-string"
+  },
+  "querystring.clean": {
+    "category": "query-string",
+    "desc": "Remove empty parameters from a URL query string",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "url"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "querystring.filter": {
+    "category": "query-string",
+    "desc": "Remove all parameters in the provided `querystring.filtersep()`-separated list from a URL query string",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "url"
+      },
+      {
+        "type": "STRING",
+        "name": "names"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "querystring.filter_except": {
+    "category": "query-string",
+    "desc": "Remove all parameters except those in the provided `querystring.filtersep()`-separated list from a URL query string",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "url"
+      },
+      {
+        "type": "STRING",
+        "name": "names"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "querystring.filtersep": {
+    "category": "query-string",
+    "desc": "List separator used for query string filtering",
+    "type": "STRING",
+    "args": [],
+    "methods": [
+      "all"
+    ]
+  },
+  "querystring.globfilter": {
+    "category": "query-string",
+    "desc": "Remove matching parameters from a URL query string by glob",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "url"
+      },
+      {
+        "type": "STRING",
+        "name": "pattern"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "querystring.globfilter_except": {
+    "category": "query-string",
+    "desc": "Remove non-matching parameters from a URL query string by glob",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "url"
+      },
+      {
+        "type": "STRING",
+        "name": "pattern"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "querystring.regfilter": {
+    "category": "query-string",
+    "desc": "Remove matching parameters from a URL query string by regular expression",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "url"
+      },
+      {
+        "type": "STRING",
+        "name": "pattern"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "querystring.regfilter_except": {
+    "category": "query-string",
+    "desc": "Remove non-matching parameters from a URL query string by regular expression",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "url"
+      },
+      {
+        "type": "STRING",
+        "name": "pattern"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "querystring.remove": {
+    "category": "query-string",
+    "desc": "Remove the query string from a URL",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "url"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "querystring.set": {
+    "category": "query-string",
+    "desc": "Set (or replace an existing) parameter in a URL query string",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "url"
+      },
+      {
+        "type": "STRING",
+        "name": "name"
+      },
+      {
+        "type": "STRING",
+        "name": "value"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "resp.tarpit": {
+    "category": "miscellaneous",
+    "desc": "Anti-abuse function to allow Varnish to pace the rate its response is sent to the client",
+    "type": "VOID",
+    "args": [
+      {
+        "type": "INTEGER",
+        "name": "interval_s"
+      },
+      {
+        "type": "INTEGER",
+        "name": "chunk_size_bytes",
+        "arity": "optional"
+      }
+    ],
+    "methods": [
+      "deliver"
+    ]
+  },
+  "setcookie.get_value_by_name": {
+    "category": "miscellaneous",
+    "desc": "The value of a cookie from the `Set-Cookie` header",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "ID",
+        "name": "where"
+      },
+      {
+        "type": "STRING",
+        "name": "cookie_name"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "setcookie.delete_by_name": {
+    "category": "miscellaneous",
+    "desc": "Delete a `Set-Cookie` response header by name",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "ID",
+        "name": "where"
+      },
+      {
+        "type": "STRING",
+        "name": "cookie_name"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "xml_escape": {
+    "category": "strings",
+    "desc": "Encode a string using XML-style escape sequences",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "cstr_escape": {
+    "category": "strings",
+    "desc": "Encode a string using C-style escape sequences",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "string"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.anystr2ip": {
+    "category": "strings",
+    "desc": "Convert a string formatted in various bases to an IP address",
+    "type": "IP",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "addr"
+      },
+      {
+        "type": "STRING",
+        "name": "fallback"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.atoi": {
+    "category": "strings",
+    "desc": "Convert a string to an integer (base 10)",
+    "type": "INTEGER",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.atof": {
+    "category": "strings",
+    "desc": "Convert a string to a float (base 10)",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.ip": {
+    "category": "strings",
+    "desc": "Alias of `std.str2ip`",
+    "type": "IP",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "addr"
+      },
+      {
+        "type": "STRING",
+        "name": "fallback"
+      }
+    ],
+    "methods": [
+      "all"
+    ],
+    "notes": [
+      "for upstream compat"
+    ]
+  },
+  "std.ip2str": {
+    "category": "strings",
+    "desc": "Convert an IP address to a string",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "IP",
+        "name": "ip"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.prefixof": {
+    "category": "strings",
+    "desc": "True if one string is a prefix of another",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "STRING",
+        "name": "begins_with"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.str2ip": {
+    "category": "strings",
+    "desc": "Convert a string to an IP address",
+    "type": "IP",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "addr"
+      },
+      {
+        "type": "STRING",
+        "name": "fallback"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.strlen": {
+    "category": "strings",
+    "desc": "The length of a string",
+    "type": "INTEGER",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.strpad": {
+    "category": "strings",
+    "desc": "Pad a string to a given length",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "INTEGER",
+        "name": "width"
+      },
+      {
+        "type": "STRING",
+        "name": "pad"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.strrep": {
+    "category": "strings",
+    "desc": "Repeat a string a given number of times",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "INTEGER",
+        "name": "n"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.strrev": {
+    "category": "strings",
+    "desc": "Reverse a string",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.strstr": {
+    "category": "strings",
+    "desc": "Find the first occurrence of one string within another",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "haystack"
+      },
+      {
+        "type": "STRING",
+        "name": "needle"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.itoa": {
+    "category": "strings",
+    "desc": "Convert an integer to a string in an arbitrary base",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "INTEGER",
+        "name": "value"
+      },
+      {
+        "type": "INTEGER",
+        "name": "base",
+        "arity": "optional"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.itoa_charset": {
+    "category": "strings",
+    "desc": "Convert an integer to a string in an arbitrary character set",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "INTEGER",
+        "name": "value"
+      },
+      {
+        "type": "STRING",
+        "name": "charset"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.strtol": {
+    "category": "strings",
+    "desc": "Convert a string to an integer (arbitrary bases)",
+    "type": "INTEGER",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "INTEGER",
+        "name": "base"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.strtof": {
+    "category": "strings",
+    "desc": "Convert a string to a float (arbitrary bases)",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "INTEGER",
+        "name": "base"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.suffixof": {
+    "category": "strings",
+    "desc": "True if one string is a suffix of another",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "STRING",
+        "name": "ends_with"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.tolower": {
+    "category": "strings",
+    "desc": "Convert a string to lowercase",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.toupper": {
+    "category": "strings",
+    "desc": "Convert a string to uppercase",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.dirname": {
+    "category": "strings",
+    "desc": "Parse the directory name component from a path",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.basename": {
+    "category": "strings",
+    "desc": "Parse the basename component from a path",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "subfield": {
+    "category": "miscellaneous",
+    "desc": "Parse a subfield from a header",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "subject"
+      },
+      {
+        "type": "STRING",
+        "name": "fieldname"
+      },
+      {
+        "type": "STRING",
+        "name": "separator_character",
+        "arity": "optional"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "substr": {
+    "category": "strings",
+    "desc": "Extract a substring",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "INTEGER",
+        "name": "offset"
+      },
+      {
+        "type": "INTEGER",
+        "name": "length",
+        "arity": "optional"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "table.contains": {
+    "category": "table",
+    "desc": "True if a table contains an item with the given key",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "ID",
+        "name": "id"
+      },
+      {
+        "type": "STRING",
+        "name": "key"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "table.lookup": {
+    "category": "table",
+    "desc": "Find an item from a table of `STRING` values",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "ID",
+        "name": "id"
+      },
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "STRING",
+        "name": "default",
+        "arity": "optional"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "table.lookup_acl": {
+    "category": "table",
+    "desc": "Find an item from a table of `ACL` values",
+    "type": "ACL",
+    "args": [
+      {
+        "type": "ID",
+        "name": "id"
+      },
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "ACL",
+        "name": "default"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "table.lookup_bool": {
+    "category": "table",
+    "desc": "Find an item from a table of `BOOL` values",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "ID",
+        "name": "id"
+      },
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "BOOL",
+        "name": "default"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "table.lookup_integer": {
+    "category": "table",
+    "desc": "Find an item from a table of `INTEGER` values",
+    "type": "INTEGER",
+    "args": [
+      {
+        "type": "ID",
+        "name": "id"
+      },
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "INTEGER",
+        "name": "default"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "table.lookup_float": {
+    "category": "table",
+    "desc": "Find an item from a table of `FLOAT` values",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "ID",
+        "name": "id"
+      },
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "FLOAT",
+        "name": "default"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "table.lookup_ip": {
+    "category": "table",
+    "desc": "Find an item from a table of `IP` values",
+    "type": "IP",
+    "args": [
+      {
+        "type": "ID",
+        "name": "id"
+      },
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "IP",
+        "name": "default"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "table.lookup_backend": {
+    "category": "table",
+    "desc": "Find an item from a table of `BACKEND` values",
+    "type": "BACKEND",
+    "args": [
+      {
+        "type": "ID",
+        "name": "id"
+      },
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "BACKEND",
+        "name": "default"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "table.lookup_rtime": {
+    "category": "table",
+    "desc": "Find an item from a table of `RTIME` values",
+    "type": "RTIME",
+    "args": [
+      {
+        "type": "ID",
+        "name": "id"
+      },
+      {
+        "type": "STRING",
+        "name": "key"
+      },
+      {
+        "type": "RTIME",
+        "name": "default"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "parse_time_delta": {
+    "category": "date-and-time",
+    "desc": "Parse a time delta string to number of seconds",
+    "type": "INTEGER",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "specifier"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.integer2time": {
+    "category": "date-and-time",
+    "desc": "Convert seconds since epoch to an absolute time",
+    "type": "TIME",
+    "args": [
+      {
+        "type": "INTEGER",
+        "name": "time"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "std.time": {
+    "category": "date-and-time",
+    "desc": "Convert a formatted date/time string an absolute time",
+    "type": "TIME",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "TIME",
+        "name": "fallback"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "strftime": {
+    "category": "date-and-time",
+    "desc": "Format an absolute time",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "format"
+      },
+      {
+        "type": "TIME",
+        "name": "time"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "time.add": {
+    "category": "date-and-time",
+    "desc": "Add times",
+    "type": "TIME",
+    "args": [
+      {
+        "type": "TIME",
+        "name": "t1"
+      },
+      {
+        "type": "TIME",
+        "name": "t2"
+      }
+    ],
+    "methods": [
+      "all"
+    ],
+    "notes": [
+      "TIME on the rhs makes no sense; see VCC-258"
+    ]
+  },
+  "time.hex_to_time": {
+    "category": "date-and-time",
+    "desc": "Construct a fractional time",
+    "type": "TIME",
+    "args": [
+      {
+        "type": "INTEGER",
+        "name": "divisor"
+      },
+      {
+        "type": "STRING",
+        "name": "dividend"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "time.is_after": {
+    "category": "date-and-time",
+    "desc": "True if one absolute time is after another",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "TIME",
+        "name": "t1"
+      },
+      {
+        "type": "TIME",
+        "name": "t2"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "time.sub": {
+    "category": "date-and-time",
+    "desc": "Subtract times",
+    "type": "TIME",
+    "args": [
+      {
+        "type": "TIME",
+        "name": "t1"
+      },
+      {
+        "type": "TIME",
+        "name": "t2"
+      }
+    ],
+    "methods": [
+      "all"
+    ],
+    "notes": [
+      "TIME on the rhs makes no sense; see VCC-258"
+    ]
+  },
+  "time.units": {
+    "category": "date-and-time",
+    "desc": "Represent a time as a string to the decimal precision of the specified units",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "unit"
+      },
+      {
+        "type": "TIME",
+        "name": "time"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "time.runits": {
+    "category": "date-and-time",
+    "desc": "Represent a relative time as a string to the decimal precision of the specified units",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "unit"
+      },
+      {
+        "type": "RTIME",
+        "name": "rtime"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "utf8.codepoint_count": {
+    "category": "strings",
+    "desc": "The number of Unicode codepoints in a string",
+    "type": "INTEGER",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "utf8.is_valid": {
+    "category": "strings",
+    "desc": "True if a string is valid UTF-8",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "utf8.strpad": {
+    "category": "strings",
+    "desc": "Pad a string to a given length (UTF-8 encoded)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "INTEGER",
+        "name": "count"
+      },
+      {
+        "type": "STRING",
+        "name": "pad"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "utf8.substr": {
+    "category": "strings",
+    "desc": "Extract a substring (UTF-8 encoded)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      },
+      {
+        "type": "INTEGER",
+        "name": "offset"
+      },
+      {
+        "type": "INTEGER",
+        "name": "length",
+        "arity": "optional"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "uuid.dns": {
+    "category": "uuid",
+    "desc": "The DNS namespace UUID identifier",
+    "type": "STRING",
+    "args": [],
+    "methods": [
+      "all"
+    ]
+  },
+  "uuid.is_valid": {
+    "category": "uuid",
+    "desc": "True if a string is a valid UUID",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "uuid"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "uuid.is_version3": {
+    "category": "uuid",
+    "desc": "True if a string is a Version 3 UUID",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "uuid"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "uuid.is_version4": {
+    "category": "uuid",
+    "desc": "True if a string is a Version 4 UUID",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "uuid"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "uuid.is_version5": {
+    "category": "uuid",
+    "desc": "True if a string is a Version 5 UUID",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "uuid"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "uuid.oid": {
+    "category": "uuid",
+    "desc": "The OID namespace UUID identifier",
+    "type": "STRING",
+    "args": [],
+    "methods": [
+      "all"
+    ]
+  },
+  "uuid.url": {
+    "category": "uuid",
+    "desc": "The URL namespace UUID identifier",
+    "type": "STRING",
+    "args": [],
+    "methods": [
+      "all"
+    ]
+  },
+  "uuid.version3": {
+    "category": "uuid",
+    "desc": "Construct a Version 3 UUID",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "namespace"
+      },
+      {
+        "type": "STRING",
+        "name": "name"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "uuid.version4": {
+    "category": "uuid",
+    "desc": "Construct a Version 4 UUID",
+    "type": "STRING",
+    "args": [],
+    "methods": [
+      "all"
+    ]
+  },
+  "uuid.version5": {
+    "category": "uuid",
+    "desc": "Construct a Version 5 UUID",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "namespace"
+      },
+      {
+        "type": "STRING",
+        "name": "name"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "uuid.x500": {
+    "category": "uuid",
+    "desc": "The X.500 namespace UUID identifier",
+    "type": "STRING",
+    "args": [],
+    "methods": [
+      "all"
+    ]
+  }
+}

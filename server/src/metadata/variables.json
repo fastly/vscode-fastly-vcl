@@ -1,0 +1,4155 @@
+{
+  "backend.conn.is_tls": {
+    "category": "backend-connection",
+    "desc": "Whether the backend connection is over TLS",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.conn.tls_protocol": {
+    "category": "backend-connection",
+    "desc": "TLS protocol version for the backend connection",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "client.as.number": {
+    "category": "client-connection",
+    "desc": "Autonomous system (AS) number of the client",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.as.name": {
+    "category": "client-connection",
+    "desc": "Autonomous system (AS) name of the client",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.latitude": {
+    "category": "geolocation",
+    "desc": "Client latitude",
+    "type": "FLOAT",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.longitude": {
+    "category": "geolocation",
+    "desc": "Client longitude",
+    "type": "FLOAT",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.conn_speed": {
+    "category": "geolocation",
+    "desc": "Client connection speed",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.conn_type": {
+    "category": "geolocation",
+    "desc": "Client connection type",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.proxy_type": {
+    "category": "geolocation",
+    "desc": "Client proxy type",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.proxy_description": {
+    "category": "geolocation",
+    "desc": "Client proxy description",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.metro_code": {
+    "category": "geolocation",
+    "desc": "Country-specific metro code for the client",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.gmt_offset": {
+    "category": "geolocation",
+    "desc": "An alias for `client.geo.utc_offset`",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.utc_offset": {
+    "category": "geolocation",
+    "desc": "Time zone offset from UTC for the client",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.area_code": {
+    "category": "geolocation",
+    "desc": "Telephone area code for the client",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.postal_code": {
+    "category": "geolocation",
+    "desc": "Country-specific postal area code for the client",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.continent_code": {
+    "category": "geolocation",
+    "desc": "Two-letter continent code for the client",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.country_code": {
+    "category": "geolocation",
+    "desc": "Two-letter country code for the client",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.country_code3": {
+    "category": "geolocation",
+    "desc": "Three-letter country code for the client",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.country_name": {
+    "category": "geolocation",
+    "desc": "Alias of `client.geo.country_name.ascii`",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.country_name.utf8": {
+    "category": "geolocation",
+    "desc": "Country name for the client (UTF-8 encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.country_name.ascii": {
+    "category": "geolocation",
+    "desc": "Country name for the client (ASCII-encoded, lowercase)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.country_name.latin1": {
+    "category": "geolocation",
+    "desc": "Country name for the client (Latin-1 encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.city": {
+    "category": "geolocation",
+    "desc": "Alias of `client.geo.city.ascii`",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.city.utf8": {
+    "category": "geolocation",
+    "desc": "City name for the client (UTF-8 encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.city.ascii": {
+    "category": "geolocation",
+    "desc": "City name for the client (ASCII-encoded, lowercase)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.city.latin1": {
+    "category": "geolocation",
+    "desc": "City name for the client (Latin-1 encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.region": {
+    "category": "geolocation",
+    "desc": "Alias of `client.geo.region.ascii`",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.region.utf8": {
+    "category": "geolocation",
+    "desc": "Country subdivision name for the client (UTF-8 encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.region.ascii": {
+    "category": "geolocation",
+    "desc": "Country subdivision code for the client (ASCII-encoded, uppercase)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.region.latin1": {
+    "category": "geolocation",
+    "desc": "Country subdivision name for the client (Latin-1 encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.geo.ip_override": {
+    "category": "geolocation",
+    "desc": "Override IP address for geolocation data",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.ip": {
+    "category": "client-connection",
+    "desc": "Remote IP address of the client originating the client connection",
+    "type": "IP",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.port": {
+    "category": "client-connection",
+    "desc": "Remote TCP port of the client originating the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.identity": {
+    "category": "client-connection",
+    "desc": "Identity for directors to determine which backend to pick",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.requests": {
+    "category": "client-connection",
+    "desc": "Number of requests received on the current client connection, which may be longer lived",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.socket.tcpi_pmtu": {
+    "category": "client-connection",
+    "desc": "Sender path maximum transmission unit (PMTU) on the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_rcv_ssthresh": {
+    "category": "client-connection",
+    "desc": "Number of bytes advertised as the receive window on the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_snd_ssthresh": {
+    "category": "client-connection",
+    "desc": "Size (in number of segments) of the sender-side slow-start threshold on the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_snd_cwnd": {
+    "category": "client-connection",
+    "desc": "Size (in number of segments) of the sender-side congestion window on the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "fetch",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_advmss": {
+    "category": "client-connection",
+    "desc": "Advertised maximum segment size (MSS) on the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_pacing_rate": {
+    "category": "client-connection",
+    "desc": "Current transmission rate in bytes per second on the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_max_pacing_rate": {
+    "category": "client-connection",
+    "desc": "Maximum transmission rate in bytes per second on the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_bytes_acked": {
+    "category": "client-connection",
+    "desc": "Total number of bytes sent (and acknowledged) on the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_bytes_received": {
+    "category": "client-connection",
+    "desc": "Total number of payload bytes received (and acknowledged) on the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_segs_out": {
+    "category": "client-connection",
+    "desc": "Total number of outbound TCP segments on the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_segs_in": {
+    "category": "client-connection",
+    "desc": "Total number of inbound TCP segments on the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_notsent_bytes": {
+    "category": "client-connection",
+    "desc": "Number of bytes in the write queue of the client connection that have not been sent yet",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_min_rtt": {
+    "category": "client-connection",
+    "desc": "Minimum round-trip time (RTT) observed on the client connection (µs)",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_data_segs_in": {
+    "category": "client-connection",
+    "desc": "Number of received TCP segments containing a positive-length data segment on the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_data_segs_out": {
+    "category": "client-connection",
+    "desc": "Number of received TCP segments containing a positive-length data segment on the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_delivery_rate": {
+    "category": "client-connection",
+    "desc": "Most recent application data rate measured on the client connection (bytes per second)",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.cwnd": {
+    "category": "client-connection",
+    "desc": "TCP congestion window size (in number of segments) of the client connection",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "recv",
+      "deliver",
+      "fetch",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.pace": {
+    "category": "client-connection",
+    "desc": "Ceiling rate for data sent to the client (kiB/s)",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.congestion_algorithm": {
+    "category": "client-connection",
+    "desc": "TCP congestion control algorithm for the client connection",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_rcv_mss": {
+    "category": "client-connection",
+    "desc": "Perceived MSS of client TCP stack",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_snd_mss": {
+    "category": "client-connection",
+    "desc": "TCP sending maximum segment size for the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_rtt": {
+    "category": "client-connection",
+    "desc": "TCP smoothed round-trip time (RTT) for the client connection (µs)",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_rttvar": {
+    "category": "client-connection",
+    "desc": "TCP round-trip time (RTT) variance for the client connection (µs)",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_reordering": {
+    "category": "client-connection",
+    "desc": "TCP packet reordering retransmission threshold for the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_rcv_rtt": {
+    "category": "client-connection",
+    "desc": "Estimate of the time it would take to fill the current RWIN (ms)",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_rcv_space": {
+    "category": "client-connection",
+    "desc": "Number of bytes transferred to userspace over the previous RTT",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_last_data_sent": {
+    "category": "client-connection",
+    "desc": "Time elapsed since the last sent packet on the client connection (ms)",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_total_retrans": {
+    "category": "client-connection",
+    "desc": "Number of TCP retransmissions for the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcpi_delta_retrans": {
+    "category": "client-connection",
+    "desc": "Number of TCP retransmissions for the client connection associated with this request",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.nexthop": {
+    "category": "client-connection",
+    "desc": "IP address of the next hop for the client connection",
+    "type": "IP",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.ploss": {
+    "category": "client-connection",
+    "desc": "Packet loss rate for the client connection associated with this request",
+    "type": "FLOAT",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "client.socket.tcp_info": {
+    "category": "client-connection",
+    "desc": "Indicates whether tcpi variables are available",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "server.ip": {
+    "category": "server",
+    "desc": "Local (server) IP address of the client connection",
+    "type": "IP",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "server.hostname": {
+    "category": "server",
+    "desc": "Hostname of the server",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "server.identity": {
+    "category": "server",
+    "desc": "Hostname and datacenter of the server",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "server.pop": {
+    "category": "server",
+    "desc": "Datacenter of the server",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "server.region": {
+    "category": "server",
+    "desc": "Global region of the server",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "server.datacenter": {
+    "category": "server",
+    "desc": "An alias for `server.pop`.",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "server.port": {
+    "category": "server",
+    "desc": "Local (server) TCP port of the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.method": {
+    "category": "client-request",
+    "desc": "HTTP method for the request",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.request": {
+    "category": "client-request",
+    "desc": "Alias of `req.method`",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.url": {
+    "category": "client-request",
+    "desc": "HTTP URL for the request (URL-encoded)",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.url.path": {
+    "category": "client-request",
+    "desc": "Path component of `req.url` (URL-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.url.ext": {
+    "category": "client-request",
+    "desc": "File extension component of `req.url` (URL-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.url.basename": {
+    "category": "client-request",
+    "desc": "File trailing name component of `req.url` (URL-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.url.dirname": {
+    "category": "client-request",
+    "desc": "Directory name component of `req.url` (URL-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.url.qs": {
+    "category": "client-request",
+    "desc": "Query string name component of `req.url` (URL-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.proto": {
+    "category": "client-request",
+    "desc": "HTTP protocol and version of the request",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.http.{NAME}": {
+    "category": "client-request",
+    "desc": "HTTP headers by name for the request",
+    "type": "STRING",
+    "access": "RWU",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.protocol": {
+    "category": "client-connection",
+    "desc": "HTTP or HTTPS protocol of the request",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.is_ssl": {
+    "category": "client-connection",
+    "desc": "Whether the request uses TLS",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.is_esi_subreq": {
+    "category": "esi",
+    "desc": "Whether VCL is being evaluated within an ESI fragment",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.is_background_fetch": {
+    "category": "client-request",
+    "desc": "Whether VCL is being evaluated for a *stale while revalidate* request to a backend",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.is_ipv6": {
+    "category": "client-connection",
+    "desc": "Whether the request is received over IPv6",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "req.hash": {
+    "category": "cache-object",
+    "desc": "Add an item to the cache key",
+    "type": "STRING",
+    "access": "WO",
+    "methods": [
+      "hash",
+      "error"
+    ]
+  },
+  "req.vcl": {
+    "category": "miscellaneous",
+    "desc": "Name of the service VCL currently loaded",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.vcl.version": {
+    "category": "miscellaneous",
+    "desc": "Version of the service VCL currently loaded",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.vcl.generation": {
+    "category": "miscellaneous",
+    "desc": "Generation of the service VCL currently loaded",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.vcl.md5": {
+    "category": "miscellaneous",
+    "desc": "The MD5 hash of the service VCL currently loaded",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.is_clustering": {
+    "category": "server",
+    "desc": "Whether the request was received from another machine in the cluster",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.is_purge": {
+    "category": "client-request",
+    "desc": "Whether the current request is a purge request",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "req.backend": {
+    "category": "backend-connection",
+    "desc": "The backend used to service the request",
+    "type": "BACKEND",
+    "access": "RW",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.restarts": {
+    "category": "server",
+    "desc": "Restart count",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.grace": {
+    "category": "server",
+    "desc": "Alias of `req.max_stale_if_error`",
+    "type": "RTIME",
+    "access": "RW",
+    "methods": [
+      "all"
+    ],
+    "deprecated": true
+  },
+  "req.max_stale_if_error": {
+    "category": "server",
+    "desc": "Maximum age to serve stale",
+    "type": "RTIME",
+    "access": "RW",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.max_stale_while_revalidate": {
+    "category": "server",
+    "desc": "Maximum age for *stale while revalidate*",
+    "type": "RTIME",
+    "access": "RW",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.xid": {
+    "category": "client-request",
+    "desc": "Request ID",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.service_id": {
+    "category": "miscellaneous",
+    "desc": "Service ID",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.customer_id": {
+    "category": "miscellaneous",
+    "desc": "Customer ID",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.digest": {
+    "category": "cache-object",
+    "desc": "Digest (hash) of the currently served object",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.digest.ratio": {
+    "category": "cache-object",
+    "desc": "Digest ratio for conditionally handling a percentage of cached objects",
+    "type": "FLOAT",
+    "access": "RO",
+    "methods": [
+      "pass",
+      "miss",
+      "hit",
+      "fetch",
+      "deliver",
+      "error",
+      "log"
+    ]
+  },
+  "req.esi": {
+    "category": "esi",
+    "desc": "Whether to enable ESI processing during a request",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "recv",
+      "fetch",
+      "deliver",
+      "error"
+    ]
+  },
+  "req.esi_level": {
+    "category": "esi",
+    "desc": "Level of ESI subrequest",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "deliver"
+    ]
+  },
+  "req.backend.healthy": {
+    "category": "backend-connection",
+    "desc": "Whether the request's backend is healthy",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.backend.is_shield": {
+    "category": "backend-connection",
+    "desc": "Whether the request's backend is a shield",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.backend.is_origin": {
+    "category": "backend-connection",
+    "desc": "Whether the request's backend is an origin",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "pass",
+      "miss",
+      "fetch"
+    ]
+  },
+  "req.backend.name": {
+    "category": "miscellaneous",
+    "desc": "Name of the backend for the request, truncated to 255 characters if necessary. If set, this is always a backend even if req.backend is set to a director.",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "req.backend.ip": {
+    "category": "miscellaneous",
+    "desc": "The IP address used to connect to the backend",
+    "type": "IP",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "req.backend.port": {
+    "category": "miscellaneous",
+    "desc": "Remote TCP port of the backend connection for the request",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "req.hash_ignore_busy": {
+    "category": "client-request",
+    "desc": "Don't wait for an ongoing fetch",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "recv"
+    ]
+  },
+  "req.hash_always_miss": {
+    "category": "client-request",
+    "desc": "Force a miss for cached objects",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "recv"
+    ]
+  },
+  "req.enable_range_on_pass": {
+    "category": "client-request",
+    "desc": "Apply range handling for responses on pass",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "recv"
+    ]
+  },
+  "req.enable_segmented_caching": {
+    "category": "client-request",
+    "desc": "Assemble the response from individually cacheable block-aligned file segments",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "recv"
+    ]
+  },
+  "segmented_caching.is_inner_req": {
+    "category": "segmented-caching",
+    "desc": "Whether VCL is running in the context of a subrequest that is retrieving a segment of a file",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.is_outer_req": {
+    "category": "segmented-caching",
+    "desc": "Whether VCL is running in the context of a request that is assembling file segments into a response",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.block_number": {
+    "category": "segmented-caching",
+    "desc": "A zero-based counter identifying the file segment being processed",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.total_blocks": {
+    "category": "segmented-caching",
+    "desc": "The number of segments needed for assembling this response",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.block_size": {
+    "category": "segmented-caching",
+    "desc": "The number of bytes constituting each block-aligned file segment",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "recv",
+      "log"
+    ],
+    "readable_in_methods": [
+      "recv",
+      "log"
+    ],
+    "writable_in_methods": [
+      "recv"
+    ]
+  },
+  "segmented_caching.obj.complete_length": {
+    "category": "segmented-caching",
+    "desc": "The size of the whole file in bytes",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.client_req.is_range": {
+    "category": "segmented-caching",
+    "desc": "Whether the client's request is a range request",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.client_req.is_open_ended": {
+    "category": "segmented-caching",
+    "desc": "Whether the client's request leaves the upper bound of the range open",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.client_req.range_low": {
+    "category": "segmented-caching",
+    "desc": "The lower bound of the client's requested range",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.client_req.range_high": {
+    "category": "segmented-caching",
+    "desc": "The upper bound of the client's requested range",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.rounded_req.range_low": {
+    "category": "segmented-caching",
+    "desc": "The lower bound of the rounded block being processed",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.rounded_req.range_high": {
+    "category": "segmented-caching",
+    "desc": "The upper bound of the rounded block being processed",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.completed": {
+    "category": "segmented-caching",
+    "desc": "Whether segmented caching was enabled and completed successfully",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.failed": {
+    "category": "segmented-caching",
+    "desc": "Whether segmented caching was enabled and ended in a failure",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.cancelled": {
+    "category": "segmented-caching",
+    "desc": "Whether segmented caching was enabled and cancelled by a non-206 response",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.error": {
+    "category": "segmented-caching",
+    "desc": "A string describing the reason why segmented caching failed",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "segmented_caching.autopurged": {
+    "category": "segmented-caching",
+    "desc": "Whether an inconsistency encountered during segmented caching led to the system automatically enqueuing a purge request",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "req.body": {
+    "category": "client-request",
+    "desc": "Request body",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.postbody": {
+    "category": "client-request",
+    "desc": "Alias of `req.body`",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.body.base64": {
+    "category": "client-request",
+    "desc": "Request body (Base64-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.topurl": {
+    "category": "esi",
+    "desc": "For an ESI-generated request, the URL of the original request",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "stale.exists": {
+    "category": "cache-object",
+    "desc": "Whether a stale version of the requested object is available",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.bytes_read": {
+    "category": "client-request",
+    "desc": "Total bytes read from the client during a request",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "req.header_bytes_read": {
+    "category": "client-request",
+    "desc": "Total HTTP header bytes read from the client during a request",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "req.body_bytes_read": {
+    "category": "client-request",
+    "desc": "Total HTTP body bytes read from the client during a request",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "bereq.method": {
+    "category": "backend-request",
+    "desc": "HTTP method sent to the backend",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "fetch"
+    ]
+  },
+  "bereq.request": {
+    "category": "backend-request",
+    "desc": "Alias of `bereq.method`",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "fetch"
+    ]
+  },
+  "bereq.url": {
+    "category": "backend-request",
+    "desc": "HTTP URL sent to the backend (URL-encoded)",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "fetch"
+    ]
+  },
+  "bereq.url.path": {
+    "category": "backend-request",
+    "desc": "Path component of `bereq.url` (URL-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "pass",
+      "miss",
+      "fetch"
+    ]
+  },
+  "bereq.url.ext": {
+    "category": "backend-request",
+    "desc": "File extension component of `bereq.url` (URL-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "pass",
+      "miss",
+      "fetch"
+    ]
+  },
+  "bereq.url.basename": {
+    "category": "backend-request",
+    "desc": "File trailing name component of `bereq.url` (URL-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "pass",
+      "miss",
+      "fetch"
+    ]
+  },
+  "bereq.url.dirname": {
+    "category": "backend-request",
+    "desc": "Directory name component of `bereq.url` (URL-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "pass",
+      "miss",
+      "fetch"
+    ]
+  },
+  "bereq.url.qs": {
+    "category": "backend-request",
+    "desc": "Query string name component of `bereq.url` (URL-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "pass",
+      "miss",
+      "fetch"
+    ]
+  },
+  "bereq.proto": {
+    "category": "backend-request",
+    "desc": "HTTP protocol and version sent to the backend",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "pass",
+      "miss",
+      "fetch"
+    ]
+  },
+  "bereq.http.{NAME}": {
+    "category": "backend-request",
+    "desc": "HTTP headers by name sent to the backend",
+    "type": "STRING",
+    "access": "RWU",
+    "methods": [
+      "pass",
+      "miss",
+      "fetch"
+    ]
+  },
+  "bereq.connect_timeout": {
+    "category": "backend-connection",
+    "desc": "Timeout for connecting to a backend",
+    "type": "RTIME",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss"
+    ]
+  },
+  "bereq.first_byte_timeout": {
+    "category": "backend-connection",
+    "desc": "Timeout for the first byte received from backend",
+    "type": "RTIME",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss"
+    ]
+  },
+  "bereq.between_bytes_timeout": {
+    "category": "backend-connection",
+    "desc": "Timeout between bytes received from backend",
+    "type": "RTIME",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss"
+    ]
+  },
+  "bereq.bytes_written": {
+    "category": "backend-request",
+    "desc": "Total bytes written to a backend",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch",
+      "deliver",
+      "log"
+    ]
+  },
+  "bereq.header_bytes_written": {
+    "category": "backend-request",
+    "desc": "Total HTTP header bytes written to a backend",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch",
+      "deliver",
+      "log"
+    ]
+  },
+  "bereq.body_bytes_written": {
+    "category": "backend-request",
+    "desc": "Total HTTP body bytes written to a backend",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch",
+      "deliver",
+      "log"
+    ]
+  },
+  "beresp.proto": {
+    "category": "backend-response",
+    "desc": "HTTP protocol and version for a response",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.saintmode": {
+    "category": "backend-response",
+    "desc": "Mark a backend unhealthy for a period of time",
+    "type": "RTIME",
+    "access": "WO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.status": {
+    "category": "backend-response",
+    "desc": "HTTP status code received from the backend",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.response": {
+    "category": "backend-response",
+    "desc": "HTTP response phrase received from the backend",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.http.{NAME}": {
+    "category": "backend-response",
+    "desc": "HTTP headers by name received from the backend",
+    "type": "STRING",
+    "access": "RWU",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.cacheable": {
+    "category": "backend-response",
+    "desc": "Whether the fetched object is cacheable",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.ttl": {
+    "category": "backend-response",
+    "desc": "Amount of time the fetched object should be cached for",
+    "type": "RTIME",
+    "access": "RW",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.grace": {
+    "category": "backend-response",
+    "desc": "Alias of `beresp.stale_if_error`",
+    "type": "RTIME",
+    "access": "RW",
+    "methods": [
+      "fetch"
+    ],
+    "deprecated": true
+  },
+  "beresp.stale_if_error": {
+    "category": "backend-response",
+    "desc": "Maximum age to serve stale",
+    "type": "RTIME",
+    "access": "RW",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.stale_while_revalidate": {
+    "category": "backend-response",
+    "desc": "Maximum age for *stale while revalidate*",
+    "type": "RTIME",
+    "access": "RW",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.gzip": {
+    "category": "backend-response",
+    "desc": "Whether to use gzip compression on the fetched object",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.brotli": {
+    "category": "backend-response",
+    "desc": "Whether to use Brotli compression on the fetched object",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.do_esi": {
+    "category": "esi",
+    "desc": "Whether to enable ESI on the fetched object",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.do_stream": {
+    "category": "backend-response",
+    "desc": "Whether to enable *streaming miss* when fetching an object",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.pci": {
+    "category": "backend-response",
+    "desc": "Whether to prevent the fetched object from being stored in non-volatile memory for PCI compliance",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.hipaa": {
+    "category": "backend-response",
+    "desc": "Whether to prevent the fetched object from being stored in non-volatile memory for HIPAA compliance",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.backend.name": {
+    "category": "backend-response",
+    "desc": "The VCL name of the backend used for the request",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.backend.ip": {
+    "category": "backend-connection",
+    "desc": "IP address of the backend for the request",
+    "type": "IP",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.used_alternate_path_to_origin": {
+    "category": "backend-connection",
+    "desc": "Whether an alternative path was used to connect to origin",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.handshake_time_to_origin_ms": {
+    "category": "backend-connection",
+    "desc": "Duration of handshake in milliseconds to connect to origin",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.backend.alternate_ips": {
+    "category": "backend-connection",
+    "desc": "List of alternative source IPs available to connect to origin",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.backend.src_ip": {
+    "category": "backend-connection",
+    "desc": "The source IP used to connect to origin",
+    "type": "IP",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "beresp.backend.port": {
+    "category": "backend-connection",
+    "desc": "Remote TCP port of the backend connection for the request",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "beresp.backend.requests": {
+    "category": "backend-connection",
+    "desc": "Number of backend requests made on this backend connection, which may be longer lived",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "bereq.is_clustering": {
+    "category": "backend-request",
+    "desc": "Whether the request was forwarded to another machine in the cluster",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "obj.proto": {
+    "category": "cache-object",
+    "desc": "HTTP protocol and version stored for an object",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "hit",
+      "error"
+    ]
+  },
+  "obj.status": {
+    "category": "cache-object",
+    "desc": "HTTP status code stored for an object",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "hit",
+      "error"
+    ],
+    "readable_in_methods": [
+      "hit",
+      "error"
+    ],
+    "writable_in_methods": [
+      "error"
+    ]
+  },
+  "obj.response": {
+    "category": "cache-object",
+    "desc": "HTTP response phrase stored for an object",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "hit",
+      "error"
+    ],
+    "readable_in_methods": [
+      "hit",
+      "error"
+    ],
+    "writable_in_methods": [
+      "error"
+    ]
+  },
+  "obj.hits": {
+    "category": "cache-object",
+    "desc": "Number of hits for an object",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "hit",
+      "deliver",
+      "log"
+    ]
+  },
+  "obj.http.{NAME}": {
+    "category": "cache-object",
+    "desc": "HTTP headers stored for an object",
+    "type": "STRING",
+    "access": "RWU",
+    "methods": [
+      "hit",
+      "error"
+    ]
+  },
+  "obj.cacheable": {
+    "category": "cache-object",
+    "desc": "Whether the object is cacheable",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "hit"
+    ]
+  },
+  "obj.ttl": {
+    "category": "cache-object",
+    "desc": "Amount of time the object should be cached for",
+    "type": "RTIME",
+    "access": "RW",
+    "methods": [
+      "hit",
+      "error",
+      "log"
+    ],
+    "readable_in_methods": [
+      "hit",
+      "error",
+      "log"
+    ],
+    "writable_in_methods": [
+      "hit",
+      "error"
+    ]
+  },
+  "obj.grace": {
+    "category": "cache-object",
+    "desc": "Alias of `obj.stale_if_error`",
+    "type": "RTIME",
+    "access": "RW",
+    "methods": [
+      "hit",
+      "error",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "obj.stale_if_error": {
+    "category": "cache-object",
+    "desc": "Maximum age to serve stale for a cached object",
+    "type": "RTIME",
+    "access": "RO",
+    "methods": [
+      "hit",
+      "error",
+      "log"
+    ]
+  },
+  "obj.stale_while_revalidate": {
+    "category": "cache-object",
+    "desc": "Maximum age for *stale while revalidate*",
+    "type": "RTIME",
+    "access": "RO",
+    "methods": [
+      "hit",
+      "error",
+      "log"
+    ]
+  },
+  "obj.lastuse": {
+    "category": "cache-object",
+    "desc": "Time since the object was last requested",
+    "type": "RTIME",
+    "access": "RO",
+    "methods": [
+      "hit",
+      "deliver",
+      "error",
+      "log"
+    ]
+  },
+  "obj.entered": {
+    "category": "cache-object",
+    "desc": "Time since the object was created",
+    "type": "RTIME",
+    "access": "RO",
+    "methods": [
+      "hit",
+      "deliver",
+      "error",
+      "log"
+    ]
+  },
+  "obj.age": {
+    "category": "cache-object",
+    "desc": "Total age of the object",
+    "type": "RTIME",
+    "access": "RO",
+    "methods": [
+      "hit",
+      "deliver",
+      "error",
+      "log"
+    ]
+  },
+  "obj.is_pci": {
+    "category": "cache-object",
+    "desc": "Whether the object is prevented from being stored in non-volatile memory",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "hit",
+      "deliver",
+      "error",
+      "log"
+    ]
+  },
+  "resp.proto": {
+    "category": "client-response",
+    "desc": "HTTP protocol and version sent to the client",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "resp.stale": {
+    "category": "miscellaneous",
+    "desc": "Whether the response is stale",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "all"
+    ]
+  },
+  "resp.stale.is_error": {
+    "category": "miscellaneous",
+    "desc": "Whether the response is stale due to an error",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "all"
+    ]
+  },
+  "resp.stale.is_revalidating": {
+    "category": "miscellaneous",
+    "desc": "Whether the response is stale while the cache is revalidating",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "all"
+    ]
+  },
+  "resp.status": {
+    "category": "client-response",
+    "desc": "HTTP status code sent to the client",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "resp.response": {
+    "category": "client-response",
+    "desc": "HTTP response phrase sent to the client",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "resp.http.{NAME}": {
+    "category": "client-response",
+    "desc": "HTTP headers by name sent to the client",
+    "type": "STRING",
+    "access": "RWU",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "resp.bytes_written": {
+    "category": "client-response",
+    "desc": "Total bytes written to the client",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "resp.header_bytes_written": {
+    "category": "client-response",
+    "desc": "Total HTTP header bytes written to the client",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "resp.body_bytes_written": {
+    "category": "client-response",
+    "desc": "Total HTTP body bytes written to the client",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "resp.completed": {
+    "category": "client-response",
+    "desc": "Whether the request completed",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "log"
+    ]
+  },
+  "resp.is_locally_generated": {
+    "category": "client-response",
+    "desc": "Whether request handling went through vcl_error",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "client.identified": {
+    "category": "client-request",
+    "desc": "Client user agent identified for device detection",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.class.bot": {
+    "category": "client-request",
+    "desc": "Client device is non-human traffic",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.class.browser": {
+    "category": "client-request",
+    "desc": "Client device is a web browser",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.class.checker": {
+    "category": "client-request",
+    "desc": "Client device is an automated checker",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.class.downloader": {
+    "category": "client-request",
+    "desc": "Client device is a downloading utility",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.class.feedreader": {
+    "category": "client-request",
+    "desc": "Client device is a feed reader",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.class.filter": {
+    "category": "client-request",
+    "desc": "Client device is a proxy-based content filter",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.class.masquerading": {
+    "category": "client-request",
+    "desc": "Client device is pretendng to be a desktop browser",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.class.spam": {
+    "category": "client-request",
+    "desc": "Client device is a spam harvester",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.platform.ereader": {
+    "category": "client-request",
+    "desc": "Client device is an e-reader",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.platform.gameconsole": {
+    "category": "client-request",
+    "desc": "Client device is a games console",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.platform.hwtype": {
+    "category": "client-request",
+    "desc": "Client device primary hardware type",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.platform.mediaplayer": {
+    "category": "client-request",
+    "desc": "Client device is a media player",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.platform.mobile": {
+    "category": "client-request",
+    "desc": "Client device is mobile",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.platform.smarttv": {
+    "category": "client-request",
+    "desc": "Client device is a smart TV",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.platform.tablet": {
+    "category": "client-request",
+    "desc": "Client device is a tablet",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.platform.tvplayer": {
+    "category": "client-request",
+    "desc": "Client device is a media player",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.display.height": {
+    "category": "client-request",
+    "desc": "Client device display height (pixels)",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.display.ppi": {
+    "category": "client-request",
+    "desc": "Client device display resolution (pixels per inch)",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.display.touchscreen": {
+    "category": "client-request",
+    "desc": "Whether the client device display is a touch screen",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.display.width": {
+    "category": "client-request",
+    "desc": "Client device display width (pixels)",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.os.name": {
+    "category": "client-request",
+    "desc": "Client device OS name",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.os.version": {
+    "category": "client-request",
+    "desc": "Client device OS version",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.browser.name": {
+    "category": "client-request",
+    "desc": "Client device web browser name",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.browser.version": {
+    "category": "client-request",
+    "desc": "Client device web browser version",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.bot.name": {
+    "category": "client-request",
+    "desc": "Client device bot name",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "server.billing_region": {
+    "category": "server",
+    "desc": "The server billing region",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "now": {
+    "category": "date-and-time",
+    "desc": "Current time",
+    "type": "TIME",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "now.sec": {
+    "category": "date-and-time",
+    "desc": "Current time (seconds since Epoch)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "time.start": {
+    "category": "client-request",
+    "desc": "Time the request started",
+    "type": "TIME",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "time.start.sec": {
+    "category": "client-request",
+    "desc": "Time the request started (seconds since Epoch)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "time.start.msec": {
+    "category": "client-request",
+    "desc": "Time the request started (milliseconds since Epoch)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "time.start.msec_frac": {
+    "category": "client-request",
+    "desc": "Fraction of the millisecond portion of the time the request started",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "time.start.usec": {
+    "category": "client-request",
+    "desc": "Time the request started (microseconds since Epoch)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "time.start.usec_frac": {
+    "category": "client-request",
+    "desc": "Fraction of the microsecond portion of the time the request started",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "time.end": {
+    "category": "client-request",
+    "desc": "Time the request ended",
+    "type": "TIME",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "time.end.sec": {
+    "category": "client-request",
+    "desc": "Time the request ended (seconds since Epoch)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "time.end.msec": {
+    "category": "client-request",
+    "desc": "Time the request ended (milliseconds since Epoch)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "time.end.msec_frac": {
+    "category": "client-request",
+    "desc": "Fraction of the millisecond portion of the time the request ended",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "time.end.usec": {
+    "category": "client-request",
+    "desc": "Time the request ended (microseconds since Epoch)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "time.end.usec_frac": {
+    "category": "client-request",
+    "desc": "Fraction of the microsecond portion of the time the request ended",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "time.elapsed": {
+    "category": "client-request",
+    "desc": "Time since the request started",
+    "type": "RTIME",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "time.elapsed.sec": {
+    "category": "client-request",
+    "desc": "Time since the request started (seconds)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "time.elapsed.msec": {
+    "category": "client-request",
+    "desc": "Time since the request started (milliseconds)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "time.elapsed.msec_frac": {
+    "category": "client-request",
+    "desc": "Fraction of the millisecond portion of the time since the request started",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "time.elapsed.usec": {
+    "category": "client-request",
+    "desc": "Time since the request started (microseconds since Epoch)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "time.elapsed.usec_frac": {
+    "category": "client-request",
+    "desc": "Fraction of the microsecond portion of the time since the request started",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "time.to_first_byte": {
+    "category": "client-response",
+    "desc": "Time since the request started up to entering `vcl_deliver`",
+    "type": "RTIME",
+    "access": "RO",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "fastly.error": {
+    "category": "miscellaneous",
+    "desc": "Error code raised by VCL functions",
+    "type": "STRING",
+    "access": "RU",
+    "methods": [
+      "all"
+    ]
+  },
+  "fastly_info.state": {
+    "category": "miscellaneous",
+    "desc": "State of the request",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "fastly_info.is_h2": {
+    "category": "client-connection",
+    "desc": "Whether the request was made using HTTP/2",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "fastly_info.is_h3": {
+    "category": "client-connection",
+    "desc": "Whether the request was made using HTTP/3",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "fastly_info.h2.is_push": {
+    "category": "client-request",
+    "desc": "Whether the request is part of a HTTP/2 push request",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "fastly_info.h2.stream_id": {
+    "category": "client-connection",
+    "desc": "HTTP/2 stream ID",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "fastly.ff.visits_this_pop_this_service": {
+    "category": "miscellaneous",
+    "desc": "How many times the request has already been to this POP for this service",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "miss"
+    ]
+  },
+  "fastly.ff.visits_this_service": {
+    "category": "miscellaneous",
+    "desc": "The number of prior visits made on behalf of this service regardless of POP",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "fastly.ff.visits_this_pop": {
+    "category": "miscellaneous",
+    "desc": "The number of prior visits made to this POP regardless of service",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "fastly_info.edge.is_tls": {
+    "category": "client-connection",
+    "desc": "Whether the client connection is over TLS",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "fastly_info.host_header": {
+    "category": "client-request",
+    "desc": "The host header sent by the client",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "tls.client.protocol": {
+    "category": "client-connection",
+    "desc": "TLS protocol version for the client connection",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.servername": {
+    "category": "client-connection",
+    "desc": "SNI server name forwarded by the client",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.cipher": {
+    "category": "client-connection",
+    "desc": "Cipher suite used for the client connection",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.iana_chosen_cipher_id": {
+    "category": "client-connection",
+    "desc": "IANA ID of the cipher suite used for the client connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.certificate.raw_certificate_b64": {
+    "category": "client-connection",
+    "desc": "A Base64 encoded string of PEM format x509 certificate from the client",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.certificate.is_cert_missing": {
+    "category": "client-connection",
+    "desc": "Whether the client certificate is missing for mTLS",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.certificate.is_cert_revoked": {
+    "category": "client-connection",
+    "desc": "Whether the client certificate is revoked",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.certificate.is_cert_expired": {
+    "category": "client-connection",
+    "desc": "Whether the client certificate is expired",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.certificate.is_unknown_ca": {
+    "category": "client-connection",
+    "desc": "Whether the client certificate is issued by unknown CA",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.certificate.is_cert_bad": {
+    "category": "client-connection",
+    "desc": "Whether the client certificate is bad",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.certificate.is_cert_unknown": {
+    "category": "client-connection",
+    "desc": "Whether the client certificate format is unknown",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.certificate.is_verified": {
+    "category": "client-connection",
+    "desc": "Whether the client certificate is verified successfully by mTLS",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.certificate.dn": {
+    "category": "client-connection",
+    "desc": "Distinguished name of the client certificate",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.certificate.issuer_dn": {
+    "category": "client-connection",
+    "desc": "Distinguished name of the issuer of the client certificate",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.certificate.serial_number": {
+    "category": "client-connection",
+    "desc": "Serial number of the client certificate",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.certificate.not_before": {
+    "category": "client-connection",
+    "desc": "Start time of validity period of the client certificate",
+    "type": "TIME",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.certificate.not_after": {
+    "category": "client-connection",
+    "desc": "End time of validity period of the client certificate",
+    "type": "TIME",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.ja3_md5": {
+    "category": "client-connection",
+    "desc": "MD5 hash of JA3 computed from client hello (hex-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.ciphers_sha": {
+    "category": "client-connection",
+    "desc": "SHA hash of cipher suite identifiers (Base64-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.tlsexts_sha": {
+    "category": "client-connection",
+    "desc": "SHA hash of TLS extension identifiers (Base64-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.ciphers_list": {
+    "category": "client-connection",
+    "desc": "List of ciphers supported by the client (hex-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.ciphers_list_txt": {
+    "category": "client-connection",
+    "desc": "Text list of ciphers supported by the client (colon-delimited)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.ciphers_list_sha": {
+    "category": "client-connection",
+    "desc": "SHA-1 hash of ciphers supported by the client (Base64-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.tlsexts_list": {
+    "category": "client-connection",
+    "desc": "Numeric list of TLS extension identifiers (hex-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.tlsexts_list_txt": {
+    "category": "client-connection",
+    "desc": "Text list of TLS extension identifiers (colon-delimited)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.tlsexts_list_sha": {
+    "category": "client-connection",
+    "desc": "SHA-1 hash of TLS extension identifiers (Base64-encoded)",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "tls.client.handshake_sent_bytes": {
+    "category": "client-connection",
+    "desc": "Number of bytes sent to the client during TLS handshake",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "transport.type": {
+    "category": "client-connection",
+    "desc": "Transport type. Either tcp or quic.",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "transport.bw_estimate": {
+    "category": "client-connection",
+    "desc": "Estimation of the bandwidth (bytes per second) on QUIC connections, given enough traffic to estimate bandwidth",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.num_packets.received": {
+    "category": "client-connection",
+    "desc": "Total number of packets received",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.num_packets.decryption_failed": {
+    "category": "client-connection",
+    "desc": "Total number of packets that failed decryption",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.num_packets.sent": {
+    "category": "client-connection",
+    "desc": "Total number of packets sent",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.num_packets.lost": {
+    "category": "client-connection",
+    "desc": "Total number of packets lost",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.num_packets.ack_received": {
+    "category": "client-connection",
+    "desc": "Total number of packets for which acknowledgements have been received",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.num_packets.late_acked": {
+    "category": "client-connection",
+    "desc": "Total number of packets for which acknowledgements were received after being marked lost",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.num_bytes.received": {
+    "category": "client-connection",
+    "desc": "Total bytes received, at UDP datagram-level",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.num_bytes.sent": {
+    "category": "client-connection",
+    "desc": "Total bytes sent, at UDP datagram-level",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.rtt.minimum": {
+    "category": "client-connection",
+    "desc": "Minimum RTT value, measured over the entire connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.rtt.smoothed": {
+    "category": "client-connection",
+    "desc": "Current smoothed RTT value",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.rtt.variance": {
+    "category": "client-connection",
+    "desc": "Current estimate of RTT variance",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.rtt.latest": {
+    "category": "client-connection",
+    "desc": "Value of the latest RTT sample",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.cc.cwnd": {
+    "category": "client-connection",
+    "desc": "Current congestion window",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "quic.cc.ssthresh": {
+    "category": "client-connection",
+    "desc": "Current slow start threshold",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "esi.allow_inside_cdata": {
+    "category": "esi",
+    "desc": "Whether to enable ESI directives inside CDATA blocks",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "recv",
+      "fetch",
+      "deliver",
+      "error"
+    ]
+  },
+  "backend.{NAME}.healthy": {
+    "category": "backend-connection",
+    "desc": "Whether a particular backend is healthy",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "backend.{NAME}.connections_open": {
+    "category": "backend-connection",
+    "desc": "Number of connections open for a particular backend",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "backend.{NAME}.connections_used": {
+    "category": "backend-connection",
+    "desc": "Number of connections currently in use for a particular backend",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "backend.socket.tcpi_pmtu": {
+    "category": "backend-connection",
+    "desc": "Sender path maximum transmission unit (PMTU) on the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_rcv_ssthresh": {
+    "category": "backend-connection",
+    "desc": "Size (in number of segments) of the receiver-side slow-start threshold on the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_snd_ssthresh": {
+    "category": "backend-connection",
+    "desc": "Size (in number of segments) of the sender-side slow-start threshold on the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_snd_cwnd": {
+    "category": "backend-connection",
+    "desc": "Size of the sender-side congestion window on the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_advmss": {
+    "category": "backend-connection",
+    "desc": "Advertised maximum segment size (MSS) on the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_pacing_rate": {
+    "category": "backend-connection",
+    "desc": "Rate at which the fair queuing queuing discipline will attempt to send data evenly when unrestricted",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_max_pacing_rate": {
+    "category": "backend-connection",
+    "desc": "Maximum rate at which the fair queuing queuing discipline will attempt to evenly send data when unrestricted",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_bytes_acked": {
+    "category": "backend-connection",
+    "desc": "Total number of bytes acknowledged for the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_bytes_received": {
+    "category": "backend-connection",
+    "desc": "Total number of payload bytes received on the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_segs_out": {
+    "category": "backend-connection",
+    "desc": "Total number of outbound TCP segments on the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_segs_in": {
+    "category": "backend-connection",
+    "desc": "Total number of inbound TCP segments on the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_notsent_bytes": {
+    "category": "backend-connection",
+    "desc": "Number of bytes that have not been sent yet in the write queue of the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_min_rtt": {
+    "category": "backend-connection",
+    "desc": "Minimum round-trip time (RTT) observed on the backend connection (µs)",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_data_segs_in": {
+    "category": "backend-connection",
+    "desc": "Number of received TCP segments containing a positive-length data segment on the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_data_segs_out": {
+    "category": "backend-connection",
+    "desc": "Number of received TCP segments containing a positive-length data segment on the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_delivery_rate": {
+    "category": "backend-connection",
+    "desc": "Most recent goodput measured on the backend connection (bytes per second)",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.congestion_algorithm": {
+    "category": "backend-connection",
+    "desc": "TCP congestion control algorithm for the backend connection",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_rcv_mss": {
+    "category": "backend-connection",
+    "desc": "TCP receiving maximum segment size for the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_snd_mss": {
+    "category": "backend-connection",
+    "desc": "TCP sending maximum segment size for the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_rtt": {
+    "category": "backend-connection",
+    "desc": "TCP smoothed round-trip time (RTT) for the backend connection (ms)",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_rttvar": {
+    "category": "backend-connection",
+    "desc": "TCP round-trip time (RTT) variance for the backend connection (ms)",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_reordering": {
+    "category": "backend-connection",
+    "desc": "TCP packet reordering for the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_rcv_rtt": {
+    "category": "backend-connection",
+    "desc": "Receiver-side estimation of TCP round-trip time (RTT) for the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_rcv_space": {
+    "category": "backend-connection",
+    "desc": "Advertised TCP receiver window for the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_last_data_sent": {
+    "category": "backend-connection",
+    "desc": "Time elapsed since the last sent packet on the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_total_retrans": {
+    "category": "backend-connection",
+    "desc": "Number of TCP retransmissions for the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.tcpi_delta_retrans": {
+    "category": "backend-connection",
+    "desc": "Change in number of TCP retransmissions for the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "backend.socket.cwnd": {
+    "category": "backend-connection",
+    "desc": "TCP congestion window size of the backend connection",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
+  "director.{NAME}.healthy": {
+    "category": "miscellaneous",
+    "desc": "Whether a particular director is healthy",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "re.group.{N}": {
+    "category": "miscellaneous",
+    "desc": "Regular expression group capture",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "workspace.bytes_free": {
+    "category": "miscellaneous",
+    "desc": "Number of bytes free in the workspace",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "workspace.bytes_total": {
+    "category": "miscellaneous",
+    "desc": "The size of the session workspace in bytes",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "workspace.overflowed": {
+    "category": "miscellaneous",
+    "desc": "Whether there was too much data for the workspace",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "waf.anomaly_score": {
+    "category": "waf",
+    "desc": "Sum of the scores of each WAF rule",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "waf.blocked": {
+    "category": "waf",
+    "desc": "Whether the WAF session has been blocked",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log",
+      "error"
+    ],
+    "deprecated": true
+  },
+  "waf.counter": {
+    "category": "waf",
+    "desc": "General purpose counter used by WAF",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver"
+    ],
+    "deprecated": true
+  },
+  "waf.executed": {
+    "category": "waf",
+    "desc": "Whether `waf.severity` or `waf.blocked` or `waf.logged` are true",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log",
+      "error"
+    ]
+  },
+  "waf.failures": {
+    "category": "waf",
+    "desc": "Number of WAF rules that couldn't complete",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log",
+      "error"
+    ],
+    "deprecated": true
+  },
+  "waf.http_violation_score": {
+    "category": "waf",
+    "desc": "Score representing the number of violations of the HTTP protocol",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "waf.inbound_anomaly_score": {
+    "category": "waf",
+    "desc": "Inbound anomaly score",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss"
+    ],
+    "deprecated": true
+  },
+  "waf.lfi_score": {
+    "category": "waf",
+    "desc": "Local File Inclusion score",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "waf.logdata": {
+    "category": "waf",
+    "desc": "WAF log data",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "waf.logged": {
+    "category": "waf",
+    "desc": "Whether this WAF request was logged",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log",
+      "error"
+    ],
+    "deprecated": true
+  },
+  "waf.message": {
+    "category": "waf",
+    "desc": "WAF rule message",
+    "type": "STRING",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "waf.passed": {
+    "category": "waf",
+    "desc": "Whether this WAF request passed",
+    "type": "BOOL",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log",
+      "error"
+    ],
+    "deprecated": true
+  },
+  "waf.php_injection_score": {
+    "category": "waf",
+    "desc": "PHP injection score for this request",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "waf.rce_score": {
+    "category": "waf",
+    "desc": "Remote Code Execution score",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "waf.rfi_score": {
+    "category": "waf",
+    "desc": "Remote File Inclusion score",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "waf.rule_id": {
+    "category": "waf",
+    "desc": "Rule ID",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "waf.session_fixation_score": {
+    "category": "waf",
+    "desc": "Session fixation score",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "waf.severity": {
+    "category": "waf",
+    "desc": "Severity",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "waf.sql_injection_score": {
+    "category": "waf",
+    "desc": "SQL injection score",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "waf.xss_score": {
+    "category": "waf",
+    "desc": "XSS score",
+    "type": "INTEGER",
+    "access": "RW",
+    "methods": [
+      "pass",
+      "miss",
+      "deliver",
+      "log"
+    ],
+    "deprecated": true
+  },
+  "math.E": {
+    "category": "math-constants-limits",
+    "desc": "e (Euler's constant)",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.LOG2E": {
+    "category": "math-constants-limits",
+    "desc": "log₂(e)",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.LOG10E": {
+    "category": "math-constants-limits",
+    "desc": "log⏨(e)",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.LN2": {
+    "category": "math-constants-limits",
+    "desc": "logₑ(2)",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.LN10": {
+    "category": "math-constants-limits",
+    "desc": "logₑ(10)",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.PI": {
+    "category": "math-constants-limits",
+    "desc": "π",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.2PI": {
+    "category": "math-constants-limits",
+    "desc": "2π (τ)",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.PI_2": {
+    "category": "math-constants-limits",
+    "desc": "π∕2",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.PI_4": {
+    "category": "math-constants-limits",
+    "desc": "π∕4",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.1_PI": {
+    "category": "math-constants-limits",
+    "desc": "1∕π",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.2_PI": {
+    "category": "math-constants-limits",
+    "desc": "2∕π",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.2_SQRTPI": {
+    "category": "math-constants-limits",
+    "desc": "2∕√π",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.SQRT2": {
+    "category": "math-constants-limits",
+    "desc": "√2",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.SQRT1_2": {
+    "category": "math-constants-limits",
+    "desc": "1∕√2",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.NAN": {
+    "category": "math-constants-limits",
+    "desc": "NaN",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.POS_INFINITY": {
+    "category": "math-constants-limits",
+    "desc": "+∞",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.NEG_INFINITY": {
+    "category": "math-constants-limits",
+    "desc": "−∞",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.POS_HUGE_VAL": {
+    "category": "math-constants-limits",
+    "desc": "Positive overflow value",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.NEG_HUGE_VAL": {
+    "category": "math-constants-limits",
+    "desc": "Negative overflow value",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.FLOAT_MIN": {
+    "category": "math-constants-limits",
+    "desc": "Minimum finite value for the `FLOAT` type",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.FLOAT_MAX": {
+    "category": "math-constants-limits",
+    "desc": "Maximum finite value for the `FLOAT` type",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.FLOAT_EPSILON": {
+    "category": "math-constants-limits",
+    "desc": "Minimum positive difference from 1.0 for the `FLOAT` type",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.FLOAT_RADIX": {
+    "category": "math-constants-limits",
+    "desc": "Radix for the `FLOAT` type",
+    "type": "INTEGER",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.FLOAT_MIN_10_EXP": {
+    "category": "math-constants-limits",
+    "desc": "Minimum value in base 10 of the exponent part of the `FLOAT` type",
+    "type": "INTEGER",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.FLOAT_MAX_10_EXP": {
+    "category": "math-constants-limits",
+    "desc": "Maximum value in base 10 of the exponent part of the `FLOAT` type",
+    "type": "INTEGER",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.FLOAT_MIN_EXP": {
+    "category": "math-constants-limits",
+    "desc": "Minimum value in base 2 of the exponent part of the `FLOAT` type",
+    "type": "INTEGER",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.FLOAT_MAX_EXP": {
+    "category": "math-constants-limits",
+    "desc": "Maximum value in base 2 of the exponent part of the `FLOAT` type",
+    "type": "INTEGER",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.FLOAT_MANT_DIG": {
+    "category": "math-constants-limits",
+    "desc": "Number of hexadecimal digits stored for the significand in the `FLOAT` type",
+    "type": "INTEGER",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.FLOAT_DIG": {
+    "category": "math-constants-limits",
+    "desc": "Number of decimal digits which can be stored without loss in the `FLOAT` type",
+    "type": "INTEGER",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.INTEGER_MIN": {
+    "category": "math-constants-limits",
+    "desc": "Minimum value for the `INTEGER` type",
+    "type": "INTEGER",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.INTEGER_MAX": {
+    "category": "math-constants-limits",
+    "desc": "Maximum value for the `INTEGER` type",
+    "type": "INTEGER",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.INTEGER_BIT": {
+    "category": "math-constants-limits",
+    "desc": "Number of bits in the `INTEGER` type",
+    "type": "INTEGER",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.PHI": {
+    "category": "math-constants-limits",
+    "desc": "Φ (the golden ratio)",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "math.TAU": {
+    "category": "math-constants-limits",
+    "desc": "τ (2π)",
+    "type": "FLOAT",
+    "access": "C",
+    "methods": [
+      "all"
+    ]
+  },
+  "ratecounter.{NAME}.bucket.10s": {
+    "category": "rate-limiting",
+    "desc": "Total value of increments across the POP to the most recently requested entry in the ratecounter in the last 10 seconds",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "ratecounter.{NAME}.bucket.20s": {
+    "category": "rate-limiting",
+    "desc": "Total value of increments across the POP to the most recently requested entry in the ratecounter in the last 20 seconds",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "ratecounter.{NAME}.bucket.30s": {
+    "category": "rate-limiting",
+    "desc": "Total value of increments across the POP to the most recently requested entry in the ratecounter in the last 30 seconds",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "ratecounter.{NAME}.bucket.40s": {
+    "category": "rate-limiting",
+    "desc": "Total value of increments across the POP to the most recently requested entry in the ratecounter in the last 40 seconds",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "ratecounter.{NAME}.bucket.50s": {
+    "category": "rate-limiting",
+    "desc": "Total value of increments across the POP to the most recently requested entry in the ratecounter in the last 50 seconds",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "ratecounter.{NAME}.bucket.60s": {
+    "category": "rate-limiting",
+    "desc": "Total value of increments across the POP to the most recently requested entry in the ratecounter in the last 60 seconds",
+    "type": "INTEGER",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "ratecounter.{NAME}.rate.1s": {
+    "category": "rate-limiting",
+    "desc": "Estimated per-second rate of change to the most recently requested entry in the ratecounter over the last 1 second",
+    "type": "FLOAT",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "ratecounter.{NAME}.rate.10s": {
+    "category": "rate-limiting",
+    "desc": "Estimated per-second rate of change to the most recently requested entry in the ratecounter over the last 10 seconds",
+    "type": "FLOAT",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "ratecounter.{NAME}.rate.60s": {
+    "category": "rate-limiting",
+    "desc": "Estimated per-second rate of change to the most recently requested entry in the ratecounter over the last 60 seconds",
+    "type": "FLOAT",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  }
+}
