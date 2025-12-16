@@ -1,0 +1,1 @@
+with_entries(select(.value.visibility == "public")) | keys

@@ -136,7 +136,7 @@
         "name": "input"
       },
       {
-        "type": "STRING",
+        "type": "REGEX",
         "name": "pattern"
       },
       {
@@ -146,6 +146,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "re.group.{N}"
     ]
   },
   "regsuball": {
@@ -158,7 +161,7 @@
         "name": "input"
       },
       {
-        "type": "STRING",
+        "type": "REGEX",
         "name": "pattern"
       },
       {
@@ -168,6 +171,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "re.group.{N}"
     ]
   },
   "std.replace": {
@@ -494,7 +500,7 @@
     ]
   },
   "addr.extract_bits": {
-    "category": "miscellaneous",
+    "category": "addr",
     "desc": "Extract a sequence of bits from an IP address",
     "type": "INTEGER",
     "args": [
@@ -516,7 +522,7 @@
     ]
   },
   "addr.is_ipv4": {
-    "category": "miscellaneous",
+    "category": "addr",
     "desc": "True if an IP address is IPv4",
     "type": "BOOL",
     "args": [
@@ -530,7 +536,7 @@
     ]
   },
   "addr.is_ipv6": {
-    "category": "miscellaneous",
+    "category": "addr",
     "desc": "True if an IP address is IPv6",
     "type": "BOOL",
     "args": [
@@ -551,6 +557,11 @@
       {
         "type": "STRING",
         "name": "url"
+      },
+      {
+        "type": "BOOL",
+        "name": "only_unique_keys",
+        "arity": "optional"
       }
     ],
     "methods": [
@@ -566,6 +577,11 @@
       {
         "type": "STRING",
         "name": "url"
+      },
+      {
+        "type": "BOOL",
+        "name": "only_unique_keys",
+        "arity": "optional"
       }
     ],
     "methods": [
@@ -952,6 +968,34 @@
       "all"
     ]
   },
+  "digest.hash_xxh32": {
+    "category": "cryptographic",
+    "desc": "xxHash-32 hash",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_xxh64": {
+    "category": "cryptographic",
+    "desc": "xxHash-64 hash",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
   "digest.hash_sha1_from_base64": {
     "category": "cryptographic",
     "desc": "SHA-1 hash (Base64-encoded input)",
@@ -983,6 +1027,34 @@
   "digest.hash_sha512_from_base64": {
     "category": "cryptographic",
     "desc": "SHA-512 hash (Base64-encoded input)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_xxh32_from_base64": {
+    "category": "cryptographic",
+    "desc": "xxHash-32 hash (Base64-encoded input)",
+    "type": "STRING",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.hash_xxh64_from_base64": {
+    "category": "cryptographic",
+    "desc": "xxHash-64 hash (Base64-encoded input)",
     "type": "STRING",
     "args": [
       {
@@ -1145,7 +1217,8 @@
     "args": [
       {
         "type": "ID",
-        "name": "hash_method"
+        "name": "hash_method",
+        "enum": "hash_method"
       },
       {
         "type": "STRING",
@@ -1161,8 +1234,46 @@
       },
       {
         "type": "ID",
-        "name": "base64_method",
-        "arity": "optional"
+        "name": "base64_variant",
+        "arity": "optional",
+        "enum": "base64_variant"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "digest.ecdsa_verify": {
+    "category": "cryptographic",
+    "desc": "Verify that a key and payload match an ECDSA digest",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "ID",
+        "name": "hash_method",
+        "enum": "hash_method"
+      },
+      {
+        "type": "STRING",
+        "name": "public_key"
+      },
+      {
+        "type": "STRING",
+        "name": "payload"
+      },
+      {
+        "type": "STRING",
+        "name": "digest"
+      },
+      {
+        "type": "ID",
+        "name": "digest_format"
+      },
+      {
+        "type": "ID",
+        "name": "base64_variant",
+        "arity": "optional",
+        "enum": "base64_variant"
       }
     ],
     "methods": [
@@ -1310,15 +1421,18 @@
     "args": [
       {
         "type": "ID",
-        "name": "cipher"
+        "name": "cipher",
+        "enum": "symmetric_cipher"
       },
       {
         "type": "ID",
-        "name": "mode"
+        "name": "mode",
+        "enum": "symmetric_mode"
       },
       {
         "type": "ID",
-        "name": "padding"
+        "name": "padding",
+        "enum": "symmetric_padding"
       },
       {
         "type": "STRING",
@@ -1344,15 +1458,18 @@
     "args": [
       {
         "type": "ID",
-        "name": "cipher"
+        "name": "cipher",
+        "enum": "symmetric_cipher"
       },
       {
         "type": "ID",
-        "name": "mode"
+        "name": "mode",
+        "enum": "symmetric_mode"
       },
       {
         "type": "ID",
-        "name": "padding"
+        "name": "padding",
+        "enum": "symmetric_padding"
       },
       {
         "type": "STRING",
@@ -1378,15 +1495,18 @@
     "args": [
       {
         "type": "ID",
-        "name": "cipher"
+        "name": "cipher",
+        "enum": "symmetric_cipher"
       },
       {
         "type": "ID",
-        "name": "mode"
+        "name": "mode",
+        "enum": "symmetric_mode"
       },
       {
         "type": "ID",
-        "name": "padding"
+        "name": "padding",
+        "enum": "symmetric_padding"
       },
       {
         "type": "STRING",
@@ -1412,15 +1532,18 @@
     "args": [
       {
         "type": "ID",
-        "name": "cipher"
+        "name": "cipher",
+        "enum": "symmetric_cipher"
       },
       {
         "type": "ID",
-        "name": "mode"
+        "name": "mode",
+        "enum": "symmetric_mode"
       },
       {
         "type": "ID",
-        "name": "padding"
+        "name": "padding",
+        "enum": "symmetric_padding"
       },
       {
         "type": "STRING",
@@ -1514,7 +1637,7 @@
       }
     ],
     "methods": [
-      "all"
+      "all-but-log"
     ]
   },
   "early_hints": {
@@ -1533,7 +1656,7 @@
       }
     ],
     "methods": [
-      "all"
+      "all-but-log"
     ]
   },
   "h3.alt_svc": {
@@ -1542,7 +1665,7 @@
     "type": "VOID",
     "args": [],
     "methods": [
-      "all"
+      "all-but-log"
     ]
   },
   "h2.disable_header_compression": {
@@ -1561,7 +1684,7 @@
       }
     ],
     "methods": [
-      "all"
+      "all-but-log"
     ]
   },
   "json.escape": {
@@ -1576,6 +1699,10 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "cstr_escape",
+      "xml_escape"
     ]
   },
   "math.acos": {
@@ -1790,6 +1917,10 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "math.POS_INFINITY",
+      "math.NEG_INFINITY"
     ]
   },
   "math.is_subnormal": {
@@ -1818,6 +1949,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "math.NAN"
     ]
   },
   "math.is_normal": {
@@ -1846,6 +1980,10 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "math.POS_INFINITY",
+      "math.NEG_INFINITY"
     ]
   },
   "math.roundeven": {
@@ -1930,6 +2068,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "math.POS_INFINITY"
     ]
   },
   "math.roundhalfdown": {
@@ -1944,6 +2085,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "math.NEG_INFINITY"
     ]
   },
   "math.exp": {
@@ -1958,6 +2102,13 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "math.E",
+      "math.LN2",
+      "math.LN10",
+      "math.LOG2E",
+      "math.LOG10E"
     ]
   },
   "math.exp2": {
@@ -1972,6 +2123,13 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "math.E",
+      "math.LN2",
+      "math.LN10",
+      "math.LOG2E",
+      "math.LOG10E"
     ]
   },
   "math.log": {
@@ -1986,6 +2144,13 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "math.E",
+      "math.LN2",
+      "math.LN10",
+      "math.LOG2E",
+      "math.LOG10E"
     ]
   },
   "math.log2": {
@@ -2000,6 +2165,13 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "math.E",
+      "math.LN2",
+      "math.LN10",
+      "math.LOG2E",
+      "math.LOG10E"
     ]
   },
   "math.log10": {
@@ -2014,6 +2186,13 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "math.E",
+      "math.LN2",
+      "math.LN10",
+      "math.LOG2E",
+      "math.LOG10E"
     ]
   },
   "querystring.add": {
@@ -2036,6 +2215,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "req.url.qs"
     ]
   },
   "querystring.get": {
@@ -2054,7 +2236,10 @@
     "methods": [
       "all"
     ],
-    "category": "query-string"
+    "category": "query-string",
+    "see_also": [
+      "req.url.qs"
+    ]
   },
   "querystring.clean": {
     "category": "query-string",
@@ -2068,6 +2253,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "req.url.qs"
     ]
   },
   "querystring.filter": {
@@ -2086,6 +2274,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "req.url.qs"
     ]
   },
   "querystring.filter_except": {
@@ -2104,6 +2295,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "req.url.qs"
     ]
   },
   "querystring.filtersep": {
@@ -2113,6 +2307,9 @@
     "args": [],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "req.url.qs"
     ]
   },
   "querystring.globfilter": {
@@ -2131,6 +2328,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "req.url.qs"
     ]
   },
   "querystring.globfilter_except": {
@@ -2149,6 +2349,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "req.url.qs"
     ]
   },
   "querystring.regfilter": {
@@ -2161,12 +2364,18 @@
         "name": "url"
       },
       {
-        "type": "STRING",
+        "type": "REGEX",
         "name": "pattern"
       }
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "req.url.qs"
+    ],
+    "notes": [
+      "Saves and restores captures."
     ]
   },
   "querystring.regfilter_except": {
@@ -2179,12 +2388,18 @@
         "name": "url"
       },
       {
-        "type": "STRING",
+        "type": "REGEX",
         "name": "pattern"
       }
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "req.url.qs"
+    ],
+    "notes": [
+      "Saves and restores captures."
     ]
   },
   "querystring.remove": {
@@ -2199,6 +2414,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "req.url.qs"
     ]
   },
   "querystring.set": {
@@ -2221,6 +2439,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "req.url.qs"
     ]
   },
   "resp.tarpit": {
@@ -2290,6 +2511,10 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "cstr_escape",
+      "json.escape"
     ]
   },
   "cstr_escape": {
@@ -2304,6 +2529,10 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "json.escape",
+      "xml_escape"
     ]
   },
   "std.anystr2ip": {
@@ -2423,6 +2652,24 @@
       "all"
     ]
   },
+  "std.strcasecmp": {
+    "category": "strings",
+    "desc": "True if one string compares equal to another using case-insensitive comparison",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "s1"
+      },
+      {
+        "type": "STRING",
+        "name": "s2"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
   "std.strlen": {
     "category": "strings",
     "desc": "The length of a string",
@@ -2435,6 +2682,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "utf8.codepoint_count"
     ]
   },
   "std.strpad": {
@@ -2457,6 +2707,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "utf8.strpad"
     ]
   },
   "std.strrep": {
@@ -2640,6 +2893,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "std.basename"
     ]
   },
   "std.basename": {
@@ -2654,6 +2910,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "std.dirname"
     ]
   },
   "subfield": {
@@ -2700,6 +2959,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "utf8.substr"
     ]
   },
   "table.contains": {
@@ -2763,6 +3025,10 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "table",
+      "ACL"
     ]
   },
   "table.lookup_bool": {
@@ -2785,6 +3051,10 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "table",
+      "BOOL"
     ]
   },
   "table.lookup_integer": {
@@ -2807,6 +3077,10 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "table",
+      "INTEGER"
     ]
   },
   "table.lookup_float": {
@@ -2829,6 +3103,10 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "table",
+      "FLOAT"
     ]
   },
   "table.lookup_ip": {
@@ -2851,6 +3129,10 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "table",
+      "IP"
     ]
   },
   "table.lookup_backend": {
@@ -2873,6 +3155,36 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "table",
+      "backend",
+      "BACKEND"
+    ]
+  },
+  "table.lookup_regex": {
+    "category": "table",
+    "desc": "Find an item from a table of `REGEX` values",
+    "type": "REGEX",
+    "args": [
+      {
+        "type": "ID",
+        "name": "id"
+      },
+      {
+        "type": "STRING",
+        "name": "key"
+      }
+    ],
+    "methods": [
+      "all"
+    ],
+    "notes": [
+      "No effect on captures because the regex isn't executed."
+    ],
+    "see_also": [
+      "table",
+      "REGEX"
     ]
   },
   "table.lookup_rtime": {
@@ -2895,6 +3207,10 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "table",
+      "RTIME"
     ]
   },
   "parse_time_delta": {
@@ -3000,6 +3316,28 @@
       "all"
     ]
   },
+  "time.interval_elapsed_ratio": {
+    "category": "date-and-time",
+    "desc": "How far into a time interval the reference point is",
+    "type": "FLOAT",
+    "args": [
+      {
+        "type": "TIME",
+        "name": "ref"
+      },
+      {
+        "type": "TIME",
+        "name": "start"
+      },
+      {
+        "type": "TIME",
+        "name": "end"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
   "time.is_after": {
     "category": "date-and-time",
     "desc": "True if one absolute time is after another",
@@ -3076,7 +3414,7 @@
     ]
   },
   "utf8.codepoint_count": {
-    "category": "strings",
+    "category": "unicode",
     "desc": "The number of Unicode codepoints in a string",
     "type": "INTEGER",
     "args": [
@@ -3087,10 +3425,13 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "std.strlen"
     ]
   },
   "utf8.is_valid": {
-    "category": "strings",
+    "category": "unicode",
     "desc": "True if a string is valid UTF-8",
     "type": "BOOL",
     "args": [
@@ -3104,7 +3445,7 @@
     ]
   },
   "utf8.strpad": {
-    "category": "strings",
+    "category": "unicode",
     "desc": "Pad a string to a given length (UTF-8 encoded)",
     "type": "STRING",
     "args": [
@@ -3123,10 +3464,13 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "std.strpad"
     ]
   },
   "utf8.substr": {
-    "category": "strings",
+    "category": "unicode",
     "desc": "Extract a substring (UTF-8 encoded)",
     "type": "STRING",
     "args": [
@@ -3146,6 +3490,9 @@
     ],
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "substr"
     ]
   },
   "uuid.dns": {
@@ -3202,6 +3549,20 @@
   "uuid.is_version5": {
     "category": "uuid",
     "desc": "True if a string is a Version 5 UUID",
+    "type": "BOOL",
+    "args": [
+      {
+        "type": "STRING",
+        "name": "uuid"
+      }
+    ],
+    "methods": [
+      "all"
+    ]
+  },
+  "uuid.is_version7": {
+    "category": "uuid",
+    "desc": "True if a string is a Version 7 UUID",
     "type": "BOOL",
     "args": [
       {
@@ -3281,6 +3642,33 @@
     "desc": "The X.500 namespace UUID identifier",
     "type": "STRING",
     "args": [],
+    "methods": [
+      "all"
+    ]
+  },
+  "uuid.version7": {
+    "category": "uuid",
+    "desc": "Construct a Version 7 UUID",
+    "type": "STRING",
+    "args": [],
+    "methods": [
+      "all"
+    ]
+  },
+  "fastly.try_select_shield": {
+    "category": "miscellaneous",
+    "desc": "If the shield named in the first argument is healthy and available, return it. Otherwise return the second argument.",
+    "type": "BACKEND",
+    "args": [
+      {
+        "type": "BACKEND",
+        "name": "shield"
+      },
+      {
+        "type": "BACKEND",
+        "name": "fallback"
+      }
+    ],
     "methods": [
       "all"
     ]
