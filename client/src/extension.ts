@@ -1,3 +1,4 @@
+import * as path from "path";
 import { workspace, window, ExtensionContext } from "vscode";
 
 import {
@@ -11,7 +12,9 @@ let client: LanguageClient;
 
 export async function activate(context: ExtensionContext) {
   const outputChannel = window.createOutputChannel("Fastly VCL");
-  const serverModule = require.resolve("fastly-vcl-lsp");
+  const serverModule = context.asAbsolutePath(
+    path.join("server", "out", "server.js"),
+  );
   // If the extension is launched in debug mode then the debug server options are used.
   // Otherwise run options are used.
   const serverOptions: ServerOptions = {

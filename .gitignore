@@ -10,5 +10,6 @@ screenshots.xcf
 .tmp*
 .dora
 client/out
+server/out
 coverage
 boilerplate.vcl

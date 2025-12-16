@@ -1,0 +1,11 @@
+{
+  "ACL": {},
+  "BACKEND": {},
+  "BOOL": {},
+  "FLOAT": {},
+  "INTEGER": {},
+  "IP": {},
+  "RTIME": {},
+  "STRING": {},
+  "TIME": {}
+}

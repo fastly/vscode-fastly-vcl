@@ -5,7 +5,8 @@
 - `package.json` - this is the manifest file in which you declare your language support and define the location of the grammar file that has been copied into your extension.
 - `syntaxes/vcl.tmLanguage.json` - this is the Text mate grammar file that is used for tokenization.
 - `language-configuration.json` - this is the language configuration, defining the tokens that are used for comments and brackets.
-- `client/` - this is the Language Server Protocol client that talks to the LSP server ([`fastly-vcl-lsp`](https://www.npmjs.com/package/fastly-vcl-lsp)).
+- `client/` - this is the Language Server Protocol client that connects to the local LSP server.
+- `server/` - this is the Language Server Protocol server that provides completions, hover, diagnostics, and other IDE features.
 
 ## Building and running this extension
 
@@ -175,7 +176,7 @@ The GitHub Dark default theme maps the keyword scope to red using a JavaScript o
 
 ### Fastly VCL LSP capabilities
 
-The [Fastly VCL Language Server Protocol (LSP) server](https://www.npmjs.com/package/fastly-vcl-lsp) works for `.vcl` files. The server is still in an early state. The following list tracks the protocol features that are supported:
+The Fastly VCL Language Server Protocol (LSP) server (in `server/`) works for `.vcl` files. The server is still in an early state. The following list tracks the protocol features that are supported:
 
 - [ ] `textDocument/codeAction`
 - [x] `textDocument/completion` (incl. `completion/resolve`)

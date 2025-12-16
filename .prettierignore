@@ -2,5 +2,6 @@
 *.vsix
 node_modules
 client/out
+server/out
 *.vcl
 *.json

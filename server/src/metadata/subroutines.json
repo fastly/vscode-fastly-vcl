@@ -1,0 +1,68 @@
+{
+  "recv": {
+    "returns": [
+      "error",
+      "pass",
+      "pipe",
+      "lookup",
+      "restart",
+      "upgrade",
+      "challenge"
+    ]
+  },
+  "hash": {
+    "returns": [
+      "hash"
+    ]
+  },
+  "hit": {
+    "returns": [
+      "error",
+      "restart",
+      "pass",
+      "deliver"
+    ]
+  },
+  "miss": {
+    "returns": [
+      "error",
+      "pass",
+      "fetch",
+      "deliver_stale"
+    ]
+  },
+  "pass": {
+    "returns": [
+      "error",
+      "pass"
+    ]
+  },
+  "fetch": {
+    "returns": [
+      "error",
+      "restart",
+      "pass",
+      "hit_for_pass",
+      "deliver",
+      "deliver_stale"
+    ]
+  },
+  "deliver": {
+    "returns": [
+      "deliver",
+      "restart"
+    ]
+  },
+  "error": {
+    "returns": [
+      "restart",
+      "deliver",
+      "deliver_stale"
+    ]
+  },
+  "log": {
+    "returns": [
+      "deliver"
+    ]
+  }
+}

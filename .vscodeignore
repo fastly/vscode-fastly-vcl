@@ -28,7 +28,12 @@ node_modules/**/*.md
 node_modules/**/*.txt
 node_modules/**/LICENSE
 node_modules/fastly-vcl-language-client
-node_modules/fastly-vcl-lsp/src/**
+node_modules/fastly-vcl-lsp
+server/src/**
+server/node_modules/**
+server/*.json
+server/*.md
+server/LICENSE
 screenshots.xcf
 scripts/**
 test/**
