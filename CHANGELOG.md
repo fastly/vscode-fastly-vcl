@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Embed LSP server source directly in extension (previously depended on external `fastly-vcl-lsp` npm package)
 - Enable TypeScript strict mode for server
+- Add script to regenerate LSP metadata from upstream JSON definitions
 
 ### Fixed
 

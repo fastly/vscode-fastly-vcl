@@ -100,7 +100,7 @@
   },
   "client.geo.gmt_offset": {
     "category": "geolocation",
-    "desc": "An alias for `client.geo.utc_offset`",
+    "desc": "Alias of `client.geo.utc_offset`",
     "type": "INTEGER",
     "access": "RO",
     "methods": [
@@ -340,7 +340,7 @@
   },
   "client.socket.tcpi_snd_ssthresh": {
     "category": "client-connection",
-    "desc": "Size (in number of segments) of the sender-side slow-start threshold on the client connection",
+    "desc": "Number of segments of the sender-side slow-start threshold on the client connection",
     "type": "INTEGER",
     "access": "RO",
     "methods": [
@@ -352,7 +352,7 @@
   },
   "client.socket.tcpi_snd_cwnd": {
     "category": "client-connection",
-    "desc": "Size (in number of segments) of the sender-side congestion window on the client connection",
+    "desc": "Number of segments of the sender-side congestion window on the client connection",
     "type": "INTEGER",
     "access": "RO",
     "methods": [
@@ -481,6 +481,9 @@
       "deliver",
       "log",
       "error"
+    ],
+    "see_also": [
+      "client.socket.tcpi_segs_in"
     ]
   },
   "client.socket.tcpi_data_segs_out": {
@@ -493,6 +496,9 @@
       "deliver",
       "log",
       "error"
+    ],
+    "see_also": [
+      "client.socket.tcpi_segs_out"
     ]
   },
   "client.socket.tcpi_delivery_rate": {
@@ -606,7 +612,7 @@
   },
   "client.socket.tcpi_rcv_rtt": {
     "category": "client-connection",
-    "desc": "Estimate of the time it would take to fill the current RWIN (ms)",
+    "desc": "Estimate of the time it would take to fill the current RWIN in microseconds (µs)",
     "type": "INTEGER",
     "access": "RO",
     "methods": [
@@ -747,7 +753,7 @@
   },
   "server.datacenter": {
     "category": "server",
-    "desc": "An alias for `server.pop`.",
+    "desc": "Alias of `server.pop`",
     "type": "STRING",
     "access": "RO",
     "methods": [
@@ -788,6 +794,10 @@
     "access": "RW",
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "urlencode",
+      "urldecode"
     ]
   },
   "req.url.path": {
@@ -869,7 +879,8 @@
     "access": "RO",
     "methods": [
       "all"
-    ]
+    ],
+    "deprecated": true
   },
   "req.is_esi_subreq": {
     "category": "esi",
@@ -988,7 +999,7 @@
   },
   "req.grace": {
     "category": "server",
-    "desc": "Alias of `req.max_stale_if_error`",
+    "desc": "Use `req.max_stale_if_error` instead",
     "type": "RTIME",
     "access": "RW",
     "methods": [
@@ -1118,14 +1129,15 @@
   },
   "req.backend.name": {
     "category": "miscellaneous",
-    "desc": "Name of the backend for the request, truncated to 255 characters if necessary. If set, this is always a backend even if req.backend is set to a director.",
+    "desc": "Name of the backend for the request",
     "type": "STRING",
     "access": "RO",
     "methods": [
       "deliver",
       "log",
       "error"
-    ]
+    ],
+    "deprecated": true
   },
   "req.backend.ip": {
     "category": "miscellaneous",
@@ -1136,7 +1148,8 @@
       "deliver",
       "log",
       "error"
-    ]
+    ],
+    "deprecated": true
   },
   "req.backend.port": {
     "category": "miscellaneous",
@@ -1346,6 +1359,27 @@
       "log"
     ]
   },
+  "fastly.ddos_detected": {
+    "category": "miscellaneous",
+    "desc": "Whether DDoS is detected in the request when not in the blocking mode",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
+  "fastly.is_staging": {
+    "category": "miscellaneous",
+    "desc": "Returns `true` if VCL code is running in your service's staging environment",
+    "type": "BOOL",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
   "req.body": {
     "category": "client-request",
     "desc": "Request body",
@@ -1380,6 +1414,10 @@
     "access": "RO",
     "methods": [
       "all"
+    ],
+    "see_also": [
+      "urlencode",
+      "urldecode"
     ]
   },
   "stale.exists": {
@@ -1420,6 +1458,15 @@
       "log"
     ]
   },
+  "req.headers": {
+    "category": "client-request",
+    "desc": "Collection of HTTP headers for a request",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
   "bereq.method": {
     "category": "backend-request",
     "desc": "HTTP method sent to the backend",
@@ -1451,6 +1498,10 @@
       "pass",
       "miss",
       "fetch"
+    ],
+    "see_also": [
+      "urlencode",
+      "urldecode"
     ]
   },
   "bereq.url.path": {
@@ -1524,6 +1575,17 @@
     "desc": "HTTP headers by name sent to the backend",
     "type": "STRING",
     "access": "RWU",
+    "methods": [
+      "pass",
+      "miss",
+      "fetch"
+    ]
+  },
+  "bereq.headers": {
+    "category": "backend-request",
+    "desc": "Collection of HTTP headers sent to the backend",
+    "type": "STRING",
+    "access": "RO",
     "methods": [
       "pass",
       "miss",
@@ -1638,6 +1700,15 @@
       "fetch"
     ]
   },
+  "beresp.headers": {
+    "category": "backend-response",
+    "desc": "Collection of HTTP headers received from the backend",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "fetch"
+    ]
+  },
   "beresp.cacheable": {
     "category": "backend-response",
     "desc": "Whether the fetched object is cacheable",
@@ -1658,7 +1729,7 @@
   },
   "beresp.grace": {
     "category": "backend-response",
-    "desc": "Alias of `beresp.stale_if_error`",
+    "desc": "Use `beresp.stale_if_error` instead",
     "type": "RTIME",
     "access": "RW",
     "methods": [
@@ -1744,7 +1815,10 @@
     "type": "STRING",
     "access": "RO",
     "methods": [
-      "fetch"
+      "fetch",
+      "deliver",
+      "log",
+      "error"
     ]
   },
   "beresp.backend.ip": {
@@ -1753,7 +1827,10 @@
     "type": "IP",
     "access": "RO",
     "methods": [
-      "fetch"
+      "fetch",
+      "deliver",
+      "log",
+      "error"
     ]
   },
   "beresp.used_alternate_path_to_origin": {
@@ -1787,6 +1864,15 @@
     "category": "backend-connection",
     "desc": "The source IP used to connect to origin",
     "type": "IP",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "beresp.backend.src_port": {
+    "category": "backend-connection",
+    "desc": "The source port used to connect to origin",
+    "type": "INTEGER",
     "access": "RO",
     "methods": [
       "all"
@@ -1884,6 +1970,16 @@
       "error"
     ]
   },
+  "obj.headers": {
+    "category": "cache-object",
+    "desc": "Collection of HTTP headers for a request",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "hit",
+      "error"
+    ]
+  },
   "obj.cacheable": {
     "category": "cache-object",
     "desc": "Whether the object is cacheable",
@@ -1915,7 +2011,7 @@
   },
   "obj.grace": {
     "category": "cache-object",
-    "desc": "Alias of `obj.stale_if_error`",
+    "desc": "Use `obj.stale_if_error` instead",
     "type": "RTIME",
     "access": "RW",
     "methods": [
@@ -2009,7 +2105,7 @@
     "category": "miscellaneous",
     "desc": "Whether the response is stale",
     "type": "BOOL",
-    "access": "RW",
+    "access": "RO",
     "methods": [
       "all"
     ]
@@ -2018,7 +2114,7 @@
     "category": "miscellaneous",
     "desc": "Whether the response is stale due to an error",
     "type": "BOOL",
-    "access": "RW",
+    "access": "RO",
     "methods": [
       "all"
     ]
@@ -2027,7 +2123,7 @@
     "category": "miscellaneous",
     "desc": "Whether the response is stale while the cache is revalidating",
     "type": "BOOL",
-    "access": "RW",
+    "access": "RO",
     "methods": [
       "all"
     ]
@@ -2057,6 +2153,16 @@
     "desc": "HTTP headers by name sent to the client",
     "type": "STRING",
     "access": "RWU",
+    "methods": [
+      "deliver",
+      "log"
+    ]
+  },
+  "resp.headers": {
+    "category": "client-response",
+    "desc": "Collection of HTTP headers sent to the client",
+    "type": "STRING",
+    "access": "RO",
     "methods": [
       "deliver",
       "log"
@@ -2135,69 +2241,6 @@
       "all"
     ]
   },
-  "client.class.checker": {
-    "category": "client-request",
-    "desc": "Client device is an automated checker",
-    "type": "BOOL",
-    "access": "RO",
-    "methods": [
-      "all"
-    ]
-  },
-  "client.class.downloader": {
-    "category": "client-request",
-    "desc": "Client device is a downloading utility",
-    "type": "BOOL",
-    "access": "RO",
-    "methods": [
-      "all"
-    ]
-  },
-  "client.class.feedreader": {
-    "category": "client-request",
-    "desc": "Client device is a feed reader",
-    "type": "BOOL",
-    "access": "RO",
-    "methods": [
-      "all"
-    ]
-  },
-  "client.class.filter": {
-    "category": "client-request",
-    "desc": "Client device is a proxy-based content filter",
-    "type": "BOOL",
-    "access": "RO",
-    "methods": [
-      "all"
-    ]
-  },
-  "client.class.masquerading": {
-    "category": "client-request",
-    "desc": "Client device is pretendng to be a desktop browser",
-    "type": "BOOL",
-    "access": "RO",
-    "methods": [
-      "all"
-    ]
-  },
-  "client.class.spam": {
-    "category": "client-request",
-    "desc": "Client device is a spam harvester",
-    "type": "BOOL",
-    "access": "RO",
-    "methods": [
-      "all"
-    ]
-  },
-  "client.platform.ereader": {
-    "category": "client-request",
-    "desc": "Client device is an e-reader",
-    "type": "BOOL",
-    "access": "RO",
-    "methods": [
-      "all"
-    ]
-  },
   "client.platform.gameconsole": {
     "category": "client-request",
     "desc": "Client device is a games console",
@@ -2210,6 +2253,15 @@
   "client.platform.hwtype": {
     "category": "client-request",
     "desc": "Client device primary hardware type",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "all"
+    ]
+  },
+  "client.platform.model": {
+    "category": "client-request",
+    "desc": "Model of the client device",
     "type": "STRING",
     "access": "RO",
     "methods": [
@@ -2252,28 +2304,10 @@
       "all"
     ]
   },
-  "client.platform.tvplayer": {
+  "client.platform.vendor": {
     "category": "client-request",
-    "desc": "Client device is a media player",
-    "type": "BOOL",
-    "access": "RO",
-    "methods": [
-      "all"
-    ]
-  },
-  "client.display.height": {
-    "category": "client-request",
-    "desc": "Client device display height (pixels)",
-    "type": "INTEGER",
-    "access": "RO",
-    "methods": [
-      "all"
-    ]
-  },
-  "client.display.ppi": {
-    "category": "client-request",
-    "desc": "Client device display resolution (pixels per inch)",
-    "type": "INTEGER",
+    "desc": "Client device vendor organization",
+    "type": "STRING",
     "access": "RO",
     "methods": [
       "all"
@@ -2283,15 +2317,6 @@
     "category": "client-request",
     "desc": "Whether the client device display is a touch screen",
     "type": "BOOL",
-    "access": "RO",
-    "methods": [
-      "all"
-    ]
-  },
-  "client.display.width": {
-    "category": "client-request",
-    "desc": "Client device display width (pixels)",
-    "type": "INTEGER",
     "access": "RO",
     "methods": [
       "all"
@@ -2724,18 +2749,6 @@
       "log"
     ]
   },
-  "tls.client.certificate.is_cert_revoked": {
-    "category": "client-connection",
-    "desc": "Whether the client certificate is revoked",
-    "type": "BOOL",
-    "access": "RO",
-    "methods": [
-      "recv",
-      "hash",
-      "deliver",
-      "log"
-    ]
-  },
   "tls.client.certificate.is_cert_expired": {
     "category": "client-connection",
     "desc": "Whether the client certificate is expired",
@@ -2868,6 +2881,18 @@
       "log"
     ]
   },
+  "tls.client.ja4": {
+    "category": "client-connection",
+    "desc": "JA4 computed from client hello",
+    "type": "STRING",
+    "access": "RO",
+    "methods": [
+      "recv",
+      "hash",
+      "deliver",
+      "log"
+    ]
+  },
   "tls.client.ciphers_sha": {
     "category": "client-connection",
     "desc": "SHA hash of cipher suite identifiers (Base64-encoded)",
@@ -2978,7 +3003,7 @@
   },
   "transport.type": {
     "category": "client-connection",
-    "desc": "Transport type. Either tcp or quic.",
+    "desc": "Transport type",
     "type": "STRING",
     "access": "RO",
     "methods": [
@@ -2990,7 +3015,7 @@
   },
   "transport.bw_estimate": {
     "category": "client-connection",
-    "desc": "Estimation of the bandwidth (bytes per second) on QUIC connections, given enough traffic to estimate bandwidth",
+    "desc": "Estimation of the bandwidth (bytes per second)",
     "type": "INTEGER",
     "access": "RO",
     "methods": [
@@ -3218,7 +3243,7 @@
   },
   "backend.socket.tcpi_rcv_ssthresh": {
     "category": "backend-connection",
-    "desc": "Size (in number of segments) of the receiver-side slow-start threshold on the backend connection",
+    "desc": "Number of segments of the receiver-side slow-start threshold on the backend connection",
     "type": "INTEGER",
     "access": "RO",
     "methods": [
@@ -3227,7 +3252,7 @@
   },
   "backend.socket.tcpi_snd_ssthresh": {
     "category": "backend-connection",
-    "desc": "Size (in number of segments) of the sender-side slow-start threshold on the backend connection",
+    "desc": "Number of segments of the sender-side slow-start threshold on the backend connection",
     "type": "INTEGER",
     "access": "RO",
     "methods": [
@@ -3331,6 +3356,9 @@
     "access": "RO",
     "methods": [
       "fetch"
+    ],
+    "see_also": [
+      "backend.socket.tcpi_segs_in"
     ]
   },
   "backend.socket.tcpi_data_segs_out": {
@@ -3340,6 +3368,9 @@
     "access": "RO",
     "methods": [
       "fetch"
+    ],
+    "see_also": [
+      "backend.socket.tcpi_segs_out"
     ]
   },
   "backend.socket.tcpi_delivery_rate": {
@@ -3380,7 +3411,7 @@
   },
   "backend.socket.tcpi_rtt": {
     "category": "backend-connection",
-    "desc": "TCP smoothed round-trip time (RTT) for the backend connection (ms)",
+    "desc": "TCP smoothed round-trip time (RTT) for the backend connection in microseconds (µs)",
     "type": "INTEGER",
     "access": "RO",
     "methods": [
@@ -3389,7 +3420,7 @@
   },
   "backend.socket.tcpi_rttvar": {
     "category": "backend-connection",
-    "desc": "TCP round-trip time (RTT) variance for the backend connection (ms)",
+    "desc": "TCP round-trip time (RTT) variance for the backend connection in microseconds (µs)",
     "type": "INTEGER",
     "access": "RO",
     "methods": [
@@ -3503,267 +3534,6 @@
     "methods": [
       "all"
     ]
-  },
-  "waf.anomaly_score": {
-    "category": "waf",
-    "desc": "Sum of the scores of each WAF rule",
-    "type": "INTEGER",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log"
-    ],
-    "deprecated": true
-  },
-  "waf.blocked": {
-    "category": "waf",
-    "desc": "Whether the WAF session has been blocked",
-    "type": "BOOL",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log",
-      "error"
-    ],
-    "deprecated": true
-  },
-  "waf.counter": {
-    "category": "waf",
-    "desc": "General purpose counter used by WAF",
-    "type": "INTEGER",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver"
-    ],
-    "deprecated": true
-  },
-  "waf.executed": {
-    "category": "waf",
-    "desc": "Whether `waf.severity` or `waf.blocked` or `waf.logged` are true",
-    "type": "BOOL",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log",
-      "error"
-    ]
-  },
-  "waf.failures": {
-    "category": "waf",
-    "desc": "Number of WAF rules that couldn't complete",
-    "type": "INTEGER",
-    "access": "RO",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log",
-      "error"
-    ],
-    "deprecated": true
-  },
-  "waf.http_violation_score": {
-    "category": "waf",
-    "desc": "Score representing the number of violations of the HTTP protocol",
-    "type": "INTEGER",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log"
-    ],
-    "deprecated": true
-  },
-  "waf.inbound_anomaly_score": {
-    "category": "waf",
-    "desc": "Inbound anomaly score",
-    "type": "INTEGER",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss"
-    ],
-    "deprecated": true
-  },
-  "waf.lfi_score": {
-    "category": "waf",
-    "desc": "Local File Inclusion score",
-    "type": "INTEGER",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log"
-    ],
-    "deprecated": true
-  },
-  "waf.logdata": {
-    "category": "waf",
-    "desc": "WAF log data",
-    "type": "STRING",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log"
-    ],
-    "deprecated": true
-  },
-  "waf.logged": {
-    "category": "waf",
-    "desc": "Whether this WAF request was logged",
-    "type": "BOOL",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log",
-      "error"
-    ],
-    "deprecated": true
-  },
-  "waf.message": {
-    "category": "waf",
-    "desc": "WAF rule message",
-    "type": "STRING",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log"
-    ],
-    "deprecated": true
-  },
-  "waf.passed": {
-    "category": "waf",
-    "desc": "Whether this WAF request passed",
-    "type": "BOOL",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log",
-      "error"
-    ],
-    "deprecated": true
-  },
-  "waf.php_injection_score": {
-    "category": "waf",
-    "desc": "PHP injection score for this request",
-    "type": "INTEGER",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log"
-    ],
-    "deprecated": true
-  },
-  "waf.rce_score": {
-    "category": "waf",
-    "desc": "Remote Code Execution score",
-    "type": "INTEGER",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log"
-    ],
-    "deprecated": true
-  },
-  "waf.rfi_score": {
-    "category": "waf",
-    "desc": "Remote File Inclusion score",
-    "type": "INTEGER",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log"
-    ],
-    "deprecated": true
-  },
-  "waf.rule_id": {
-    "category": "waf",
-    "desc": "Rule ID",
-    "type": "INTEGER",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log"
-    ],
-    "deprecated": true
-  },
-  "waf.session_fixation_score": {
-    "category": "waf",
-    "desc": "Session fixation score",
-    "type": "INTEGER",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log"
-    ],
-    "deprecated": true
-  },
-  "waf.severity": {
-    "category": "waf",
-    "desc": "Severity",
-    "type": "INTEGER",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log"
-    ],
-    "deprecated": true
-  },
-  "waf.sql_injection_score": {
-    "category": "waf",
-    "desc": "SQL injection score",
-    "type": "INTEGER",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log"
-    ],
-    "deprecated": true
-  },
-  "waf.xss_score": {
-    "category": "waf",
-    "desc": "XSS score",
-    "type": "INTEGER",
-    "access": "RW",
-    "methods": [
-      "pass",
-      "miss",
-      "deliver",
-      "log"
-    ],
-    "deprecated": true
   },
   "math.E": {
     "category": "math-constants-limits",

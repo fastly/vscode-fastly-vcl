@@ -60,6 +60,16 @@ npm run test:e2e:coverage
 
 Coverage reports are generated in `coverage/` (text, lcov, and HTML formats).
 
+### Updating LSP metadata
+
+The LSP server uses JSON metadata files in `server/src/metadata/` for completions, hover, and other features. To regenerate these from upstream source definitions:
+
+```bash
+./scripts/generate-metadata.sh <path-to-source-json-dir>
+```
+
+This requires `jq` to be installed. The jq filters are in `jq-filters/`.
+
 ### Linting and formatting
 
 To check for lint errors:
