@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## Unreleased
 
+## [2.0.3] - 2025-12-16
+
 ### Changed
 
 - Syntax highlighting improvements:
@@ -40,6 +42,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Update CI to use Node 22 (matching package.json requirement) and actions/setup-node@v6
 - Update TypeScript to 5.9.3 and typescript-eslint to 8.49.0
 - Add code coverage reporting with c8
+- Add release instructions to DEVELOPMENT.md
 
 ## [2.0.2] - 2023-10-06
 

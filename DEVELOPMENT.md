@@ -99,6 +99,40 @@ Then, either run `code --install-extension vscode-fastly-vcl-{VERSION}.vsix` or 
 
 Please open a pull request with your changes.
 
+### Releasing
+
+To publish a new version to the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=fastly.vscode-fastly-vcl):
+
+1. **Prerequisites**
+   - You must be a member of the `fastly` publisher on the VS Code Marketplace
+
+2. **Prepare the release**
+   - Update `version` in `package.json`
+   - Move items from "Unreleased" to a new version section in `CHANGELOG.md`
+   - Commit these changes: `git commit -am "chore: prepare release vX.Y.Z"`
+
+3. **Run all checks**
+
+   ```bash
+   npm run lint
+   npm run format:check
+   npm test
+   ```
+
+4. **Publish**
+   Using the UI:
+   - Visit https://marketplace.visualstudio.com/vscode
+   - Select "Publish extensions"
+   - Log in as your personal account and authenticate.
+   - Select the three dots near the extension and select Update
+   - Drag the
+
+5. **Tag the release**
+   ```bash
+   git tag vX.Y.Z
+   git push origin main --tags
+   ```
+
 ## Functionality
 
 ### Syntax highlighting (VSCode capability)
