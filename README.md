@@ -53,7 +53,7 @@ Uninstall (or disable) any previously-enabled VCL extensions.
 Download the [latest GitHub release](https://github.com/fastly/vscode-fastly-vcl/releases/) and then run:
 
 ```bash
-code --install-extension vscode-fastly-vcl-2.0.3.vsix
+code --install-extension vscode-fastly-vcl-2.0.4.vsix
 ```
 
 ## Requirements
