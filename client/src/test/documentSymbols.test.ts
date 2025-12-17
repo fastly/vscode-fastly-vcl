@@ -56,24 +56,30 @@ async function waitForDiagnosticsPublished(
 ): Promise<void> {
   // Track if we've already received diagnostics for this URI
   let resolved = false;
+  let pollInterval: ReturnType<typeof setInterval>;
+  let timeoutId: ReturnType<typeof setTimeout>;
 
   return new Promise((resolve) => {
     const done = () => {
       if (!resolved) {
         resolved = true;
         disposable.dispose();
+        clearInterval(pollInterval);
+        clearTimeout(timeoutId);
         resolve();
       }
     };
 
     const disposable = vscode.languages.onDidChangeDiagnostics((e) => {
       if (e.uris.some((uri) => uri.toString() === docUri.toString())) {
-        done();
+        // Give the server a moment to fully update the symbol cache
+        // This helps with slow CI environments
+        setTimeout(done, 50);
       }
     });
 
     // Also poll briefly in case diagnostics were published before listener was set up
-    const pollInterval = setInterval(() => {
+    pollInterval = setInterval(() => {
       // If we can get symbols, linting must have completed
       vscode.commands
         .executeCommand("vscode.executeDocumentSymbolProvider", docUri)
@@ -83,17 +89,13 @@ async function waitForDiagnosticsPublished(
             Array.isArray(symbols) &&
             (symbols as unknown[]).length > 0
           ) {
-            clearInterval(pollInterval);
             done();
           }
         });
     }, 200);
 
     // Timeout fallback
-    setTimeout(() => {
-      clearInterval(pollInterval);
-      done();
-    }, timeout);
+    timeoutId = setTimeout(done, timeout);
   });
 }
 
