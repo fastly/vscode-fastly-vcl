@@ -6,7 +6,13 @@ import {
   TextDocumentPositionParams,
 } from "vscode-languageserver/node";
 
-import { slugify, DOCS_URL, VCL_FLOW_URL, BOILERPLATE } from "../shared/utils";
+import {
+  slugify,
+  DOCS_URL,
+  VCL_FLOW_URL,
+  BOILERPLATE,
+  ensureFullStop,
+} from "../shared/utils";
 
 import vclSubroutines from "../metadata/subroutines.json";
 
@@ -33,7 +39,7 @@ for (const sName of Object.keys(vclSubroutines)) {
     documentation: {
       kind: MarkupKind.Markdown,
       value: [
-        boilerplate?.desc,
+        ensureFullStop(boilerplate?.desc),
         token.returns &&
           token.returns.length &&
           "### Allowed return values \n" +

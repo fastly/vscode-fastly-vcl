@@ -5,20 +5,33 @@ import {
   MarkupKind,
 } from "vscode-languageserver/node";
 
-import { slugify, DOCS_URL } from "../shared/utils";
+import { slugify, DOCS_URL, ensureFullStop } from "../shared/utils";
 import { documentCache } from "../shared/documentCache";
 
 import vclFunctions from "../metadata/functions.json";
 import vclSubroutines from "../metadata/subroutines.json";
+
+function formatScope(methods: string[] | undefined): string | undefined {
+  if (!methods?.length) return undefined;
+
+  if (methods.includes("all")) {
+    return "Available in all subroutines.";
+  }
+
+  const validMethods = methods.filter(
+    (m) => !!(vclSubroutines as Record<string, unknown>)[m],
+  );
+  if (!validMethods.length) return undefined;
+
+  const formatted = validMethods.map((m) => `\`vcl_${m}\``).join(", ");
+  return `Available in ${formatted}.`;
+}
 
 const FUNCTIONS: Map<string, SignatureInformation> = new Map();
 
 for (const fnName of Object.keys(vclFunctions)) {
   const token = (vclFunctions as Record<string, unknown>)[fnName] as any;
   if (!token.args?.length) continue;
-  token.methods = token.methods?.filter(
-    (m: string) => !!(vclSubroutines as Record<string, unknown>)[m],
-  );
 
   FUNCTIONS.set(fnName, {
     label: `${token.type} ${fnName}(${
@@ -37,10 +50,9 @@ for (const fnName of Object.keys(vclFunctions)) {
     documentation: {
       kind: MarkupKind.Markdown,
       value: [
-        token.desc,
-        token.methods?.length &&
-          "**Scope:** `" + token.methods.join("`, `") + "`",
-        `[Documentation](${DOCS_URL}/functions/${slugify(fnName)}/)`,
+        formatScope(token.methods),
+        ensureFullStop(token.desc),
+        `[Documentation](${DOCS_URL}/functions/${token.category}/${slugify(fnName)}/)`,
       ]
         .filter(Boolean)
         .join("\n\n"),

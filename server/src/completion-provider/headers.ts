@@ -6,7 +6,7 @@ import {
   TextDocumentPositionParams,
 } from "vscode-languageserver/node";
 
-import { HEADER_DOCS_URL } from "../shared/utils";
+import { HEADER_DOCS_URL, ensureFullStop } from "../shared/utils";
 
 import vclHeaders from "../metadata/headers.json";
 import vclSubroutines from "../metadata/subroutines.json";
@@ -54,7 +54,10 @@ for (const hName of Object.keys(vclHeaders)) {
     detail: `${hName} HEADER`,
     documentation: {
       kind: MarkupKind.Markdown,
-      value: [token.desc, `[Documentation](${HEADER_DOCS_URL}/${hName}/)`]
+      value: [
+        ensureFullStop(token.desc),
+        `[Documentation](${HEADER_DOCS_URL}/${hName}/)`,
+      ]
         .filter(Boolean)
         .join("\n\n"),
     },

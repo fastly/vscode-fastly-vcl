@@ -14,7 +14,7 @@ suite("Should provide document symbols", () => {
     await activate(docUri);
 
     // Wait for symbols to be available (LSP may need time to parse)
-    const symbols = await waitForSymbols(docUri);
+    const symbols = await waitForSymbols(docUri, 10000);
 
     assert.ok(symbols, "Expected symbols to be returned");
     assert.ok(symbols.length > 0, "Expected at least one symbol");

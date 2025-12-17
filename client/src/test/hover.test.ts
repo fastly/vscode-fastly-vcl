@@ -13,28 +13,40 @@ suite("Should do hover", () => {
   test("Shows hover for req.method", async () => {
     // Line 6: if (req.method != "HEAD" ...
     // req.method starts at column 6
-    await testHover(
-      docUri,
-      new vscode.Position(5, 10),
+    await testHover(docUri, new vscode.Position(5, 10), [
       "HTTP method for the request",
-    );
+      "Available in all subroutines.",
+      "https://developer.fastly.com/reference/vcl/variables/client-request/req-method/",
+    ]);
   });
 
   test("Shows hover for beresp.ttl", async () => {
     // Line 65: set beresp.ttl = 3600s;
     // beresp.ttl starts at column 8
-    await testHover(
-      docUri,
-      new vscode.Position(64, 12),
+    await testHover(docUri, new vscode.Position(64, 12), [
       "Amount of time the fetched object should be cached for",
-    );
+      "Available in `vcl_fetch`.",
+      "https://developer.fastly.com/reference/vcl/variables/backend-response/beresp-ttl/",
+    ]);
+  });
+
+  test("Shows hover for regsub function", async () => {
+    const fnDocUri = getDocUri("signatureHelp.vcl");
+    // Line 2: set req.url = regsub(req.url, "^/old/", "/new/");
+    // regsub starts at column 18
+    await testHover(fnDocUri, new vscode.Position(1, 20), [
+      "STRING regsub(STRING input, REGEX pattern, STRING replacement)",
+      "Replace the first occurrence of a regular expression",
+      "Available in all subroutines.",
+      "https://developer.fastly.com/reference/vcl/functions/strings/regsub/",
+    ]);
   });
 });
 
 async function testHover(
   docUri: vscode.Uri,
   position: vscode.Position,
-  expectedContent: string,
+  expectedContents: string[],
 ) {
   await activate(docUri);
 
@@ -59,8 +71,10 @@ async function testHover(
     })
     .join("\n");
 
-  assert.ok(
-    hoverContent.toLowerCase().includes(expectedContent.toLowerCase()),
-    `Expected hover to contain "${expectedContent}", got: ${hoverContent}`,
-  );
+  for (const expected of expectedContents) {
+    assert.ok(
+      hoverContent.toLowerCase().includes(expected.toLowerCase()),
+      `Expected hover to contain "${expected}", got: ${hoverContent}`,
+    );
+  }
 }

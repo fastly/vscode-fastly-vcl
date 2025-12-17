@@ -4,6 +4,15 @@ export function slugify(str: string): string {
   return str.replace(/\W+/g, "-").toLowerCase();
 }
 
+export function ensureFullStop(str: string | undefined): string | undefined {
+  if (!str) return str;
+  const trimmed = str.trim();
+  if (trimmed.endsWith(".") || trimmed.endsWith("!") || trimmed.endsWith("?")) {
+    return trimmed;
+  }
+  return trimmed + ".";
+}
+
 export function debounce<F extends (...args: any[]) => void>(
   func: F,
   delay: number,
