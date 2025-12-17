@@ -17,14 +17,15 @@ suite("Should respect maxLintingIssues setting", () => {
   });
 
   test("Limits diagnostics to maxLintingIssues", async () => {
-    // Set a low limit of 3 (1 boilerplate warning + 2 error code warnings)
+    // Set a low limit of 3 BEFORE activating the document
+    // This ensures the linter sees the setting when the document is first opened
     const config = vscode.workspace.getConfiguration("fastly.vcl");
     await config.update("maxLintingIssues", 3, true);
 
     await activate(docUri);
 
-    // Wait for diagnostics to stabilize
-    await waitForDiagnosticsCount(docUri, (count) => count > 0);
+    // Wait for diagnostics to stabilize (no changes for 100ms)
+    await waitForDiagnosticsToStabilize(docUri);
 
     const diagnostics = vscode.languages.getDiagnostics(docUri);
 
@@ -65,32 +66,35 @@ suite("Should respect maxLintingIssues setting", () => {
   });
 });
 
-async function waitForDiagnosticsCount(
+async function waitForDiagnosticsToStabilize(
   docUri: vscode.Uri,
-  predicate: (count: number) => boolean,
+  stableMs = 100,
   timeout = 5000,
-): Promise<boolean> {
+): Promise<void> {
   return new Promise((resolve) => {
-    // Check immediately
-    if (predicate(vscode.languages.getDiagnostics(docUri).length)) {
-      resolve(true);
-      return;
-    }
+    let lastChangeTime = Date.now();
 
-    // Listen for changes
     const disposable = vscode.languages.onDidChangeDiagnostics((e) => {
       if (e.uris.some((uri) => uri.toString() === docUri.toString())) {
-        if (predicate(vscode.languages.getDiagnostics(docUri).length)) {
-          disposable.dispose();
-          resolve(true);
-        }
+        lastChangeTime = Date.now();
       }
     });
 
-    // Timeout
+    // Check periodically if diagnostics have stabilized
+    const checkInterval = setInterval(() => {
+      const timeSinceLastChange = Date.now() - lastChangeTime;
+      if (timeSinceLastChange >= stableMs) {
+        clearInterval(checkInterval);
+        disposable.dispose();
+        resolve();
+      }
+    }, 50);
+
+    // Timeout fallback
     setTimeout(() => {
+      clearInterval(checkInterval);
       disposable.dispose();
-      resolve(predicate(vscode.languages.getDiagnostics(docUri).length));
+      resolve();
     }, timeout);
   });
 }
