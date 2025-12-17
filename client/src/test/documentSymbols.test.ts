@@ -13,8 +13,11 @@ suite("Should provide document symbols", () => {
   test("Returns subroutine symbols", async () => {
     await activate(docUri);
 
+    // Give linting time to complete (it runs async after document open)
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
     // Wait for symbols to be available (LSP may need time to parse)
-    const symbols = await waitForSymbols(docUri, 30000);
+    const symbols = await waitForSymbols(docUri, 10000);
 
     assert.ok(symbols, "Expected symbols to be returned");
     assert.ok(

@@ -21,6 +21,7 @@
     "./server"
   ],
   "scripts": {
+    "postinstall": "sh ./scripts/download-falco.sh",
     "build": "tsc -b ./client && tsc -b ./server",
     "clean": "rm -rf client/out server/out",
     "dev": "tsc -b -w ./client ./server",
@@ -98,7 +99,6 @@
     "typescript-eslint": "^8.49.0"
   },
   "dependencies": {
-    "falco-js": "^0.23.2",
     "vscode-jsonrpc": "^8.2.1",
     "vscode-languageserver": "^9.0.0",
     "vscode-languageserver-textdocument": "^1.0.8"

@@ -1,0 +1,23 @@
+{
+	"name": "falco-js",
+	"description": "A lightweight, JSON-only wrapper for falco, a Fastly VCL linter.",
+	"author": "Dora Militaru <dora@doramilitaru.com>",
+	"version": "0.0.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/fastly/vscode-fastly-vcl.git"
+	},
+	"main": "src/index.js",
+	"types": "src/index.d.ts",
+	"license": "MIT",
+	"engines": {
+		"node": ">=18"
+	},
+	"files": [
+		"src",
+		"bin"
+	],
+	"bin": {
+		"falco-js": "src/falco.js"
+	}
+}

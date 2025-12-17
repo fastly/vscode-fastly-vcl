@@ -4,6 +4,17 @@ All notable changes to the "vscode-fastly-vcl" extension will be documented in t
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## Unreleased
+
+### Changed
+
+- Upgrade falco to v2.0.0 and embed the falco-js library and falco binaries
+
+### Fixed
+
+- Fix slow tests caused by waiting for diagnostics on files with no lint warnings
+- Fix TypeScript type resolution for vscode, mocha, and node in client tests
+
 ## [2.0.4] - 2025-12-17
 
 ### Changed
