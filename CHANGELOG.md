@@ -20,6 +20,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Fix document symbols crashing when subroutine closing brace not found
 - Include parameter types in function signatures for hover and completion
 - Fix function and variable documentation URLs to include category in path
+- Fix `maxLintingIssues` setting not being applied (property name mismatch)
+
+### Added
+
+- Add test for `maxLintingIssues` setting
 
 ## [2.0.3] - 2025-12-16
 
