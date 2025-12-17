@@ -21,7 +21,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Fix slow tests caused by waiting for diagnostics on files with no lint warnings
 - Fix TypeScript type resolution for vscode, mocha, and node in client tests
 - Sort diagnostics in tests for stable comparison order
-- Improve document symbols test robustness for slow CI environments
+- Increase document symbols test timeouts for slow CI environments (60s + 30s)
 
 ## [2.0.4] - 2025-12-17
 
