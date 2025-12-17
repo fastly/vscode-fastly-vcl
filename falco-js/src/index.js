@@ -72,7 +72,7 @@ const lintText = (
     if (autoAddIncludes) {
       // Flag any other include paths from the code, that are not in the same directory as the file.
       for (const [_, includePath] of text.matchAll(
-        /include\s+\"([^"]*\/[^"]+)\"/gm,
+        /include\s+\"([^"/]*\/[^"]+)\"/gm,
       ) || []) {
         falcoFlags.push("-I", dirname(`${includePath}.vcl`));
       }
