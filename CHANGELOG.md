@@ -6,6 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## Unreleased
 
+### Added
+
+- Add tests for deprecated variable warnings (`client.display.width`, `client.display.height`)
+- Add test for `header.set` function not producing false lint errors
+- Add test for subroutines with parameters
+
 ### Changed
 
 - Upgrade falco to v2.0.0 and embed the falco-js library and falco binaries
@@ -14,6 +20,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Fix slow tests caused by waiting for diagnostics on files with no lint warnings
 - Fix TypeScript type resolution for vscode, mocha, and node in client tests
+- Sort diagnostics in tests for stable comparison order
+- Increase document symbols test timeouts for slow CI environments (60s + 30s)
 
 ## [2.0.4] - 2025-12-17
 

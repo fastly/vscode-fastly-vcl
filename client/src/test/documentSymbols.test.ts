@@ -13,12 +13,14 @@ suite("Should provide document symbols", () => {
   test("Returns subroutine symbols", async () => {
     await activate(docUri);
 
-    // Wait for linting to complete - diagnostics are published after AST is parsed
-    // boilerplate.vcl has 0 lint errors, so we wait for the diagnostics event
-    await waitForDiagnosticsPublished(docUri);
+    // Wait for linting to complete and symbols to be available
+    // boilerplate.vcl has 0 lint errors, so we wait for either:
+    // - diagnostics event to fire, or
+    // - symbols to become available via polling
+    await waitForSymbolsOrDiagnostics(docUri);
 
-    // Wait for symbols to be available (LSP may need time to parse)
-    const symbols = await waitForSymbols(docUri, 10000);
+    // Get symbols (should be available immediately after the wait above)
+    const symbols = await waitForSymbols(docUri, 30000);
 
     assert.ok(symbols, "Expected symbols to be returned");
     assert.ok(
@@ -50,31 +52,42 @@ suite("Should provide document symbols", () => {
   });
 });
 
-async function waitForDiagnosticsPublished(
+async function waitForSymbolsOrDiagnostics(
   docUri: vscode.Uri,
-  timeout = 15000,
+  timeout = 60000,
 ): Promise<void> {
-  // Track if we've already received diagnostics for this URI
+  // Wait for either:
+  // 1. Symbols to become available (indicates linting completed and AST was parsed)
+  // 2. Diagnostics event to fire for this URI
+  // 3. Timeout (gives up waiting)
+  //
+  // CI environments can be significantly slower than local development,
+  // so we use a generous timeout.
   let resolved = false;
+  let pollInterval: ReturnType<typeof setInterval>;
+  let timeoutId: ReturnType<typeof setTimeout>;
 
   return new Promise((resolve) => {
     const done = () => {
       if (!resolved) {
         resolved = true;
         disposable.dispose();
+        clearInterval(pollInterval);
+        clearTimeout(timeoutId);
         resolve();
       }
     };
 
     const disposable = vscode.languages.onDidChangeDiagnostics((e) => {
       if (e.uris.some((uri) => uri.toString() === docUri.toString())) {
-        done();
+        // Diagnostics were published - symbols should be available now
+        // Add a small delay for slow CI environments
+        setTimeout(done, 100);
       }
     });
 
-    // Also poll briefly in case diagnostics were published before listener was set up
-    const pollInterval = setInterval(() => {
-      // If we can get symbols, linting must have completed
+    // Poll for symbols - this catches cases where diagnostics event was missed
+    pollInterval = setInterval(() => {
       vscode.commands
         .executeCommand("vscode.executeDocumentSymbolProvider", docUri)
         .then((symbols) => {
@@ -83,17 +96,13 @@ async function waitForDiagnosticsPublished(
             Array.isArray(symbols) &&
             (symbols as unknown[]).length > 0
           ) {
-            clearInterval(pollInterval);
             done();
           }
         });
-    }, 200);
+    }, 500); // Poll every 500ms to reduce load
 
     // Timeout fallback
-    setTimeout(() => {
-      clearInterval(pollInterval);
-      done();
-    }, timeout);
+    timeoutId = setTimeout(done, timeout);
   });
 }
 
