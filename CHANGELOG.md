@@ -11,10 +11,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Embed LSP server source directly in extension (previously depended on external `fastly-vcl-lsp` npm package)
 - Enable TypeScript strict mode for server
 - Add script to regenerate LSP metadata from upstream JSON definitions
+- Move subroutine availability info directly after the name to function and variable hover, completion, and signature help
+- Ensure all descriptions end with a full stop
+- Use inline code formatting instead of headings in hover popups
 
 ### Fixed
 
 - Fix document symbols crashing when subroutine closing brace not found
+- Include parameter types in function signatures for hover and completion
+- Fix function and variable documentation URLs to include category in path
 
 ## [2.0.3] - 2025-12-16
 
