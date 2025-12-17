@@ -14,7 +14,7 @@ suite("Should get diagnostics", () => {
     await testDiagnostics(docUri, [
       {
         message:
-          'Subroutine "vcl_fetch" is missing Fastly boilerplate comment "FASTLY FETCH" inside definition',
+          'Subroutine "vcl_fetch" is missing Fastly boilerplate comment "#FASTLY FETCH" inside definition',
         range: toRange(0, 0, 0, 0),
         severity: vscode.DiagnosticSeverity.Warning,
         source: "vcl",
@@ -41,7 +41,11 @@ async function testDiagnostics(
 ) {
   await activate(docUri);
 
-  const actualDiagnostics = vscode.languages.getDiagnostics(docUri);
+  // Wait for diagnostics to be available
+  const actualDiagnostics = await waitForDiagnostics(
+    docUri,
+    expectedDiagnostics.length,
+  );
 
   assert.equal(actualDiagnostics.length, expectedDiagnostics.length);
 
@@ -51,4 +55,20 @@ async function testDiagnostics(
     assert.deepEqual(actualDiagnostic.range, expectedDiagnostic.range);
     assert.equal(actualDiagnostic.severity, expectedDiagnostic.severity);
   });
+}
+
+async function waitForDiagnostics(
+  docUri: vscode.Uri,
+  minCount: number,
+  timeout = 5000,
+): Promise<vscode.Diagnostic[]> {
+  const start = Date.now();
+  while (Date.now() - start < timeout) {
+    const diagnostics = vscode.languages.getDiagnostics(docUri);
+    if (diagnostics.length >= minCount) {
+      return diagnostics;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+  return vscode.languages.getDiagnostics(docUri);
 }

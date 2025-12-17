@@ -25,6 +25,8 @@ cd vscode-fastly-vcl
 npm i
 ```
 
+This will automatically download the falco binaries via the `postinstall` script. The binaries are placed in `falco-js/bin/` and are not committed to git.
+
 ### Local development server
 
 1. Open this folder in VS Code.
@@ -69,6 +71,13 @@ The LSP server uses JSON metadata files in `server/src/metadata/` for completion
 ```
 
 This requires `jq` to be installed. The jq filters are in `jq-filters/`.
+
+### Updating falco
+
+The falco binaries are downloaded from GitHub releases. To update to a new version:
+
+1. Edit `FALCO_VERSION` in `scripts/download-falco.sh`
+2. Delete `falco-js/bin/` and run `npm install` (or run the script directly)
 
 ### Linting and formatting
 
@@ -137,7 +146,7 @@ To publish a new version to the [VS Code Marketplace](https://marketplace.visual
    - Select "Publish extensions"
    - Log in as your personal account and authenticate.
    - Select the three dots near the extension and select Update
-   - Drag the
+   - Upload the new .vsix
 
 5. **Tag the release**
 

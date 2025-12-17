@@ -13,11 +13,11 @@
 	"main": "./out/server",
 	"version": "0.4.0",
 	"dependencies": {
-		"falco-js": "^0.23.2",
 		"vscode-languageserver": "^9.0.0",
 		"vscode-languageserver-textdocument": "^1.0.8"
 	},
 	"scripts": {
+		"build": "tsc -b",
 		"compile": "tsc -b",
 		"watch": "tsc -b -w"
 	}

@@ -37,11 +37,13 @@ node_modules/semver/bin/**
 node_modules/vscode-languageserver/bin/**
 node_modules/fastly-vcl-language-client
 node_modules/fastly-vcl-lsp
+node_modules/falco-js
 server/src/**
 server/node_modules/**
 server/*.json
 server/*.md
 server/LICENSE
+falco-js/package.json
 screenshots.xcf
 scripts/**
 test/**

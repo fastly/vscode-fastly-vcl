@@ -72,11 +72,14 @@ export interface LintResult {
 }
 
 export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
-  const { lintText } = await import("falco-js").catch((e) => {
-    // falco isn't available for Windows yet, fail gracefully.
-    console.error(`Diagnostic service unavailable.`, e.message);
-    return { lintText: null };
-  });
+  // Use relative path to falco-js since the npm workspace symlink is excluded from the packaged extension
+  const { lintText } = await import("../../../falco-js/src/index.js").catch(
+    (e) => {
+      // falco isn't available for Windows yet, fail gracefully.
+      console.error(`Diagnostic service unavailable.`, e.message);
+      return { lintText: null };
+    },
+  );
 
   const settings = await getDocumentSettings(vclDoc.uri);
   if (!lintText || !settings.lintingEnabled) {
