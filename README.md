@@ -69,11 +69,6 @@ code --install-extension vscode-fastly-vcl-2.0.3.vsix
 
 Use our [GitHub issues](https://github.com/fastly/vscode-fastly-vcl/issues/new) to report a problem or request a feature.
 
-## TODO
-
-- Syntax highlight VCL embedded into Markdown documents.
-- Syntax highlight regular expressions.
-
 ## Contributors
 
 Special thanks to all contributors:
