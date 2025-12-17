@@ -27,6 +27,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Add test for `maxLintingIssues` setting
 - Add test for `lintingEnabled` setting
 
+### Removed
+
+- Remove unimplemented `.vclrc` file watcher
+
 ## [2.0.3] - 2025-12-16
 
 ### Changed

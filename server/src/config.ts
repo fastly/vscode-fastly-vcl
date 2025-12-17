@@ -8,5 +8,3 @@ export const CONFIG: ConfigSettings = {
   lintingEnabled: true,
   maxLintingIssues: 100,
 };
-
-// TODO: Implement workspace-contextual config changes with .vclrc
