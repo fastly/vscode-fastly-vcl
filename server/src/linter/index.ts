@@ -117,7 +117,7 @@ export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
   }
 
   for (const lE of lintResult.LintErrors[vclDocPath] || []) {
-    if (problems > settings.maxLinterIssues) {
+    if (problems > settings.maxLintingIssues) {
       break;
     }
     const diagnostic: Diagnostic = {
