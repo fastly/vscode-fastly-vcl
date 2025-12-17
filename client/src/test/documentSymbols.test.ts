@@ -13,8 +13,9 @@ suite("Should provide document symbols", () => {
   test("Returns subroutine symbols", async () => {
     await activate(docUri);
 
-    // Give linting time to complete (it runs async after document open)
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    // Wait for linting to complete - diagnostics are published after AST is parsed
+    // boilerplate.vcl has 0 lint errors, so we wait for the diagnostics event
+    await waitForDiagnosticsPublished(docUri);
 
     // Wait for symbols to be available (LSP may need time to parse)
     const symbols = await waitForSymbols(docUri, 10000);
@@ -48,6 +49,53 @@ suite("Should provide document symbols", () => {
     }
   });
 });
+
+async function waitForDiagnosticsPublished(
+  docUri: vscode.Uri,
+  timeout = 15000,
+): Promise<void> {
+  // Track if we've already received diagnostics for this URI
+  let resolved = false;
+
+  return new Promise((resolve) => {
+    const done = () => {
+      if (!resolved) {
+        resolved = true;
+        disposable.dispose();
+        resolve();
+      }
+    };
+
+    const disposable = vscode.languages.onDidChangeDiagnostics((e) => {
+      if (e.uris.some((uri) => uri.toString() === docUri.toString())) {
+        done();
+      }
+    });
+
+    // Also poll briefly in case diagnostics were published before listener was set up
+    const pollInterval = setInterval(() => {
+      // If we can get symbols, linting must have completed
+      vscode.commands
+        .executeCommand("vscode.executeDocumentSymbolProvider", docUri)
+        .then((symbols) => {
+          if (
+            symbols &&
+            Array.isArray(symbols) &&
+            (symbols as unknown[]).length > 0
+          ) {
+            clearInterval(pollInterval);
+            done();
+          }
+        });
+    }, 200);
+
+    // Timeout fallback
+    setTimeout(() => {
+      clearInterval(pollInterval);
+      done();
+    }, timeout);
+  });
+}
 
 async function waitForSymbols(
   docUri: vscode.Uri,
