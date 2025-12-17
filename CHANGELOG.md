@@ -14,6 +14,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Move subroutine availability info directly after the name to function and variable hover, completion, and signature help
 - Ensure all descriptions end with a full stop
 - Use inline code formatting instead of headings in hover popups
+- Reduce extension package size by excluding unnecessary files (test files, build artifacts, development scripts)
 
 ### Fixed
 
