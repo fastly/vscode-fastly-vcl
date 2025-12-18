@@ -80,6 +80,12 @@
           "type": "number",
           "default": 100,
           "description": "Specifies the maximum number of linting issues that the server will return."
+        },
+        "fastly.vcl.falcoPath": {
+          "scope": "machine",
+          "type": "string",
+          "default": "",
+          "description": "Path to a custom falco binary. If not set, the bundled falco will be used."
         }
       }
     }

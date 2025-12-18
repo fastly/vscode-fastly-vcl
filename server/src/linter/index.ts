@@ -94,6 +94,7 @@ export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
   const lintResult = (await lintText(vclDoc.getText(), {
     vclFileName: vclDocPath,
     diagnosticsOnly: false, // Set to false to return the full AST (for parseable VCL only)
+    falcoPath: settings.falcoPath || undefined,
   })) as LintResult;
 
   vclDoc.AST = lintResult.Vcl?.AST;

@@ -35,9 +35,10 @@ const withTempDir = async (fn) => {
 const falcoDistro = `falco-${GOOS_MAP[process.platform]}-${
   GOARCH_MAP[process.arch]
 }`;
-const falcoBinary = join(__dirname, "..", "bin", falcoDistro);
+const defaultFalcoBinary = join(__dirname, "..", "bin", falcoDistro);
 
-const falco = async (args) => {
+const falco = async (args, { falcoPath } = {}) => {
+  const falcoBinary = falcoPath || defaultFalcoBinary;
   const falco = spawn(falcoBinary, args);
   let output = "";
   return new Promise((resolve, reject) => {
@@ -62,6 +63,7 @@ const lintText = (
     autoAddIncludes = true,
     diagnosticsOnly = true,
     deserialize = true,
+    falcoPath,
   } = {},
 ) =>
   withTempFile(async (file) => {
@@ -78,7 +80,7 @@ const lintText = (
       }
     }
     await fs.writeFile(file, text);
-    let lintResponse = await falco([...falcoFlags, file]);
+    let lintResponse = await falco([...falcoFlags, file], { falcoPath });
     if (vclFileName) {
       lintResponse = lintResponse.replaceAll(file, vclFileName);
     }
