@@ -16,6 +16,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Changed
 
 - Upgrade falco to v2.0.0 and embed the falco-js library and falco binaries
+- Remove "Experimental:" prefix from `lintingEnabled` setting description
 
 ### Fixed
 

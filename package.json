@@ -73,7 +73,7 @@
           "scope": "resource",
           "type": "boolean",
           "default": true,
-          "description": "Experimental: Enable linting."
+          "description": "Enable linting."
         },
         "fastly.vcl.maxLintingIssues": {
           "scope": "resource",
