@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Add tests for deprecated variable warnings (`client.display.width`, `client.display.height`)
 - Add test for `header.set` function not producing false lint errors
 - Add test for subroutines with parameters
+- Add `fastly.vcl.falcoPath` setting to specify a custom falco binary path
 
 ### Changed
 

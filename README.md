@@ -64,6 +64,7 @@ code --install-extension vscode-fastly-vcl-2.0.4.vsix
 
 - `fastly.vcl.lintingEnabled` (default: `true`) – Enables linter diagnostics.
 - `fastly.vcl.maxLintingIssues` (default: `100`) - Specifies the maximum number of linting issues that the server will return.
+- `fastly.vcl.falcoPath` (default: `""`) - Path to a custom falco binary. If not set, the bundled falco will be used.
 
 ## Known Issues
 
