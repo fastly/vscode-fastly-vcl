@@ -48,3 +48,6 @@ screenshots.xcf
 scripts/**
 test/**
 coverage/**
+icon.svg
+**/*.js.map
+node_modules/**/metaModel.schema.json
