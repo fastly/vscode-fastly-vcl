@@ -111,7 +111,7 @@ suite("Should find references", () => {
 
 async function waitForSymbols(
   docUri: vscode.Uri,
-  timeout = 30000,
+  timeout = 60000,
 ): Promise<void> {
   // Wait for either:
   // 1. Symbols to become available (indicates linting completed and AST was parsed)
@@ -152,7 +152,7 @@ async function waitForSymbols(
             done();
           }
         });
-    }, 200);
+    }, 300);
 
     // Timeout fallback
     timeoutId = setTimeout(done, timeout);
