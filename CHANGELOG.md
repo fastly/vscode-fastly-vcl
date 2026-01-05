@@ -4,6 +4,12 @@ All notable changes to the "vscode-fastly-vcl" extension will be documented in t
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## Unreleased
+
+### Fixed
+
+- Bump qs dependency from 6.14.0 to 6.14.1
+
 ## [2.0.5] - 2026-01-05
 
 ### Added
