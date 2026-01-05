@@ -15,6 +15,7 @@ import * as signatureHelpProvider from "./signature-help-provider";
 import * as hoverProvider from "./hover-provider";
 import * as symbolProvider from "./symbol-provider";
 import * as definitionProvider from "./definition-provider";
+import * as referencesProvider from "./references-provider";
 import * as linter from "./linter";
 
 // Create a connection for the server (Node-IPC transport).
@@ -52,6 +53,7 @@ connection.onInitialize((params: InitializeParams) => {
       hoverProvider: true,
       documentSymbolProvider: true,
       definitionProvider: true,
+      referencesProvider: true,
     },
   };
   if (hasWorkspaceFolderCapability) {
@@ -151,5 +153,7 @@ connection.onDocumentSymbol((params) => {
   if (!document) return [];
   return symbolProvider.getSymbolInformation(document);
 });
+
+connection.onReferences(referencesProvider.resolve);
 
 connection.listen();

@@ -42,6 +42,10 @@ Completions include:
 
 Navigate to the definition of ACLs, tables, and backends using Ctrl+Click (Cmd+Click on macOS) or F12.
 
+### Find References
+
+Find all references to ACLs, tables, backends, and subroutines using Shift+F12 or right-click and select "Find All References".
+
 ## Installation
 
 ### From Marketplace
