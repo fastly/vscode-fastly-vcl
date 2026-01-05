@@ -119,6 +119,14 @@ export function getSymbolInformation(vclDoc: VclDocument): DocumentSymbol[] {
   return symbolCache.get(vclDoc.uri) || [];
 }
 
+export function findSymbolByName(
+  uri: string,
+  name: string,
+): DocumentSymbol | undefined {
+  const symbols = symbolCache.get(uri) || [];
+  return symbols.find((s) => s.name === name);
+}
+
 export function updateDocumentSymbols(vclDoc: VclDocument) {
   if (vclDoc.AST) {
     const symbols: DocumentSymbol[] = [];

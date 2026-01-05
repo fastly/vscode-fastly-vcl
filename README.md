@@ -38,6 +38,10 @@ Completions include:
 
 ![Hover](hover.png)
 
+### Go to Definition
+
+Navigate to the definition of ACLs, tables, and backends using Ctrl+Click (Cmd+Click on macOS) or F12.
+
 ## Installation
 
 ### From Marketplace

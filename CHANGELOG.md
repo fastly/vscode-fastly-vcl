@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## Unreleased
 
+### Added
+
+- Add "Go to Definition" support for ACLs, tables, and backends (Ctrl/Cmd+Click to navigate)
+
 ### Fixed
 
 - Bump qs dependency from 6.14.0 to 6.14.1
