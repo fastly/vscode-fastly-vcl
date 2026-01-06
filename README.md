@@ -46,6 +46,10 @@ Navigate to the definition of ACLs, tables, and backends using Ctrl+Click (Cmd+C
 
 Find all references to ACLs, tables, backends, and subroutines using Shift+F12 or right-click and select "Find All References".
 
+### Code Folding
+
+Collapse and expand code blocks for easier navigation. Supported regions include subroutines, ACLs, tables, backends, if/else blocks, and comment blocks.
+
 ## Installation
 
 ### From Marketplace
