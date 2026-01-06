@@ -12,6 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Add "Find References" support for ACLs, tables, backends, and subroutines
 - Add Dagger CI module for containerized, reproducible CI pipelines
 - Add "Folding Ranges" support for collapsing subroutines, ACLs, tables, backends, if/else blocks, and comments
+- Add "Document Highlights" support using falco AST for accurate highlighting of symbols, headers (`req.http.X-Custom`), and variables (`var.count`)
 
 ### Fixed
 

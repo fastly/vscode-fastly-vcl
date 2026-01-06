@@ -17,6 +17,7 @@ import * as symbolProvider from "./symbol-provider";
 import * as definitionProvider from "./definition-provider";
 import * as referencesProvider from "./references-provider";
 import * as foldingRangeProvider from "./folding-range-provider";
+import * as documentHighlightProvider from "./document-highlight-provider";
 import * as linter from "./linter";
 
 // Create a connection for the server (Node-IPC transport).
@@ -56,6 +57,7 @@ connection.onInitialize((params: InitializeParams) => {
       definitionProvider: true,
       referencesProvider: true,
       foldingRangeProvider: true,
+      documentHighlightProvider: true,
     },
   };
   if (hasWorkspaceFolderCapability) {
@@ -157,6 +159,8 @@ connection.onDocumentSymbol((params) => {
 });
 
 connection.onReferences(referencesProvider.resolve);
+
+connection.onDocumentHighlight(documentHighlightProvider.resolve);
 
 connection.onFoldingRanges(foldingRangeProvider.resolve);
 
