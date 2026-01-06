@@ -10,10 +10,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Add "Go to Definition" support for ACLs, tables, and backends (Ctrl/Cmd+Click to navigate)
 - Add "Find References" support for ACLs, tables, backends, and subroutines
+- Add Dagger CI module for containerized, reproducible CI pipelines
 
 ### Fixed
 
 - Bump qs dependency from 6.14.0 to 6.14.1
+
+### Changed
+
+- Replace GitHub Actions shell commands with Dagger CI pipeline
 
 ## [2.0.5] - 2026-01-05
 

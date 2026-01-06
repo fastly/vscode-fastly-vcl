@@ -7,7 +7,6 @@ suite("Should find references", () => {
 
   test("Finds ACL references from definition", async () => {
     await activate(docUri);
-    await waitForSymbols(docUri);
 
     // Position on "internal" in "acl internal"
     const references = await findReferences(docUri, new vscode.Position(0, 5));
@@ -21,7 +20,6 @@ suite("Should find references", () => {
 
   test("Finds ACL references from usage", async () => {
     await activate(docUri);
-    await waitForSymbols(docUri);
 
     // Position on "internal" in "~ internal"
     const references = await findReferences(docUri, new vscode.Position(6, 20));
@@ -35,7 +33,6 @@ suite("Should find references", () => {
 
   test("Finds table references from definition", async () => {
     await activate(docUri);
-    await waitForSymbols(docUri);
 
     // Position on "redirects" in "table redirects"
     const references = await findReferences(docUri, new vscode.Position(1, 8));
@@ -49,7 +46,6 @@ suite("Should find references", () => {
 
   test("Finds backend references from definition", async () => {
     await activate(docUri);
-    await waitForSymbols(docUri);
 
     // Position on "origin" in "backend origin"
     const references = await findReferences(docUri, new vscode.Position(2, 10));
@@ -67,7 +63,6 @@ suite("Should find references", () => {
 
   test("Finds subroutine references from definition", async () => {
     await activate(docUri);
-    await waitForSymbols(docUri);
 
     // Position on "custom_recv" in "sub custom_recv"
     const references = await findReferences(docUri, new vscode.Position(3, 6));
@@ -85,7 +80,6 @@ suite("Should find references", () => {
 
   test("Finds references excluding declaration", async () => {
     await activate(docUri);
-    await waitForSymbols(docUri);
 
     // Position on "internal" in "acl internal"
     const references = await findReferencesExcludingDeclaration(
@@ -109,66 +103,25 @@ suite("Should find references", () => {
   });
 });
 
-async function waitForSymbols(
-  docUri: vscode.Uri,
-  timeout = 60000,
-): Promise<void> {
-  // Wait for either:
-  // 1. Symbols to become available (indicates linting completed and AST was parsed)
-  // 2. Diagnostics event to fire for this URI
-  // 3. Timeout (gives up waiting)
-  let resolved = false;
-  let pollInterval: ReturnType<typeof setInterval>;
-  let timeoutId: ReturnType<typeof setTimeout>;
-
-  return new Promise((resolve) => {
-    const done = () => {
-      if (!resolved) {
-        resolved = true;
-        disposable.dispose();
-        clearInterval(pollInterval);
-        clearTimeout(timeoutId);
-        resolve();
-      }
-    };
-
-    const disposable = vscode.languages.onDidChangeDiagnostics((e) => {
-      if (e.uris.some((uri) => uri.toString() === docUri.toString())) {
-        // Diagnostics were published - symbols should be available now
-        setTimeout(done, 100);
-      }
-    });
-
-    // Poll for symbols
-    pollInterval = setInterval(() => {
-      vscode.commands
-        .executeCommand("vscode.executeDocumentSymbolProvider", docUri)
-        .then((symbols) => {
-          if (
-            symbols &&
-            Array.isArray(symbols) &&
-            (symbols as unknown[]).length > 0
-          ) {
-            done();
-          }
-        });
-    }, 300);
-
-    // Timeout fallback
-    timeoutId = setTimeout(done, timeout);
-  });
-}
-
 async function findReferences(
   docUri: vscode.Uri,
   position: vscode.Position,
+  timeout = 5000,
 ): Promise<vscode.Location[]> {
-  const references = await vscode.commands.executeCommand<vscode.Location[]>(
-    "vscode.executeReferenceProvider",
-    docUri,
-    position,
-  );
-  return references || [];
+  // Poll for references - LSP may need time to parse the document
+  const start = Date.now();
+  while (Date.now() - start < timeout) {
+    const references = await vscode.commands.executeCommand<vscode.Location[]>(
+      "vscode.executeReferenceProvider",
+      docUri,
+      position,
+    );
+    if (references && references.length > 0) {
+      return references;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+  return [];
 }
 
 async function findReferencesExcludingDeclaration(

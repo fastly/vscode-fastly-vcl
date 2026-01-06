@@ -117,7 +117,7 @@ Then, either run `code --install-extension vscode-fastly-vcl-{VERSION}.vsix` or 
 
 ### Continuous Integration
 
-GitHub Actions automatically runs CI on all pull requests, which includes:
+CI runs automatically on all pull requests via GitHub Actions with [Dagger](https://dagger.io/), a containerized CI/CD engine. The pipeline runs:
 
 - Linting (`npm run lint`)
 - Formatting checks (`npm run format:check`)
@@ -125,12 +125,37 @@ GitHub Actions automatically runs CI on all pull requests, which includes:
 - LSP e2e tests (`npm run test:e2e`)
 - Package building (`npm run package`)
 
-To test GitHub Actions locally, install [act](https://github.com/nektos/act), which runs under Docker/Podman:
+#### Running CI locally with Dagger
+
+Dagger lets you run the exact same CI pipeline locally that runs in GitHub Actions. Install the Dagger CLI:
 
 ```bash
-brew install act
-act
+brew install dagger/tap/dagger
 ```
+
+Run the full CI pipeline:
+
+```bash
+npm run dagger:ci
+# or directly: dagger call ci --source=.
+```
+
+Run individual steps:
+
+```bash
+npm run dagger:lint          # Run linting
+npm run dagger:test          # Run tests
+dagger call format-check --source=.
+dagger call package --source=.
+```
+
+List all available Dagger functions:
+
+```bash
+dagger functions
+```
+
+The Dagger module is defined in `.dagger/src/index.ts`.
 
 ### Contributing
 
