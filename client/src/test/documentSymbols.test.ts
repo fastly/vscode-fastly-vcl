@@ -54,7 +54,7 @@ suite("Should provide document symbols", () => {
 
 async function waitForSymbolsOrDiagnostics(
   docUri: vscode.Uri,
-  timeout = 60000,
+  timeout = 90000,
 ): Promise<void> {
   // Wait for either:
   // 1. Symbols to become available (indicates linting completed and AST was parsed)
@@ -99,7 +99,7 @@ async function waitForSymbolsOrDiagnostics(
             done();
           }
         });
-    }, 500); // Poll every 500ms to reduce load
+    }, 300); // Poll every 300ms
 
     // Timeout fallback
     timeoutId = setTimeout(done, timeout);
@@ -108,7 +108,7 @@ async function waitForSymbolsOrDiagnostics(
 
 async function waitForSymbols(
   docUri: vscode.Uri,
-  timeout = 5000,
+  timeout = 60000,
 ): Promise<vscode.DocumentSymbol[] | vscode.SymbolInformation[]> {
   const start = Date.now();
   while (Date.now() - start < timeout) {

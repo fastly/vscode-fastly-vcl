@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added
 
 - Add "Go to Definition" support for ACLs, tables, and backends (Ctrl/Cmd+Click to navigate)
+- Add "Find References" support for ACLs, tables, backends, and subroutines
 
 ### Fixed
 
