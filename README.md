@@ -50,6 +50,10 @@ Find all references to ACLs, tables, backends, and subroutines using Shift+F12 o
 
 Collapse and expand code blocks for easier navigation. Supported regions include subroutines, ACLs, tables, backends, if/else blocks, and comment blocks.
 
+### Document Highlights
+
+When the cursor is on a symbol, all occurrences of that symbol in the current document are highlighted. Works with ACLs, tables, backends, subroutines, HTTP headers (e.g., `req.http.X-Custom`), and local variables (e.g., `var.count`).
+
 ## Installation
 
 ### From Marketplace
