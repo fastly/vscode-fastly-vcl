@@ -23,6 +23,8 @@ export class VscodeFastlyVcl {
         "install",
         "-y",
         "--no-install-recommends",
+        // Required for downloading falco binaries
+        "curl",
         // VS Code extension test dependencies
         "libnspr4",
         "libnss3",
