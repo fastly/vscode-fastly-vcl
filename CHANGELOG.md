@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Add "Go to Definition" support for ACLs, tables, and backends (Ctrl/Cmd+Click to navigate)
 - Add "Find References" support for ACLs, tables, backends, and subroutines
 - Add Dagger CI module for containerized, reproducible CI pipelines
+- Add "Folding Ranges" support for collapsing subroutines, ACLs, tables, backends, if/else blocks, and comments
 
 ### Fixed
 
