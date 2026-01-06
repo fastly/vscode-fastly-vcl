@@ -115,6 +115,23 @@ Then, either run `code --install-extension vscode-fastly-vcl-{VERSION}.vsix` or 
 
 ![How to install a VSIX](https://github.com/doramatadora/vscode-fastly-vcl/assets/12828487/090175b9-ae10-4982-a6b8-81f42998e587)
 
+### Continuous Integration
+
+GitHub Actions automatically runs CI on all pull requests, which includes:
+
+- Linting (`npm run lint`)
+- Formatting checks (`npm run format:check`)
+- Colorization tests (`npm run test:colorization`)
+- LSP e2e tests (`npm run test:e2e`)
+- Package building (`npm run package`)
+
+To test GitHub Actions locally, install [act](https://github.com/nektos/act), which runs under Docker/Podman:
+
+```bash
+brew install act
+act
+```
+
 ### Contributing
 
 Please open a pull request with your changes.
