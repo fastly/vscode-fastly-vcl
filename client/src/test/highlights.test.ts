@@ -47,10 +47,10 @@ suite("Should provide document highlights", () => {
   test("Highlights backend from definition", async () => {
     await activate(docUri);
 
-    // Position on "origin" in "backend origin"
+    // Position on "F_origin" in "backend F_origin"
     const highlights = await getHighlights(docUri, new vscode.Position(2, 10));
 
-    // Should find: definition + 2 usages (req.backend + bereq.backend)
+    // Should find: definition + 2 usages (req.backend + req.backend)
     assert.strictEqual(
       highlights.length,
       3,
