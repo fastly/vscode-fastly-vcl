@@ -12,6 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Add "Find References" support for ACLs, tables, backends, subroutines, local variables and parameters
 - Add "Folding Ranges" support for collapsing subroutines, ACLs, tables, backends, if/else blocks, and comments
 - Add "Document Highlights" support using falco AST for accurate highlighting of symbols, headers (`req.http.X-Custom`), and variables (`var.count`)
+- Add "Rename Symbol" support for safely renaming ACLs, tables, backends, subroutines, local variables, parameters, and HTTP headers
 - Add Dagger CI module for containerized, reproducible CI pipelines
 
 ### Fixed
