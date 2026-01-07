@@ -18,6 +18,7 @@ import * as definitionProvider from "./definition-provider";
 import * as referencesProvider from "./references-provider";
 import * as foldingRangeProvider from "./folding-range-provider";
 import * as documentHighlightProvider from "./document-highlight-provider";
+import * as renameProvider from "./rename-provider";
 import * as linter from "./linter";
 
 // Create a connection for the server (Node-IPC transport).
@@ -58,6 +59,9 @@ connection.onInitialize((params: InitializeParams) => {
       referencesProvider: true,
       foldingRangeProvider: true,
       documentHighlightProvider: true,
+      renameProvider: {
+        prepareProvider: true,
+      },
     },
   };
   if (hasWorkspaceFolderCapability) {
@@ -163,5 +167,9 @@ connection.onReferences(referencesProvider.resolve);
 connection.onDocumentHighlight(documentHighlightProvider.resolve);
 
 connection.onFoldingRanges(foldingRangeProvider.resolve);
+
+connection.onPrepareRename(renameProvider.prepare);
+
+connection.onRenameRequest(renameProvider.resolve);
 
 connection.listen();

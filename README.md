@@ -62,6 +62,12 @@ When the cursor is on a symbol, all occurrences of that symbol in the current do
 
 ![Highlights](images/highlights.png)
 
+### Rename symbols
+
+Safely rename ACLs, tables, backends, subroutines, local variables, parameters, and HTTP headers.
+
+![Rename](images/rename.gif)
+
 ## Installation
 
 ### From Marketplace
