@@ -48,9 +48,11 @@ Peek at definitions using ⌥F12:
 
 ![Peek definition](images/peek-definition.gif)
 
-### Find References
+### Find all references
 
-Find all references to ACLs, tables, backends, and subroutines using Shift+F12 or right-click and select "Find All References".
+Find all references to ACLs, tables, backends, and subroutines, local variables, and parameters using Shift+F12 or right-click and select "Find All References".
+
+![Find all references](images/find-all-references.gif)
 
 ### Code Folding
 
