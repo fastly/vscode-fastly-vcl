@@ -20,7 +20,7 @@ table redirects {
   "/deprecated": "/current",
 }
 
-backend origin {
+backend F_origin {
   .host = "example.com";
   .port = "443";
   .ssl = true;
@@ -49,7 +49,7 @@ sub vcl_recv {
     error 301;
   }
 
-  set req.backend = origin;
+  set req.backend = F_origin;
   call custom_logic;
 }
 

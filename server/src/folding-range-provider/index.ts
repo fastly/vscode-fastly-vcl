@@ -1,3 +1,22 @@
+/**
+ * Folding Range Provider for VCL Documents
+ *
+ * This module provides code folding functionality for VCL files in VS Code,
+ * allowing users to collapse and expand sections of code for better readability.
+ *
+ * Folding is supported for:
+ * - Block declarations: sub, acl, table, backend, director, ratecounter, penaltybox
+ * - Control flow statements: if, else, elsif
+ * - Multi-line comments like this one with /*
+ * - Consecutive single-line comments: # ...
+ *
+ * The implementation uses two strategies:
+ * 1. AST-based folding: Walks the parsed AST to identify block structures and
+ *    control flow statements, finding their closing braces to determine fold ranges.
+ * 2. Text-based folding: Scans the document line-by-line to detect comment blocks
+ *    that should be foldable, handling both block comments and consecutive line comments.
+ */
+
 import {
   FoldingRangeParams,
   FoldingRange,
@@ -8,14 +27,6 @@ import { documentCache } from "../shared/documentCache";
 import { VclDocument } from "../shared/vclDocument";
 import { walkAST, ASTNode } from "../shared/ast";
 
-/**
- * Provides folding ranges for VCL documents.
- * Supports folding for:
- * - Block declarations (sub, acl, table, backend, director, ratecounter, penaltybox)
- * - Control flow statements (if, else, elsif)
- * - Multi-line comments (/* ... *​/)
- * - Consecutive single-line comments (# ...)
- */
 export function resolve(params: FoldingRangeParams): FoldingRange[] {
   const doc = documentCache.get(params.textDocument.uri);
   if (!doc) return [];
