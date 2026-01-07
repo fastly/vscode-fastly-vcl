@@ -22,6 +22,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Changed
 
 - Replace GitHub Actions shell commands with Dagger CI pipeline
+- Updated the documentation, including animated GIFs
 
 ## [2.0.5] - 2026-01-05
 
