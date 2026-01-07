@@ -1,3 +1,30 @@
+/**
+ * Provides "Find All References" functionality for VCL documents.
+ *
+ * This provider locates all occurrences of a symbol throughout a document,
+ * enabling users to see everywhere a particular name is used. It handles
+ * two distinct categories of symbols:
+ *
+ * **Global Symbols (document-wide)**
+ * - ACLs: Matches `~ acl_name` or `!~ acl_name` patterns
+ * - Tables: Matches `table.lookup(table_name, ...)` and `table.contains(table_name, ...)`
+ * - Backends: Matches `req.backend = name` or `bereq.backend = name`
+ * - Subroutines: Matches `call subroutine_name;` invocations
+ *
+ * **Local Symbols (subroutine-scoped)**
+ * - Variables declared with `declare local`
+ * - Subroutine parameters
+ *
+ * The provider works by:
+ * 1. Determining what word is at the cursor position
+ * 2. First checking if it's a local variable/parameter within a subroutine scope
+ * 3. If not local, querying the document's symbol table to identify the symbol type
+ * 4. Using type-specific regex patterns to find all usages in the document
+ * 5. Optionally including the definition location based on request parameters
+ *
+ * Local variable references are scoped to their containing subroutine, while
+ * global symbol references span the entire document.
+ */
 import {
   ReferenceParams,
   Location,
