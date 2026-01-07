@@ -180,6 +180,44 @@ suite("Should provide document highlights", () => {
       "Expected 2 write highlights for add statements",
     );
   });
+
+  test("Highlights subfield occurrences", async () => {
+    await activate(docUri);
+
+    // Position on "beresp.http.Cache-Control:private" (line 59: unset beresp.http.Cache-Control:private;)
+    const highlights = await getHighlights(docUri, new vscode.Position(58, 15));
+
+    // Should find: unset + set + read in if condition
+    assert.strictEqual(
+      highlights.length,
+      3,
+      "Expected 3 highlights for beresp.http.Cache-Control:private",
+    );
+
+    // unset and set should be writes
+    const writeHighlights = highlights.filter(
+      (h) => h.kind === vscode.DocumentHighlightKind.Write,
+    );
+    assert.strictEqual(
+      writeHighlights.length,
+      2,
+      "Expected 2 write highlights (unset and set statements)",
+    );
+  });
+
+  test("Does not highlight different subfields together", async () => {
+    await activate(docUri);
+
+    // Position on "beresp.http.Cache-Control:max-age" (line 64)
+    const highlights = await getHighlights(docUri, new vscode.Position(63, 15));
+
+    // Should only find 1 occurrence of max-age (not mixed with :private)
+    assert.strictEqual(
+      highlights.length,
+      1,
+      "Expected 1 highlight for beresp.http.Cache-Control:max-age (not mixed with :private)",
+    );
+  });
 });
 
 async function getHighlights(

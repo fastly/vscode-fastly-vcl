@@ -53,3 +53,13 @@ sub vcl_deliver {
   add resp.http.Set-Cookie = "otherCookie=bar; path=/";
   if (resp.http.Set-Cookie) { }
 }
+
+sub vcl_fetch {
+  # Subfield usages - should highlight all occurrences of the same subfield
+  unset beresp.http.Cache-Control:private;
+  set beresp.http.Cache-Control:private = "";
+  if (beresp.http.Cache-Control:private) { }
+
+  # Different subfields should NOT be highlighted together
+  set beresp.http.Cache-Control:max-age = "3600";
+}

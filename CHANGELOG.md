@@ -10,9 +10,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Add "Go to Definition" support for ACLs, tables, backends, local variables and parameters (Ctrl/Cmd+Click to navigate)
 - Add "Find References" support for ACLs, tables, backends, subroutines, local variables and parameters
-- Add Dagger CI module for containerized, reproducible CI pipelines
 - Add "Folding Ranges" support for collapsing subroutines, ACLs, tables, backends, if/else blocks, and comments
 - Add "Document Highlights" support using falco AST for accurate highlighting of symbols, headers (`req.http.X-Custom`), and variables (`var.count`)
+- Add Dagger CI module for containerized, reproducible CI pipelines
 
 ### Fixed
 

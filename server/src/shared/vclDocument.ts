@@ -81,8 +81,8 @@ export class VclDocument {
     const line = this.getLine(position);
     const [wordStart] = line
       .slice(0, position.character)
-      .match(/[\w\d._-]+$/) || [""];
-    const [wordEnd] = line.slice(position.character).match(/^[\w\d._-]+/) || [
+      .match(/[\w\d._:-]+$/) || [""];
+    const [wordEnd] = line.slice(position.character).match(/^[\w\d._:-]+/) || [
       "",
     ];
     return `${wordStart}${wordEnd}`;
