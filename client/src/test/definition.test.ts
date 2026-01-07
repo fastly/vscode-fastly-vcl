@@ -30,13 +30,25 @@ suite("Should do definition", () => {
   });
 
   test("Goes to backend definition", async () => {
-    // Position on "origin" in "set req.backend = origin;"
-    // Line 28 (0-indexed 27), character 20 is start of "origin"
+    // Position on "F_origin" in "set req.backend = F_origin;"
+    // Line 28 (0-indexed 27), character 20 is start of "F_origin"
     await testDefinition(docUri, new vscode.Position(27, 22), {
       uri: docUri,
       range: new vscode.Range(
         new vscode.Position(10, 8),
-        new vscode.Position(10, 14),
+        new vscode.Position(10, 16),
+      ),
+    });
+  });
+
+  test("Definition from declaration stays at declaration", async () => {
+    // Position on "F_origin" in "backend F_origin {" (line 11, 0-indexed 10)
+    // Should return the same location (the definition itself)
+    await testDefinition(docUri, new vscode.Position(10, 10), {
+      uri: docUri,
+      range: new vscode.Range(
+        new vscode.Position(10, 8),
+        new vscode.Position(10, 16),
       ),
     });
   });
@@ -44,6 +56,43 @@ suite("Should do definition", () => {
   test("Returns empty for undefined symbol", async () => {
     // Position on "client" which has no definition in this file
     await testNoDefinition(docUri, new vscode.Position(19, 8));
+  });
+
+  test("Goes to local variable definition", async () => {
+    // Position on "var.result" in "return var.result;" (line 41, 0-indexed 40)
+    // Should jump to the declaration on line 37 (0-indexed 36), character 16
+    await testDefinition(docUri, new vscode.Position(40, 12), {
+      uri: docUri,
+      range: new vscode.Range(
+        new vscode.Position(36, 16),
+        new vscode.Position(36, 26),
+      ),
+    });
+  });
+
+  test("Goes to subroutine parameter definition", async () => {
+    // Position on "var.a" in "set var.result = var.a + var.b;" (line 47, 0-indexed 46)
+    // Should jump to parameter declaration on line 45 (0-indexed 44), character 25
+    await testDefinition(docUri, new vscode.Position(46, 21), {
+      uri: docUri,
+      range: new vscode.Range(
+        new vscode.Position(44, 25),
+        new vscode.Position(44, 30),
+      ),
+    });
+  });
+
+  test("Local variable definition is scope-aware", async () => {
+    // Position on "var.result" in "return var.result;" inside concat_params (line 48, 0-indexed 47)
+    // Should jump to the declaration on line 46 (0-indexed 45) within the SAME subroutine,
+    // NOT to line 37 (0-indexed 36) which is in concat_values
+    await testDefinition(docUri, new vscode.Position(47, 11), {
+      uri: docUri,
+      range: new vscode.Range(
+        new vscode.Position(45, 16),
+        new vscode.Position(45, 26),
+      ),
+    });
   });
 });
 
