@@ -1,4 +1,32 @@
-// Tags interesting symbols from the AST.
+/**
+ * Document Symbol Provider
+ *
+ * This module provides document symbol functionality for VCL files, enabling
+ * features like the Outline view, breadcrumbs, and Go to Symbol (Cmd+Shift+O).
+ *
+ * **Feature Overview:**
+ * Document symbols represent the structural elements of a VCL file, such as
+ * subroutines, backends, ACLs, tables, directors, and variable declarations.
+ * These symbols appear in VS Code's Outline panel and can be navigated via
+ * the symbol picker.
+ *
+ * **Implementation:**
+ * 1. When a VCL document is parsed, `updateDocumentSymbols()` is called to
+ *    extract symbols from the falco AST using `walkAST()`.
+ * 2. The `getSymbol()` function maps AST node types to LSP `DocumentSymbol`
+ *    objects, determining the appropriate `SymbolKind` (Function, Object,
+ *    Variable, Module) based on the VCL construct.
+ * 3. Symbols are cached per document URI for quick retrieval via
+ *    `getSymbolInformation()` and `findSymbolByName()`.
+ * 4. Nested subroutines (indicated by `node.Nest`) are added as children of
+ *    their parent symbol to preserve hierarchy.
+ *
+ * **Supported VCL Constructs:**
+ * - `sub` (subroutine) → SymbolKind.Function
+ * - `backend`, `acl`, `table`, `director`, `ratecounter`, `penaltybox` → SymbolKind.Object
+ * - `declare local` → SymbolKind.Variable
+ * - `include` → SymbolKind.Module
+ */
 import {
   SymbolKind,
   Position,

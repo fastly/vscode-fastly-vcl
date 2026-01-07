@@ -1,42 +1,38 @@
 # Fastly Varnish Configuration Language (VCL) Support for Visual Studio Code
 
-![.vcl icon](icon.png)
+![.vcl icon](images/icon.png)
 
-A Visual Studio Code extension that adds syntax highlighting, code completion, snippets, documentation and linter diagnostics for Fastly Varnish Configuration Language (VCL) files.
+Brings full IDE support for Fastly Varnish Configuration Language (VCL) to Visual Studio Code, from syntax highlighting to intelligent diagnostics.
 
-This extension is based on the public [Fastly VCL reference](https://developer.fastly.com/reference/vcl/).
-
-![Dark and light screenshots](screenshots.png)
+Builds upon on the open source [Falco Fastly VCL developer tool](https://github.com/ysugimoto/falco).
 
 ## Features
 
 ### Syntax highlighting
 
+![Dark and light screenshots](images/screenshots.png)
+
 The screenshots above are of [VCL boilerplate](https://developer.fastly.com/learning/vcl/using/#adding-vcl-to-your-service-configuration) using the [GitHub Dark Default](https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme) theme and the [JetBrains Mono](https://www.jetbrains.com/lp/mono/) font and using Visual Studio Code's default Light+ theme and the [Cascadia Code](https://github.com/microsoft/cascadia-code) font.
 
-### Diagnostics (with [`falco`](https://github.com/ysugimoto/falco))
+### Diagnostics
 
-![Diagnostics](diagnostics.png)
+Real-time linting surfaces syntax errors and best-practice violations directly in the editor.
 
-### Contextual completions
+![Diagnostics](images/diagnostics.png)
 
-Completions include:
+### Contextual completions and signature help
 
-- VCL functions
-- VCL variables
-- HTTP headers
-- Subroutine snippets
-- Fastly macros
+As you type, intelligent completions suggest functions, variables, and headers available in your current subroutine.
 
-![Completions](completions.png)
+While writing a function call, a tooltip appears showing the function's signature, parameter types, and documentation.
 
-### Signature help
-
-![Signature help](signatures.png)
+![Completions](images/completions.gif)
 
 ### Documentation on hover
 
-![Hover](hover.png)
+Upon hover, displays inline documentation for functions (including scope and parameters), variables, subroutines, and HTTP headers.
+
+![Hover](images/hover.png)
 
 ### Go to definition and peek definition
 

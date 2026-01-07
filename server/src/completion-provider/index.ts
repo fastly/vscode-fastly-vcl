@@ -1,3 +1,33 @@
+/**
+ * Context-Aware Completion Provider for Fastly VCL
+ *
+ * This module provides intelligent code completions that adapt based on the
+ * user's current position within VCL source code.
+ *
+ * ## Aim
+ *
+ * VCL has many functions, variables, and headers that are only valid within
+ * specific subroutines (e.g., `vcl_recv`, `vcl_fetch`, `vcl_deliver`). Rather
+ * than showing all possible completions regardless of context, this provider
+ * filters suggestions to only show items that are valid in the current scope,
+ * reducing noise and preventing invalid code.
+ *
+ * ## Implementation
+ *
+ * 1. **Scope Detection**: When a completion is requested, we determine which
+ *    VCL subroutine contains the cursor position using the document's AST.
+ *
+ * 2. **Contextual Filtering**: Each completion source (functions, variables,
+ *    headers) maintains metadata about which subroutines each item is valid in.
+ *    The `query()` functions filter their items based on the detected scope.
+ *
+ * 3. **Aggregation**: Completions from all sources are combined and returned.
+ *    Special cases (like `#FASTLY` macro completions) are handled separately.
+ *
+ * 4. **Resolution**: When a user selects an item, `resolve()` fetches full
+ *    documentation including description, type signature, and links to docs.
+ */
+
 import {
   CompletionItem,
   CompletionItemKind,
@@ -10,8 +40,6 @@ import * as vclFunctions from "./functions";
 import * as vclVariables from "./variables";
 import * as vclSubroutines from "./subroutines";
 import * as vclHeaders from "./headers";
-
-// Context-aware token completion based on the enclosing builtin subroutine.
 
 // Returns a list of completion items for the given position.
 export function query(params: TextDocumentPositionParams): CompletionItem[] {

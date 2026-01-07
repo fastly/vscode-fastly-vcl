@@ -1,3 +1,30 @@
+/**
+ * VCL Diagnostics Provider
+ *
+ * This module provides linting and diagnostics for Fastly VCL files by integrating
+ * with the falco linter (https://github.com/ysugimoto/falco).
+ *
+ * ## Implementation
+ *
+ * 1. When a VCL document changes, `validateVCLDocument()` is called (debounced to
+ *    avoid excessive linting during rapid typing).
+ *
+ * 2. The function invokes falco via the `falco-js` wrapper, which runs the platform-
+ *    specific falco binary and returns parse errors, lint errors, and an AST.
+ *
+ * 3. Parse errors (syntax errors) and lint errors (style/best-practice violations)
+ *    are converted into LSP `Diagnostic` objects with appropriate severity levels.
+ *
+ * 4. Diagnostics are published to VS Code via `connection.sendDiagnostics()`,
+ *    which displays them in the Problems panel and as inline squiggles.
+ *
+ * ## Configuration
+ *
+ * - `fastly.vcl.lintingEnabled` - Enable/disable linting
+ * - `fastly.vcl.maxLintingIssues` - Maximum number of issues to report
+ * - `fastly.vcl.falcoPath` - Custom path to falco binary
+ */
+
 import {
   Diagnostic,
   DiagnosticSeverity,
