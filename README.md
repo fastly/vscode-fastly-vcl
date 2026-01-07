@@ -60,9 +60,11 @@ Collapse and expand code blocks for easier navigation. Supported regions include
 
 ![Code folding](images/code-folding.gif)
 
-### Document Highlights
+### Document highlights
 
 When the cursor is on a symbol, all occurrences of that symbol in the current document are highlighted. Works with ACLs, tables, backends, subroutines, HTTP headers (e.g., `req.http.X-Custom`), and local variables (e.g., `var.count`).
+
+![Highlights](images/highlights.png)
 
 ## Installation
 

@@ -1,3 +1,30 @@
+/**
+ * Document Highlight Provider for VCL Documents
+ *
+ * This module provides document highlighting functionality for VCL files in VS Code,
+ * allowing users to see all occurrences of a symbol highlighted when they place their
+ * cursor on it. This helps with code navigation and understanding variable usage.
+ *
+ * Highlighting is supported for:
+ * - Declarations: sub, acl, table, backend, director, ratecounter, penaltybox
+ * - Variable references: both reads and writes (set, unset, add statements)
+ * - Subroutine calls via the call statement
+ * - Function arguments including table references
+ * - ACL checks using ~ and !~ operators
+ * - Parameter declarations in subroutine signatures
+ *
+ * The implementation uses two strategies:
+ * 1. AST-based highlighting (preferred): Walks the parsed AST to find all occurrences
+ *    of an identifier, distinguishing between read and write operations. This approach
+ *    is more accurate as it won't match identifiers inside strings or comments.
+ * 2. Symbol-based fallback: When no AST is available, falls back to using symbol
+ *    information to highlight just the definition location.
+ *
+ * Highlights are categorized as:
+ * - Write: Declarations, set/unset/add statements, parameter definitions
+ * - Read: Variable references, function calls, subroutine calls, ACL checks
+ */
+
 import {
   DocumentHighlightParams,
   DocumentHighlight,
