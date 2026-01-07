@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Added
 
-- Add "Go to Definition" support for ACLs, tables, and backends (Ctrl/Cmd+Click to navigate)
+- Add "Go to Definition" support for ACLs, tables, backends, local variables and parameters (Ctrl/Cmd+Click to navigate)
 - Add "Find References" support for ACLs, tables, backends, and subroutines
 - Add Dagger CI module for containerized, reproducible CI pipelines
 - Add "Folding Ranges" support for collapsing subroutines, ACLs, tables, backends, if/else blocks, and comments
@@ -17,6 +17,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Fixed
 
 - Bump qs dependency from 6.14.0 to 6.14.1
+- Fix word selection to include dots for VCL identifiers like `var.result` and `req.http.X-Header`
 
 ### Changed
 

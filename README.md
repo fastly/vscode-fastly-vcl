@@ -38,9 +38,15 @@ Completions include:
 
 ![Hover](hover.png)
 
-### Go to Definition
+### Go to definition and peek definition
 
-Navigate to the definition of ACLs, tables, and backends using Ctrl+Click (Cmd+Click on macOS) or F12.
+Navigate to the definition of ACLs, tables, backends, local variables, and parameters using Ctrl+Click / Cmd+Click or F12.
+
+![Go to definition](images/go-to-definition.gif)
+
+Peek at definitions using ⌥F12:
+
+![Peek definition](images/peek-definition.gif)
 
 ### Find References
 

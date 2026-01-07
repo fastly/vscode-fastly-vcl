@@ -27,6 +27,8 @@
     ["\"", "\""],
     ["'", "'"]
   ],
+  // word pattern for VCL identifiers (includes . for var.name and req.http.X-Header patterns)
+  "wordPattern": "[\\w][\\w\\d._-]*",
   // folding ranges
   "folding": {
     "markers": {

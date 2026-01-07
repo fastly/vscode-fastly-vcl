@@ -29,3 +29,21 @@ sub vcl_recv {
 
   return(lookup);
 }
+
+# Subroutine with local variable
+sub concat_values STRING {
+  declare local var.left STRING;
+  declare local var.right STRING;
+  declare local var.result STRING;
+  set var.left = "hello";
+  set var.right = "world";
+  set var.result = var.left + var.right;
+  return var.result;
+}
+
+# Subroutine with parameters
+sub concat_params(STRING var.a, STRING var.b) STRING {
+  declare local var.result STRING;
+  set var.result = var.a + var.b;
+  return var.result;
+}
