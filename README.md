@@ -54,9 +54,11 @@ Find all references to ACLs, tables, backends, and subroutines, local variables,
 
 ![Find all references](images/find-all-references.gif)
 
-### Code Folding
+### Code folding
 
 Collapse and expand code blocks for easier navigation. Supported regions include subroutines, ACLs, tables, backends, if/else blocks, and comment blocks.
+
+![Code folding](images/code-folding.gif)
 
 ### Document Highlights
 
