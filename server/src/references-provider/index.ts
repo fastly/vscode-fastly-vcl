@@ -1,11 +1,25 @@
-import { ReferenceParams, Location, Range } from "vscode-languageserver/node";
+import {
+  ReferenceParams,
+  Location,
+  Range,
+  Position,
+} from "vscode-languageserver/node";
 
 import { documentCache } from "../shared/documentCache";
 import { getSymbolInformation } from "../symbol-provider";
 import { VclDocument } from "../shared/vclDocument";
+import { walkAST, ASTNode } from "../shared/ast";
+
+interface VariableLocation {
+  name: string;
+  line: number;
+  position: number;
+  length: number;
+}
 
 /**
- * Resolves references for VCL symbols (ACLs, tables, backends, subroutines).
+ * Resolves references for VCL symbols (ACLs, tables, backends, subroutines)
+ * and local variables/parameters within subroutine scopes.
  * Returns all locations where the symbol is used, optionally including the definition.
  */
 export function resolve(params: ReferenceParams): Location[] {
@@ -14,6 +28,19 @@ export function resolve(params: ReferenceParams): Location[] {
 
   const word = doc.getWord(params.position);
   if (!word) return [];
+
+  // Check for local variable or parameter references first
+  if (doc.AST) {
+    const localReferences = findLocalVariableReferences(
+      doc,
+      word,
+      params.position,
+      params.context.includeDeclaration,
+    );
+    if (localReferences.length > 0) {
+      return localReferences;
+    }
+  }
 
   const symbols = getSymbolInformation(doc);
 
@@ -165,4 +192,178 @@ function findNameIndex(match: RegExpExecArray, name: string): number {
  */
 function escapeRegex(str: string): string {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * Finds the subroutine node that contains the given position.
+ */
+function findContainingSubroutine(
+  ast: ASTNode,
+  position: Position,
+): ASTNode | null {
+  let containingSub: ASTNode | null = null;
+
+  walkAST(ast, (node: ASTNode) => {
+    if (node.Token?.Type === "SUBROUTINE" && node.Block) {
+      const startLine = node.Token.Line - 1;
+      const endLine = node.Block.EndLine ? node.Block.EndLine - 1 : startLine;
+
+      if (position.line >= startLine && position.line <= endLine) {
+        containingSub = node;
+      }
+    }
+  });
+
+  return containingSub;
+}
+
+/**
+ * Checks if the given variable name is a local variable or parameter
+ * within the containing subroutine.
+ */
+function isLocalVariableOrParameter(
+  containingSub: ASTNode,
+  name: string,
+): boolean {
+  // Check for parameter declarations in the subroutine signature
+  if (containingSub.Parameters && Array.isArray(containingSub.Parameters)) {
+    for (const param of containingSub.Parameters) {
+      if (param.Name?.Value === name) {
+        return true;
+      }
+    }
+  }
+
+  // Check for declare local statements within this subroutine's block
+  let found = false;
+  if (containingSub.Block) {
+    walkAST(containingSub.Block, (node: ASTNode) => {
+      if (found) return;
+      if (node.Token?.Type === "DECLARE" && node.Name?.Value === name) {
+        found = true;
+      }
+    });
+  }
+
+  return found;
+}
+
+/**
+ * Finds the declaration location for a local variable or parameter.
+ */
+function findDeclarationLocation(
+  containingSub: ASTNode,
+  name: string,
+): VariableLocation | null {
+  // Check for parameter declarations in the subroutine signature
+  if (containingSub.Parameters && Array.isArray(containingSub.Parameters)) {
+    for (const param of containingSub.Parameters) {
+      if (param.Name?.Value === name) {
+        return {
+          name: param.Name.Value,
+          line: param.Name.Token.Line - 1,
+          position: param.Name.Token.Position - 1,
+          length: param.Name.Token.Literal.length,
+        };
+      }
+    }
+  }
+
+  // Search for declare local statements within this subroutine's block
+  let result: VariableLocation | null = null;
+  if (containingSub.Block) {
+    walkAST(containingSub.Block, (node: ASTNode) => {
+      if (result) return;
+      if (node.Token?.Type === "DECLARE" && node.Name?.Value === name) {
+        result = {
+          name: node.Name.Value,
+          line: node.Name.Token.Line - 1,
+          position: node.Name.Token.Position - 1,
+          length: node.Name.Token.Literal.length,
+        };
+      }
+    });
+  }
+
+  return result;
+}
+
+/**
+ * Finds all usages of a local variable or parameter within a subroutine block.
+ */
+function findVariableUsagesInBlock(
+  doc: VclDocument,
+  containingSub: ASTNode,
+  name: string,
+): VariableLocation[] {
+  const locations: VariableLocation[] = [];
+
+  if (!containingSub.Block) return locations;
+
+  walkAST(containingSub.Block, (node: ASTNode) => {
+    // Check for IDENT nodes that match the variable name
+    if (node.Token?.Type === "IDENT" && node.Value === name) {
+      locations.push({
+        name: node.Value,
+        line: node.Token.Line - 1,
+        position: node.Token.Position - 1,
+        length: node.Token.Literal.length,
+      });
+    }
+  });
+
+  return locations;
+}
+
+/**
+ * Finds all references to a local variable or parameter within its scope.
+ * Returns empty array if the word is not a local variable or parameter.
+ */
+function findLocalVariableReferences(
+  doc: VclDocument,
+  name: string,
+  position: Position,
+  includeDeclaration: boolean,
+): Location[] {
+  if (!doc.AST) return [];
+
+  // Find which subroutine contains the cursor
+  const containingSub = findContainingSubroutine(doc.AST, position);
+  if (!containingSub) return [];
+
+  // Check if this is actually a local variable or parameter
+  if (!isLocalVariableOrParameter(containingSub, name)) return [];
+
+  const references: Location[] = [];
+
+  // Include declaration if requested
+  if (includeDeclaration) {
+    const declaration = findDeclarationLocation(containingSub, name);
+    if (declaration) {
+      references.push({
+        uri: doc.uri,
+        range: {
+          start: { line: declaration.line, character: declaration.position },
+          end: {
+            line: declaration.line,
+            character: declaration.position + declaration.length,
+          },
+        },
+      });
+    }
+  }
+
+  // Find all usages in the subroutine block
+  const usages = findVariableUsagesInBlock(doc, containingSub, name);
+  for (const usage of usages) {
+    references.push({
+      uri: doc.uri,
+      range: {
+        start: { line: usage.line, character: usage.position },
+        end: { line: usage.line, character: usage.position + usage.length },
+      },
+    });
+  }
+
+  return references;
 }

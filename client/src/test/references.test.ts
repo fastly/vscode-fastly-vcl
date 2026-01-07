@@ -101,6 +101,84 @@ suite("Should find references", () => {
       "Should not include definition when excludeDeclaration is true",
     );
   });
+
+  test("Finds local variable references", async () => {
+    await activate(docUri);
+
+    // Position on "var.result" in "declare local var.result" (line 21 in file = line 20 in VS Code)
+    const references = await findReferences(
+      docUri,
+      new vscode.Position(20, 24),
+    );
+
+    // Should find: declaration + 4 usages
+    // Line 20: declaration
+    // Line 21: set var.result = "hello"
+    // Line 22: set var.result = var.result + (both occurrences on this line)
+    // Line 23: return var.result
+    assert.strictEqual(
+      references.length,
+      5,
+      "Expected 5 references for local variable",
+    );
+    assertReferenceAtLine(references, 20); // declaration
+    assertReferenceAtLine(references, 21); // set var.result = "hello"
+    assertReferenceAtLine(references, 22); // set var.result = var.result + ...
+    assertReferenceAtLine(references, 23); // return var.result
+  });
+
+  test("Finds local variable references from usage", async () => {
+    await activate(docUri);
+
+    // Position on "var.result" in "return var.result" (line 24 in file = line 23 in VS Code)
+    const references = await findReferences(
+      docUri,
+      new vscode.Position(23, 12),
+    );
+
+    // Should find: declaration + 4 usages
+    assert.strictEqual(
+      references.length,
+      5,
+      "Expected 5 references for local variable from usage",
+    );
+  });
+
+  test("Finds parameter references", async () => {
+    await activate(docUri);
+
+    // Position on "var.input" in parameter declaration (line 27 in file = line 26 in VS Code)
+    const references = await findReferences(
+      docUri,
+      new vscode.Position(26, 26),
+    );
+
+    // Should find: parameter declaration + 1 usage
+    assert.strictEqual(
+      references.length,
+      2,
+      "Expected 2 references for parameter",
+    );
+    assertReferenceAtLine(references, 26); // parameter declaration
+    assertReferenceAtLine(references, 28); // usage in set statement
+  });
+
+  test("Finds parameter references from usage", async () => {
+    await activate(docUri);
+
+    // Position on "var.suffix" in "var.input + var.suffix" (line 29 in file = line 28 in VS Code)
+    const references = await findReferences(
+      docUri,
+      new vscode.Position(28, 28),
+    );
+
+    // Should find: parameter declaration + 1 usage
+    assert.strictEqual(
+      references.length,
+      2,
+      "Expected 2 references for parameter from usage",
+    );
+  });
 });
 
 async function findReferences(
