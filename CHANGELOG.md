@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added
 
 - Add "Workspace Symbols" support for cross-file symbol search (Cmd+T / Ctrl+T)
+- Add "Selection Ranges" support for smart expanding selection (Cmd+Shift+→ / Ctrl+Shift+→)
 
 ## [2.0.6] - 2026-01-08
 

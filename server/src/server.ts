@@ -21,6 +21,7 @@ import * as documentHighlightProvider from "./document-highlight-provider";
 import * as renameProvider from "./rename-provider";
 import * as inlayHintProvider from "./inlay-hint-provider";
 import * as workspaceSymbolProvider from "./workspace-symbol-provider";
+import * as selectionRangeProvider from "./selection-range-provider";
 import * as linter from "./linter";
 
 // Create a connection for the server (Node-IPC transport).
@@ -66,6 +67,7 @@ connection.onInitialize((params: InitializeParams) => {
       },
       inlayHintProvider: true,
       workspaceSymbolProvider: true,
+      selectionRangeProvider: true,
     },
   };
   if (hasWorkspaceFolderCapability) {
@@ -179,5 +181,7 @@ connection.onRenameRequest(renameProvider.resolve);
 connection.languages.inlayHint.on(inlayHintProvider.resolve);
 
 connection.onWorkspaceSymbol(workspaceSymbolProvider.resolve);
+
+connection.onSelectionRanges(selectionRangeProvider.resolve);
 
 connection.listen();
