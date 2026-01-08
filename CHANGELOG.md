@@ -15,6 +15,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Add "Rename Symbol" support for safely renaming ACLs, tables, backends, subroutines, local variables, parameters, and HTTP headers
 - Add "Inlay Hints" support showing type annotations on variable assignments (`set var.x = ...` shows `: TYPE`, `set beresp.ttl = ...` shows `: RTIME`)
 - Add `fastly.vcl.inlayHintsEnabled` setting to enable/disable inlay hints (default: enabled)
+- Add documentation for symbol outline and breadcrumbs feature
 - Add Dagger CI module for containerized, reproducible CI pipelines
 
 ### Fixed
