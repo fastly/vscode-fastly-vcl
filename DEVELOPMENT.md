@@ -169,10 +169,11 @@ To publish a new version to the [VS Code Marketplace](https://marketplace.visual
    - You must be a member of the `fastly` publisher on the VS Code Marketplace
 
 2. **Prepare the release**
-   - Run `vsce ls --tree vscode-fastly-vcl-2.0.4.vsix`, check if all files are needed in the extension, otherwise add them to .vscodeignore
    - Update `version` in `package.json`
+   - npm install
+   - Run `vsce ls --tree vscode-fastly-vcl-2.0.5.vsix`, check if all files are needed in the extension, otherwise add them to .vscodeignore
    - Move items from "Unreleased" to a new version section in `CHANGELOG.md`
-   - Commit these changes: `git commit -am "chore: prepare release vX.Y.Z"`
+   - Commit these changes: `git commit -am "chore: prepare release v2.0.X"`
 
 3. **Run all checks**
 

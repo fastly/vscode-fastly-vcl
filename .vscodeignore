@@ -28,6 +28,7 @@ dark.png
 DEVELOPMENT.md
 eslint.config.js
 falco-js/package.json
+features.md
 icon.svg
 icon.xcf
 jq-filters/**
