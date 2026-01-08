@@ -74,6 +74,12 @@ Inline type annotations appear next to variable assignments, showing the type of
 
 ![Inlay hints](images/inlay-hints.png)
 
+### Symbol outline and breadcrumbs
+
+The Outline view in the Explorer sidebar displays a tree of all symbols (subroutines, ACLs, tables, backends, directors, and penaltyboxes) in the current file for quick navigation. Breadcrumbs at the top of the editor show your current location within the document structure.
+
+![Outline and breadcrumbs](images/outline-and-breadcrumbs.png)
+
 ## Installation
 
 ### From Marketplace
