@@ -86,6 +86,12 @@ Quickly find and navigate to subroutines, backends, ACLs, tables, and other symb
 
 ![Workspace symbols](images/workspace-symbols.png)
 
+### Selection ranges
+
+Smart expanding selection lets you progressively select larger syntactic units using Cmd+Shift+→ (Ctrl+Shift+→ on Windows/Linux). Selection expands from word to statement to block to subroutine.
+
+![Selection ranges](images/selection-ranges.gif)
+
 ## Installation
 
 ### From Marketplace
