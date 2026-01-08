@@ -4,6 +4,12 @@ All notable changes to the "vscode-fastly-vcl" extension will be documented in t
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## UNRELEASED
+
+### Added
+
+- Add "Workspace Symbols" support for cross-file symbol search (Cmd+T / Ctrl+T)
+
 ## [2.0.6] - 2026-01-08
 
 ### Added

@@ -80,6 +80,12 @@ The Outline view in the Explorer sidebar displays a tree of all symbols (subrout
 
 ![Outline and breadcrumbs](images/outline-and-breadcrumbs.png)
 
+### Workspace symbols
+
+Quickly find and navigate to subroutines, backends, ACLs, tables, and other symbols across all open VCL files using Cmd+T (Ctrl+T on Windows/Linux).
+
+![Workspace symbols](images/workspace-symbols.png)
+
 ## Installation
 
 ### From Marketplace

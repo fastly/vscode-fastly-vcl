@@ -20,6 +20,7 @@ import * as foldingRangeProvider from "./folding-range-provider";
 import * as documentHighlightProvider from "./document-highlight-provider";
 import * as renameProvider from "./rename-provider";
 import * as inlayHintProvider from "./inlay-hint-provider";
+import * as workspaceSymbolProvider from "./workspace-symbol-provider";
 import * as linter from "./linter";
 
 // Create a connection for the server (Node-IPC transport).
@@ -64,6 +65,7 @@ connection.onInitialize((params: InitializeParams) => {
         prepareProvider: true,
       },
       inlayHintProvider: true,
+      workspaceSymbolProvider: true,
     },
   };
   if (hasWorkspaceFolderCapability) {
@@ -175,5 +177,7 @@ connection.onPrepareRename(renameProvider.prepare);
 connection.onRenameRequest(renameProvider.resolve);
 
 connection.languages.inlayHint.on(inlayHintProvider.resolve);
+
+connection.onWorkspaceSymbol(workspaceSymbolProvider.resolve);
 
 connection.listen();
