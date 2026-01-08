@@ -13,6 +13,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Add "Folding Ranges" support for collapsing subroutines, ACLs, tables, backends, if/else blocks, and comments
 - Add "Document Highlights" support using falco AST for accurate highlighting of symbols, headers (`req.http.X-Custom`), and variables (`var.count`)
 - Add "Rename Symbol" support for safely renaming ACLs, tables, backends, subroutines, local variables, parameters, and HTTP headers
+- Add "Inlay Hints" support showing type annotations on variable assignments (`set var.x = ...` shows `: TYPE`, `set beresp.ttl = ...` shows `: RTIME`)
+- Add `fastly.vcl.inlayHintsEnabled` setting to enable/disable inlay hints (default: enabled)
 - Add Dagger CI module for containerized, reproducible CI pipelines
 
 ### Fixed
