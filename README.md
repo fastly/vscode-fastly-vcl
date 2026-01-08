@@ -68,6 +68,12 @@ Safely rename ACLs, tables, backends, subroutines, local variables, parameters, 
 
 ![Rename](images/rename.gif)
 
+### Inlay hints
+
+Inline type annotations appear next to variable assignments, showing the type of both local variables (`var.*`) and built-in VCL variables like `beresp.ttl` (RTIME) or `req.backend` (BACKEND).
+
+![Inlay hints](images/inlay-hints.png)
+
 ## Installation
 
 ### From Marketplace
@@ -94,6 +100,7 @@ code --install-extension vscode-fastly-vcl-2.0.4.vsix
 
 - `fastly.vcl.lintingEnabled` (default: `true`) – Enables linter diagnostics.
 - `fastly.vcl.maxLintingIssues` (default: `100`) - Specifies the maximum number of linting issues that the server will return.
+- `fastly.vcl.inlayHintsEnabled` (default: `true`) – Enables inlay hints showing variable types.
 - `fastly.vcl.falcoPath` (default: `""`) - Path to a custom falco binary. If not set, the bundled falco will be used.
 
 ## Known Issues

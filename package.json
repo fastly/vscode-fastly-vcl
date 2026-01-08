@@ -89,6 +89,12 @@
           "type": "string",
           "default": "",
           "description": "Path to a custom falco binary. If not set, the bundled falco will be used."
+        },
+        "fastly.vcl.inlayHintsEnabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Enable inlay hints showing variable types."
         }
       }
     }
