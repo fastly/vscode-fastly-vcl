@@ -1,0 +1,64 @@
+<comment># Semantic tokens test fixture</comment>
+<comment># Tests various token types and modifiers</comment>
+
+<keyword>acl</keyword> <type declaration>internal_networks</type> {
+  <string>"10.0.0.0"</string>/<number>8</number>;
+  <string>"192.168.0.0"</string>/<number>16</number>;
+}
+
+<keyword>table</keyword> <struct declaration>redirects</struct> {
+  <string>"/old"</string>: <string>"/new"</string>,
+}
+
+<keyword>backend</keyword> <class declaration>F_origin_server</class> {
+  .host = <string>"example.com"</string>;
+}
+
+<keyword>sub</keyword> <function declaration>custom_handler</function> {
+  <keyword>declare</keyword> local <variable declaration>var.result</variable> <type>STRING</type>;
+  <keyword>set</keyword> <variable>var.result</variable> = <string>"test"</string>;
+  <keyword>log</keyword> <variable>var.result</variable>;
+}
+
+<keyword>sub</keyword> <function declaration>vcl_recv</function> {
+  <comment># User variable declaration</comment>
+  <keyword>declare</keyword> local <variable declaration>var.count</variable> <type>INTEGER</type>;
+  <keyword>set</keyword> <variable>var.count</variable> = <number>0</number>;
+
+  <comment># Built-in variable (read-write)</comment>
+  <keyword>set</keyword> <variable defaultLibrary>req.url</variable> = <string>"/test"</string>;
+
+  <comment># Built-in variable (read-only)</comment>
+  <keyword>if</keyword> (<variable defaultLibrary readonly>client.ip</variable> <operator>~</operator> internal_networks) {
+    <keyword>set</keyword> <property>req.http.X-Internal</property> = <string>"true"</string>;
+  }
+
+  <comment># Built-in function call</comment>
+  <keyword>set</keyword> <property>req.http.X-Hash</property> = <function defaultLibrary>digest.hash_sha256</function>(<string>"test"</string>);
+
+  <comment># Table lookup (built-in function)</comment>
+  <keyword>set</keyword> <property>req.http.Location</property> = <function defaultLibrary>table.lookup</function>(redirects, <variable defaultLibrary>req.url</variable>);
+
+  <comment># Backend assignment</comment>
+  <keyword>set</keyword> <variable defaultLibrary>req.backend</variable> = F_origin_server;
+
+  <comment># Call user subroutine</comment>
+  <keyword>call</keyword> <function>custom_handler</function>;
+}
+
+<keyword>sub</keyword> <function declaration>vcl_fetch</function> {
+  <comment># Built-in variable with different context</comment>
+  <keyword>set</keyword> <variable defaultLibrary>beresp.ttl</variable> = <number>1h</number>;
+
+  <comment># HTTP header (property)</comment>
+  <keyword>set</keyword> <property>beresp.http.X-Cache</property> = <string>"MISS"</string>;
+
+  <comment># Regular expression pattern in ~ operator</comment>
+  <keyword>if</keyword> (<property>beresp.http.Cache-Control</property> <operator>~</operator> <regexp>"(?:private|no-store)"</regexp>) {
+    <keyword>return</keyword>(pass);
+  }
+
+  <comment># Regular expression pattern in regsuball function</comment>
+  <keyword>set</keyword> <property>beresp.http.Surrogate-Key</property> = <function defaultLibrary>regsuball</function>(<property>beresp.http.Edge-Cache-Tag</property>, <regexp>", *"</regexp>, <string>" "</string>);
+}
+

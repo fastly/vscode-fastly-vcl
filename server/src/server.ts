@@ -22,6 +22,7 @@ import * as renameProvider from "./rename-provider";
 import * as inlayHintProvider from "./inlay-hint-provider";
 import * as workspaceSymbolProvider from "./workspace-symbol-provider";
 import * as selectionRangeProvider from "./selection-range-provider";
+import * as semanticTokensProvider from "./semantic-tokens-provider";
 import * as linter from "./linter";
 
 // Create a connection for the server (Node-IPC transport).
@@ -68,6 +69,10 @@ connection.onInitialize((params: InitializeParams) => {
       inlayHintProvider: true,
       workspaceSymbolProvider: true,
       selectionRangeProvider: true,
+      semanticTokensProvider: {
+        legend: semanticTokensProvider.legend,
+        full: true,
+      },
     },
   };
   if (hasWorkspaceFolderCapability) {
@@ -183,5 +188,7 @@ connection.languages.inlayHint.on(inlayHintProvider.resolve);
 connection.onWorkspaceSymbol(workspaceSymbolProvider.resolve);
 
 connection.onSelectionRanges(selectionRangeProvider.resolve);
+
+connection.languages.semanticTokens.on(semanticTokensProvider.resolve);
 
 connection.listen();
