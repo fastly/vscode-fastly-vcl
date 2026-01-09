@@ -14,6 +14,10 @@ Builds upon on the open source [Falco Fastly VCL developer tool](https://github.
 
 The screenshots above are of [VCL boilerplate](https://developer.fastly.com/learning/vcl/using/#adding-vcl-to-your-service-configuration) using the [GitHub Dark Default](https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme) theme and the [JetBrains Mono](https://www.jetbrains.com/lp/mono/) font and using Visual Studio Code's default Light+ theme and the [Cascadia Code](https://github.com/microsoft/cascadia-code) font.
 
+### Semantic highlighting
+
+Semantic tokens provide richer code coloring based on meaning. Built-in functions and variables like `digest.hash_sha256` and `req.url` are visually distinguished from user-defined ones. Read-only variables like `client.ip` are marked differently from read-write ones. Backends appear as classes, ACLs as types, and tables as structs.
+
 ### Diagnostics
 
 Real-time linting surfaces syntax errors and best-practice violations directly in the editor.

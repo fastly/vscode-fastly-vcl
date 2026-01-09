@@ -37,9 +37,10 @@
     "pretest:e2e": "npm run build",
     "publish": "vsce package",
     "test:colorization": "node ./test/runTest.mjs",
+    "test:semantic-tokens": "node ./test/semanticTokens.test.js",
     "test:e2e": "sh ./scripts/e2e.sh",
     "test:e2e:coverage": "c8 sh ./scripts/e2e.sh",
-    "test": "npm run test:colorization && npm run test:e2e",
+    "test": "npm run test:colorization && npm run test:semantic-tokens && npm run test:e2e",
     "vscode:prepublish": "npm run build && npm run lint && npm run test"
   },
   "categories": [

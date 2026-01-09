@@ -48,6 +48,18 @@ npm run test:colorization
 
 The test cases are stored as markdown files under `test/colorize-fixtures`. Grammar test results are stored under `test/colorize-results`, which are automatically generated from the fixtures.
 
+To run the semantic tokens tests:
+
+```bash
+npm run test:semantic-tokens
+```
+
+The test renders `client/testFixture/semanticTokens.vcl` with XML tags showing token types and compares against `test/semantic-tokens-results/semanticTokens.vcl.xml`. To update the expected output after changes:
+
+```bash
+npx tsx server/src/test/renderSemanticTokens.ts client/testFixture/semanticTokens.vcl > test/semantic-tokens-results/semanticTokens.vcl.xml
+```
+
 To run the LSP tests:
 
 ```bash
@@ -122,6 +134,7 @@ CI runs automatically on all pull requests via GitHub Actions with [Dagger](http
 - Linting (`npm run lint`)
 - Formatting checks (`npm run format:check`)
 - Colorization tests (`npm run test:colorization`)
+- Semantic tokens tests (`npm run test:semantic-tokens`)
 - LSP e2e tests (`npm run test:e2e`)
 - Package building (`npm run package`)
 
