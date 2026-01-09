@@ -14,10 +14,6 @@ Builds upon on the open source [Falco Fastly VCL developer tool](https://github.
 
 The screenshots above are of [VCL boilerplate](https://developer.fastly.com/learning/vcl/using/#adding-vcl-to-your-service-configuration) using the [GitHub Dark Default](https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme) theme and the [JetBrains Mono](https://www.jetbrains.com/lp/mono/) font and using Visual Studio Code's default Light+ theme and the [Cascadia Code](https://github.com/microsoft/cascadia-code) font.
 
-### Semantic highlighting
-
-Semantic tokens provide richer code coloring based on meaning. Built-in functions and variables like `digest.hash_sha256` and `req.url` are visually distinguished from user-defined ones. Read-only variables like `client.ip` are marked differently from read-write ones. Backends appear as classes, ACLs as types, and tables as structs.
-
 ### Diagnostics
 
 Real-time linting surfaces syntax errors and best-practice violations directly in the editor.
@@ -32,12 +28,6 @@ While writing a function call, a tooltip appears showing the function's signatur
 
 ![Completions](images/completions.gif)
 
-### Documentation on hover
-
-Upon hover, displays inline documentation for functions (including scope and parameters), variables, subroutines, and HTTP headers.
-
-![Hover](images/hover.png)
-
 ### Go to definition and peek definition
 
 Navigate to the definition of ACLs, tables, backends, local variables, and parameters using Ctrl+Click / Cmd+Click or F12.
@@ -48,11 +38,23 @@ Peek at definitions using ⌥F12:
 
 ![Peek definition](images/peek-definition.gif)
 
+### Documentation on hover
+
+Upon hover, displays inline documentation for functions (including scope and parameters), variables, subroutines, and HTTP headers.
+
+![Hover](images/hover.png)
+
 ### Find all references
 
 Find all references to ACLs, tables, backends, and subroutines, local variables, and parameters using Shift+F12 or right-click and select "Find All References".
 
 ![Find all references](images/find-all-references.gif)
+
+### Document formatting
+
+Format your VCL code using Shift+Alt+F (Shift+Option+F on Mac) or right-click and select "Format Document". The formatter uses `falco fmt` to ensure consistent code style with proper indentation and spacing.
+
+![Format](images/format.gif)
 
 ### Code folding
 
@@ -60,23 +62,11 @@ Collapse and expand code blocks for easier navigation. Supported regions include
 
 ![Code folding](images/code-folding.gif)
 
-### Document highlights
-
-When the cursor is on a symbol, all occurrences of that symbol in the current document are highlighted. Works with ACLs, tables, backends, subroutines, HTTP headers (e.g., `req.http.X-Custom`), and local variables (e.g., `var.count`).
-
-![Highlights](images/highlights.png)
-
 ### Rename symbols
 
 Safely rename ACLs, tables, backends, subroutines, local variables, parameters, and HTTP headers.
 
 ![Rename](images/rename.gif)
-
-### Inlay hints
-
-Inline type annotations appear next to variable assignments, showing the type of both local variables (`var.*`) and built-in VCL variables like `beresp.ttl` (RTIME) or `req.backend` (BACKEND).
-
-![Inlay hints](images/inlay-hints.png)
 
 ### Symbol outline and breadcrumbs
 
@@ -84,23 +74,33 @@ The Outline view in the Explorer sidebar displays a tree of all symbols (subrout
 
 ![Outline and breadcrumbs](images/outline-and-breadcrumbs.png)
 
+### Document highlights
+
+When the cursor is on a symbol, all occurrences of that symbol in the current document are highlighted. Works with ACLs, tables, backends, subroutines, HTTP headers (e.g., `req.http.X-Custom`), and local variables (e.g., `var.count`).
+
+![Highlights](images/highlights.png)
+
+### Semantic highlighting
+
+Semantic tokens provide richer code coloring based on meaning. Built-in functions and variables like `digest.hash_sha256` and `req.url` are visually distinguished from user-defined ones. Read-only variables like `client.ip` are marked differently from read-write ones. Backends appear as classes, ACLs as types, and tables as structs.
+
 ### Workspace symbols
 
 Quickly find and navigate to subroutines, backends, ACLs, tables, and other symbols across all open VCL files using Cmd+T (Ctrl+T on Windows/Linux).
 
 ![Workspace symbols](images/workspace-symbols.png)
 
+### Inlay hints
+
+Inline type annotations appear next to variable assignments, showing the type of both local variables (`var.*`) and built-in VCL variables like `beresp.ttl` (RTIME) or `req.backend` (BACKEND).
+
+![Inlay hints](images/inlay-hints.png)
+
 ### Selection ranges
 
 Smart expanding selection lets you progressively select larger syntactic units using Cmd+Shift+→ (Ctrl+Shift+→ on Windows/Linux). Selection expands from word to statement to block to subroutine.
 
 ![Selection ranges](images/selection-ranges.gif)
-
-### Document formatting
-
-Format your VCL code using Shift+Alt+F (Shift+Option+F on Mac) or right-click and select "Format Document". The formatter uses `falco fmt` to ensure consistent code style with proper indentation and spacing.
-
-![Format](images/format.gif)
 
 ## Installation
 
