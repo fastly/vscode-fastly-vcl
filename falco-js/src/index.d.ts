@@ -10,6 +10,15 @@ export interface FalcoOptions {
   falcoPath?: string;
 }
 
+export interface FormatResult {
+  formatted: string | null;
+  error: string | null;
+}
+
 export function falco(args: string[], options?: FalcoOptions): Promise<string>;
 export function lint(file: string): Promise<string>;
 export function lintText(text: string, options?: LintOptions): Promise<unknown>;
+export function formatText(
+  text: string,
+  options?: FalcoOptions,
+): Promise<FormatResult>;

@@ -157,6 +157,13 @@ export function resolve(params: SemanticTokensParams): SemanticTokens {
     return { data: [] };
   }
 
+  // If the AST is stale (document changed but AST not yet updated),
+  // return empty tokens to avoid misaligned highlighting.
+  // The client will re-request tokens after the debounced lint runs.
+  if (!doc.isASTCurrent) {
+    return { data: [] };
+  }
+
   const tokens: TokenInfo[] = [];
   const symbols = getSymbolInformation(doc);
 

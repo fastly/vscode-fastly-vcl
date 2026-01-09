@@ -94,8 +94,27 @@ const lintText = (
     return lintResult;
   });
 
+/**
+ * Format VCL text using falco fmt.
+ * @param {string} text - VCL source text to format
+ * @param {Object} options - Options
+ * @param {string} [options.falcoPath] - Path to custom falco binary
+ * @returns {Promise<{formatted: string, error: string | null}>} Formatted text or error
+ */
+const formatText = (text, { falcoPath } = {}) =>
+  withTempFile(async (file) => {
+    await fs.writeFile(file, text);
+    try {
+      const formatted = await falco(["fmt", file], { falcoPath });
+      return { formatted, error: null };
+    } catch (err) {
+      return { formatted: null, error: err.message || String(err) };
+    }
+  });
+
 module.exports = {
   falco,
   lint,
   lintText,
+  formatText,
 };

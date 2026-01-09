@@ -1,0 +1,25 @@
+<comment>// Poorly formatted VCL for testing document formatting</comment>
+<keyword>sub</keyword> <function declaration>vcl_recv</function> {
+  <keyword>if</keyword> (<variable defaultLibrary>req.url</variable> <operator>~</operator> <regexp>"^/api"</regexp>) {
+    <keyword>set</keyword> <variable defaultLibrary>req.backend</variable> = api_backend;
+  } <keyword>else</keyword> {
+    <keyword>set</keyword> <variable defaultLibrary>req.backend</variable> = web_backend;
+  }
+}
+
+
+<keyword>acl</keyword> <type declaration>internal</type> {
+  <string>"10.0.0.0"</string>/<number>8</number>;
+  <string>"192.168.0.0"</string>/<number>16</number>;
+}
+
+
+<keyword>table</keyword> <struct declaration>redirects</struct> {
+  <string>"/old"</string>: <string>"/new"</string>,
+}
+
+
+<keyword>backend</keyword> <class declaration>origin</class> {
+  .host = <string>"example.com"</string>;
+  .port = <string>"443"</string>;
+}

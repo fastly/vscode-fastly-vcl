@@ -11,6 +11,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Add "Workspace Symbols" support for cross-file symbol search (Cmd+T / Ctrl+T)
 - Add "Selection Ranges" support for smart expanding selection (Cmd+Shift+→ / Ctrl+Shift+→)
 - Add "Semantic Tokens" support for enhanced syntax highlighting of keywords, strings, numbers, operators, regex patterns, and comments; distinguishes built-in vs user-defined symbols, read-only vs read-write variables; classifies backends/directors as class, ACLs as type, tables as struct
+- Add "Document Formatting" support using `falco fmt` (Shift+Alt+F / Shift+Option+F)
+- Add `fastly.vcl.formattingEnabled` setting to enable/disable document formatting (default: enabled)
 
 ## [2.0.6] - 2026-01-08
 

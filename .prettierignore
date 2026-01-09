@@ -5,3 +5,4 @@ client/out
 server/out
 *.vcl
 *.json
+test/formatting-results/

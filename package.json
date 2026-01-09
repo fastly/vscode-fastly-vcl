@@ -96,6 +96,12 @@
           "type": "boolean",
           "default": true,
           "description": "Enable inlay hints showing variable types."
+        },
+        "fastly.vcl.formattingEnabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Enable document formatting using falco fmt."
         }
       }
     }
