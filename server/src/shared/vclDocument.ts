@@ -8,6 +8,7 @@ import {
 export class VclDocument {
   private _doc: TextDocument;
   private _ast: any;
+  private _astVersion: number = -1;
 
   constructor(
     uri: string,
@@ -24,6 +25,15 @@ export class VclDocument {
 
   set AST(ast: any) {
     this._ast = ast;
+    this._astVersion = this._doc.version;
+  }
+
+  /**
+   * Returns true if the AST matches the current document version.
+   * When false, semantic tokens may have stale positions.
+   */
+  get isASTCurrent(): boolean {
+    return this._astVersion === this._doc.version;
   }
 
   get doc(): TextDocument {

@@ -96,6 +96,12 @@ Smart expanding selection lets you progressively select larger syntactic units u
 
 ![Selection ranges](images/selection-ranges.gif)
 
+### Document formatting
+
+Format your VCL code using Shift+Alt+F (Shift+Option+F on Mac) or right-click and select "Format Document". The formatter uses `falco fmt` to ensure consistent code style with proper indentation and spacing.
+
+![Format](images/format.gif)
+
 ## Installation
 
 ### From Marketplace
@@ -123,6 +129,7 @@ code --install-extension vscode-fastly-vcl-2.0.4.vsix
 - `fastly.vcl.lintingEnabled` (default: `true`) – Enables linter diagnostics.
 - `fastly.vcl.maxLintingIssues` (default: `100`) - Specifies the maximum number of linting issues that the server will return.
 - `fastly.vcl.inlayHintsEnabled` (default: `true`) – Enables inlay hints showing variable types.
+- `fastly.vcl.formattingEnabled` (default: `true`) – Enables document formatting using `falco fmt`.
 - `fastly.vcl.falcoPath` (default: `""`) - Path to a custom falco binary. If not set, the bundled falco will be used.
 
 ## Known Issues

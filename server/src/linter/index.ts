@@ -42,7 +42,7 @@ import {
   connection,
 } from "../server";
 
-const DEBOUNCE_INTERVAL = 3000;
+const DEBOUNCE_INTERVAL = 1000;
 
 export enum LintErrorSeverity {
   Error = "Error",
@@ -127,6 +127,9 @@ export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
   vclDoc.AST = lintResult.Vcl?.AST;
 
   updateDocumentSymbols(vclDoc);
+
+  // Notify client to refresh semantic tokens now that AST is updated
+  connection.languages.semanticTokens.refresh();
 
   let problems = 0;
   const diagnostics: Diagnostic[] = [];

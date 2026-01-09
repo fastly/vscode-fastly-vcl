@@ -3,6 +3,7 @@ export interface ConfigSettings {
   maxLintingIssues: number;
   falcoPath: string;
   inlayHintsEnabled: boolean;
+  formattingEnabled: boolean;
 }
 
 // Global settings, used when the `workspace/configuration` request is not supported by the client.
@@ -11,4 +12,5 @@ export const CONFIG: ConfigSettings = {
   maxLintingIssues: 100,
   falcoPath: "",
   inlayHintsEnabled: true,
+  formattingEnabled: true,
 };
