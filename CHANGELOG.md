@@ -6,6 +6,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## UNRELEASED
 
+### Changed
+
+- Update dependencies to latest versions (prettier 3.8.1, typescript-eslint 8.54.0, vscode-languageclient 9.0.1, vscode-languageserver 9.0.1, vscode-languageserver-textdocument 1.0.12)
+- Fix security vulnerabilities in transitive dependencies (lodash, undici)
+
 ### Fixed
 
 - Fix semantic token length calculation for long strings (`{"..."}`) in regex patterns
