@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Fixed
 
 - Fix semantic token length calculation for long strings (`{"..."}`) in regex patterns
+- Increase LSP readiness timeout from 5s to 30s for slow CI environments
 
 ## [2.0.7] - 2026-01-09
 
