@@ -4,6 +4,12 @@ All notable changes to the "vscode-fastly-vcl" extension will be documented in t
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## UNRELEASED
+
+### Fixed
+
+- Fix semantic token length calculation for long strings (`{"..."}`) in regex patterns
+
 ## [2.0.7] - 2026-01-09
 
 ### Added

@@ -58,6 +58,11 @@ sub vcl_fetch {
     return(pass);
   }
 
+  # Long string (heredoc-style)
+  if (beresp.http.Content-Type ~ {"text/html"}) {
+    set beresp.http.X-Content = "html";
+  }
+
   # Regular expression pattern in regsuball function
   set beresp.http.Surrogate-Key = regsuball(beresp.http.Edge-Cache-Tag, ", *", " ");
 }

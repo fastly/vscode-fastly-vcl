@@ -562,7 +562,7 @@ function extractTokens(
         tokens.push({
           line: regexArg.Token.Line - 1,
           character: regexArg.Token.Position - 1,
-          length: regexValue.length + 2, // +2 for the surrounding quotes
+          length: regexValue.length + (regexArg.Token?.Offset || 2), // Offset is 2 for "...", 4 for {"..."}
           tokenType: TokenType.regexp,
           tokenModifiers: 0,
         });
@@ -577,12 +577,10 @@ function extractTokens(
     node.Right?.Token?.Type === "STRING"
   ) {
     const regexValue = node.Right.Value;
-    // Account for the quotes around the string literal
-    // Position points to the opening quote, length is the literal + 2 quotes
     tokens.push({
       line: node.Right.Token.Line - 1,
       character: node.Right.Token.Position - 1,
-      length: regexValue.length + 2, // +2 for the surrounding quotes
+      length: regexValue.length + (node.Right.Token?.Offset || 2), // Offset is 2 for "...", 4 for {"..."}
       tokenType: TokenType.regexp,
       tokenModifiers: 0,
     });
