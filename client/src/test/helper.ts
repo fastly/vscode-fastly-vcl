@@ -21,7 +21,7 @@ export async function activate(docUri: vscode.Uri) {
   }
 }
 
-async function waitForLspReady(docUri: vscode.Uri, timeout = 5000) {
+async function waitForLspReady(docUri: vscode.Uri, timeout = 30000) {
   // Wait for completion to work (proves LSP is responding)
   const start = Date.now();
   while (Date.now() - start < timeout) {

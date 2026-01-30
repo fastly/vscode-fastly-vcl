@@ -58,6 +58,11 @@
     <keyword>return</keyword>(pass);
   }
 
+  <comment># Long string (heredoc-style)</comment>
+  <keyword>if</keyword> (<property>beresp.http.Content-Type</property> <operator>~</operator> <regexp>{"text/html"}</regexp>) {
+    <keyword>set</keyword> <property>beresp.http.X-Content</property> = <string>"html"</string>;
+  }
+
   <comment># Regular expression pattern in regsuball function</comment>
   <keyword>set</keyword> <property>beresp.http.Surrogate-Key</property> = <function defaultLibrary>regsuball</function>(<property>beresp.http.Edge-Cache-Tag</property>, <regexp>", *"</regexp>, <string>" "</string>);
 }
