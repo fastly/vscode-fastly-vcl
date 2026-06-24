@@ -6,3 +6,7 @@ server/out
 *.vcl
 *.json
 test/formatting-results/
+
+# Vendored falco Wasm runtime (third-party, do not reformat)
+falco-js/wasm_exec.js
+falco-js/falco.wasm

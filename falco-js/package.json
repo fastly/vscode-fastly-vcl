@@ -15,7 +15,8 @@
 	},
 	"files": [
 		"src",
-		"bin"
+		"falco.wasm",
+		"wasm_exec.js"
 	],
 	"bin": {
 		"falco-js": "src/falco.js"

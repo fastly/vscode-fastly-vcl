@@ -13,4 +13,3 @@ client/out
 server/out
 coverage
 boilerplate.vcl
-falco-js/bin/

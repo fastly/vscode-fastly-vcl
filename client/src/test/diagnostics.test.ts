@@ -12,20 +12,6 @@ suite("Should get diagnostics", () => {
 
   test("Diagnoses linting problems", async () => {
     await testDiagnostics(docUri, [
-      // Not sure why this is a warning
-      {
-        message: 'Variable "left" is unused',
-        range: toRange(7, 24, 7, 24),
-        severity: vscode.DiagnosticSeverity.Warning,
-        source: "vcl",
-      },
-      // Not sure why this is a warning
-      {
-        message: 'Variable "right" is unused',
-        range: toRange(7, 41, 7, 41),
-        severity: vscode.DiagnosticSeverity.Warning,
-        source: "vcl",
-      },
       {
         message:
           'Subroutine "vcl_fetch" is missing Fastly boilerplate comment "#FASTLY FETCH" inside definition',

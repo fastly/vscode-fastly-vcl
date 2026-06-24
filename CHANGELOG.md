@@ -4,6 +4,18 @@ All notable changes to the "vscode-fastly-vcl" extension will be documented in t
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [Unreleased]
+
+### Changed
+
+- Run falco as a bundled WebAssembly module instead of a native binary. Linting and formatting now work on all platforms, including Windows, and no longer require per-platform binaries.
+- Upgrade the bundled falco, which improves diagnostics and formatting.
+- Attribute lint errors originating in `include`d files to those files (with correct positions) instead of the including document.
+
+### Removed
+
+- Remove the `fastly.vcl.falcoPath` setting. The bundled falco WebAssembly module is always used.
+
 ## [2.0.8] - 2026-01-30
 
 ### Changed
