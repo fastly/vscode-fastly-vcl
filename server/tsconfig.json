@@ -4,9 +4,11 @@
 		"lib": ["es2020", "dom"],
 		"module": "commonjs",
 		"moduleResolution": "node",
+		"ignoreDeprecations": "6.0",
 		"sourceMap": true,
 		"strict": true,
 		"outDir": "out",
+		"rootDir": "src",
 		"esModuleInterop": true,
 		"resolveJsonModule": true
 	},

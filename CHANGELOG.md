@@ -6,6 +6,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Changed
+
+- Update dev dependencies to latest versions (eslint 10, @eslint/js 10, typescript 6, typescript-eslint 8.62, c8 11, @vscode/test-electron 3, @vscode/vsce 3.9.2, mocha 11.7.6, prettier 3.8.4); kept @types/node on v22 to match the Node engine target
+- Adopt TypeScript 6: enable `esModuleInterop` for the client, set explicit `rootDir` and `ignoreDeprecations: "6.0"` for the server, and switch the Mocha test runner to a default import
+
 ### Fixed
 
 - Exclude server test output (`server/out/test/**`) from the packaged extension
