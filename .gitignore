@@ -11,6 +11,7 @@ screenshots.xcf
 .dora
 client/out
 server/out
+*.tsbuildinfo
 coverage
 boilerplate.vcl
 falco-js/bin/
