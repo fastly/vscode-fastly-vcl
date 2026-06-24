@@ -4,6 +4,12 @@ All notable changes to the "vscode-fastly-vcl" extension will be documented in t
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [Unreleased]
+
+### Fixed
+
+- Exclude server test output (`server/out/test/**`) from the packaged extension
+
 ## [2.0.8] - 2026-01-30
 
 ### Changed

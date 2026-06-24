@@ -19,6 +19,7 @@
 **/tsconfig.tsbuildinfo
 CLAUDE.md
 client/out/test/**
+server/out/test/**
 client/README.md
 client/src/**
 client/testFixture
