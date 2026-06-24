@@ -25,7 +25,7 @@ cd vscode-fastly-vcl
 npm i
 ```
 
-This will automatically download the falco binaries via the `postinstall` script. The binaries are placed in `falco-js/bin/` and are not committed to git.
+This installs dependencies. falco is bundled as a WebAssembly module (`falco-js/falco.wasm`), so no platform-specific binaries are downloaded.
 
 ### Local development server
 
@@ -86,10 +86,12 @@ This requires `jq` to be installed. The jq filters are in `jq-filters/`.
 
 ### Updating falco
 
-The falco binaries are downloaded from GitHub releases. To update to a new version:
+falco runs as a bundled WebAssembly module. To update to a new version, rebuild
+`falco.wasm` from a [falco](https://github.com/ysugimoto/falco) checkout and copy
+the artifacts into `falco-js/`:
 
-1. Edit `FALCO_VERSION` in `scripts/download-falco.sh`
-2. Delete `falco-js/bin/` and run `npm install` (or run the script directly)
+1. In the falco repo, run `make wasm` (and `make wasm_exec` if the Go toolchain changed)
+2. Copy `wasm/falco.wasm` and `wasm/wasm_exec.js` into `falco-js/`
 
 ### Linting and formatting
 

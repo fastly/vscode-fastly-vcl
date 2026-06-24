@@ -11,9 +11,11 @@ import { LANGUAGE_ID } from "./utils";
 
 export class DocumentCache {
   private _documents: Map<string, VclDocument>;
+  private _open: Set<string>;
 
   constructor() {
     this._documents = new Map();
+    this._open = new Set();
   }
 
   private _loadContent(uri: string): VclDocument {
@@ -26,6 +28,7 @@ export class DocumentCache {
   }
 
   public set(document: TextDocumentItem): void {
+    this._open.add(document.uri);
     this._documents.set(
       document.uri,
       new VclDocument(
@@ -58,7 +61,14 @@ export class DocumentCache {
   }
 
   public delete(uri: string): void {
+    this._open.delete(uri);
     this._documents.delete(uri);
+  }
+
+  // Whether the URI corresponds to a document the editor has opened (as opposed
+  // to one loaded on demand from disk to resolve symbols or includes).
+  public isOpen(uri: string): boolean {
+    return this._open.has(uri);
   }
 
   public all(): IterableIterator<VclDocument> {

@@ -1,7 +1,6 @@
 export interface ConfigSettings {
   lintingEnabled: boolean;
   maxLintingIssues: number;
-  falcoPath: string;
   inlayHintsEnabled: boolean;
   formattingEnabled: boolean;
 }
@@ -10,7 +9,6 @@ export interface ConfigSettings {
 export const CONFIG: ConfigSettings = {
   lintingEnabled: true,
   maxLintingIssues: 100,
-  falcoPath: "",
   inlayHintsEnabled: true,
   formattingEnabled: true,
 };

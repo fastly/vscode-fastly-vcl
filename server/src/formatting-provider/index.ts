@@ -9,7 +9,7 @@
  * 1. When the user triggers "Format Document" (Shift+Alt+F), this provider is called.
  *
  * 2. The function invokes `falco fmt` via the `falco-js` wrapper, which runs the
- *    platform-specific falco binary and returns the formatted VCL text.
+ *    falco WebAssembly module and returns the formatted VCL text.
  *
  * 3. The formatted text is returned as a single TextEdit that replaces the entire
  *    document content.
@@ -17,7 +17,6 @@
  * ## Configuration
  *
  * - `fastly.vcl.formattingEnabled` - Enable/disable formatting
- * - `fastly.vcl.falcoPath` - Custom path to falco binary
  */
 
 import {
@@ -31,10 +30,7 @@ import { documentCache } from "../shared/documentCache";
 import { getDocumentSettings, connection } from "../server";
 import type { FormatResult } from "../../../falco-js/src/index";
 
-type FormatTextFn = (
-  text: string,
-  options?: { falcoPath?: string },
-) => Promise<FormatResult>;
+type FormatTextFn = (text: string) => Promise<FormatResult>;
 
 /**
  * Handle document formatting request.
@@ -53,7 +49,8 @@ export async function resolve(
     return null;
   }
 
-  // Dynamic import of falco-js to handle platform-specific unavailability
+  // Dynamic import of falco-js to handle environments where the Wasm module
+  // cannot be loaded.
   let formatText: FormatTextFn | null = null;
   try {
     const falcoJs = await import("../../../falco-js/src/index.js");
@@ -72,9 +69,7 @@ export async function resolve(
   const text = vclDoc.getText();
 
   try {
-    const result = await formatText(text, {
-      falcoPath: settings.falcoPath || undefined,
-    });
+    const result = await formatText(text);
 
     if (result.error) {
       connection.console.warn(`Formatting failed: ${result.error}`);

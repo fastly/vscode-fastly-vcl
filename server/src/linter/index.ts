@@ -9,8 +9,8 @@
  * 1. When a VCL document changes, `validateVCLDocument()` is called (debounced to
  *    avoid excessive linting during rapid typing).
  *
- * 2. The function invokes falco via the `falco-js` wrapper, which runs the platform-
- *    specific falco binary and returns parse errors, lint errors, and an AST.
+ * 2. The function invokes falco via the `falco-js` wrapper, which runs the
+ *    falco WebAssembly module and returns parse errors, lint errors, and an AST.
  *
  * 3. Parse errors (syntax errors) and lint errors (style/best-practice violations)
  *    are converted into LSP `Diagnostic` objects with appropriate severity levels.
@@ -22,7 +22,6 @@
  *
  * - `fastly.vcl.lintingEnabled` - Enable/disable linting
  * - `fastly.vcl.maxLintingIssues` - Maximum number of issues to report
- * - `fastly.vcl.falcoPath` - Custom path to falco binary
  */
 
 import {
@@ -32,17 +31,18 @@ import {
 } from "vscode-languageserver/node";
 
 import { VclDocument } from "../shared/vclDocument";
+import { documentCache } from "../shared/documentCache";
 import { updateDocumentSymbols } from "../symbol-provider";
 import { debounce } from "../shared/utils";
 import { ASTNode } from "../shared/ast";
 
-import {
-  getDocumentSettings,
-  hasDiagnosticRelatedInformationCapability,
-  connection,
-} from "../server";
+import { getDocumentSettings, connection } from "../server";
 
 const DEBOUNCE_INTERVAL = 1000;
+
+// Tracks, per source document URI, the set of file URIs it last published
+// diagnostics to, so stale cross-file diagnostics can be cleared on re-lint.
+const publishedByDocument = new Map<string, Set<string>>();
 
 export enum LintErrorSeverity {
   Error = "Error",
@@ -102,7 +102,7 @@ export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
   // Use relative path to falco-js since the npm workspace symlink is excluded from the packaged extension
   const { lintText } = await import("../../../falco-js/src/index.js").catch(
     (e) => {
-      // falco isn't available for Windows yet, fail gracefully.
+      // If the Wasm module cannot be loaded, fail gracefully.
       console.error(`Diagnostic service unavailable.`, e.message);
       return { lintText: null };
     },
@@ -121,7 +121,6 @@ export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
   const lintResult = (await lintText(vclDoc.getText(), {
     vclFileName: vclDocPath,
     diagnosticsOnly: false, // Set to false to return the full AST (for parseable VCL only)
-    falcoPath: settings.falcoPath || undefined,
   })) as LintResult;
 
   vclDoc.AST = lintResult.Vcl?.AST;
@@ -132,12 +131,24 @@ export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
   connection.languages.semanticTokens.refresh();
 
   let problems = 0;
-  const diagnostics: Diagnostic[] = [];
+  // Group diagnostics by the absolute path of the file they belong to, so
+  // errors originating in included files are attributed to those files rather
+  // than mis-positioned in the main document.
+  const byFile = new Map<string, Diagnostic[]>();
+  const diagnosticsFor = (file: string): Diagnostic[] => {
+    let list = byFile.get(file);
+    if (!list) {
+      list = [];
+      byFile.set(file, list);
+    }
+    return list;
+  };
 
+  // Parse errors only occur in the main document.
   if (lintResult.ParseErrors[vclDocPath]) {
     const pE = lintResult.ParseErrors[vclDocPath];
     problems++;
-    diagnostics.push({
+    diagnosticsFor(vclDocPath).push({
       severity: DiagnosticSeverity.Error,
       range: {
         start: Position.create(pE.Token.Line - 1, pE.Token.Position - 1),
@@ -150,40 +161,73 @@ export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
     });
   }
 
-  for (const lE of lintResult.LintErrors[vclDocPath] || []) {
-    if (problems > settings.maxLintingIssues) {
-      break;
-    }
-    const diagnostic: Diagnostic = {
-      severity: translateSeverity(lE.Severity),
-      range: {
-        start: Position.create(lE.Token.Line - 1, lE.Token.Position - 1),
-        end: Position.create(lE.Token.Line - 1, lE.Token.Position - 1),
-      },
-      message: lE.Message,
-      code: lE.Rule,
-      source: "vcl",
-    };
-    if (
-      hasDiagnosticRelatedInformationCapability &&
-      lE.Token.File !== vclDocPath
-    ) {
-      diagnostic.relatedInformation = [
-        {
-          location: {
-            uri: `file://${lE.Token.File}`,
-            range: Object.assign({}, diagnostic.range),
-          },
-          message: lE.Message,
+  collect: for (const [file, lintErrors] of Object.entries(
+    lintResult.LintErrors,
+  )) {
+    for (const lE of lintErrors) {
+      if (problems > settings.maxLintingIssues) {
+        break collect;
+      }
+      diagnosticsFor(file).push({
+        severity: translateSeverity(lE.Severity),
+        range: {
+          start: Position.create(lE.Token.Line - 1, lE.Token.Position - 1),
+          end: Position.create(lE.Token.Line - 1, lE.Token.Position - 1),
         },
-      ];
+        message: lE.Message,
+        code: lE.Rule,
+        source: "vcl",
+      });
+      problems++;
     }
-
-    problems++;
-    diagnostics.push(diagnostic);
   }
 
-  connection.sendDiagnostics({ uri: vclDoc.uri, diagnostics });
+  // Always publish for the main document so its diagnostics clear when fixed.
+  if (!byFile.has(vclDocPath)) {
+    byFile.set(vclDocPath, []);
+  }
+
+  const published = new Set<string>();
+  for (const [file, diagnostics] of byFile) {
+    const uri = `file://${file}`;
+    // Open documents are linted on their own and own their diagnostics; don't
+    // clobber them from another document's lint.
+    if (uri !== vclDoc.uri && documentCache.isOpen(uri)) {
+      continue;
+    }
+    connection.sendDiagnostics({ uri, diagnostics });
+    published.add(uri);
+  }
+
+  // Clear diagnostics for files this document previously reported on but no
+  // longer does (e.g. an include was removed or its errors were fixed).
+  const previous = publishedByDocument.get(vclDoc.uri);
+  if (previous) {
+    for (const uri of previous) {
+      if (!published.has(uri)) {
+        connection.sendDiagnostics({ uri, diagnostics: [] });
+      }
+    }
+  }
+  publishedByDocument.set(vclDoc.uri, published);
+}
+
+// Clear all diagnostics a document published (its own and any cross-file
+// diagnostics it reported on includes), and drop its tracking entry. Called
+// when a document is closed so stale diagnostics don't linger and the tracking
+// map doesn't grow unbounded.
+export function clearDocumentDiagnostics(docUri: string): void {
+  const published = publishedByDocument.get(docUri);
+  if (published) {
+    for (const uri of published) {
+      // Leave diagnostics owned by another open document intact.
+      if (uri !== docUri && documentCache.isOpen(uri)) {
+        continue;
+      }
+      connection.sendDiagnostics({ uri, diagnostics: [] });
+    }
+    publishedByDocument.delete(docUri);
+  }
 }
 
 export const debouncedVCLLint = debounce(

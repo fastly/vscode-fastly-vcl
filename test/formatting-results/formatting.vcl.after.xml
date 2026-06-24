@@ -7,17 +7,14 @@
   }
 }
 
-
 <keyword>acl</keyword> <type declaration>internal</type> {
   <string>"10.0.0.0"</string>/<number>8</number>;
   <string>"192.168.0.0"</string>/<number>16</number>;
 }
 
-
 <keyword>table</keyword> <struct declaration>redirects</struct> {
   <string>"/old"</string>: <string>"/new"</string>,
 }
-
 
 <keyword>backend</keyword> <class declaration>origin</class> {
   .host = <string>"example.com"</string>;

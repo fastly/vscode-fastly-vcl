@@ -155,6 +155,7 @@ connection.onDidChangeTextDocument(async (params) => {
 
 connection.onDidCloseTextDocument((params) => {
   // Only cache open documents and their settings.
+  linter.clearDocumentDiagnostics(params.textDocument.uri);
   documentSettings.delete(params.textDocument.uri);
   documentCache.delete(params.textDocument.uri);
 });
