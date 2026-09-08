@@ -1,7 +1,7 @@
 import * as fs from "fs";
 
 export function slugify(str: string): string {
-  return str.replace(/\W+/g, "-").toLowerCase();
+  return str.replace(/[^A-Za-z0-9]/g, "-").toLowerCase();
 }
 
 export function ensureFullStop(str: string | undefined): string | undefined {
