@@ -50,6 +50,25 @@ suite("Should provide document symbols", () => {
       );
     }
   });
+
+  test("Returns include symbols", async () => {
+    const includeDocUri = getDocUri("includeCycleMain.vcl");
+    await activate(includeDocUri);
+
+    const symbols = await waitForSymbols(includeDocUri, 10000);
+    const summary = symbols.map(
+      (s) => `${s.name}:${vscode.SymbolKind[s.kind]}`,
+    );
+
+    assert.ok(
+      summary.includes("includeCycleA:Module"),
+      `Expected include symbol "includeCycleA", got: ${summary.join(", ")}`,
+    );
+    assert.ok(
+      summary.includes("vcl_recv:Function"),
+      `Expected subroutine symbol "vcl_recv", got: ${summary.join(", ")}`,
+    );
+  });
 });
 
 async function waitForSymbolsOrDiagnostics(

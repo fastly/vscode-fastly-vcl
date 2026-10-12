@@ -21,7 +21,6 @@
     "./server"
   ],
   "scripts": {
-    "postinstall": "sh ./scripts/download-falco.sh",
     "build": "tsc -b ./client && tsc -b ./server",
     "clean": "rm -rf client/out server/out",
     "dagger:ci": "DAGGER_NO_NAG=1 dagger call ci --source=.",
@@ -38,9 +37,10 @@
     "publish": "vsce package",
     "test:colorization": "node ./test/runTest.mjs",
     "test:semantic-tokens": "node ./test/semanticTokens.test.js",
+    "test:falco": "node ./test/falcoRecovery.test.mjs",
     "test:e2e": "sh ./scripts/e2e.sh",
     "test:e2e:coverage": "c8 sh ./scripts/e2e.sh",
-    "test": "npm run test:colorization && npm run test:semantic-tokens && npm run test:e2e",
+    "test": "npm run test:colorization && npm run test:semantic-tokens && npm run test:falco && npm run test:e2e",
     "vscode:prepublish": "npm run build && npm run lint && npm run test"
   },
   "categories": [
@@ -85,12 +85,6 @@
           "default": 100,
           "description": "Specifies the maximum number of linting issues that the server will return."
         },
-        "fastly.vcl.falcoPath": {
-          "scope": "machine",
-          "type": "string",
-          "default": "",
-          "description": "Path to a custom falco binary. If not set, the bundled falco will be used."
-        },
         "fastly.vcl.inlayHintsEnabled": {
           "scope": "resource",
           "type": "boolean",
@@ -111,7 +105,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.20.0",
     "@types/vscode": "^1.82.0",
-    "@vscode/test-electron": "^3.0.0",
+    "@vscode/test-electron": "^3.1.0",
     "@vscode/vsce": "^3.9.2",
     "c8": "^11.0.0",
     "eslint": "^10.5.0",
@@ -121,6 +115,7 @@
     "typescript-eslint": "^8.62.0"
   },
   "dependencies": {
+    "@bytecodealliance/preview2-shim": "^0.19.0",
     "vscode-jsonrpc": "^8.2.1",
     "vscode-languageserver": "^9.0.1",
     "vscode-languageserver-textdocument": "^1.0.12"

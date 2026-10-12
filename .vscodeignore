@@ -55,3 +55,7 @@ server/LICENSE
 server/node_modules/**
 server/src/**
 test/**
+
+# Re-include the WASI preview2 shim: it is a runtime dependency of
+# falco-js/component (the linter wasm), otherwise dropped by node_modules/@*/**.
+!node_modules/@bytecodealliance/**

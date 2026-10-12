@@ -6,3 +6,6 @@ server/out
 *.vcl
 *.json
 test/formatting-results/
+
+# Vendored, jco-generated WASI component glue (not hand-edited)
+falco-js/component/

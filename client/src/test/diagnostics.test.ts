@@ -5,27 +5,14 @@
 
 import * as vscode from "vscode";
 import * as assert from "assert";
-import { getDocUri, activate } from "./helper";
+import * as fs from "fs";
+import { getDocUri, getDocPath, activate } from "./helper";
 
 suite("Should get diagnostics", () => {
   const docUri = getDocUri("diagnostics.vcl");
 
   test("Diagnoses linting problems", async () => {
     await testDiagnostics(docUri, [
-      // Not sure why this is a warning
-      {
-        message: 'Variable "left" is unused',
-        range: toRange(7, 24, 7, 24),
-        severity: vscode.DiagnosticSeverity.Warning,
-        source: "vcl",
-      },
-      // Not sure why this is a warning
-      {
-        message: 'Variable "right" is unused',
-        range: toRange(7, 41, 7, 41),
-        severity: vscode.DiagnosticSeverity.Warning,
-        source: "vcl",
-      },
       {
         message:
           'Subroutine "vcl_fetch" is missing Fastly boilerplate comment "#FASTLY FETCH" inside definition',
@@ -78,6 +65,102 @@ suite("Should get diagnostics", () => {
         source: "vcl",
       },
     ]);
+  });
+});
+
+suite("Should survive cyclic includes", () => {
+  const docUri = getDocUri("includeCycleMain.vcl");
+
+  test("Reports the include cycle instead of crashing the server", async () => {
+    await testDiagnostics(docUri, [
+      {
+        message:
+          'Cyclic include: "includeCycleA" -> "includeCycleB" -> "includeCycleA". The repeated include was skipped when linting.',
+        range: toRange(0, 0, 0, 0),
+        severity: vscode.DiagnosticSeverity.Warning,
+        source: "vcl",
+      },
+    ]);
+  });
+});
+
+suite("Should survive linter failures", () => {
+  const docUri = getDocUri("lintFailure.vcl");
+
+  test("Reports a failed lint as a warning", async () => {
+    await testDiagnostics(docUri, [
+      {
+        message:
+          "The VCL linter failed on this file: Maximum call stack size exceeded",
+        range: toRange(0, 0, 0, 0),
+        severity: vscode.DiagnosticSeverity.Warning,
+        source: "vcl",
+      },
+    ]);
+  });
+});
+
+suite("Should lint alone when includes are over budget", () => {
+  const docUri = getDocUri("overBudgetMain.vcl");
+  const modulePath = getDocPath("overBudgetModule.vcl");
+
+  // Just over the server's 6 MiB include budget (MAX_TOTAL_SOURCE_BYTES).
+  suiteSetup(() => {
+    const line = "# " + "x".repeat(1022) + "\n";
+    fs.writeFileSync(modulePath, line.repeat(6 * 1024 + 1));
+  });
+
+  suiteTeardown(() => {
+    fs.rmSync(modulePath, { force: true });
+  });
+
+  test("Reports only the skipped cross-file checks", async () => {
+    await testDiagnostics(docUri, [
+      {
+        message:
+          "Included files are too large for the VCL linter; cross-file checks were skipped and only this file was linted.",
+        range: toRange(0, 0, 0, 0),
+        severity: vscode.DiagnosticSeverity.Information,
+        source: "vcl",
+      },
+    ]);
+  });
+});
+
+suite("Should lint includes from unsaved buffers", () => {
+  const docUri = getDocUri("openBufferMain.vcl");
+  const moduleUri = getDocUri("openBuffer+module.vcl");
+
+  test("Uses an included file's unsaved edits", async () => {
+    const moduleDoc = await vscode.workspace.openTextDocument(moduleUri);
+    const original = moduleDoc.getText();
+    const replaceModule = async (text: string) => {
+      const edit = new vscode.WorkspaceEdit();
+      edit.replace(
+        moduleUri,
+        new vscode.Range(
+          moduleDoc.positionAt(0),
+          moduleDoc.positionAt(moduleDoc.getText().length),
+        ),
+        text,
+      );
+      assert.ok(await vscode.workspace.applyEdit(edit));
+    };
+
+    // Remove the helper the main file calls, without saving.
+    await replaceModule("# buffer_helper removed in an unsaved edit\n");
+    try {
+      await testDiagnostics(docUri, [
+        {
+          message: "Subroutine buffer_helper is not defined",
+          range: toRange(6, 2, 6, 2),
+          severity: vscode.DiagnosticSeverity.Error,
+          source: "vcl",
+        },
+      ]);
+    } finally {
+      await replaceModule(original);
+    }
   });
 });
 
