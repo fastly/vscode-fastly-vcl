@@ -24,6 +24,35 @@ suite("Should do completion", () => {
       ],
     });
   });
+
+  test("Links docs for placeholder variables without the placeholder", async () => {
+    await activate(docUri);
+
+    const completions = (await vscode.commands.executeCommand(
+      "vscode.executeCompletionItemProvider",
+      docUri,
+      new vscode.Position(1, 2),
+      undefined,
+      Number.MAX_SAFE_INTEGER,
+    )) as vscode.CompletionList;
+
+    const expected: Record<string, string> = {
+      "backend.{NAME}.healthy":
+        "https://developer.fastly.com/reference/vcl/variables/backend-connection/backend-healthy/",
+      "re.group.{N}":
+        "https://developer.fastly.com/reference/vcl/variables/miscellaneous/re-group/",
+    };
+
+    for (const [label, url] of Object.entries(expected)) {
+      const item = completions.items.find((i) => i.insertText === label);
+      assert.ok(item, `Expected a completion for ${label}`);
+      const docs = item.documentation as vscode.MarkdownString;
+      assert.ok(
+        docs?.value.includes(url),
+        `Expected ${label} docs to link ${url}, got: ${docs?.value}`,
+      );
+    }
+  });
 });
 
 async function testCompletion(

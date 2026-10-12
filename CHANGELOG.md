@@ -31,6 +31,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Fix a language server crash on cyclic `include`s: the include that closes a cycle is now skipped when linting and reported as a warning on the main file's `include` that leads into it
 - Fix a language server crash when the linter fails on a file, for example a stack overflow on very deeply nested expressions: the failure is now reported as a warning on that file, the falco component is replaced with a fresh instance (a stack overflow can corrupt it, and its runtime could then end the server process), and unhandled promise rejections are logged instead of exiting the server
 - Fix document symbols (Outline, breadcrumbs, Go to Symbol) being empty for any file containing an `include` statement; includes now appear as module symbols
+- Fix documentation links for names containing underscores (e.g. `std.replace_prefix`) or placeholders (e.g. `backend.{NAME}.healthy`)
 
 ## [2.0.8] - 2026-01-30
 
