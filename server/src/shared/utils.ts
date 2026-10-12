@@ -1,7 +1,11 @@
 import * as fs from "fs";
 
 export function slugify(str: string): string {
-  return str.replace(/\W+/g, "-").toLowerCase();
+  // Docs URLs drop placeholders: backend.{NAME}.healthy -> backend-healthy
+  return str
+    .replace(/\.?\{[^}]+\}/g, "")
+    .replace(/[^A-Za-z0-9]+/g, "-")
+    .toLowerCase();
 }
 
 export function ensureFullStop(str: string | undefined): string | undefined {

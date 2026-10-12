@@ -41,6 +41,16 @@ suite("Should do hover", () => {
       "https://developer.fastly.com/reference/vcl/functions/strings/regsub/",
     ]);
   });
+
+  test("Links to hyphenated docs for underscored function names", async () => {
+    const fnDocUri = getDocUri("hover.vcl");
+    // Line 2: set req.url = std.replace_prefix(req.url, "/old/", "/new/");
+    // std.replace_prefix starts at column 18
+    await testHover(fnDocUri, new vscode.Position(1, 25), [
+      "Replace a substring at the start of a string",
+      "https://developer.fastly.com/reference/vcl/functions/strings/std-replace-prefix/",
+    ]);
+  });
 });
 
 async function testHover(
