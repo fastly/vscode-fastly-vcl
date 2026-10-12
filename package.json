@@ -103,22 +103,22 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^22.20.0",
+    "@types/node": "^22.20.5",
     "@types/vscode": "^1.82.0",
     "@vscode/test-electron": "^3.1.0",
-    "@vscode/vsce": "^3.9.2",
-    "c8": "^11.0.0",
-    "eslint": "^10.5.0",
-    "mocha": "^11.7.6",
-    "prettier": "^3.8.4",
+    "@vscode/vsce": "^4.0.0",
+    "c8": "^12.0.0",
+    "eslint": "^10.12.0",
+    "mocha": "^12.0.3",
+    "prettier": "^3.9.10",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.62.0"
+    "typescript-eslint": "^8.71.1"
   },
   "dependencies": {
     "@bytecodealliance/preview2-shim": "^0.19.0",
     "vscode-jsonrpc": "^8.2.1",
     "vscode-languageserver": "^9.0.1",
-    "vscode-languageserver-textdocument": "^1.0.12"
+    "vscode-languageserver-textdocument": "^1.0.15"
   },
   "c8": {
     "include": [

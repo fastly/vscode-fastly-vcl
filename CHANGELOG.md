@@ -20,10 +20,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Switch document formatting (`falco fmt`) to the WASI component backend; the newer falco collapses consecutive blank lines between top-level declarations
 - Update @vscode/test-electron to 3.1.0 so tests can launch VS Code 1.110 and later on macOS, where the app executable was renamed from `Electron` to `Code`
 - Rebuild the bundled falco component from falco commit `55de21f6` and transpile it with jco 1.24.3; `DEVELOPMENT.md` now records the exact source and the commands to reproduce it
+- Update dependencies: @vscode/vsce 4, mocha 12 and c8 12 (clears all `npm audit` findings, all in dev tooling), eslint 10.12, typescript-eslint 8.71, prettier 3.9, vscode-languageserver-textdocument 1.0.15; ignore the generated Dagger SDK in Prettier
 
 ### Removed
 
 - Remove the native falco binary backend entirely: the platform-specific binaries, the `postinstall` download script (`scripts/download-falco.sh`), the `falco-js` native CLI wrapper, and the `fastly.vcl.falcoPath` setting. falco now ships solely as the bundled WASI component (works on all platforms, including Windows)
+- Remove the stale `server/package-lock.json`; the server is an npm workspace and installs from the root lockfile
 
 ### Fixed
 
