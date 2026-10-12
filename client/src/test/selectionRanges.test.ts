@@ -28,20 +28,25 @@ suite("Should provide selection ranges", () => {
 
     // Walk the parent chain and verify each range contains the previous
     let current: vscode.SelectionRange | undefined = range;
-    let previousSize = 0;
+    const texts: string[] = [];
 
     while (current) {
-      const currentSize =
-        (current.range.end.line - current.range.start.line) * 1000 +
-        (current.range.end.character - current.range.start.character);
-
-      assert.ok(
-        currentSize >= previousSize,
-        "Each parent range should be larger than or equal to child",
-      );
-      previousSize = currentSize;
+      texts.push(await getTextInRange(docUri, current.range));
+      if (current.parent) {
+        assert.ok(
+          current.parent.range.contains(current.range),
+          "Each parent range should contain its child",
+        );
+      }
       current = current.parent;
     }
+
+    // VS Code drops an invalid chain from the language server and falls
+    // back to its built-in providers, which never select the quoted string
+    assert.ok(
+      texts.includes('"value"'),
+      `Should select the string literal including quotes, got ${JSON.stringify(texts)}`,
+    );
   });
 
   test("Selection ranges include statement", async () => {

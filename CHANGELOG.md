@@ -12,6 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Resolve `include`d modules for linting by walking the include graph and supplying each reachable module's contents to the linter (preferring open/edited buffers over disk, matched by file path so this also works on Windows and for file names containing characters such as `+` or parentheses), with a size budget that falls back to linting the main file alone (reported as a single notice, without flagging each `include` as unresolvable)
 - Warm the linter's wasm component at server startup so the first document lint is not delayed by the one-time module compile
 - Lint VCL snippets annotated with `# @scope: <subroutine>` (e.g. `# @scope: deliver`) in that subroutine's scope, with end-to-end tests and README documentation
+- Add a selection ranges test (`npm run test:selection-ranges`) that checks every parent range contains its child at every position in every test fixture
 
 ### Changed
 
@@ -27,6 +28,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Remove the native falco binary backend entirely: the platform-specific binaries, the `postinstall` download script (`scripts/download-falco.sh`), the `falco-js` native CLI wrapper, and the `fastly.vcl.falcoPath` setting. falco now ships solely as the bundled WASI component (works on all platforms, including Windows)
 - Remove the stale `server/package-lock.json`; the server is an npm workspace and installs from the root lockfile
+
+### Fixed
+
+- Fix Expand Selection being silently replaced by VS Code's generic word/bracket selection: the language server sometimes returned ranges that did not nest (string literals were two characters short, and ranges that only touched the cursor or partially overlapped were chained as parents), so VS Code rejected the whole response
+- Fix the end column of blocks whose closing brace follows a string literal on the same line (e.g. `acl internal { "10.0.0.0"/8; }`), which affected selection ranges and document symbol ranges
 
 ### Fixed
 
