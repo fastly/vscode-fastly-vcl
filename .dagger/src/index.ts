@@ -23,7 +23,7 @@ export class VscodeFastlyVcl {
         "install",
         "-y",
         "--no-install-recommends",
-        // Required for downloading falco binaries
+        // TLS roots / fetch utility for the toolchain
         "ca-certificates",
         "curl",
         // VS Code extension test dependencies

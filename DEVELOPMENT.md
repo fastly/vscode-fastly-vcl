@@ -25,7 +25,7 @@ cd vscode-fastly-vcl
 npm i
 ```
 
-This will automatically download the falco binaries via the `postinstall` script. The binaries are placed in `falco-js/bin/` and are not committed to git.
+falco ships as a WASI Component Model module vendored at `falco-js/component/` (including `falco-component.core.wasm`), so no separate download step is needed.
 
 ### Local development server
 
@@ -86,10 +86,29 @@ This requires `jq` to be installed. The jq filters are in `jq-filters/`.
 
 ### Updating falco
 
-The falco binaries are downloaded from GitHub releases. To update to a new version:
+falco is vendored as a WASI Component Model build at `falco-js/component/`, transpiled to JavaScript with [jco](https://github.com/bytecodealliance/jco).
 
-1. Edit `FALCO_VERSION` in `scripts/download-falco.sh`
-2. Delete `falco-js/bin/` and run `npm install` (or run the script directly)
+The component build target is not in upstream falco yet. It lives on the `acme/add-wasi-component` branch of [acme/falco](https://github.com/acme/falco/tree/acme/add-wasi-component), proposed upstream in [ysugimoto/falco#622](https://github.com/ysugimoto/falco/pull/622). Building it needs Go and [`wasm-tools`](https://github.com/bytecodealliance/wasm-tools).
+
+The vendored build:
+
+|              |                                                                        |
+| ------------ | ---------------------------------------------------------------------- |
+| falco commit | `55de21f67377d024b910586876d764089e8f9654` (`acme/add-wasi-component`) |
+| jco          | 1.24.3                                                                 |
+
+To update it, build the component in a falco checkout, then transpile it straight into `falco-js/component/`. This overwrites the generated files and keeps `falco-js/component/package.json`:
+
+```bash
+# In the falco checkout
+git checkout acme/add-wasi-component
+make wasm-component            # writes wasm/falco-component.wasm
+
+# In this repository
+npx @bytecodealliance/jco@1.24.3 transpile <falco-checkout>/wasm/falco-component.wasm -o falco-js/component
+```
+
+Then update the commit in the table above, run `npm test`, and note the new falco build in `CHANGELOG.md`. Keep the jco version in step with `@bytecodealliance/preview2-shim` in `package.json` and `falco-js/package.json`, since the generated code imports it at runtime.
 
 ### Linting and formatting
 

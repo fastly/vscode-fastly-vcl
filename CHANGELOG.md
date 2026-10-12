@@ -6,14 +6,31 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Added
+
+- Add a WASI Component Model linting backend (`falco-js/src/wasm.mjs`) wrapping the jco-transpiled falco component: reactor-style (instantiated once, called repeatedly on in-memory strings, no child process or temp files), platform-independent, and resolving `include` statements from a host-supplied in-memory module map (`includes` + `includePaths`)
+- Resolve `include`d modules for linting by walking the include graph and supplying each reachable module's contents to the linter (preferring open/edited buffers over disk, matched by file path so this also works on Windows and for file names containing characters such as `+` or parentheses), with a size budget that falls back to linting the main file alone (reported as a single notice, without flagging each `include` as unresolvable)
+- Warm the linter's wasm component at server startup so the first document lint is not delayed by the one-time module compile
+
 ### Changed
 
 - Update dev dependencies to latest versions (eslint 10, @eslint/js 10, typescript 6, typescript-eslint 8.62, c8 11, @vscode/test-electron 3, @vscode/vsce 3.9.2, mocha 11.7.6, prettier 3.8.4); kept @types/node on v22 to match the Node engine target
 - Adopt TypeScript 6: enable `esModuleInterop` for the client, set explicit `rootDir` and `ignoreDeprecations: "6.0"` for the server, and switch the Mocha test runner to a default import
+- Switch the linting backend from the native falco binary to the WASI component; this updates falco to a newer build, which no longer reports unused subroutine parameters (`Variable "…" is unused`) as warnings
+- Switch document formatting (`falco fmt`) to the WASI component backend; the newer falco collapses consecutive blank lines between top-level declarations
+- Update @vscode/test-electron to 3.1.0 so tests can launch VS Code 1.110 and later on macOS, where the app executable was renamed from `Electron` to `Code`
+- Rebuild the bundled falco component from falco commit `55de21f6` and transpile it with jco 1.24.3; `DEVELOPMENT.md` now records the exact source and the commands to reproduce it
+
+### Removed
+
+- Remove the native falco binary backend entirely: the platform-specific binaries, the `postinstall` download script (`scripts/download-falco.sh`), the `falco-js` native CLI wrapper, and the `fastly.vcl.falcoPath` setting. falco now ships solely as the bundled WASI component (works on all platforms, including Windows)
 
 ### Fixed
 
 - Exclude server test output (`server/out/test/**`) from the packaged extension
+- Fix a language server crash on cyclic `include`s: the include that closes a cycle is now skipped when linting and reported as a warning on the main file's `include` that leads into it
+- Fix a language server crash when the linter fails on a file, for example a stack overflow on very deeply nested expressions: the failure is now reported as a warning on that file, and unhandled promise rejections are logged instead of exiting the server
+- Fix document symbols (Outline, breadcrumbs, Go to Symbol) being empty for any file containing an `include` statement; includes now appear as module symbols
 
 ## [2.0.8] - 2026-01-30
 

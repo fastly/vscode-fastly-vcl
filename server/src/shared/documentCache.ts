@@ -1,4 +1,6 @@
 import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import {
   TextDocumentItem,
@@ -57,6 +59,28 @@ export class DocumentCache {
     return doc;
   }
 
+  /**
+   * Find a cached document by filesystem path. Compares decoded paths rather
+   * than URI strings, because the client's URIs encode characters differently
+   * from Node's pathToFileURL (`c%3A` and lowercase drive letters on Windows,
+   * `%2B` for `+`, and so on).
+   */
+  public findByPath(path: string): VclDocument | undefined {
+    const target = normalizePath(path);
+    for (const [uri, doc] of this._documents) {
+      let docPath: string;
+      try {
+        docPath = fileURLToPath(uri);
+      } catch {
+        continue; // Not a file: URI.
+      }
+      if (normalizePath(docPath) === target) {
+        return doc;
+      }
+    }
+    return undefined;
+  }
+
   public delete(uri: string): void {
     this._documents.delete(uri);
   }
@@ -64,6 +88,12 @@ export class DocumentCache {
   public all(): IterableIterator<VclDocument> {
     return this._documents.values();
   }
+}
+
+// Windows paths are case-insensitive, and drive letters arrive in either case.
+function normalizePath(path: string): string {
+  const resolved = resolve(path);
+  return process.platform === "win32" ? resolved.toLowerCase() : resolved;
 }
 
 export const documentCache = new DocumentCache();
