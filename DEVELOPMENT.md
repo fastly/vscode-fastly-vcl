@@ -60,6 +60,12 @@ The test renders `client/testFixture/semanticTokens.vcl` with XML tags showing t
 npx tsx server/src/test/renderSemanticTokens.ts client/testFixture/semanticTokens.vcl > test/semantic-tokens-results/semanticTokens.vcl.xml
 ```
 
+To check that the falco wrapper recovers after the component fails, for example after a stack overflow on deeply nested VCL:
+
+```bash
+npm run test:falco
+```
+
 To run the LSP tests:
 
 ```bash
@@ -105,10 +111,10 @@ git checkout acme/add-wasi-component
 make wasm-component            # writes wasm/falco-component.wasm
 
 # In this repository
-npx @bytecodealliance/jco@1.24.3 transpile <falco-checkout>/wasm/falco-component.wasm -o falco-js/component
+npx @bytecodealliance/jco@1.24.3 transpile <falco-checkout>/wasm/falco-component.wasm --instantiation async -o falco-js/component
 ```
 
-Then update the commit in the table above, run `npm test`, and note the new falco build in `CHANGELOG.md`. Keep the jco version in step with `@bytecodealliance/preview2-shim` in `package.json` and `falco-js/package.json`, since the generated code imports it at runtime.
+The `--instantiation async` flag is required: `falco-js/src/wasm.mjs` creates instances itself, so it can replace one after a failed call. Then update the commit in the table above, run `npm test`, and note the new falco build in `CHANGELOG.md`. Keep the jco version in step with `@bytecodealliance/preview2-shim` in `package.json` and `falco-js/package.json`, since the generated code imports it at runtime.
 
 ### Linting and formatting
 
@@ -154,6 +160,7 @@ CI runs automatically on all pull requests via GitHub Actions with [Dagger](http
 - Formatting checks (`npm run format:check`)
 - Colorization tests (`npm run test:colorization`)
 - Semantic tokens tests (`npm run test:semantic-tokens`)
+- falco recovery tests (`npm run test:falco`)
 - LSP e2e tests (`npm run test:e2e`)
 - Package building (`npm run package`)
 

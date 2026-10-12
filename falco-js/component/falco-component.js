@@ -1,1663 +1,430 @@
 "use components";
-import { environment, exit as exit$1, stderr, stdin, stdout, terminalInput, terminalOutput, terminalStderr, terminalStdin, terminalStdout } from '@bytecodealliance/preview2-shim/cli';
-import { monotonicClock, wallClock } from '@bytecodealliance/preview2-shim/clocks';
-import { preopens, types } from '@bytecodealliance/preview2-shim/filesystem';
-import { error, poll as poll$1, streams } from '@bytecodealliance/preview2-shim/io';
-import { random } from '@bytecodealliance/preview2-shim/random';
-const { getArguments,
-  getEnvironment } = environment;
-
-if (getArguments=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'getArguments', was 'getArguments' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-
-if (getEnvironment=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'getEnvironment', was 'getEnvironment' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { exit } = exit$1;
-
-if (exit=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'exit', was 'exit' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { getStderr } = stderr;
-
-if (getStderr=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'getStderr', was 'getStderr' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { getStdin } = stdin;
-
-if (getStdin=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'getStdin', was 'getStdin' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { getStdout } = stdout;
-
-if (getStdout=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'getStdout', was 'getStdout' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { TerminalInput } = terminalInput;
-
-if (TerminalInput=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'TerminalInput', was 'TerminalInput' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { TerminalOutput } = terminalOutput;
-
-if (TerminalOutput=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'TerminalOutput', was 'TerminalOutput' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { getTerminalStderr } = terminalStderr;
-
-if (getTerminalStderr=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'getTerminalStderr', was 'getTerminalStderr' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { getTerminalStdin } = terminalStdin;
-
-if (getTerminalStdin=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'getTerminalStdin', was 'getTerminalStdin' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { getTerminalStdout } = terminalStdout;
-
-if (getTerminalStdout=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'getTerminalStdout', was 'getTerminalStdout' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { now,
-  subscribeDuration,
-  subscribeInstant } = monotonicClock;
-
-if (now=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'now', was 'now' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-
-if (subscribeDuration=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'subscribeDuration', was 'subscribeDuration' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-
-if (subscribeInstant=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'subscribeInstant', was 'subscribeInstant' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { now: now$1 } = wallClock;
-
-if (now$1=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'now$1', was 'now' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { getDirectories } = preopens;
-
-if (getDirectories=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'getDirectories', was 'getDirectories' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { Descriptor,
-  filesystemErrorCode } = types;
-
-if (Descriptor=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'Descriptor', was 'Descriptor' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-
-if (filesystemErrorCode=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'filesystemErrorCode', was 'filesystemErrorCode' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { Error: Error$1 } = error;
-
-if (Error$1=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'Error$1', was 'Error' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { Pollable,
-  poll } = poll$1;
-
-if (Pollable=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'Pollable', was 'Pollable' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-
-if (poll=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'poll', was 'poll' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { InputStream,
-  OutputStream } = streams;
-
-if (InputStream=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'InputStream', was 'InputStream' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-
-if (OutputStream=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'OutputStream', was 'OutputStream' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-const { getRandomBytes } = random;
-
-if (getRandomBytes=== undefined) {
-  const err = new Error("unexpectedly undefined local import 'getRandomBytes', was 'getRandomBytes' available at instantiation?");
-  console.error("ERROR:", err.toString());
-  throw err;
-}
-
-
-function promiseWithResolvers() {
-  if (Promise.withResolvers) {
-    return Promise.withResolvers();
-  } else {
-    let resolve;
-    let reject;
-    const promise = new Promise((res, rej) => {
-      resolve = res;
-      reject = rej;
-    });
-    return { promise, resolve, reject };
-  }
-}
-const symbolDispose = Symbol.dispose || Symbol.for('dispose');
-const symbolAsyncIterator = Symbol.asyncIterator;
-const symbolIterator = Symbol.iterator;
-
-const _debugLog = (...args) => {
-  if (!globalThis?.process?.env?.JCO_DEBUG) { return; }
-  console.debug(...args);
-};
-const ASYNC_DETERMINISM = 'random';
-const GLOBAL_COMPONENT_MEMORY_MAP = new Map();
-const CURRENT_TASK_META = {};
-
-function _getGlobalCurrentTaskMeta(componentIdx) {
-  if (componentIdx === null || componentIdx === undefined) {
-    throw new Error("missing/invalid component idx");
-  }
-  const v = CURRENT_TASK_META[componentIdx];
-  if (v === undefined || v === null) {
-    return undefined;
-  }
-  return { ...v };
-}
-
-
-function _setGlobalCurrentTaskMeta(args) {
-  if (!args) { throw new TypeError('args missing'); }
-  if (args.taskID === undefined) { throw new TypeError('missing task ID'); }
-  if (args.componentIdx === undefined) { throw new TypeError('missing component idx'); }
-  const { taskID, componentIdx } = args;
-  return CURRENT_TASK_META[componentIdx] = { taskID, componentIdx };
-}
-
-
-function _withGlobalCurrentTaskMeta(args) {
-  _debugLog('[_withGlobalCurrentTaskMeta()] args', args);
-  if (!args) { throw new TypeError('args missing'); }
-  if (args.taskID === undefined) { throw new TypeError('missing task ID'); }
-  if (args.componentIdx === undefined) { throw new TypeError('missing component idx'); }
-  if (!args.fn) { throw new TypeError('missing fn'); }
-  const { taskID, componentIdx, fn } = args;
+export function instantiate(getCoreModule, imports, instantiateCore = WebAssembly.instantiate) {
   
-  try {
-    CURRENT_TASK_META[componentIdx] = { taskID, componentIdx };
-    return fn();
-  } catch (err) {
-    _debugLog("error while executing sync callee/callback", {
-      ...args,
-      err,
-    });
-    throw err;
-  } finally {
-    CURRENT_TASK_META[componentIdx] = null;
-  }
-}
-
-async function _withGlobalCurrentTaskMetaAsync(args) {
-  _debugLog('[_withGlobalCurrentTaskMetaAsync()] args', args);
-  if (!args) { throw new TypeError('args missing'); }
-  if (args.taskID === undefined) { throw new TypeError('missing task ID'); }
-  if (args.componentIdx === undefined) { throw new TypeError('missing component idx'); }
-  if (!args.fn) { throw new TypeError('missing fn'); }
-  
-  const { taskID, componentIdx, fn } = args;
-  
-  try {
-    CURRENT_TASK_META[componentIdx] = { taskID, componentIdx };
-    return await fn();
-  } catch (err) {
-    _debugLog("error while executing async callee/callback", {
-      ...args,
-      err,
-    });
-    throw err;
-  } finally {
-    CURRENT_TASK_META[componentIdx] = null;
-  }
-}
-
-async function _clearCurrentTask(args) {
-  _debugLog('[_clearCurrentTask()] args', args);
-  if (!args) { throw new TypeError('args missing'); }
-  if (args.taskID === undefined) { throw new TypeError('missing task ID'); }
-  if (args.componentIdx === undefined) { throw new TypeError('missing component idx'); }
-  const { taskID, componentIdx } = args;
-  
-  const meta = CURRENT_TASK_META[componentIdx];
-  if (!meta) { throw new Error(`missing current task meta for component idx [${componentIdx}]`); }
-  
-  if (meta.taskID !== taskID) {
-    throw new Error(`task ID [${meta.taskID}] != requested ID [${taskID}]`);
-  }
-  if (meta.componentIdx !== componentIdx) {
-    throw new Error(`component idx [${meta.componentIdx}] != requested idx [${componentIdx}]`);
-  }
-  
-  CURRENT_TASK_META[componentIdx] = null;
-}
-
-function lookupMemoriesForComponent(args) {
-  const { componentIdx } = args ?? {};
-  if (args.componentIdx === undefined) { throw new TypeError("missing component idx"); }
-  
-  const metas = GLOBAL_COMPONENT_MEMORY_MAP.get(componentIdx);
-  if (!metas) { return []; }
-  
-  if (args.memoryIdx === undefined) {
-    return Object.values(metas);
-  }
-  
-  const meta = metas[args.memoryIdx];
-  return meta?.memory;
-}
-
-function registerGlobalMemoryForComponent(args) {
-  const { componentIdx, memory, memoryIdx } = args ?? {};
-  if (componentIdx === undefined) { throw new TypeError('missing component idx'); }
-  if (memory === undefined && memoryIdx === undefined) { throw new TypeError('missing both memory & memory idx'); }
-  let inner = GLOBAL_COMPONENT_MEMORY_MAP.get(componentIdx);
-  if (!inner) {
-    inner = {};
-    GLOBAL_COMPONENT_MEMORY_MAP.set(componentIdx, inner);
-  }
-  
-  inner[memoryIdx] = { memory, memoryIdx, componentIdx };
-}
-
-class RepTable {
-  #data = [0, null];
-  #size = 0;
-  #target;
-  
-  constructor(args) {
-    this.target = args?.target;
-  }
-  
-  data() { return this.#data; }
-  
-  insert(val) {
-    _debugLog('[RepTable#insert()] args', { val, target: this.target });
-    const freeIdx = this.#data[0];
-    if (freeIdx === 0) {
-      this.#data.push(val);
-      this.#data.push(null);
-      const rep = (this.#data.length >> 1) - 1;
-      _debugLog('[RepTable#insert()] inserted', { val, target: this.target, rep });
-      this.#size += 1;
-      return rep;
-    }
-    this.#data[0] = this.#data[freeIdx << 1];
-    const placementIdx = freeIdx << 1;
-    this.#data[placementIdx] = val;
-    this.#data[placementIdx + 1] = null;
-    _debugLog('[RepTable#insert()] inserted', { val, target: this.target, rep: freeIdx });
-    this.#size += 1;
-    return freeIdx;
-  }
-  
-  get(rep) {
-    _debugLog('[RepTable#get()] args', { rep, target: this.target });
-    if (rep === 0) { throw new Error('invalid resource rep during get, (cannot be 0)'); }
-    
-    const baseIdx = rep << 1;
-    const val = this.#data[baseIdx];
-    return val;
-  }
-  
-  contains(rep) {
-    _debugLog('[RepTable#contains()] args', { rep, target: this.target });
-    if (rep === 0) { throw new Error('invalid resource rep during contains, (cannot be 0)'); }
-    
-    const baseIdx = rep << 1;
-    return !!this.#data[baseIdx];
-  }
-  
-  remove(rep) {
-    _debugLog('[RepTable#remove()] args', { rep, target: this.target });
-    if (rep === 0) { throw new Error('invalid resource rep during remove, (cannot be 0)'); }
-    if (this.#data.length === 2) { throw new Error('invalid'); }
-    
-    const baseIdx = rep << 1;
-    const val = this.#data[baseIdx];
-    
-    this.#data[baseIdx] = this.#data[0];
-    this.#data[0] = rep;
-    this.#size -= 1;
-    
-    return val;
-  }
-  
-  size() { return this.#size; }
-  
-  clear() {
-    _debugLog('[RepTable#clear()] args', { rep, target: this.target });
-    this.#data = [0, null];
-  }
-}
-const _coinFlip = () => { return Math.random() > 0.5; };
-let SCOPE_ID = 0;
-const I32_MIN = -2_147_483_648;
-
-const I32_MAX= 2_147_483_647;
-
-
-function _isValidNumericPrimitive(ty, v) {
-  if (v === undefined || v === null) { return false; }
-  switch (ty) {
-    case 'bool':
-    return v === 0 || v === 1;
-    break;
-    case 'u8':
-    return v >= 0 && v <= 255;
-    break;
-    case 's8':
-    return v >= -128 && v <= 127;
-    break;
-    case 'u16':
-    return v >= 0 && v <= 65535;
-    break;
-    case 's16':
-    return v >= -32768 && v <= 32767;
-    case 'u32':
-    return v >= 0 && v <= 4_294_967_295;
-    case 's32':
-    return v >= -2_147_483_648 && v <= 2_147_483_647;
-    case 'u64':
-    return typeof v === 'bigint' && v >= 0 && v <= 18_446_744_073_709_551_615n;
-    case 's64':
-    return typeof v === 'bigint' && v >= -9223372036854775808n && v <= 9223372036854775807n;
-    break;
-    case 'f32':
-    case 'f64': return typeof v === 'number';
-    default:
-    return false;
-  }
-  return true;
-}
-
-function _requireValidNumericPrimitive(ty, v) {
-  if (v === undefined  || v === null || !_isValidNumericPrimitive(ty, v)) {
-    throw new TypeError(`invalid ${ty} value [${v}]`);
-  }
-  return true;
-}
-
-const _typeCheckValidI32 = (n) => typeof n === 'number' && n >= I32_MIN && n <= I32_MAX;
-
-
-const _typeCheckAsyncFn= (f) => {
-  return f instanceof ASYNC_FN_CTOR;
-};
-
-let RESOURCE_CALL_BORROWS = [];const ASYNC_FN_CTOR = (async () => {}).constructor;
-
-function clearCurrentTask(componentIdx, taskID) {
-  _debugLog('[clearCurrentTask()] args', { componentIdx, taskID });
-  
-  if (componentIdx === undefined || componentIdx === null) {
-    throw new Error('missing/invalid component instance index while ending current task');
-  }
-  
-  const tasks = ASYNC_TASKS_BY_COMPONENT_IDX.get(componentIdx);
-  if (!tasks || !Array.isArray(tasks)) {
-    throw new Error('missing/invalid tasks for component instance while ending task');
-  }
-  if (tasks.length == 0) {
-    throw new Error(`no current tasks for component instance [${componentIdx}] while ending task`);
-  }
-  
-  if (taskID !== undefined) {
-    const last = tasks[tasks.length - 1];
-    if (last.id !== taskID) {
-      // throw new Error('current task does not match expected task ID');
-      return;
-    }
-  }
-  
-  ASYNC_CURRENT_TASK_IDS.pop();
-  ASYNC_CURRENT_COMPONENT_IDXS.pop();
-  
-  const taskMeta = tasks.pop();
-  return taskMeta.task;
-}
-
-const CURRENT_TASK_MAY_BLOCK= globalThis.WebAssembly ? new globalThis.WebAssembly.Global({ value: 'i32', mutable: true }, 0) : false;
-
-const ASYNC_CURRENT_TASK_IDS = [];
-const ASYNC_CURRENT_COMPONENT_IDXS = [];
-
-function unpackCallbackResult(result) {
-  if (!(_typeCheckValidI32(result))) { throw new Error('invalid callback return value [' + result + '], not a valid i32'); }
-  const eventCode = result & 0xF;
-  if (eventCode < 0 || eventCode > 3) {
-    throw new Error('invalid async return value [' + eventCode + '], outside callback code range');
-  }
-  if (result < 0 || result >= 2**32) { throw new Error('invalid callback result'); }
-  // TODO: table max length check?
-  const waitableSetRep = result >> 4;
-  return [eventCode, waitableSetRep];
-}
-
-class AsyncSubtask {
-  static _ID = 0n;
-  
-  static State = {
-    STARTING: 0,
-    STARTED: 1,
-    RETURNED: 2,
-    CANCELLED_BEFORE_STARTED: 3,
-    CANCELLED_BEFORE_RETURNED: 4,
-  };
-  
-  #id;
-  #state = AsyncSubtask.State.STARTING;
-  #componentIdx;
-  
-  #parentTask;
-  #childTask = null;
-  
-  #dropped = false;
-  #cancelRequested = false;
-  
-  #memoryIdx = null;
-  #lenders = null;
-  
-  #waitable = null;
-  
-  #callbackFn = null;
-  #callbackFnName = null;
-  
-  #postReturnFn = null;
-  #onProgressFn = null;
-  #pendingEventFn = null;
-  
-  #callMetadata = {};
-  
-  #resolved = false;
-  
-  #onResolveHandlers = [];
-  #onStartHandlers = [];
-  
-  #result = null;
-  #resultSet = false;
-  
-  fnName;
-  target;
-  isAsync;
-  isManualAsync;
-  
-  constructor(args) {
-    if (typeof args.componentIdx !== 'number') {
-      throw new Error('invalid componentIdx for subtask creation');
-    }
-    this.#componentIdx = args.componentIdx;
-    
-    this.#id = ++AsyncSubtask._ID;
-    this.fnName = args.fnName;
-    
-    if (!args.parentTask) { throw new Error('missing parent task during subtask creation'); }
-    this.#parentTask = args.parentTask;
-    
-    if (args.childTask) { this.#childTask = args.childTask; }
-    
-    if (args.memoryIdx) { this.#memoryIdx = args.memoryIdx; }
-    
-    if (!args.waitable) { throw new Error("missing/invalid waitable"); }
-    this.#waitable = args.waitable;
-    
-    if (args.callMetadata) { this.#callMetadata = args.callMetadata; }
-    
-    this.#lenders = [];
-    this.target = args.target;
-    this.isAsync = args.isAsync;
-    this.isManualAsync = args.isManualAsync;
-  }
-  
-  id() { return this.#id; }
-  parentTaskID() { return this.#parentTask?.id(); }
-  childTaskID() { return this.#childTask?.id(); }
-  state() { return this.#state; }
-  
-  waitable() { return this.#waitable; }
-  waitableRep() { return this.#waitable.idx(); }
-  
-  join() { return this.#waitable.join(...arguments); }
-  getPendingEvent() { return this.#waitable.getPendingEvent(...arguments); }
-  hasPendingEvent() { return this.#waitable.hasPendingEvent(...arguments); }
-  setPendingEvent() { return this.#waitable.setPendingEvent(...arguments); }
-  
-  setTarget(tgt) { this.target = tgt; }
-  
-  getResult() {
-    if (!this.#resultSet) { throw new Error("subtask result has not been set") }
-    return this.#result;
-  }
-  setResult(v) {
-    if (this.#resultSet) { throw new Error("subtask result has already been set"); }
-    this.#result = v;
-    this.#resultSet = true;
-  }
-  
-  componentIdx() { return this.#componentIdx; }
-  
-  setChildTask(t) {
-    if (!t) { throw new Error('cannot set missing/invalid child task on subtask'); }
-    if (this.#childTask) { throw new Error('child task is already set on subtask'); }
-    if (this.#parentTask === t) { throw new Error("parent cannot be child"); }
-    this.#childTask = t;
-  }
-  getChildTask(t) { return this.#childTask; }
-  
-  getParentTask() { return this.#parentTask; }
-  
-  setCallbackFn(f, name) {
-    if (!f) { return; }
-    if (this.#callbackFn) { throw new Error('callback fn can only be set once'); }
-    this.#callbackFn = f;
-    this.#callbackFnName = name;
-  }
-  
-  getCallbackFnName() {
-    if (!this.#callbackFn) { return undefined; }
-    return this.#callbackFn.name;
-  }
-  
-  setPostReturnFn(f) {
-    if (!f) { return; }
-    if (this.#postReturnFn) { throw new Error('postReturn fn can only be set once'); }
-    this.#postReturnFn = f;
-  }
-  
-  setOnProgressFn(f) {
-    if (this.#onProgressFn) { throw new Error('on progress fn can only be set once'); }
-    this.#onProgressFn = f;
-  }
-  
-  isNotStarted() {
-    return this.#state == AsyncSubtask.State.STARTING;
-  }
-  
-  registerOnStartHandler(f) {
-    this.#onStartHandlers.push(f);
-  }
-  
-  onStart(args) {
-    _debugLog('[AsyncSubtask#onStart()] args', {
-      componentIdx: this.#componentIdx,
-      subtaskID: this.#id,
-      parentTaskID: this.parentTaskID(),
-      fnName: this.fnName,
-      args,
-    });
-    
-    if (this.#onProgressFn) { this.#onProgressFn(); }
-    
-    this.#state = AsyncSubtask.State.STARTED;
-    
-    let result;
-    
-    // If we have been provided a helper start function as a result of
-    // component fusion performed by wasmtime tooling, then we can call that helper and lifts/lowers will
-    // be performed for us.
-    //
-    // See also documentation on `HostIntrinsic::PrepareCall`
-    //
-    if (this.#callMetadata.startFn) {
-      result = this.#callMetadata.startFn.apply(null, args?.startFnParams ?? []);
-    }
-    
-    return result;
-  }
-  
-  
-  registerOnResolveHandler(f) {
-    this.#onResolveHandlers.push(f);
-  }
-  
-  reject(subtaskErr) {
-    this.#childTask?.reject(subtaskErr);
-  }
-  
-  onResolve(subtaskValue) {
-    _debugLog('[AsyncSubtask#onResolve()] args', {
-      componentIdx: this.#componentIdx,
-      subtaskID: this.#id,
-      isAsync: this.isAsync,
-      childTaskID: this.childTaskID(),
-      parentTaskID: this.parentTaskID(),
-      parentTaskFnName: this.#parentTask?.entryFnName(),
-      fnName: this.fnName,
-    });
-    
-    if (this.#resolved) {
-      throw new Error('subtask has already been resolved');
-    }
-    
-    if (this.#onProgressFn) { this.#onProgressFn(); }
-    
-    if (subtaskValue === null && this.#cancelRequested) {
-      if (this.#state === AsyncSubtask.State.STARTING) {
-        this.#state = AsyncSubtask.State.CANCELLED_BEFORE_STARTED;
-      } else {
-        if (this.#state !== AsyncSubtask.State.STARTED) {
-          throw new Error('resolved subtask must have been started before cancellation');
-        }
-        this.#state = AsyncSubtask.State.CANCELLED_BEFORE_RETURNED;
-      }
+  function promiseWithResolvers() {
+    if (Promise.withResolvers) {
+      return Promise.withResolvers();
     } else {
-      if (this.#state !== AsyncSubtask.State.STARTED) {
-        throw new Error('resolved subtask must have been started before completion');
-      }
-      this.#state = AsyncSubtask.State.RETURNED;
+      let resolve;
+      let reject;
+      const promise = new Promise((res, rej) => {
+        resolve = res;
+        reject = rej;
+      });
+      return { promise, resolve, reject };
     }
-    
-    this.setResult(subtaskValue);
-    
-    for (const f of this.#onResolveHandlers) {
-      try {
-        f(subtaskValue);
-      } catch (err) {
-        console.error("error during subtask resolve handler", err);
-        throw err;
-      }
+  }
+  const symbolDispose = Symbol.dispose || Symbol.for('dispose');
+  const symbolAsyncIterator = Symbol.asyncIterator;
+  const symbolIterator = Symbol.iterator;
+  
+  const _debugLog = (...args) => {
+    if (!globalThis?.process?.env?.JCO_DEBUG) { return; }
+    console.debug(...args);
+  };
+  const ASYNC_DETERMINISM = 'random';
+  const GLOBAL_COMPONENT_MEMORY_MAP = new Map();
+  const CURRENT_TASK_META = {};
+  
+  function _getGlobalCurrentTaskMeta(componentIdx) {
+    if (componentIdx === null || componentIdx === undefined) {
+      throw new Error("missing/invalid component idx");
     }
-    
-    const callMetadata = this.getCallMetadata();
-    
-    // TODO(fix): we should be able to easily have the caller's meomry
-    // to lower into here, but it's not present in PrepareCall
-    const memory = callMetadata.memory ?? this.#parentTask?.getReturnMemory() ?? lookupMemoriesForComponent({ componentIdx: this.#parentTask?.componentIdx() })[0];
-    if (callMetadata && !callMetadata.returnFn && this.isAsync && callMetadata.resultPtr && memory) {
-      const { resultPtr, realloc } = callMetadata;
-      const lowers = callMetadata.lowers; // may have been updated in task.return of the child
-      if (lowers && lowers.length > 0) {
-        lowers[0]({
-          componentIdx: this.#componentIdx,
-          memory,
-          realloc,
-          vals: [subtaskValue],
-          storagePtr: resultPtr,
-          stringEncoding: callMetadata.stringEncoding,
-        });
-      }
+    const v = CURRENT_TASK_META[componentIdx];
+    if (v === undefined || v === null) {
+      return undefined;
     }
+    return { ...v };
+  }
+  
+  
+  function _setGlobalCurrentTaskMeta(args) {
+    if (!args) { throw new TypeError('args missing'); }
+    if (args.taskID === undefined) { throw new TypeError('missing task ID'); }
+    if (args.componentIdx === undefined) { throw new TypeError('missing component idx'); }
+    const { taskID, componentIdx } = args;
+    return CURRENT_TASK_META[componentIdx] = { taskID, componentIdx };
+  }
+  
+  
+  function _withGlobalCurrentTaskMeta(args) {
+    _debugLog('[_withGlobalCurrentTaskMeta()] args', args);
+    if (!args) { throw new TypeError('args missing'); }
+    if (args.taskID === undefined) { throw new TypeError('missing task ID'); }
+    if (args.componentIdx === undefined) { throw new TypeError('missing component idx'); }
+    if (!args.fn) { throw new TypeError('missing fn'); }
+    const { taskID, componentIdx, fn } = args;
     
-    this.#resolved = true;
-    this.#parentTask.removeSubtask(this);
-    
-    if (!this.isAsync) {
-      this.deliverResolve();
-      const rep = this.waitableRep();
-      if (rep) {
-        try {
-          const removed = this.#getComponentState().handles.remove(rep);
-          if (removed !== this) {
-            throw new Error("unexpectedly received non-self Subtask from handle removal");
-          }
-          this.drop();
-        } catch (err) {
-          _debugLog('[AsyncSubtask#onResolve()] failed to remove subtask after sync subtask completion', err);
-        }
-      }
+    try {
+      CURRENT_TASK_META[componentIdx] = { taskID, componentIdx };
+      return fn();
+    } catch (err) {
+      _debugLog("error while executing sync callee/callback", {
+        ...args,
+        err,
+      });
+      throw err;
+    } finally {
+      CURRENT_TASK_META[componentIdx] = null;
     }
   }
   
-  getStateNumber() { return this.#state; }
-  isReturned() { return this.#state === AsyncSubtask.State.RETURNED; }
+  async function _withGlobalCurrentTaskMetaAsync(args) {
+    _debugLog('[_withGlobalCurrentTaskMetaAsync()] args', args);
+    if (!args) { throw new TypeError('args missing'); }
+    if (args.taskID === undefined) { throw new TypeError('missing task ID'); }
+    if (args.componentIdx === undefined) { throw new TypeError('missing component idx'); }
+    if (!args.fn) { throw new TypeError('missing fn'); }
+    
+    const { taskID, componentIdx, fn } = args;
+    
+    try {
+      CURRENT_TASK_META[componentIdx] = { taskID, componentIdx };
+      return await fn();
+    } catch (err) {
+      _debugLog("error while executing async callee/callback", {
+        ...args,
+        err,
+      });
+      throw err;
+    } finally {
+      CURRENT_TASK_META[componentIdx] = null;
+    }
+  }
   
-  getCallMetadata() { return this.#callMetadata; }
+  async function _clearCurrentTask(args) {
+    _debugLog('[_clearCurrentTask()] args', args);
+    if (!args) { throw new TypeError('args missing'); }
+    if (args.taskID === undefined) { throw new TypeError('missing task ID'); }
+    if (args.componentIdx === undefined) { throw new TypeError('missing component idx'); }
+    const { taskID, componentIdx } = args;
+    
+    const meta = CURRENT_TASK_META[componentIdx];
+    if (!meta) { throw new Error(`missing current task meta for component idx [${componentIdx}]`); }
+    
+    if (meta.taskID !== taskID) {
+      throw new Error(`task ID [${meta.taskID}] != requested ID [${taskID}]`);
+    }
+    if (meta.componentIdx !== componentIdx) {
+      throw new Error(`component idx [${meta.componentIdx}] != requested idx [${componentIdx}]`);
+    }
+    
+    CURRENT_TASK_META[componentIdx] = null;
+  }
   
-  isResolved() {
-    if (this.#state === AsyncSubtask.State.STARTING
-    || this.#state === AsyncSubtask.State.STARTED) {
+  function lookupMemoriesForComponent(args) {
+    const { componentIdx } = args ?? {};
+    if (args.componentIdx === undefined) { throw new TypeError("missing component idx"); }
+    
+    const metas = GLOBAL_COMPONENT_MEMORY_MAP.get(componentIdx);
+    if (!metas) { return []; }
+    
+    if (args.memoryIdx === undefined) {
+      return Object.values(metas);
+    }
+    
+    const meta = metas[args.memoryIdx];
+    return meta?.memory;
+  }
+  
+  function registerGlobalMemoryForComponent(args) {
+    const { componentIdx, memory, memoryIdx } = args ?? {};
+    if (componentIdx === undefined) { throw new TypeError('missing component idx'); }
+    if (memory === undefined && memoryIdx === undefined) { throw new TypeError('missing both memory & memory idx'); }
+    let inner = GLOBAL_COMPONENT_MEMORY_MAP.get(componentIdx);
+    if (!inner) {
+      inner = {};
+      GLOBAL_COMPONENT_MEMORY_MAP.set(componentIdx, inner);
+    }
+    
+    inner[memoryIdx] = { memory, memoryIdx, componentIdx };
+  }
+  
+  class RepTable {
+    #data = [0, null];
+    #size = 0;
+    #target;
+    
+    constructor(args) {
+      this.target = args?.target;
+    }
+    
+    data() { return this.#data; }
+    
+    insert(val) {
+      _debugLog('[RepTable#insert()] args', { val, target: this.target });
+      const freeIdx = this.#data[0];
+      if (freeIdx === 0) {
+        this.#data.push(val);
+        this.#data.push(null);
+        const rep = (this.#data.length >> 1) - 1;
+        _debugLog('[RepTable#insert()] inserted', { val, target: this.target, rep });
+        this.#size += 1;
+        return rep;
+      }
+      this.#data[0] = this.#data[freeIdx << 1];
+      const placementIdx = freeIdx << 1;
+      this.#data[placementIdx] = val;
+      this.#data[placementIdx + 1] = null;
+      _debugLog('[RepTable#insert()] inserted', { val, target: this.target, rep: freeIdx });
+      this.#size += 1;
+      return freeIdx;
+    }
+    
+    get(rep) {
+      _debugLog('[RepTable#get()] args', { rep, target: this.target });
+      if (rep === 0) { throw new Error('invalid resource rep during get, (cannot be 0)'); }
+      
+      const baseIdx = rep << 1;
+      const val = this.#data[baseIdx];
+      return val;
+    }
+    
+    contains(rep) {
+      _debugLog('[RepTable#contains()] args', { rep, target: this.target });
+      if (rep === 0) { throw new Error('invalid resource rep during contains, (cannot be 0)'); }
+      
+      const baseIdx = rep << 1;
+      return !!this.#data[baseIdx];
+    }
+    
+    remove(rep) {
+      _debugLog('[RepTable#remove()] args', { rep, target: this.target });
+      if (rep === 0) { throw new Error('invalid resource rep during remove, (cannot be 0)'); }
+      if (this.#data.length === 2) { throw new Error('invalid'); }
+      
+      const baseIdx = rep << 1;
+      const val = this.#data[baseIdx];
+      
+      this.#data[baseIdx] = this.#data[0];
+      this.#data[0] = rep;
+      this.#size -= 1;
+      
+      return val;
+    }
+    
+    size() { return this.#size; }
+    
+    clear() {
+      _debugLog('[RepTable#clear()] args', { rep, target: this.target });
+      this.#data = [0, null];
+    }
+  }
+  const _coinFlip = () => { return Math.random() > 0.5; };
+  let SCOPE_ID = 0;
+  const I32_MIN = -2_147_483_648;
+  
+  const I32_MAX= 2_147_483_647;
+  
+  
+  function _isValidNumericPrimitive(ty, v) {
+    if (v === undefined || v === null) { return false; }
+    switch (ty) {
+      case 'bool':
+      return v === 0 || v === 1;
+      break;
+      case 'u8':
+      return v >= 0 && v <= 255;
+      break;
+      case 's8':
+      return v >= -128 && v <= 127;
+      break;
+      case 'u16':
+      return v >= 0 && v <= 65535;
+      break;
+      case 's16':
+      return v >= -32768 && v <= 32767;
+      case 'u32':
+      return v >= 0 && v <= 4_294_967_295;
+      case 's32':
+      return v >= -2_147_483_648 && v <= 2_147_483_647;
+      case 'u64':
+      return typeof v === 'bigint' && v >= 0 && v <= 18_446_744_073_709_551_615n;
+      case 's64':
+      return typeof v === 'bigint' && v >= -9223372036854775808n && v <= 9223372036854775807n;
+      break;
+      case 'f32':
+      case 'f64': return typeof v === 'number';
+      default:
       return false;
     }
-    if (this.#state === AsyncSubtask.State.RETURNED
-    || this.#state === AsyncSubtask.State.CANCELLED_BEFORE_STARTED
-    || this.#state === AsyncSubtask.State.CANCELLED_BEFORE_RETURNED) {
-      return true;
+    return true;
+  }
+  
+  function _requireValidNumericPrimitive(ty, v) {
+    if (v === undefined  || v === null || !_isValidNumericPrimitive(ty, v)) {
+      throw new TypeError(`invalid ${ty} value [${v}]`);
     }
-    throw new Error('unrecognized internal Subtask state [' + this.#state + ']');
+    return true;
   }
   
-  addLender(handle) {
-    _debugLog('[AsyncSubtask#addLender()] args', { handle });
-    if (!Number.isNumber(handle)) { throw new Error('missing/invalid lender handle [' + handle + ']'); }
-    
-    if (this.#lenders.length === 0 || this.isResolved()) {
-      throw new Error('subtask has no lendors or has already been resolved');
-    }
-    
-    handle.lends++;
-    this.#lenders.push(handle);
-  }
+  const _typeCheckValidI32 = (n) => typeof n === 'number' && n >= I32_MIN && n <= I32_MAX;
   
-  deliverResolve() {
-    _debugLog('[AsyncSubtask#deliverResolve()] args', {
-      lenders: this.#lenders,
-      parentTaskID: this.parentTaskID(),
-      subtaskID: this.#id,
-      childTaskID: this.childTaskID(),
-      resolved: this.isResolved(),
-      resolveDelivered: this.resolveDelivered(),
-    });
-    
-    const cannotDeliverResolve = this.resolveDelivered() || !this.isResolved();
-    if (cannotDeliverResolve) {
-      throw new Error('subtask cannot deliver resolution twice, and the subtask must be resolved');
-    }
-    
-    for (const lender of this.#lenders) {
-      lender.lends--;
-    }
-    
-    this.#lenders = null;
-  }
   
-  resolveDelivered() {
-    _debugLog('[AsyncSubtask#resolveDelivered()] args', { });
-    if (this.#lenders === null && !this.isResolved()) {
-      throw new Error('invalid subtask state, lenders missing and subtask has not been resolved');
-    }
-    return this.#lenders === null;
-  }
-  
-  drop() {
-    _debugLog('[AsyncSubtask#drop()] args', {
-      componentIdx: this.#componentIdx,
-      parentTaskID: this.#parentTask?.id(),
-      parentTaskFnName: this.#parentTask?.entryFnName(),
-      childTaskID: this.#childTask?.id(),
-      childTaskFnName: this.#childTask?.entryFnName(),
-      subtaskFnName: this.fnName,
-    });
-    if (!this.#waitable) { throw new Error('missing/invalid inner waitable'); }
-    if (!this.resolveDelivered()) {
-      throw new Error('cannot drop subtask before resolve is delivered');
-    }
-    if (this.#waitable) { this.#waitable.drop() }
-    this.#dropped = true;
-  }
-  
-  #getComponentState() {
-    const state = getOrCreateAsyncState(this.#componentIdx);
-    if (!state) {
-      throw new Error('invalid/missing async state for component [' + componentIdx + ']');
-    }
-    return state;
-  }
-  
-  getWaitableHandleIdx() {
-    _debugLog('[AsyncSubtask#getWaitableHandleIdx()] args', { });
-    if (!this.#waitable) { throw new Error('missing/invalid waitable'); }
-    return this.waitableRep();
-  }
-}
-
-function _prepareCall(
-memoryIdx,
-getMemoryFn,
-startFn,
-returnFn,
-callerComponentIdx,
-calleeComponentIdx,
-taskReturnTypeIdx,
-calleeIsAsyncInt,
-stringEncoding,
-resultCountOrAsync,
-) {
-  _debugLog('[_prepareCall()]', {
-    memoryIdx,
-    callerComponentIdx,
-    calleeComponentIdx,
-    taskReturnTypeIdx,
-    calleeIsAsyncInt,
-    stringEncoding,
-    resultCountOrAsync,
-  });
-  const argArray = [...arguments];
-  
-  // value passed in *may* be as large as u32::MAX which may be mangled into -2
-  resultCountOrAsync >>>= 0;
-  
-  let isAsync = false;
-  let hasResultPointer = false;
-  if (resultCountOrAsync === 2**32 - 1) {
-    // prepare async with no result (u32::MAX)
-    isAsync = true;
-    hasResultPointer = false;
-  } else if (resultCountOrAsync === 2**32 - 2) {
-    // prepare async with result (u32::MAX - 1)
-    isAsync = true;
-    hasResultPointer = true;
-  }
-  
-  const currentCallerTaskMeta = getCurrentTask(callerComponentIdx);
-  if (!currentCallerTaskMeta) {
-    throw new Error('invalid/missing current task for caller during prepare call');
-  }
-  
-  const currentCallerTask = currentCallerTaskMeta.task;
-  if (!currentCallerTask) {
-    throw new Error('unexpectedly missing task in meta for caller during prepare call');
-  }
-  
-  if (currentCallerTask.componentIdx() !== callerComponentIdx) {
-    throw new Error(`task component idx [${ currentCallerTask.componentIdx() }] !== [${ callerComponentIdx }] (callee ${ calleeComponentIdx })`);
-  }
-  
-  let getCalleeParamsFn;
-  let resultPtr = null;
-  let directParamsArr;
-  if (hasResultPointer) {
-    directParamsArr = argArray.slice(10, argArray.length - 1);
-    getCalleeParamsFn = () => directParamsArr;
-    resultPtr = argArray[argArray.length - 1];
-  } else {
-    directParamsArr = argArray.slice(10);
-    getCalleeParamsFn = () => directParamsArr;
-  }
-  
-  let encoding;
-  switch (stringEncoding) {
-    case 0:
-    encoding = 'utf8';
-    break;
-    case 1:
-    encoding = 'utf16';
-    break;
-    case 2:
-    encoding = 'compact-utf16';
-    break;
-    default:
-    throw new Error(`unrecognized string encoding enum [${stringEncoding}]`);
-  }
-  
-  const subtask = currentCallerTask.createSubtask({
-    componentIdx: callerComponentIdx,
-    parentTask: currentCallerTask,
-    isAsync,
-    callMetadata: {
-      getMemoryFn,
-      memoryIdx,
-      resultPtr,
-      returnFn,
-      startFn,
-      stringEncoding,
-    }
-  });
-  
-  const [newTask, newTaskID] = createNewCurrentTask({
-    componentIdx: calleeComponentIdx,
-    isAsync,
-    getCalleeParamsFn,
-    entryFnName: [
-    'task',
-    subtask.getParentTask().id(),
-    'subtask',
-    subtask.id(),
-    'new-prepared-async-task'
-    ].join('/'),
-    stringEncoding,
-  });
-  newTask.setParentSubtask(subtask);
-  newTask.setReturnMemoryIdx(memoryIdx);
-  newTask.setReturnMemory(getMemoryFn);
-  subtask.setChildTask(newTask);
-  
-  newTask.subtaskMeta = {
-    subtask,
-    calleeComponentIdx,
-    callerComponentIdx,
-    getCalleeParamsFn,
-    stringEncoding,
-    isAsync,
+  const _typeCheckAsyncFn= (f) => {
+    return f instanceof ASYNC_FN_CTOR;
   };
   
-  _setGlobalCurrentTaskMeta({
-    taskID: newTask.id(),
-    componentIdx: newTask.componentIdx(),
-  });
-}
-
-function _asyncStartCall(args, callee, paramCount, resultCount, flags) {
-  const componentIdx = ASYNC_CURRENT_COMPONENT_IDXS.at(-1);
+  let RESOURCE_CALL_BORROWS = [];const ASYNC_FN_CTOR = (async () => {}).constructor;
   
-  const globalTaskMeta = _getGlobalCurrentTaskMeta(componentIdx);
-  if (!globalTaskMeta) { throw new Error('missing global current task globalTaskMeta'); }
-  const taskID = globalTaskMeta.taskID;
-  
-  _debugLog('[_asyncStartCall()] args', { args, componentIdx });
-  const { getCallbackFn, callbackIdx, getPostReturnFn, postReturnIdx } = args;
-  
-  const preparedTaskMeta = getCurrentTask(componentIdx, taskID);
-  if (!preparedTaskMeta) { throw new Error('unexpectedly missing current task'); }
-  
-  const preparedTask = preparedTaskMeta.task;
-  if (!preparedTask) { throw new Error('unexpectedly missing current task'); }
-  if (!preparedTask.subtaskMeta) { throw new Error('missing subtask meta from prepare'); }
-  
-  const {
-    subtask,
-    returnMemoryIdx,
-    getReturnMemoryFn,
-    callerComponentIdx,
-    calleeComponentIdx,
-    getCalleeParamsFn,
-    isAsync,
-    stringEncoding,
-  } = preparedTask.subtaskMeta;
-  if (!subtask) { throw new Error("missing subtask from cstate during async start call"); }
-  if (calleeComponentIdx !== preparedTask.componentIdx()) {
-    throw new Error(`meta callee idx [${calleeComponentIdx}] != current task idx [${preparedTask.componentIdx()}] during async start call`);
-  }
-  if (calleeComponentIdx !== componentIdx) {
-    throw new Error("mismatched componentIdx for async start call (does not match prepare)");
-  }
-  
-  const argArray = [...arguments];
-  
-  if (resultCount < 0 || resultCount > 1) { throw new Error('invalid/unsupported result count'); }
-  
-  const callbackFnName = 'callback_' + callbackIdx;
-  const callbackFn = getCallbackFn();
-  preparedTask.setCallbackFn(callbackFn, callbackFnName);
-  preparedTask.setPostReturnFn(getPostReturnFn());
-  
-  if (resultCount < 0 || resultCount > 1) {
-    throw new Error(`unsupported result count [${ resultCount }]`);
-  }
-  
-  const params = preparedTask.getCalleeParams();
-  if (paramCount !== params.length) {
-    throw new Error(`unexpected callee param count [${ params.length }], _asyncStartCall invocation expected [${ paramCount }]`);
-  }
-  
-  const callerComponentState = getOrCreateAsyncState(subtask.componentIdx());
-  
-  const calleeComponentState = getOrCreateAsyncState(preparedTask.componentIdx());
-  const calleeBackpressure = calleeComponentState.hasBackpressure();
-  
-  // Set up a handler on subtask completion to lower results from the call into the caller's memory region.
-  //
-  // NOTE: during fused guest->guest calls this handler is triggered, but does not actually perform
-  // lowering manually, as fused modules provider helper functions that can
-  subtask.registerOnResolveHandler((res) => {
-    _debugLog('[_asyncStartCall()] handling subtask result', { res, subtaskID: subtask.id() });
+  function clearCurrentTask(componentIdx, taskID) {
+    _debugLog('[clearCurrentTask()] args', { componentIdx, taskID });
     
-    let subtaskCallMeta = subtask.getCallMetadata();
-    
-    // NOTE: in the case of guest -> guest async calls, there may be no memory/realloc present,
-    // as the host will intermediate the value storage/movement between calls.
-    //
-    // We can simply take the value and lower it as a parameter
-    if (subtaskCallMeta.memory || subtaskCallMeta.realloc) {
-      throw new Error("call metadata unexpectedly contains memory/realloc for guest->guest call");
+    if (componentIdx === undefined || componentIdx === null) {
+      throw new Error('missing/invalid component instance index while ending current task');
     }
     
-    const callerTask = subtask.getParentTask();
-    const calleeTask = preparedTask;
-    const callerMemoryIdx = callerTask.getReturnMemoryIdx();
-    const callerComponentIdx = callerTask.componentIdx();
-    
-    // If a helper function was provided we are likely in a fused guest->guest call,
-    // and the result will be delivered (lift/lowered) via helper function
-    if (subtaskCallMeta && subtaskCallMeta.returnFn) {
-      _debugLog('[_asyncStartCall()] return function present while handling subtask result, returning early (skipping lower)', {
-        calleeTaskID: calleeTask.id(),
-        calleeComponentIdx,
-      });
-      
-      // TODO: centralize calling of returnFn to *one place* (if possible)
-      if (subtaskCallMeta.returnFnCalled) { return; }
-      
-      const res = subtaskCallMeta.returnFn.apply(null, [subtaskCallMeta.resultPtr]);
-      
-      _debugLog('[_asyncStartCall()] finished calling return fn', {
-        calleeTaskID: calleeTask.id(),
-        calleeComponentIdx,
-        res,
-      });
-      
-      return;
+    const tasks = ASYNC_TASKS_BY_COMPONENT_IDX.get(componentIdx);
+    if (!tasks || !Array.isArray(tasks)) {
+      throw new Error('missing/invalid tasks for component instance while ending task');
+    }
+    if (tasks.length == 0) {
+      throw new Error(`no current tasks for component instance [${componentIdx}] while ending task`);
     }
     
-    // If there is no where to lower the results, exit early
-    if (!subtaskCallMeta.resultPtr) {
-      _debugLog('[_asyncStartCall()] no result ptr during subtask result handling, returning early (skipping lower)');
-      return;
-    }
-    
-    let callerMemory;
-    if (callerMemoryIdx !== null && callerMemoryIdx !== undefined) {
-      callerMemory = lookupMemoriesForComponent({ componentIdx: callerComponentIdx, memoryIdx: callerMemoryIdx });
-    } else {
-      const callerMemories = lookupMemoriesForComponent({ componentIdx: callerComponentIdx });
-      if (callerMemories.length !== 1) { throw new Error(`unsupported amount of caller memories`); }
-      callerMemory = callerMemories[0];
-    }
-    
-    if (!callerMemory) {
-      _debugLog('[_asyncStartCall()] missing memory', { subtaskID: subtask.id(), res });
-      throw new Error(`missing memory for to guest->guest call result (subtask [${subtask.id()}])`);
-    }
-    
-    const lowerFns = calleeTask.getReturnLowerFns();
-    if (!lowerFns || lowerFns.length === 0) {
-      _debugLog('[_asyncStartCall()] missing result lower metadata for guest->guest call', { subtaskID: subtask.id() });
-      throw new Error(`missing result lower metadata for guest->guest call (subtask [${subtask.id()}])`);
-    }
-    
-    if (lowerFns.length !== 1) {
-      _debugLog('[_asyncStartCall()] only single result reportetd for guest->guest call', { subtaskID: subtask.id() });
-      throw new Error(`only single result supported for guest->guest calls (subtask [${subtask.id()}])`);
-    }
-    
-    _debugLog('[_asyncStartCall()] lowering results', { subtaskID: subtask.id() });
-    lowerFns[0]({
-      realloc: undefined,
-      memory: callerMemory,
-      vals: [res],
-      storagePtr: subtaskCallMeta.resultPtr,
-      componentIdx: callerComponentIdx,
-      stringEncoding: subtaskCallMeta.stringEncoding,
-    });
-    
-  });
-  
-  subtask.setOnProgressFn(() => {
-    subtask.setPendingEvent(() => {
-      if (subtask.isResolved()) { subtask.deliverResolve(); }
-      const event = {
-        code: ASYNC_EVENT_CODE.SUBTASK,
-        payload0: subtask.waitableRep(),
-        payload1: subtask.getStateNumber(),
-      };
-      return event;
-    });
-  });
-  
-  // Start the (event) driver loop that will resolve the subtask
-  // in a new JS task
-  setTimeout(async () => {
-    _debugLog('[_asyncStartCall()] continuing started subtask (in JS task)', {
-      taskID: preparedTask.id(),
-      subtaskID: subtask.id(),
-      callerComponentIdx,
-      calleeComponentIdx,
-    });
-    
-    let startRes = subtask.onStart({ startFnParams: params });
-    startRes = Array.isArray(startRes) ? startRes : [startRes];
-    
-    if (calleeComponentState.isExclusivelyLocked()) {
-      _debugLog('[_asyncStartCall()] during continuation callee is exclusively locked, suspending...', {
-        taskID: preparedTask.id(),
-        subtaskID: subtask.id(),
-        callerComponentIdx,
-        calleeComponentIdx,
-      });
-      await calleeComponentState.suspendTask({
-        task: preparedTask,
-        readyFn: () => !calleeComponentState.isExclusivelyLocked(),
-      });
-    }
-    
-    const started = await preparedTask.enter();
-    if (!started) {
-      _debugLog('[_asyncStartCall()] task failed early', {
-        taskID: preparedTask.id(),
-        subtaskID: subtask.id(),
-      });
-      throw new Error("task failed to start");
-      return;
-    }
-    
-    let callbackResult;
-    try {
-      let jspiCallee;
-      if (callee._cachedPromising) {
-        jspiCallee = callee._cachedPromising;
-      } else {
-        callee._cachedPromising = WebAssembly.promising(callee);
-        jspiCallee = callee._cachedPromising;
-      }
-      
-      callbackResult = await _withGlobalCurrentTaskMetaAsync({
-        taskID: preparedTask.id(),
-        componentIdx: preparedTask.componentIdx(),
-        fn: () => {
-          return jspiCallee.apply(null, startRes);
-        }
-      });
-    } catch(err) {
-      _debugLog("[_asyncStartCall()] initial subtask callee run failed", err);
-      // NOTE: a good place to rejectt the parent task, if rejection API is enabled
-      // subtask.reject(err);
-      // subtask.getParentTask().reject(err);
-      
-      subtask.getParentTask().setErrored(err);
-      
-      return;
-    }
-    
-    // If there was no callback function, we're dealing with a sync function
-    // that was lifted as async without one, there is only the callee.
-    if (!callbackFn) {
-      _debugLog("[_asyncStartCall()] no callback, resolving w/ callee result", {
-        taskID: preparedTask.id(),
-        componentIdx: preparedTask.componentIdx(),
-        preparedTask,
-        stateNumber: preparedTask.taskState(),
-        isResolved: preparedTask.isResolved(),
-        callbackFn,
-      });
-      preparedTask.resolve([callbackResult]);
-      return;
-    }
-    
-    let fnName = callbackFn.fnName;
-    if (!fnName) {
-      fnName = [
-      '<task ',
-      subtask.parentTaskID(),
-      '/subtask ',
-      subtask.id(),
-      '/task ',
-      preparedTask.id(),
-      '>',
-      ].join("");
-    }
-    
-    try {
-      _debugLog("[_asyncStartCall()] starting driver loop", {
-        fnName,
-        componentIdx: preparedTask.componentIdx(),
-        subtaskID: subtask.id(),
-        childTaskID: subtask.childTaskID(),
-        parentTaskID: subtask.parentTaskID(),
-      });
-      
-      await _driverLoop({
-        componentState: calleeComponentState,
-        task: preparedTask,
-        fnName,
-        isAsync: true,
-        callbackResult,
-        resolve,
-        reject
-      });
-    } catch (err) {
-      _debugLog("[AsyncStartCall] drive loop call failure", { err });
-    }
-    
-  }, 0);
-  
-  const subtaskState = subtask.getStateNumber();
-  if (subtaskState < 0 || subtaskState > 2**5) {
-    throw new Error('invalid subtask state, out of valid range');
-  }
-  
-  _debugLog('[_asyncStartCall()] returning subtask rep & state', {
-    subtask: {
-      rep: subtask.waitableRep(),
-      state: subtaskState,
-    }
-  });
-  
-  return Number(subtask.waitableRep()) << 4 | subtaskState;
-}
-
-function _syncStartCall(callbackIdx) {
-  _debugLog('[_syncStartCall()] args', { callbackIdx });
-  throw new Error('synchronous start call not implemented!');
-}
-
-class Waitable {
-  #componentIdx;
-  
-  #pendingEventFn = null;
-  
-  #promise;
-  #resolve;
-  #reject;
-  
-  #waitableSet = null;
-  
-  #hasSyncWaiter = false;
-  
-  #idx = null; // to component-global waitables
-  
-  target;
-  
-  constructor(args) {
-    const { componentIdx, target } = args;
-    this.#componentIdx = componentIdx;
-    this.target = args.target;
-    this.#resetPromise();
-  }
-  
-  componentIdx() { return this.#componentIdx; }
-  isInSet() { return this.#waitableSet !== null; }
-  
-  idx() { return this.#idx; }
-  setIdx(idx) {
-    if (idx === 0) { throw new Error("waitable idx cannot be zero"); }
-    this.#idx = idx;
-  }
-  
-  setTarget(tgt) { this.target = tgt; }
-  
-  #resetPromise() {
-    const { promise, resolve, reject } = promiseWithResolvers()
-    this.#promise = promise;
-    this.#resolve = resolve;
-    this.#reject = reject;
-  }
-  
-  resolve() { this.#resolve(); }
-  reject(err) { this.#reject(err); }
-  promise() { return this.#promise; }
-  
-  hasPendingEvent() {
-    // _debugLog('[Waitable#hasPendingEvent()]', {
-      //     componentIdx: this.#componentIdx,
-      //     waitable: this,
-      //     waitableSet: this.#waitableSet,
-      //     hasPendingEvent: this.#pendingEventFn !== null,
-      // });
-      return this.#pendingEventFn !== null;
-    }
-    
-    setPendingEvent(fn) {
-      _debugLog('[Waitable#setPendingEvent()] args', {
-        waitable: this,
-        inSet: this.#waitableSet,
-      });
-      this.#pendingEventFn = fn;
-    }
-    
-    getPendingEvent() {
-      _debugLog('[Waitable#getPendingEvent()] args', {
-        waitable: this,
-        inSet: this.#waitableSet,
-        hasPendingEvent: this.#pendingEventFn !== null,
-      });
-      if (this.#pendingEventFn === null) { return null; }
-      const eventFn = this.#pendingEventFn;
-      this.#pendingEventFn = null;
-      const e = eventFn();
-      this.#resetPromise();
-      return e;
-    }
-    
-    join(waitableSet) {
-      _debugLog('[Waitable#join()] args', {
-        waitable: this,
-        waitableSet: waitableSet,
-        isRemoval: waitableSet === null,
-      });
-      
-      if (this.#waitableSet === undefined) {
-        throw new TypeError('waitable set must be not be undefined');
-      }
-      
-      if (this.#waitableSet) {
-        this.#waitableSet.removeWaitable(this);
-      }
-      
-      this.#waitableSet = waitableSet;
-      
-      if (waitableSet) {
-        this.#waitableSet.addWaitable(this);
+    if (taskID !== undefined) {
+      const last = tasks[tasks.length - 1];
+      if (last.id !== taskID) {
+        // throw new Error('current task does not match expected task ID');
+        return;
       }
     }
     
-    drop() {
-      _debugLog('[Waitable#drop()] args', {
-        componentIdx: this.#componentIdx,
-        waitable: this,
-      });
-      if (this.hasPendingEvent()) {
-        throw new Error('waitables with pending events cannot be dropped');
-      }
-      this.join(null);
-    }
+    ASYNC_CURRENT_TASK_IDS.pop();
+    ASYNC_CURRENT_COMPONENT_IDXS.pop();
     
-    async waitForPendingEvent(args) {
-      const { cstate } = args;
-      if (!cstate) { throw new TypeError('missing component state'); }
-      
-      if (this.#waitableSet !== null || this.#hasSyncWaiter) {
-        throw new Error("waitable is already in a set/has a sync waiter");
-      }
-      this.#hasSyncWaiter = true;
-      await cstate.waitUntil({
-        cancellable: false,
-        readyFn: () => this.hasPendingEvent(),
-      });
-      this.#hasSyncWaiter = false;
-    }
-    
+    const taskMeta = tasks.pop();
+    return taskMeta.task;
   }
   
-  const ERR_CTX_TABLES = {};
+  const CURRENT_TASK_MAY_BLOCK= globalThis.WebAssembly ? new globalThis.WebAssembly.Global({ value: 'i32', mutable: true }, 0) : false;
   
-  function contextGet(ctx) {
-    const { componentIdx, slot } = ctx;
-    if (componentIdx === undefined) { throw new TypeError("missing component idx"); }
-    if (slot === undefined) { throw new TypeError("missing slot"); }
-    
-    const currentTaskMeta = _getGlobalCurrentTaskMeta(componentIdx);
-    if (!currentTaskMeta) {
-      throw new Error(`missing/incomplete global current task meta for component idx [${componentIdx}] during context set`);
+  const ASYNC_CURRENT_TASK_IDS = [];
+  const ASYNC_CURRENT_COMPONENT_IDXS = [];
+  
+  function unpackCallbackResult(result) {
+    if (!(_typeCheckValidI32(result))) { throw new Error('invalid callback return value [' + result + '], not a valid i32'); }
+    const eventCode = result & 0xF;
+    if (eventCode < 0 || eventCode > 3) {
+      throw new Error('invalid async return value [' + eventCode + '], outside callback code range');
     }
-    const taskID = currentTaskMeta.taskID;
-    
-    const taskMeta = getCurrentTask(componentIdx, taskID);
-    if (!taskMeta) { throw new Error('failed to retrieve current task'); }
-    
-    let task = taskMeta.task;
-    if (!task) { throw new Error('invalid/missing current task in metadata while getting context'); }
-    
-    _debugLog('[contextGet()] args', {
-      slot,
-      storage: task.storage,
-      taskID: task.id(),
-      componentIdx: task.componentIdx(),
-    });
-    
-    if (slot < 0 || slot >= task.storage.length) { throw new Error('invalid slot for current task'); }
-    
-    return task.storage[slot];
+    if (result < 0 || result >= 2**32) { throw new Error('invalid callback result'); }
+    // TODO: table max length check?
+    const waitableSetRep = result >> 4;
+    return [eventCode, waitableSetRep];
   }
   
-  
-  function contextSet(ctx, value) {
-    const { componentIdx, slot } = ctx;
-    if (componentIdx === undefined) { throw new TypeError("missing component idx"); }
-    if (slot === undefined) { throw new TypeError("missing slot"); }
-    if (!(_typeCheckValidI32(value))) { throw new Error('invalid value for context set (not valid i32)'); }
-    
-    const currentTaskMeta = _getGlobalCurrentTaskMeta(componentIdx);
-    if (!currentTaskMeta) {
-      throw new Error(`missing/incomplete global current task meta for component idx [${componentIdx}] during context set`);
-    }
-    const taskID = currentTaskMeta.taskID;
-    
-    const taskMeta = getCurrentTask(componentIdx, taskID);
-    if (!taskMeta) { throw new Error('failed to retrieve current task'); }
-    
-    let task = taskMeta.task;
-    if (!task) { throw new Error('invalid/missing current task in metadata while setting context'); }
-    
-    _debugLog('[contextSet()] args', {
-      slot,
-      value,
-      storage: task.storage,
-      taskID: task.id(),
-      componentIdx: task.componentIdx(),
-    });
-    
-    if (slot < 0 || slot >= task.storage.length) { throw new Error('invalid slot for current task'); }
-    task.storage[slot] = value;
-  }
-  
-  const ASYNC_TASKS_BY_COMPONENT_IDX = new Map();
-  
-  class AsyncTask {
+  class AsyncSubtask {
     static _ID = 0n;
     
     static State = {
-      INITIAL: 'initial',
-      CANCELLED: 'cancelled',
-      CANCEL_PENDING: 'cancel-pending',
-      CANCEL_DELIVERED: 'cancel-delivered',
-      RESOLVED: 'resolved',
-    }
-    
-    static BlockResult = {
-      CANCELLED: 'block.cancelled',
-      NOT_CANCELLED: 'block.not-cancelled',
-    }
+      STARTING: 0,
+      STARTED: 1,
+      RETURNED: 2,
+      CANCELLED_BEFORE_STARTED: 3,
+      CANCELLED_BEFORE_RETURNED: 4,
+    };
     
     #id;
+    #state = AsyncSubtask.State.STARTING;
     #componentIdx;
-    #state;
-    #isAsync;
-    #isManualAsync;
-    #entryFnName = null;
     
-    #onResolveHandlers = [];
-    #completionPromise = null;
-    #rejected = false;
+    #parentTask;
+    #childTask = null;
     
-    #exitPromise = null;
-    #onExitHandlers = [];
+    #dropped = false;
+    #cancelRequested = false;
     
     #memoryIdx = null;
-    #memory = null;
+    #lenders = null;
+    
+    #waitable = null;
     
     #callbackFn = null;
     #callbackFnName = null;
     
     #postReturnFn = null;
+    #onProgressFn = null;
+    #pendingEventFn = null;
     
-    #getCalleeParamsFn = null;
+    #callMetadata = {};
     
-    #stringEncoding = null;
+    #resolved = false;
     
-    #parentSubtask = null;
+    #onResolveHandlers = [];
+    #onStartHandlers = [];
     
-    #errHandling;
+    #result = null;
+    #resultSet = false;
     
-    #backpressurePromise;
-    #backpressureWaiters = 0n;
+    fnName;
+    target;
+    isAsync;
+    isManualAsync;
     
-    #returnLowerFns = null;
-    
-    #subtasks = [];
-    
-    #entered = false;
-    #exited = false;
-    #errored = null;
-    
-    cancelled = false;
-    cancelRequested = false;
-    alwaysTaskReturn = false;
-    
-    returnCalls =  0;
-    storage = [0, 0];
-    borrowedHandles = {};
-    
-    tmpRetI64HighBits = 0|0;
-    
-    constructor(opts) {
-      this.#id = ++AsyncTask._ID;
-      
-      if (opts?.componentIdx === undefined) {
-        throw new TypeError('missing component id during task creation');
+    constructor(args) {
+      if (typeof args.componentIdx !== 'number') {
+        throw new Error('invalid componentIdx for subtask creation');
       }
-      this.#componentIdx = opts.componentIdx;
+      this.#componentIdx = args.componentIdx;
       
-      this.#state = AsyncTask.State.INITIAL;
-      this.#isAsync = opts?.isAsync ?? false;
-      this.#isManualAsync = opts?.isManualAsync ?? false;
-      this.#entryFnName = opts.entryFnName;
+      this.#id = ++AsyncSubtask._ID;
+      this.fnName = args.fnName;
       
-      const {
-        promise: completionPromise,
-        resolve: resolveCompletionPromise,
-        reject: rejectCompletionPromise,
-      } = promiseWithResolvers();
-      this.#completionPromise = completionPromise;
+      if (!args.parentTask) { throw new Error('missing parent task during subtask creation'); }
+      this.#parentTask = args.parentTask;
       
-      this.#onResolveHandlers.push((results) => {
-        if (this.#parentSubtask !== null) { return; }
-        if (!this.#isAsync) { return; }
-        
-        if (this.#errored !== null) {
-          rejectCompletionPromise(this.#errored);
-          return;
-        } else if (this.#rejected) {
-          rejectCompletionPromise(results);
-          return;
-        }
-        
-        resolveCompletionPromise(results);
-      });
+      if (args.childTask) { this.#childTask = args.childTask; }
       
-      const {
-        promise: exitPromise,
-        resolve: resolveExitPromise,
-        reject: rejectExitPromise,
-      } = promiseWithResolvers();
-      this.#exitPromise = exitPromise;
+      if (args.memoryIdx) { this.#memoryIdx = args.memoryIdx; }
       
-      this.#onExitHandlers.push(() => {
-        resolveExitPromise();
-      });
+      if (!args.waitable) { throw new Error("missing/invalid waitable"); }
+      this.#waitable = args.waitable;
       
-      if (opts.callbackFn) { this.#callbackFn = opts.callbackFn; }
-      if (opts.callbackFnName) { this.#callbackFnName = opts.callbackFnName; }
+      if (args.callMetadata) { this.#callMetadata = args.callMetadata; }
       
-      if (opts.getCalleeParamsFn) { this.#getCalleeParamsFn = opts.getCalleeParamsFn; }
-      
-      if (opts.stringEncoding) { this.#stringEncoding = opts.stringEncoding; }
-      
-      if (opts.parentSubtask) { this.#parentSubtask = opts.parentSubtask; }
-      
-      
-      if (opts.errHandling) { this.#errHandling = opts.errHandling; }
+      this.#lenders = [];
+      this.target = args.target;
+      this.isAsync = args.isAsync;
+      this.isManualAsync = args.isManualAsync;
     }
     
-    taskState() { return this.#state; }
     id() { return this.#id; }
+    parentTaskID() { return this.#parentTask?.id(); }
+    childTaskID() { return this.#childTask?.id(); }
+    state() { return this.#state; }
+    
+    waitable() { return this.#waitable; }
+    waitableRep() { return this.#waitable.idx(); }
+    
+    join() { return this.#waitable.join(...arguments); }
+    getPendingEvent() { return this.#waitable.getPendingEvent(...arguments); }
+    hasPendingEvent() { return this.#waitable.hasPendingEvent(...arguments); }
+    setPendingEvent() { return this.#waitable.setPendingEvent(...arguments); }
+    
+    setTarget(tgt) { this.target = tgt; }
+    
+    getResult() {
+      if (!this.#resultSet) { throw new Error("subtask result has not been set") }
+      return this.#result;
+    }
+    setResult(v) {
+      if (this.#resultSet) { throw new Error("subtask result has already been set"); }
+      this.#result = v;
+      this.#resultSet = true;
+    }
+    
     componentIdx() { return this.#componentIdx; }
-    entryFnName() { return this.#entryFnName; }
     
-    completionPromise() { return this.#completionPromise; }
-    exitPromise() { return this.#exitPromise; }
-    
-    isAsync() { return this.#isAsync; }
-    isSync() { return !this.isAsync(); }
-    
-    getErrHandling() { return this.#errHandling; }
-    
-    hasCallback() { return this.#callbackFn !== null; }
-    
-    getReturnMemoryIdx() { return this.#memoryIdx; }
-    setReturnMemoryIdx(idx) {
-      if (idx === null) { return; }
-      this.#memoryIdx = idx;
+    setChildTask(t) {
+      if (!t) { throw new Error('cannot set missing/invalid child task on subtask'); }
+      if (this.#childTask) { throw new Error('child task is already set on subtask'); }
+      if (this.#parentTask === t) { throw new Error("parent cannot be child"); }
+      this.#childTask = t;
     }
+    getChildTask(t) { return this.#childTask; }
     
-    getReturnMemory() { return this.#memory; }
-    setReturnMemory(m) {
-      if (m === null) { return; }
-      this.#memory = m;
-    }
-    
-    setReturnLowerFns(fns) { this.#returnLowerFns = fns; }
-    getReturnLowerFns() { return this.#returnLowerFns; }
-    
-    setParentSubtask(subtask) {
-      if (!subtask || !(subtask instanceof AsyncSubtask)) { return }
-      if (this.#parentSubtask) { throw new Error('parent subtask can only be set once'); }
-      this.#parentSubtask = subtask;
-    }
-    
-    getParentSubtask() { return this.#parentSubtask; }
-    
-    // TODO(threads): this is very inefficient, we can pass along a root task,
-    // and ideally do not need this once thread support is in place
-    getRootTask() {
-      let currentSubtask = this.getParentSubtask();
-      let task = this;
-      while (currentSubtask) {
-        task = currentSubtask.getParentTask();
-        currentSubtask = task.getParentSubtask();
-      }
-      return task;
-    }
-    
-    setPostReturnFn(f) {
-      if (!f) { return; }
-      if (this.#postReturnFn) { throw new Error('postReturn fn can only be set once'); }
-      this.#postReturnFn = f;
-    }
+    getParentTask() { return this.#parentTask; }
     
     setCallbackFn(f, name) {
       if (!f) { return; }
@@ -1667,790 +434,512 @@ class Waitable {
     }
     
     getCallbackFnName() {
-      if (!this.#callbackFnName) { return undefined; }
-      return this.#callbackFnName;
+      if (!this.#callbackFn) { return undefined; }
+      return this.#callbackFn.name;
     }
     
-    async runCallbackFn(...args) {
-      if (!this.#callbackFn) { throw new Error('no callback function has been set for task'); }
-      return _withGlobalCurrentTaskMetaAsync({
-        taskID: this.#id,
+    setPostReturnFn(f) {
+      if (!f) { return; }
+      if (this.#postReturnFn) { throw new Error('postReturn fn can only be set once'); }
+      this.#postReturnFn = f;
+    }
+    
+    setOnProgressFn(f) {
+      if (this.#onProgressFn) { throw new Error('on progress fn can only be set once'); }
+      this.#onProgressFn = f;
+    }
+    
+    isNotStarted() {
+      return this.#state == AsyncSubtask.State.STARTING;
+    }
+    
+    registerOnStartHandler(f) {
+      this.#onStartHandlers.push(f);
+    }
+    
+    onStart(args) {
+      _debugLog('[AsyncSubtask#onStart()] args', {
         componentIdx: this.#componentIdx,
-        fn: () => { return this.#callbackFn.apply(null, args); }
-      });
-    }
-    
-    getCalleeParams() {
-      if (!this.#getCalleeParamsFn) { throw new Error('missing/invalid getCalleeParamsFn'); }
-      return this.#getCalleeParamsFn();
-    }
-    
-    mayBlock() { return this.isAsync() || this.isResolvedState() }
-    
-    mayEnter(task) {
-      const cstate = getOrCreateAsyncState(this.#componentIdx);
-      if (cstate.hasBackpressure()) {
-        _debugLog('[AsyncTask#mayEnter()] disallowed due to backpressure', { taskID: this.#id });
-        return false;
-      }
-      if (!cstate.callingSyncImport()) {
-        _debugLog('[AsyncTask#mayEnter()] disallowed due to sync import call', { taskID: this.#id });
-        return false;
-      }
-      const callingSyncExportWithSyncPending = cstate.callingSyncExport && !task.isAsync;
-      if (!callingSyncExportWithSyncPending) {
-        _debugLog('[AsyncTask#mayEnter()] disallowed due to sync export w/ sync pending', { taskID: this.#id });
-        return false;
-      }
-      return true;
-    }
-    
-    enterSync() {
-      if (this.needsExclusiveLock()) {
-        const cstate = getOrCreateAsyncState(this.#componentIdx);
-        // TODO(???): it is *very possible* for a the line below to fail if
-        // an async function is already running (and holding the exclusive lock)
-        //
-        // It's not really possible to fix this unless we turn every sync export into
-        // an async export that will use the regular async enabled `enter()`.
-        cstate.exclusiveLock();
-      }
-      return true;
-    }
-    
-    async enter(opts) {
-      _debugLog('[AsyncTask#enter()] args', {
-        taskID: this.#id,
-        componentIdx: this.#componentIdx,
-        subtaskID: this.getParentSubtask()?.id(),
-        args: opts,
-        entryFnName: this.#entryFnName,
+        subtaskID: this.#id,
+        parentTaskID: this.parentTaskID(),
+        fnName: this.fnName,
+        args,
       });
       
-      if (this.#entered) {
-        throw new Error(`task with ID [${this.#id}] should not be entered twice`);
+      if (this.#onProgressFn) { this.#onProgressFn(); }
+      
+      this.#state = AsyncSubtask.State.STARTED;
+      
+      let result;
+      
+      // If we have been provided a helper start function as a result of
+      // component fusion performed by wasmtime tooling, then we can call that helper and lifts/lowers will
+      // be performed for us.
+      //
+      // See also documentation on `HostIntrinsic::PrepareCall`
+      //
+      if (this.#callMetadata.startFn) {
+        result = this.#callMetadata.startFn.apply(null, args?.startFnParams ?? []);
       }
       
-      const cstate = getOrCreateAsyncState(this.#componentIdx);
+      return result;
+    }
+    
+    
+    registerOnResolveHandler(f) {
+      this.#onResolveHandlers.push(f);
+    }
+    
+    reject(subtaskErr) {
+      this.#childTask?.reject(subtaskErr);
+    }
+    
+    onResolve(subtaskValue) {
+      _debugLog('[AsyncSubtask#onResolve()] args', {
+        componentIdx: this.#componentIdx,
+        subtaskID: this.#id,
+        isAsync: this.isAsync,
+        childTaskID: this.childTaskID(),
+        parentTaskID: this.parentTaskID(),
+        parentTaskFnName: this.#parentTask?.entryFnName(),
+        fnName: this.fnName,
+      });
       
-      if (opts?.isHost) {
-        this.#entered = true;
-        return this.#entered;
+      if (this.#resolved) {
+        throw new Error('subtask has already been resolved');
       }
       
-      await cstate.nextTaskExecutionSlot({ task: this });
+      if (this.#onProgressFn) { this.#onProgressFn(); }
       
-      // If a task is synchronous then we can avoid component-relevant
-      // tracking and immediately enter.
-      if (this.isSync()) {
-        this.#entered = true;
-        
-        // TODO(breaking): remove once manually-specifying async fns is removed
-        // It is currently possible for an actually sync export to be specified
-        // as async via JSPI
-        if (this.#isManualAsync) {
-          if (this.needsExclusiveLock()) { cstate.exclusiveLock(); }
+      if (subtaskValue === null && this.#cancelRequested) {
+        if (this.#state === AsyncSubtask.State.STARTING) {
+          this.#state = AsyncSubtask.State.CANCELLED_BEFORE_STARTED;
+        } else {
+          if (this.#state !== AsyncSubtask.State.STARTED) {
+            throw new Error('resolved subtask must have been started before cancellation');
+          }
+          this.#state = AsyncSubtask.State.CANCELLED_BEFORE_RETURNED;
         }
-        
-        return this.#entered;
+      } else {
+        if (this.#state !== AsyncSubtask.State.STARTED) {
+          throw new Error('resolved subtask must have been started before completion');
+        }
+        this.#state = AsyncSubtask.State.RETURNED;
       }
       
-      // Perform intial backpressure check
-      if (cstate.hasBackpressure() || this.needsExclusiveLock() && cstate.isExclusivelyLocked()) {
-        cstate.addBackpressureWaiter();
-        
-        const result = await this.waitUntil({
-          readyFn: () => {
-            return !(cstate.hasBackpressure()
-            || this.needsExclusiveLock() && cstate.isExclusivelyLocked());
-          },
-          cancellable: true,
-        });
-        
-        cstate.removeBackpressureWaiter();
-        
-        if (result === AsyncTask.BlockResult.CANCELLED) {
-          this.cancel();
-          return false;
+      this.setResult(subtaskValue);
+      
+      for (const f of this.#onResolveHandlers) {
+        try {
+          f(subtaskValue);
+        } catch (err) {
+          console.error("error during subtask resolve handler", err);
+          throw err;
         }
       }
       
-      // Lock the component state or keep trying until we can/do
-      try {
-        if (this.needsExclusiveLock()) { cstate.exclusiveLock(); }
-      } catch {
-        // Continuously attempt to lock until we can
-        while (cstate.hasBackpressure() || this.needsExclusiveLock() && cstate.isExclusivelyLocked()) {
+      const callMetadata = this.getCallMetadata();
+      
+      // TODO(fix): we should be able to easily have the caller's meomry
+      // to lower into here, but it's not present in PrepareCall
+      const memory = callMetadata.memory ?? this.#parentTask?.getReturnMemory() ?? lookupMemoriesForComponent({ componentIdx: this.#parentTask?.componentIdx() })[0];
+      if (callMetadata && !callMetadata.returnFn && this.isAsync && callMetadata.resultPtr && memory) {
+        const { resultPtr, realloc } = callMetadata;
+        const lowers = callMetadata.lowers; // may have been updated in task.return of the child
+        if (lowers && lowers.length > 0) {
+          lowers[0]({
+            componentIdx: this.#componentIdx,
+            memory,
+            realloc,
+            vals: [subtaskValue],
+            storagePtr: resultPtr,
+            stringEncoding: callMetadata.stringEncoding,
+          });
+        }
+      }
+      
+      this.#resolved = true;
+      this.#parentTask.removeSubtask(this);
+      
+      if (!this.isAsync) {
+        this.deliverResolve();
+        const rep = this.waitableRep();
+        if (rep) {
           try {
-            if (this.needsExclusiveLock()) { cstate.exclusiveLock(); }
-            break;
-          } catch(err) {
-            cstate.addBackpressureWaiter();
-            const result = await this.waitUntil({
-              readyFn: () => {
-                return !(cstate.hasBackpressure()
-                || this.needsExclusiveLock() && cstate.isExclusivelyLocked());
-              },
-              cancellable: true,
-            });
-            cstate.removeBackpressureWaiter();
-            if (result === AsyncTask.BlockResult.CANCELLED) {
-              this.cancel();
-              return false;
+            const removed = this.#getComponentState().handles.remove(rep);
+            if (removed !== this) {
+              throw new Error("unexpectedly received non-self Subtask from handle removal");
             }
+            this.drop();
+          } catch (err) {
+            _debugLog('[AsyncSubtask#onResolve()] failed to remove subtask after sync subtask completion', err);
           }
         }
       }
-      
-      this.#entered = true;
-      return this.#entered;
     }
     
-    isRunningState() { return this.#state !== AsyncTask.State.RESOLVED; }
-    isResolvedState() { return this.#state === AsyncTask.State.RESOLVED; }
-    isResolved() { return this.#state === AsyncTask.State.RESOLVED; }
+    getStateNumber() { return this.#state; }
+    isReturned() { return this.#state === AsyncSubtask.State.RETURNED; }
     
-    async waitUntil(opts) {
-      const { readyFn, cancellable } = opts;
-      _debugLog('[AsyncTask#waitUntil()] args', { taskID: this.#id, args: { cancellable } });
-      
-      // TODO(fix): check for cancel
-      // TODO(fix): determinism
-      // TODO(threads): add this thread to waiting list
-      
-      const keepGoing = await this.suspendUntil({
-        readyFn,
-        cancellable,
-      });
-      
-      return keepGoing;
+    getCallMetadata() { return this.#callMetadata; }
+    
+    isResolved() {
+      if (this.#state === AsyncSubtask.State.STARTING
+      || this.#state === AsyncSubtask.State.STARTED) {
+        return false;
+      }
+      if (this.#state === AsyncSubtask.State.RETURNED
+      || this.#state === AsyncSubtask.State.CANCELLED_BEFORE_STARTED
+      || this.#state === AsyncSubtask.State.CANCELLED_BEFORE_RETURNED) {
+        return true;
+      }
+      throw new Error('unrecognized internal Subtask state [' + this.#state + ']');
     }
     
-    async yieldUntil(opts) {
-      const { readyFn, cancellable } = opts;
-      _debugLog('[AsyncTask#yieldUntil()]', {
-        taskID: this.#id,
-        args: {
-          cancellable,
-        },
-        componentIdx: this.#componentIdx,
-      });
+    addLender(handle) {
+      _debugLog('[AsyncSubtask#addLender()] args', { handle });
+      if (!Number.isNumber(handle)) { throw new Error('missing/invalid lender handle [' + handle + ']'); }
       
-      const keepGoing = await this.suspendUntil({ readyFn, cancellable });
-      if (keepGoing) {
-        return {
-          code: ASYNC_EVENT_CODE.NONE,
-          payload0: 0,
-          payload1: 0,
-        };
+      if (this.#lenders.length === 0 || this.isResolved()) {
+        throw new Error('subtask has no lendors or has already been resolved');
       }
       
-      return {
-        code: ASYNC_EVENT_CODE.TASK_CANCELLED,
-        payload0: 0,
-        payload1: 0,
-      };
+      handle.lends++;
+      this.#lenders.push(handle);
     }
     
-    async suspendUntil(opts) {
-      const { cancellable, readyFn } = opts;
-      _debugLog('[AsyncTask#suspendUntil()] args', {
-        taskID: this.#id,
-        args: {
-          cancellable,
-        },
-        componentIdx: this.#componentIdx,
+    deliverResolve() {
+      _debugLog('[AsyncSubtask#deliverResolve()] args', {
+        lenders: this.#lenders,
+        parentTaskID: this.parentTaskID(),
+        subtaskID: this.#id,
+        childTaskID: this.childTaskID(),
+        resolved: this.isResolved(),
+        resolveDelivered: this.resolveDelivered(),
       });
       
-      const pendingCancelled = this.deliverPendingCancel({ cancellable });
-      if (pendingCancelled) { return false; }
-      
-      const completed = await this.immediateSuspendUntil({ readyFn, cancellable });
-      return completed;
-    }
-    
-    // TODO(threads): equivalent to thread.suspend_until()
-    async immediateSuspendUntil(opts) {
-      const { cancellable, readyFn } = opts;
-      _debugLog('[AsyncTask#immediateSuspendUntil()] args', {
-        args: {
-          cancellable,
-          readyFn,
-        },
-        taskID: this.#id,
-        componentIdx: this.#componentIdx,
-      });
-      
-      const ready = readyFn();
-      if (ready && ASYNC_DETERMINISM === 'random') {
-        const coinFlip = _coinFlip();
-        if (coinFlip) { return true }
+      const cannotDeliverResolve = this.resolveDelivered() || !this.isResolved();
+      if (cannotDeliverResolve) {
+        throw new Error('subtask cannot deliver resolution twice, and the subtask must be resolved');
       }
       
-      const keepGoing = await this.immediateSuspend({ cancellable, readyFn });
-      return keepGoing;
+      for (const lender of this.#lenders) {
+        lender.lends--;
+      }
+      
+      this.#lenders = null;
     }
     
-    async immediateSuspend(opts) { // NOTE: equivalent to thread.suspend()
-    // TODO(threads): store readyFn on the thread
-    const { cancellable, readyFn } = opts;
-    _debugLog('[AsyncTask#immediateSuspend()] args', { cancellable, readyFn });
+    resolveDelivered() {
+      _debugLog('[AsyncSubtask#resolveDelivered()] args', { });
+      if (this.#lenders === null && !this.isResolved()) {
+        throw new Error('invalid subtask state, lenders missing and subtask has not been resolved');
+      }
+      return this.#lenders === null;
+    }
     
-    const pendingCancelled = this.deliverPendingCancel({ cancellable });
-    if (pendingCancelled) { return false; }
+    drop() {
+      _debugLog('[AsyncSubtask#drop()] args', {
+        componentIdx: this.#componentIdx,
+        parentTaskID: this.#parentTask?.id(),
+        parentTaskFnName: this.#parentTask?.entryFnName(),
+        childTaskID: this.#childTask?.id(),
+        childTaskFnName: this.#childTask?.entryFnName(),
+        subtaskFnName: this.fnName,
+      });
+      if (!this.#waitable) { throw new Error('missing/invalid inner waitable'); }
+      if (!this.resolveDelivered()) {
+        throw new Error('cannot drop subtask before resolve is delivered');
+      }
+      if (this.#waitable) { this.#waitable.drop() }
+      this.#dropped = true;
+    }
     
-    const cstate = getOrCreateAsyncState(this.#componentIdx);
-    const keepGoing = await cstate.suspendTask({ task: this, readyFn });
-    return keepGoing;
+    #getComponentState() {
+      const state = getOrCreateAsyncState(this.#componentIdx);
+      if (!state) {
+        throw new Error('invalid/missing async state for component [' + componentIdx + ']');
+      }
+      return state;
+    }
+    
+    getWaitableHandleIdx() {
+      _debugLog('[AsyncSubtask#getWaitableHandleIdx()] args', { });
+      if (!this.#waitable) { throw new Error('missing/invalid waitable'); }
+      return this.waitableRep();
+    }
   }
   
-  deliverPendingCancel(opts) {
-    const { cancellable } = opts;
-    _debugLog('[AsyncTask#deliverPendingCancel()]', {
-      args: { cancellable },
-      taskID: this.#id,
-      componentIdx: this.#componentIdx,
+  function _prepareCall(
+  memoryIdx,
+  getMemoryFn,
+  startFn,
+  returnFn,
+  callerComponentIdx,
+  calleeComponentIdx,
+  taskReturnTypeIdx,
+  calleeIsAsyncInt,
+  stringEncoding,
+  resultCountOrAsync,
+  ) {
+    _debugLog('[_prepareCall()]', {
+      memoryIdx,
+      callerComponentIdx,
+      calleeComponentIdx,
+      taskReturnTypeIdx,
+      calleeIsAsyncInt,
+      stringEncoding,
+      resultCountOrAsync,
     });
+    const argArray = [...arguments];
     
-    if (cancellable && this.#state === AsyncTask.State.PENDING_CANCEL) {
-      this.#state = AsyncTask.State.CANCEL_DELIVERED;
-      return true;
+    // value passed in *may* be as large as u32::MAX which may be mangled into -2
+    resultCountOrAsync >>>= 0;
+    
+    let isAsync = false;
+    let hasResultPointer = false;
+    if (resultCountOrAsync === 2**32 - 1) {
+      // prepare async with no result (u32::MAX)
+      isAsync = true;
+      hasResultPointer = false;
+    } else if (resultCountOrAsync === 2**32 - 2) {
+      // prepare async with result (u32::MAX - 1)
+      isAsync = true;
+      hasResultPointer = true;
     }
     
-    return false;
-  }
-  
-  isCancelled() { return this.cancelled }
-  
-  cancel(args) {
-    _debugLog('[AsyncTask#cancel()] args', { });
-    if (this.taskState() !== AsyncTask.State.CANCEL_DELIVERED) {
-      throw new Error(`(component [${this.#componentIdx}]) task [${this.#id}] invalid task state [${this.taskState()}] for cancellation`);
-    }
-    if (this.borrowedHandles.length > 0) { throw new Error('task still has borrow handles'); }
-    this.cancelled = true;
-    this.onResolve(args?.error ?? new Error('task cancelled'));
-    this.#state = AsyncTask.State.RESOLVED;
-  }
-  
-  onResolve(taskValue) {
-    const handlers = this.#onResolveHandlers;
-    this.#onResolveHandlers = [];
-    for (const f of handlers) {
-      try {
-        f(taskValue);
-      } catch (err) {
-        _debugLog("[AsyncTask#onResolve] error during task resolve handler", err);
-        throw err;
-      }
+    const currentCallerTaskMeta = getCurrentTask(callerComponentIdx);
+    if (!currentCallerTaskMeta) {
+      throw new Error('invalid/missing current task for caller during prepare call');
     }
     
-    if (this.#parentSubtask) {
-      const meta = this.#parentSubtask.getCallMetadata();
-      // Run the rturn fn if it has not already been called -- this *should* have happened in
-      // `task.return`, but some paths do not go through task.return (e.g. async lower of sync fn
-      // which goes through prepare + async-start-call)
-      if (meta.returnFn && !meta.returnFnCalled) {
-        _debugLog('[AsyncTask#onResolve()] running returnFn', {
-          componentIdx: this.#componentIdx,
-          taskID: this.#id,
-          subtaskID: this.#parentSubtask.id(),
-        });
-        const memory = meta.getMemoryFn();
-        meta.returnFn.apply(null, [taskValue, meta.resultPtr]);
-        meta.returnFnCalled = true;
-      }
+    const currentCallerTask = currentCallerTaskMeta.task;
+    if (!currentCallerTask) {
+      throw new Error('unexpectedly missing task in meta for caller during prepare call');
     }
     
-    if (this.#postReturnFn) {
-      _debugLog('[AsyncTask#onResolve()] running post return ', {
-        componentIdx: this.#componentIdx,
-        taskID: this.#id,
-      });
-      try {
-        this.#postReturnFn(taskValue);
-      } catch (err) {
-        _debugLog("[AsyncTask#onResolve] error during task resolve handler", err);
-        throw err;
-      }
+    if (currentCallerTask.componentIdx() !== callerComponentIdx) {
+      throw new Error(`task component idx [${ currentCallerTask.componentIdx() }] !== [${ callerComponentIdx }] (callee ${ calleeComponentIdx })`);
     }
     
-    if (this.#parentSubtask) {
-      this.#parentSubtask.onResolve(taskValue);
-    }
-  }
-  
-  registerOnResolveHandler(f) {
-    this.#onResolveHandlers.push(f);
-  }
-  
-  isRejected() { return this.#rejected; }
-  
-  isErrored() { return this.#errored; }
-  setErrored(err) { this.#errored = err; }
-  
-  reject(taskErr) {
-    _debugLog('[AsyncTask#reject()] args', {
-      componentIdx: this.#componentIdx,
-      taskID: this.#id,
-      parentSubtask: this.#parentSubtask,
-      parentSubtaskID: this.#parentSubtask?.id(),
-      entryFnName: this.entryFnName(),
-      callbackFnName: this.#callbackFnName,
-      errMsg: taskErr.message,
-    });
-    
-    if (this.isResolvedState() || this.#rejected) { return; }
-    
-    this.#rejected = true;
-    this.cancelRequested = true;
-    this.#state = AsyncTask.State.PENDING_CANCEL;
-    const cancelled = this.deliverPendingCancel({ cancellable: true });
-    
-    // TODO: do cleanup here to reset the machinery so we can run again?
-    
-    this.cancel({ error: taskErr });
-  }
-  
-  resolve(results) {
-    _debugLog('[AsyncTask#resolve()] args', {
-      componentIdx: this.#componentIdx,
-      taskID: this.#id,
-      entryFnName: this.entryFnName(),
-      callbackFnName: this.#callbackFnName,
-    });
-    
-    if (this.#state === AsyncTask.State.RESOLVED) {
-      throw new Error(`(component [${this.#componentIdx}]) task [${this.#id}]  is already resolved (did you forget to wait for an import?)`);
+    let getCalleeParamsFn;
+    let resultPtr = null;
+    let directParamsArr;
+    if (hasResultPointer) {
+      directParamsArr = argArray.slice(10, argArray.length - 1);
+      getCalleeParamsFn = () => directParamsArr;
+      resultPtr = argArray[argArray.length - 1];
+    } else {
+      directParamsArr = argArray.slice(10);
+      getCalleeParamsFn = () => directParamsArr;
     }
     
-    if (this.borrowedHandles.length > 0) {
-      throw new Error('task still has borrow handles');
-    }
-    
-    this.#state = AsyncTask.State.RESOLVED;
-    
-    switch (results.length) {
+    let encoding;
+    switch (stringEncoding) {
       case 0:
-      this.onResolve(undefined);
+      encoding = 'utf8';
       break;
       case 1:
-      this.onResolve(results[0]);
+      encoding = 'utf16';
+      break;
+      case 2:
+      encoding = 'compact-utf16';
       break;
       default:
-      _debugLog('[AsyncTask#resolve()] unexpected number of results', {
-        componentIdx: this.#componentIdx,
-        results,
-        taskID: this.#id,
-        subtaskID: this.#parentSubtask?.id(),
-        entryFnName: this.#entryFnName,
-        callbackFnName: this.#callbackFnName,
-      });
-      throw new Error('unexpected number of results');
-    }
-  }
-  
-  exit(args) {
-    _debugLog('[AsyncTask#exit()]', {
-      componentIdx: this.#componentIdx,
-      taskID: this.#id,
-    });
-    
-    if (this.#exited)  { throw new Error("task has already exited"); }
-    
-    if (this.#state !== AsyncTask.State.RESOLVED) {
-      throw new Error(`(component [${this.#componentIdx}]) task [${this.#id}] exited without resolution`);
+      throw new Error(`unrecognized string encoding enum [${stringEncoding}]`);
     }
     
-    if (this.borrowedHandles > 0) {
-      throw new Error('task [${this.#id}] exited without clearing borrowed handles');
-    }
-    
-    const state = getOrCreateAsyncState(this.#componentIdx);
-    if (!state) { throw new Error('missing async state for component [' + this.#componentIdx + ']'); }
-    
-    // Exempt the host from exclusive lock check
-    if (this.#componentIdx !== -1 && !args?.skipExclusiveLockCheck) {
-      if (this.needsExclusiveLock() && !state.isExclusivelyLocked()) {
-        throw new Error(`task [${this.#id}] exit: component [${this.#componentIdx}] should have been exclusively locked`);
-      }
-    }
-    
-    state.exclusiveRelease();
-    
-    for (const f of this.#onExitHandlers) {
-      try {
-        f();
-      } catch (err) {
-        console.error("error during task exit handler", err);
-        throw err;
-      }
-    }
-    
-    this.#exited = true;
-    clearCurrentTask(this.#componentIdx, this.id());
-  }
-  
-  needsExclusiveLock() {
-    return !this.#isAsync || this.hasCallback();
-  }
-  
-  createSubtask(args) {
-    _debugLog('[AsyncTask#createSubtask()] args', args);
-    const { componentIdx, childTask, callMetadata, fnName, isAsync, isManualAsync } = args;
-    
-    const cstate = getOrCreateAsyncState(this.#componentIdx);
-    if (!cstate) {
-      throw new Error(`invalid/missing async state for component idx [${componentIdx}]`);
-    }
-    
-    const waitable = new Waitable({
-      componentIdx: this.#componentIdx,
-      target: `subtask (internal ID [${this.#id}])`,
-    });
-    
-    const newSubtask = new AsyncSubtask({
-      componentIdx,
-      childTask,
-      parentTask: this,
-      callMetadata,
+    const subtask = currentCallerTask.createSubtask({
+      componentIdx: callerComponentIdx,
+      parentTask: currentCallerTask,
       isAsync,
-      isManualAsync,
-      fnName,
-      waitable,
-    });
-    this.#subtasks.push(newSubtask);
-    newSubtask.setTarget(`subtask (internal ID [${newSubtask.id()}], waitable [${waitable.idx()}], component [${componentIdx}])`);
-    waitable.setIdx(cstate.handles.insert(newSubtask));
-    waitable.setTarget(`waitable for subtask (waitable id [${waitable.idx()}], subtask internal ID [${newSubtask.id()}])`);
-    return newSubtask;
-  }
-  
-  getLatestSubtask() {
-    return this.#subtasks.at(-1);
-  }
-  
-  getSubtaskByWaitableRep(rep) {
-    if (rep === undefined) { throw new TypeError('missing rep'); }
-    return this.#subtasks.find(s => s.waitableRep() === rep);
-  }
-  
-  currentSubtask() {
-    _debugLog('[AsyncTask#currentSubtask()]');
-    if (this.#subtasks.length === 0) { return undefined; }
-    return this.#subtasks.at(-1);
-  }
-  
-  removeSubtask(subtask) {
-    if (this.#subtasks.length === 0) {
-      throw new Error('cannot end current subtask: no current subtask');
-    }
-    this.#subtasks = this.#subtasks.filter(t => t !== subtask);
-    return subtask;
-  }
-}
-
-const ASYNC_EVENT_CODE = {
-  NONE: 0,
-  SUBTASK: 1,
-  STREAM_READ: 2,
-  STREAM_WRITE: 3,
-  FUTURE_READ: 4,
-  FUTURE_WRITE: 5,
-  TASK_CANCELLED: 6,
-};
-
-function getCurrentTask(componentIdx, taskID) {
-  let usedGlobal = false;
-  if (componentIdx === undefined || componentIdx === null) {
-    throw new Error('missing component idx'); // TODO(fix)
-    // componentIdx = ASYNC_CURRENT_COMPONENT_IDXS.at(-1);
-    // usedGlobal = true;
-  }
-  
-  const taskMetas = ASYNC_TASKS_BY_COMPONENT_IDX.get(componentIdx);
-  if (taskMetas === undefined || taskMetas.length === 0) { return undefined; }
-  
-  if (taskID) {
-    return taskMetas.find(meta => meta.task.id() === taskID);
-  }
-  
-  const taskMeta = taskMetas[taskMetas.length - 1];
-  if (!taskMeta || !taskMeta.task) { return undefined; }
-  
-  return taskMeta;
-}
-
-let dv = new DataView(new ArrayBuffer());
-const dataView = mem => dv.buffer === mem.buffer ? dv : dv = new DataView(mem.buffer);
-
-function toUint64(val) {
-  const converted = BigInt(val)
-  
-  return BigInt.asUintN(64, converted);
-}
-
-
-function toUint32(val) {
-  
-  return val >>> 0;
-}
-
-const utf16Decoder = new TextDecoder('utf-16');
-const TEXT_DECODER_UTF8 = new TextDecoder();
-const TEXT_ENCODER_UTF8 = new TextEncoder();
-
-function _utf8AllocateAndEncode(s, realloc, memory) {
-  if (typeof s !== 'string') {
-    throw new TypeError('expected a string, received [' + typeof s + ']');
-  }
-  if (s.length === 0) { return { ptr: 1, len: 0 }; }
-  let buf = TEXT_ENCODER_UTF8.encode(s);
-  let ptr = realloc(0, 0, 1, buf.length);
-  new Uint8Array(memory.buffer).set(buf, ptr);
-  const res = { ptr, len: buf.length, codepoints: [...s].length };
-  return res;
-}
-
-
-const T_FLAG = 1 << 30;
-
-function rscTableCreateOwn(table, rep) {
-  const free = table[0] & ~T_FLAG;
-  table._createdReps.add(rep);
-  if (free === 0) {
-    table.push(0);
-    table.push(rep | T_FLAG);
-    return (table.length >> 1) - 1;
-  }
-  table[0] = table[free << 1];
-  table[free << 1] = 0;
-  table[(free << 1) + 1] = rep | T_FLAG;
-  return free;
-}
-
-function rscTableRemove(table, handle) {
-  const scope = table[handle << 1];
-  const val = table[(handle << 1) + 1];
-  const own = (val & T_FLAG) !== 0;
-  const rep = val & ~T_FLAG;
-  if (val === 0 || (scope & T_FLAG) !== 0) {
-    throw new TypeError("Invalid handle");
-  }
-  table[handle << 1] = table[0] | T_FLAG;
-  table[0] = handle | T_FLAG;
-  return { rep, scope, own };
-}
-
-let curResourceBorrows = [];
-
-function createNewCurrentTask(args) {
-  _debugLog('[createNewCurrentTask()] args', args);
-  const {
-    componentIdx,
-    isAsync,
-    isManualAsync,
-    entryFnName,
-    parentSubtaskID,
-    callbackFnName,
-    getCallbackFn,
-    getParamsFn,
-    stringEncoding,
-    errHandling,
-    getCalleeParamsFn,
-    resultPtr,
-    callingWasmExport,
-  } = args;
-  if (componentIdx === undefined || componentIdx === null) {
-    throw new Error('missing/invalid component instance index while starting task');
-  }
-  let taskMetas = ASYNC_TASKS_BY_COMPONENT_IDX.get(componentIdx);
-  const callbackFn = getCallbackFn ? getCallbackFn() : null;
-  
-  const newTask = new AsyncTask({
-    componentIdx,
-    isAsync,
-    isManualAsync,
-    entryFnName,
-    callbackFn,
-    callbackFnName,
-    stringEncoding,
-    getCalleeParamsFn,
-    resultPtr,
-    errHandling,
-  });
-  
-  const newTaskID = newTask.id();
-  const newTaskMeta = { id: newTaskID, componentIdx, task: newTask };
-  
-  // NOTE: do not track host tasks
-  ASYNC_CURRENT_TASK_IDS.push(newTaskID);
-  ASYNC_CURRENT_COMPONENT_IDXS.push(componentIdx);
-  
-  if (!taskMetas) {
-    taskMetas = [newTaskMeta];
-    ASYNC_TASKS_BY_COMPONENT_IDX.set(componentIdx, [newTaskMeta]);
-  } else {
-    taskMetas.push(newTaskMeta);
-  }
-  
-  return [newTask, newTaskID];
-}
-
-function _lowerImportBackwardsCompat(args) {
-  const params = [...arguments].slice(1);
-  _debugLog('[_lowerImportBackwardsCompat()] args', { args, params });
-  const {
-    functionIdx,
-    componentIdx,
-    isAsync,
-    isManualAsync,
-    paramLiftFns,
-    resultLowerFns,
-    hasResultPointer,
-    funcTypeIsAsync,
-    metadata,
-    memoryIdx,
-    getMemoryFn,
-    getReallocFn,
-    importFn,
-    stringEncoding,
-  } = args;
-  
-  let meta = _getGlobalCurrentTaskMeta(componentIdx);
-  let createdTask;
-  
-  // Some components depend on initialization logic (i.e. `_initialize` or some such
-  // core wasm export) that is embedded in the component, but is not executed or wizer'd
-  // away before the transpiled component is attempted to be used.
-  //
-  // These components execut their initialization logic *when they are imported* in the
-  // transpiled context -- so we may get a call to an export that is lowered without going
-  // through `CallWasm` or `CallInterface`.
-  //
-  if (!meta) {
-    if (funcTypeIsAsync || (isAsync && !isManualAsync)) {
-      throw new Error('p3 async wasm exports cannot use backwards compat auto-task init');
-    }
-    
-    const [newTask, newTaskID] = createNewCurrentTask({
-      componentIdx,
-      isAsync,
-      isManualAsync,
-      callingWasmExport: false,
-    });
-    createdTask = newTask;
-    
-    // Since we're managing the task creation ourselves we must clear ourselves
-    createdTask.registerOnResolveHandler(() => {
-      _clearCurrentTask({
-        taskID: task.id(),
-        componentIdx: task.componentIdx(),
-      });
-    });
-    
-    _setGlobalCurrentTaskMeta({
-      componentIdx,
-      taskID: newTaskID,
-    });
-    
-    meta = _getGlobalCurrentTaskMeta(componentIdx);
-  }
-  
-  const { taskID } = meta;
-  
-  const taskMeta = getCurrentTask(componentIdx, taskID);
-  if (!taskMeta) {
-    throw new Error('invalid/missing async task meta');
-  }
-  
-  const task = taskMeta.task;
-  if (!task) { throw new Error('invalid/missing async task'); }
-  
-  const cstate = getOrCreateAsyncState(componentIdx);
-  
-  // TODO: re-enable this check -- postReturn can call imports though,
-  // and that breaks things.
-  //
-  // if (!cstate.mayLeave) {
-    //     throw new Error(`cannot leave instance [${componentIdx}]`);
-    // }
-    
-    if (!task.mayBlock() && funcTypeIsAsync && !isAsync) {
-      throw new Error("non async exports cannot synchronously call async functions");
-    }
-    
-    // If there is an existing task, this should be part of a subtask
-    const memory = getMemoryFn();
-    // Canonical ABI lower appends result storage as a trailing
-    // param when async lower has any flat result, or sync lower
-    // has more than one flat result.
-    const resultPtr = hasResultPointer ? params[params.length - 1] : undefined;
-    const subtask = task.createSubtask({
-      componentIdx,
-      parentTask: task,
-      fnName: importFn.fnName,
-      isAsync,
-      isManualAsync,
       callMetadata: {
+        getMemoryFn,
         memoryIdx,
-        memory,
-        realloc: getReallocFn?.(),
-        getReallocFn,
         resultPtr,
-        lowers: resultLowerFns,
+        returnFn,
+        startFn,
         stringEncoding,
       }
     });
-    task.setReturnMemoryIdx(memoryIdx);
-    task.setReturnMemory(getMemoryFn());
     
-    subtask.onStart();
+    const [newTask, newTaskID] = createNewCurrentTask({
+      componentIdx: calleeComponentIdx,
+      isAsync,
+      getCalleeParamsFn,
+      entryFnName: [
+      'task',
+      subtask.getParentTask().id(),
+      'subtask',
+      subtask.id(),
+      'new-prepared-async-task'
+      ].join('/'),
+      stringEncoding,
+    });
+    newTask.setParentSubtask(subtask);
+    newTask.setReturnMemoryIdx(memoryIdx);
+    newTask.setReturnMemory(getMemoryFn);
+    subtask.setChildTask(newTask);
     
-    // If dealing with a sync lowered sync function, we can directly return results
+    newTask.subtaskMeta = {
+      subtask,
+      calleeComponentIdx,
+      callerComponentIdx,
+      getCalleeParamsFn,
+      stringEncoding,
+      isAsync,
+    };
+    
+    _setGlobalCurrentTaskMeta({
+      taskID: newTask.id(),
+      componentIdx: newTask.componentIdx(),
+    });
+  }
+  
+  function _asyncStartCall(args, callee, paramCount, resultCount, flags) {
+    const componentIdx = ASYNC_CURRENT_COMPONENT_IDXS.at(-1);
+    
+    const globalTaskMeta = _getGlobalCurrentTaskMeta(componentIdx);
+    if (!globalTaskMeta) { throw new Error('missing global current task globalTaskMeta'); }
+    const taskID = globalTaskMeta.taskID;
+    
+    _debugLog('[_asyncStartCall()] args', { args, componentIdx });
+    const { getCallbackFn, callbackIdx, getPostReturnFn, postReturnIdx } = args;
+    
+    const preparedTaskMeta = getCurrentTask(componentIdx, taskID);
+    if (!preparedTaskMeta) { throw new Error('unexpectedly missing current task'); }
+    
+    const preparedTask = preparedTaskMeta.task;
+    if (!preparedTask) { throw new Error('unexpectedly missing current task'); }
+    if (!preparedTask.subtaskMeta) { throw new Error('missing subtask meta from prepare'); }
+    
+    const {
+      subtask,
+      returnMemoryIdx,
+      getReturnMemoryFn,
+      callerComponentIdx,
+      calleeComponentIdx,
+      getCalleeParamsFn,
+      isAsync,
+      stringEncoding,
+    } = preparedTask.subtaskMeta;
+    if (!subtask) { throw new Error("missing subtask from cstate during async start call"); }
+    if (calleeComponentIdx !== preparedTask.componentIdx()) {
+      throw new Error(`meta callee idx [${calleeComponentIdx}] != current task idx [${preparedTask.componentIdx()}] during async start call`);
+    }
+    if (calleeComponentIdx !== componentIdx) {
+      throw new Error("mismatched componentIdx for async start call (does not match prepare)");
+    }
+    
+    const argArray = [...arguments];
+    
+    if (resultCount < 0 || resultCount > 1) { throw new Error('invalid/unsupported result count'); }
+    
+    const callbackFnName = 'callback_' + callbackIdx;
+    const callbackFn = getCallbackFn();
+    preparedTask.setCallbackFn(callbackFn, callbackFnName);
+    preparedTask.setPostReturnFn(getPostReturnFn());
+    
+    if (resultCount < 0 || resultCount > 1) {
+      throw new Error(`unsupported result count [${ resultCount }]`);
+    }
+    
+    const params = preparedTask.getCalleeParams();
+    if (paramCount !== params.length) {
+      throw new Error(`unexpected callee param count [${ params.length }], _asyncStartCall invocation expected [${ paramCount }]`);
+    }
+    
+    const callerComponentState = getOrCreateAsyncState(subtask.componentIdx());
+    
+    const calleeComponentState = getOrCreateAsyncState(preparedTask.componentIdx());
+    const calleeBackpressure = calleeComponentState.hasBackpressure();
+    
+    // Set up a handler on subtask completion to lower results from the call into the caller's memory region.
     //
-    // TODO(breaking): remove once we get rid of manual async import specification,
-    // as func types cannot be detected in that case only (and we don't need that w/ p3)
-    if (!isManualAsync && !isAsync && !funcTypeIsAsync) {
-      if (createdTask) { createdTask.enterSync(); }
+    // NOTE: during fused guest->guest calls this handler is triggered, but does not actually perform
+    // lowering manually, as fused modules provider helper functions that can
+    subtask.registerOnResolveHandler((res) => {
+      _debugLog('[_asyncStartCall()] handling subtask result', { res, subtaskID: subtask.id() });
       
-      const res = importFn(...params);
+      let subtaskCallMeta = subtask.getCallMetadata();
       
-      // TODO(breaking): remove once we get rid of manual async import specification,
-      // as func types cannot be detected in that case only (and we don't need that w/ p3)
-      if (!funcTypeIsAsync && !subtask.isReturned()) {
-        throw new Error('post-execution subtasks must either be async or returned');
+      // NOTE: in the case of guest -> guest async calls, there may be no memory/realloc present,
+      // as the host will intermediate the value storage/movement between calls.
+      //
+      // We can simply take the value and lower it as a parameter
+      if (subtaskCallMeta.memory || subtaskCallMeta.realloc) {
+        throw new Error("call metadata unexpectedly contains memory/realloc for guest->guest call");
       }
       
-      const syncRes = subtask.getResult();
-      if (createdTask) { createdTask.resolve([syncRes]); }
+      const callerTask = subtask.getParentTask();
+      const calleeTask = preparedTask;
+      const callerMemoryIdx = callerTask.getReturnMemoryIdx();
+      const callerComponentIdx = callerTask.componentIdx();
       
-      return syncRes;
-    }
-    
-    // Sync-lowered async functions requires async behavior because the callee *can* block,
-    // but this call must *act* synchronously and return immediately with the result
-    // (i.e. not returning until the work is done)
-    //
-    // TODO(breaking): remove checking for manual async specification here, once we can go p3-only
-    //
-    if (!isManualAsync && !isAsync && funcTypeIsAsync) {
-      const { promise, resolve } = new Promise();
-      queueMicrotask(async () => {
-        if (!subtask.isResolvedState()) {
-          await task.suspendUntil({ readyFn: () => task.isResolvedState() });
-        }
-        resolve(subtask.getResult());
+      // If a helper function was provided we are likely in a fused guest->guest call,
+      // and the result will be delivered (lift/lowered) via helper function
+      if (subtaskCallMeta && subtaskCallMeta.returnFn) {
+        _debugLog('[_asyncStartCall()] return function present while handling subtask result, returning early (skipping lower)', {
+          calleeTaskID: calleeTask.id(),
+          calleeComponentIdx,
+        });
+        
+        // TODO: centralize calling of returnFn to *one place* (if possible)
+        if (subtaskCallMeta.returnFnCalled) { return; }
+        
+        const res = subtaskCallMeta.returnFn.apply(null, [subtaskCallMeta.resultPtr]);
+        
+        _debugLog('[_asyncStartCall()] finished calling return fn', {
+          calleeTaskID: calleeTask.id(),
+          calleeComponentIdx,
+          res,
+        });
+        
+        return;
+      }
+      
+      // If there is no where to lower the results, exit early
+      if (!subtaskCallMeta.resultPtr) {
+        _debugLog('[_asyncStartCall()] no result ptr during subtask result handling, returning early (skipping lower)');
+        return;
+      }
+      
+      let callerMemory;
+      if (callerMemoryIdx !== null && callerMemoryIdx !== undefined) {
+        callerMemory = lookupMemoriesForComponent({ componentIdx: callerComponentIdx, memoryIdx: callerMemoryIdx });
+      } else {
+        const callerMemories = lookupMemoriesForComponent({ componentIdx: callerComponentIdx });
+        if (callerMemories.length !== 1) { throw new Error(`unsupported amount of caller memories`); }
+        callerMemory = callerMemories[0];
+      }
+      
+      if (!callerMemory) {
+        _debugLog('[_asyncStartCall()] missing memory', { subtaskID: subtask.id(), res });
+        throw new Error(`missing memory for to guest->guest call result (subtask [${subtask.id()}])`);
+      }
+      
+      const lowerFns = calleeTask.getReturnLowerFns();
+      if (!lowerFns || lowerFns.length === 0) {
+        _debugLog('[_asyncStartCall()] missing result lower metadata for guest->guest call', { subtaskID: subtask.id() });
+        throw new Error(`missing result lower metadata for guest->guest call (subtask [${subtask.id()}])`);
+      }
+      
+      if (lowerFns.length !== 1) {
+        _debugLog('[_asyncStartCall()] only single result reportetd for guest->guest call', { subtaskID: subtask.id() });
+        throw new Error(`only single result supported for guest->guest calls (subtask [${subtask.id()}])`);
+      }
+      
+      _debugLog('[_asyncStartCall()] lowering results', { subtaskID: subtask.id() });
+      lowerFns[0]({
+        realloc: undefined,
+        memory: callerMemory,
+        vals: [res],
+        storagePtr: subtaskCallMeta.resultPtr,
+        componentIdx: callerComponentIdx,
+        stringEncoding: subtaskCallMeta.stringEncoding,
       });
-      return promise;
-    }
-    
-    // NOTE: at this point we know that we are working with an async lowered import
-    
-    const subtaskState = subtask.getStateNumber();
-    if (subtaskState < 0 || subtaskState >= 2**4) {
-      throw new Error('invalid subtask state, out of valid range');
-    }
+      
+    });
     
     subtask.setOnProgressFn(() => {
       subtask.setPendingEvent(() => {
@@ -2459,450 +948,1765 @@ function _lowerImportBackwardsCompat(args) {
           code: ASYNC_EVENT_CODE.SUBTASK,
           payload0: subtask.waitableRep(),
           payload1: subtask.getStateNumber(),
-        }
+        };
         return event;
       });
     });
     
-    // This is a hack to maintain backwards compatibility with
-    // manually-specified async imports, used in wasm exports that are
-    // not actually async (but are specified as so).
-    //
-    // This is not normal p3 sync behavior but instead anticipating that
-    // the caller that is doing manual async will be waiting for a promise that
-    // resolves to the *actual* result.
-    //
-    // TODO(breaking): remove once manually specified async is removed
-    //
-    // There are a few cases:
-    // 1. sync function with async types (e.g. `f: func() -> stream<u32>`)
-    // 2. async function with async types (e.g. `f: async func() -> stream<u32>`)
-    // 3. async function with sync types (e.g. `f: async func() -> list<u32>`)
-    // 4. sync function with non-async types (e.g. `f: func() -> list<u32>`)
-    //
-    // This hack *only* applies to 4 -- the case where an async JS host function
-    // is supplied to a Wasm export which does *not* need to do any async abi
-    // lifting/lowering (async ABI did not exist when JSPI integratiton was
-    // initially merged to enable asynchronously returning values from the host)
-    //
-    const requiresManualAsyncResult = !isAsync && !funcTypeIsAsync && isManualAsync;
-    let manualAsyncResult;
-    if (requiresManualAsyncResult) {
-      manualAsyncResult = promiseWithResolvers();
+    // Start the (event) driver loop that will resolve the subtask
+    // in a new JS task
+    setTimeout(async () => {
+      _debugLog('[_asyncStartCall()] continuing started subtask (in JS task)', {
+        taskID: preparedTask.id(),
+        subtaskID: subtask.id(),
+        callerComponentIdx,
+        calleeComponentIdx,
+      });
+      
+      let startRes = subtask.onStart({ startFnParams: params });
+      startRes = Array.isArray(startRes) ? startRes : [startRes];
+      
+      if (calleeComponentState.isExclusivelyLocked()) {
+        _debugLog('[_asyncStartCall()] during continuation callee is exclusively locked, suspending...', {
+          taskID: preparedTask.id(),
+          subtaskID: subtask.id(),
+          callerComponentIdx,
+          calleeComponentIdx,
+        });
+        await calleeComponentState.suspendTask({
+          task: preparedTask,
+          readyFn: () => !calleeComponentState.isExclusivelyLocked(),
+        });
+      }
+      
+      const started = await preparedTask.enter();
+      if (!started) {
+        _debugLog('[_asyncStartCall()] task failed early', {
+          taskID: preparedTask.id(),
+          subtaskID: subtask.id(),
+        });
+        throw new Error("task failed to start");
+        return;
+      }
+      
+      let callbackResult;
+      try {
+        let jspiCallee;
+        if (callee._cachedPromising) {
+          jspiCallee = callee._cachedPromising;
+        } else {
+          callee._cachedPromising = WebAssembly.promising(callee);
+          jspiCallee = callee._cachedPromising;
+        }
+        
+        callbackResult = await _withGlobalCurrentTaskMetaAsync({
+          taskID: preparedTask.id(),
+          componentIdx: preparedTask.componentIdx(),
+          fn: () => {
+            return jspiCallee.apply(null, startRes);
+          }
+        });
+      } catch(err) {
+        _debugLog("[_asyncStartCall()] initial subtask callee run failed", err);
+        // NOTE: a good place to rejectt the parent task, if rejection API is enabled
+        // subtask.reject(err);
+        // subtask.getParentTask().reject(err);
+        
+        subtask.getParentTask().setErrored(err);
+        
+        return;
+      }
+      
+      // If there was no callback function, we're dealing with a sync function
+      // that was lifted as async without one, there is only the callee.
+      if (!callbackFn) {
+        _debugLog("[_asyncStartCall()] no callback, resolving w/ callee result", {
+          taskID: preparedTask.id(),
+          componentIdx: preparedTask.componentIdx(),
+          preparedTask,
+          stateNumber: preparedTask.taskState(),
+          isResolved: preparedTask.isResolved(),
+          callbackFn,
+        });
+        preparedTask.resolve([callbackResult]);
+        return;
+      }
+      
+      let fnName = callbackFn.fnName;
+      if (!fnName) {
+        fnName = [
+        '<task ',
+        subtask.parentTaskID(),
+        '/subtask ',
+        subtask.id(),
+        '/task ',
+        preparedTask.id(),
+        '>',
+        ].join("");
+      }
+      
+      try {
+        _debugLog("[_asyncStartCall()] starting driver loop", {
+          fnName,
+          componentIdx: preparedTask.componentIdx(),
+          subtaskID: subtask.id(),
+          childTaskID: subtask.childTaskID(),
+          parentTaskID: subtask.parentTaskID(),
+        });
+        
+        await _driverLoop({
+          componentState: calleeComponentState,
+          task: preparedTask,
+          fnName,
+          isAsync: true,
+          callbackResult,
+          resolve,
+          reject
+        });
+      } catch (err) {
+        _debugLog("[AsyncStartCall] drive loop call failure", { err });
+      }
+      
+    }, 0);
+    
+    const subtaskState = subtask.getStateNumber();
+    if (subtaskState < 0 || subtaskState > 2**5) {
+      throw new Error('invalid subtask state, out of valid range');
     }
     
-    queueMicrotask(async () => {
-      try {
-        _debugLog('[_lowerImportBackwardsCompat()] calling lowered import', { importFn, params });
-        if (createdTask) { await createdTask.enter(); }
-        
-        const asyncRes = await importFn(...params);
-        if (requiresManualAsyncResult) {
-          manualAsyncResult.resolve(subtask.getResult());
-        }
-        
-        if (createdTask) { createdTask.resolve([asyncRes]); }
-        
-        
-      } catch (err) {
-        _debugLog("[_lowerImportBackwardsCompat()] import fn error:", err);
-        if (requiresManualAsyncResult) {
-          manualAsyncResult.reject(err);
-        }
-        throw err;
+    _debugLog('[_asyncStartCall()] returning subtask rep & state', {
+      subtask: {
+        rep: subtask.waitableRep(),
+        state: subtaskState,
       }
     });
-    
-    if (requiresManualAsyncResult) { return manualAsyncResult.promise; }
     
     return Number(subtask.waitableRep()) << 4 | subtaskState;
   }
   
-  function _liftFlatU8(ctx) {
-    _debugLog('[_liftFlatU8()] args', { ctx });
-    let val;
-    
-    if (ctx.useDirectParams) {
-      if (ctx.params.length === 0) { throw new Error('expected at least a single i32 argument'); }
-      val = ctx.params[0];
-      ctx.params = ctx.params.slice(1);
-      return [val, ctx];
-    }
-    
-    if (ctx.storageLen !== undefined && ctx.storageLen < 1) {
-      throw new Error(`insufficient storage ([${ctx.storageLen}] bytes) for lift (u8 requires 1 byte)`);
-    }
-    
-    val = new DataView(ctx.memory.buffer).getUint8(ctx.storagePtr, true);
-    
-    ctx.storagePtr += 1;
-    if (ctx.storageLen !== undefined) { ctx.storageLen -= 1; }
-    
-    return [val, ctx];
+  function _syncStartCall(callbackIdx) {
+    _debugLog('[_syncStartCall()] args', { callbackIdx });
+    throw new Error('synchronous start call not implemented!');
   }
   
-  
-  function _liftFlatU16(ctx) {
-    _debugLog('[_liftFlatU16()] args', { ctx });
-    let val;
+  class Waitable {
+    #componentIdx;
     
-    if (ctx.useDirectParams) {
-      if (ctx.params.length === 0) { throw new Error('expected at least a single i32 argument'); }
-      val = ctx.params[0];
-      ctx.params = ctx.params.slice(1);
-      return [val, ctx];
+    #pendingEventFn = null;
+    
+    #promise;
+    #resolve;
+    #reject;
+    
+    #waitableSet = null;
+    
+    #hasSyncWaiter = false;
+    
+    #idx = null; // to component-global waitables
+    
+    target;
+    
+    constructor(args) {
+      const { componentIdx, target } = args;
+      this.#componentIdx = componentIdx;
+      this.target = args.target;
+      this.#resetPromise();
     }
     
-    if (ctx.storageLen !== undefined && ctx.storageLen < 2) {
-      throw new Error(`insufficient storage ([${ctx.storageLen}] bytes) for lift (u16 requires 2 bytes)`);
+    componentIdx() { return this.#componentIdx; }
+    isInSet() { return this.#waitableSet !== null; }
+    
+    idx() { return this.#idx; }
+    setIdx(idx) {
+      if (idx === 0) { throw new Error("waitable idx cannot be zero"); }
+      this.#idx = idx;
     }
     
-    val = new DataView(ctx.memory.buffer).getUint16(ctx.storagePtr, true);
+    setTarget(tgt) { this.target = tgt; }
     
-    ctx.storagePtr += 2;
-    if (ctx.storageLen !== undefined) { ctx.storageLen -= 2; }
-    
-    const rem = ctx.storagePtr % 2;
-    if (rem !== 0) { ctx.storagePtr += (2 - rem); }
-    
-    return [val, ctx];
-  }
-  
-  
-  function _liftFlatU32(ctx) {
-    _debugLog('[_liftFlatU32()] args', { ctx });
-    let val;
-    
-    if (ctx.useDirectParams) {
-      if (ctx.params.length === 0) { throw new Error('expected at least a single i34 argument'); }
-      val = ctx.params[0];
-      ctx.params = ctx.params.slice(1);
-      return [val, ctx];
+    #resetPromise() {
+      const { promise, resolve, reject } = promiseWithResolvers()
+      this.#promise = promise;
+      this.#resolve = resolve;
+      this.#reject = reject;
     }
     
-    if (ctx.storageLen !== undefined && ctx.storageLen < 4) {
-      throw new Error(`insufficient storage ([${ctx.storageLen}] bytes) for lift (u32 requires 4 bytes)`);
-    }
-    val = new DataView(ctx.memory.buffer).getUint32(ctx.storagePtr, true);
-    ctx.storagePtr += 4;
-    if (ctx.storageLen !== undefined) { ctx.storageLen -= 4; }
+    resolve() { this.#resolve(); }
+    reject(err) { this.#reject(err); }
+    promise() { return this.#promise; }
     
-    return [val, ctx];
-  }
-  
-  
-  function _liftFlatU64(ctx) {
-    _debugLog('[_liftFlatU64()] args', { ctx });
-    let val;
-    
-    if (ctx.useDirectParams) {
-      if (ctx.params.length === 0) { throw new Error('expected at least one single i64 argument'); }
-      if (typeof ctx.params[0] !== 'bigint') { throw new Error('expected bigint'); }
-      val = ctx.params[0];
-      ctx.params = ctx.params.slice(1);
-      return [val, ctx];
-    }
-    
-    if (ctx.storageLen !== undefined && ctx.storageLen < 8) {
-      throw new Error(`insufficient storage ([${ctx.storageLen}] bytes) for lift (u64 requires 8 bytes)`);
-    }
-    
-    val = new DataView(ctx.memory.buffer).getBigUint64(ctx.storagePtr, true);
-    ctx.storagePtr += 8;
-    if (ctx.storageLen !== undefined) { ctx.storageLen -= 8; }
-    
-    return [val, ctx];
-  }
-  
-  
-  function _liftFlatFloat64(ctx) {
-    _debugLog('[_liftFlatFloat64()] args', { ctx });
-    let val;
-    
-    if (ctx.useDirectParams) {
-      if (ctx.params.length === 0) {
-        throw new Error('expected at least one single f64 argument');
-      }
-      val = ctx.params[0];
-      ctx.params = ctx.params.slice(1);
-      
-      if (ctx.inVariant) {
-        const dv = new DataView(new ArrayBuffer(8));
-        dv.setBigInt64(0, val);
-        val = dv.getFloat64(0);
+    hasPendingEvent() {
+      // _debugLog('[Waitable#hasPendingEvent()]', {
+        //     componentIdx: this.#componentIdx,
+        //     waitable: this,
+        //     waitableSet: this.#waitableSet,
+        //     hasPendingEvent: this.#pendingEventFn !== null,
+        // });
+        return this.#pendingEventFn !== null;
       }
       
-      return [val, ctx];
-    }
-    
-    if (ctx.storageLen !== undefined && ctx.storageLen < 8) {
-      throw new Error(`insufficient storage ([${ctx.storageLen}] bytes) for lift (f64 requires 8 bytes)`);
-    }
-    
-    val = new DataView(ctx.memory.buffer).getFloat64(ctx.storagePtr, true);
-    ctx.storagePtr += 8;
-    if (ctx.storageLen !== undefined) { ctx.storageLen -= 8; }
-    
-    return [val, ctx];
-  }
-  
-  
-  function _liftFlatStringAny(ctx) {
-    switch (ctx.stringEncoding) {
-      case 'utf8':
-      return _liftFlatStringUTF8(ctx);
-      case 'utf16':
-      return _liftFlatStringUTF16(ctx);
-      default:
-      throw new Error(`missing/unrecognized/unsupported string encoding [${ctx.stringEncoding}]`);
-    }
-  }
-  
-  function _liftFlatStringUTF8(ctx) {
-    _debugLog('[_liftFlatStringUTF8()] args', { ctx });
-    let val;
-    
-    if (ctx.useDirectParams) {
-      if (ctx.params.length < 2) { throw new Error('expected at least two u32 arguments'); }
-      let offset = ctx.params[0];
-      if (typeof offset === 'bigint') { offset = Number(offset); }
-      if (!Number.isSafeInteger(offset)) { throw new Error('invalid offset'); }
-      const len = ctx.params[1];
-      if (!Number.isSafeInteger(len)) {  throw new Error('invalid len'); }
-      val = TEXT_DECODER_UTF8.decode(new DataView(ctx.memory.buffer, offset, len));
-      ctx.params = ctx.params.slice(2);
-      return [val, ctx];
-    }
-    
-    const rem = ctx.storagePtr % 4;
-    if (rem !== 0) { ctx.storagePtr += (4 - rem); }
-    
-    const dv = new DataView(ctx.memory.buffer);
-    const start = dv.getUint32(ctx.storagePtr, true);
-    const codeUnits = dv.getUint32(ctx.storagePtr + 4, true);
-    
-    val = TEXT_DECODER_UTF8.decode(new Uint8Array(ctx.memory.buffer, start, codeUnits));
-    
-    ctx.storagePtr += 8;
-    if (ctx.storageLen !== undefined) { ctx.storagelen -= 8; }
-    
-    return [val, ctx];
-  }
-  
-  function _liftFlatStringUTF16(ctx) {
-    _debugLog('[_liftFlatStringUTF16()] args', { ctx });
-    let val;
-    
-    if (ctx.useDirectParams) {
-      if (ctx.params.length < 2) { throw new Error('expected at least two u32 arguments'); }
-      let offset = ctx.params[0];
-      if (typeof offset === 'bigint') { offset = Number(offset); }
-      if (!Number.isSafeInteger(offset)) {  throw new Error('invalid offset'); }
-      const len = ctx.params[1];
-      if (!Number.isSafeInteger(len)) {  throw new Error('invalid len'); }
-      val = utf16Decoder.decode(new DataView(ctx.memory.buffer, offset, len));
-      ctx.params = ctx.params.slice(2);
-      return [val, ctx];
-    }
-    
-    const data = new DataView(ctx.memory.buffer)
-    const start = data.getUint32(ctx.storagePtr, vals[0], true);
-    const codeUnits = data.getUint32(ctx.storagePtr, vals[0] + 4, true);
-    val = utf16Decoder.decode(new Uint16Array(ctx.memory.buffer, start, codeUnits));
-    ctx.storagePtr = ctx.storagePtr + 2 * codeUnits;
-    if (ctx.storageLen !== undefined) { ctx.storageLen = ctx.storageLen - 2 * codeUnits }
-    
-    return [val, ctx];
-  }
-  
-  function _liftFlatVariant(meta) {
-    const {
-      caseMetas,
-      variantSize32,
-      variantAlign32,
-      variantPayloadOffset32,
-      variantFlatCount,
-      isEnum,
-    } = meta;
-    
-    return function _liftFlatVariantInner(ctx) {
-      _debugLog('[_liftFlatVariant()] args', { ctx });
-      const origUseParams = ctx.useDirectParams;
-      
-      // If we're in the process of lifting a variant, we note
-      // we are during any lifting that happens (e.g. to accomodate f32/f64 mechanics)
-      const wasInVariant = ctx.inVariant;
-      ctx.inVariant = true;
-      
-      let caseIdx;
-      let liftRes;
-      const originalPtr = ctx.storagePtr;
-      const numCases =  caseMetas.length;
-      if (caseMetas.length < 256) {
-        liftRes = _liftFlatU8(ctx);
-      } else if (numCases >= 256 && numCases < 65536) {
-        liftRes = _liftFlatU16(ctx);
-      } else if (numCases >= 65536 && numCases < 4_294_967_296) {
-        liftRes = _liftFlatU32(ctx);
-      } else {
-        throw new Error(`unsupported number of variant cases [${numCases}]`);
-      }
-      caseIdx = liftRes[0];
-      ctx = liftRes[1];
-      
-      const [
-      tag,
-      liftFn,
-      caseSize32,
-      caseAlign32,
-      caseFlatCount,
-      ] = caseMetas[caseIdx];
-      
-      if (variantPayloadOffset32 === undefined) {
-        throw new Error('unexpectedly missing payload offset');
+      setPendingEvent(fn) {
+        _debugLog('[Waitable#setPendingEvent()] args', {
+          waitable: this,
+          inSet: this.#waitableSet,
+        });
+        this.#pendingEventFn = fn;
       }
       
-      if (originalPtr !== undefined) {
-        ctx.storagePtr = originalPtr + variantPayloadOffset32;
+      getPendingEvent() {
+        _debugLog('[Waitable#getPendingEvent()] args', {
+          waitable: this,
+          inSet: this.#waitableSet,
+          hasPendingEvent: this.#pendingEventFn !== null,
+        });
+        if (this.#pendingEventFn === null) { return null; }
+        const eventFn = this.#pendingEventFn;
+        this.#pendingEventFn = null;
+        const e = eventFn();
+        this.#resetPromise();
+        return e;
       }
       
-      let val;
-      if (liftFn === null) {
-        val = { tag };
-        // NOTE: here we need to move past the entire object in memory
-        // despite moving to the payload which we now know is missing/unnecessary
-        if (originalPtr !== undefined) {
-          ctx.storagePtr = originalPtr + variantSize32;
+      join(waitableSet) {
+        _debugLog('[Waitable#join()] args', {
+          waitable: this,
+          waitableSet: waitableSet,
+          isRemoval: waitableSet === null,
+        });
+        
+        if (this.#waitableSet === undefined) {
+          throw new TypeError('waitable set must be not be undefined');
         }
-      } else {
-        if (ctx.useDirectParams && ctx.params && liftFn !== _liftFlatFloat64 && typeof ctx.params[0] === 'bigint') {
-          if (ctx.params[0] > BigInt(Number.MAX_SAFE_INTEGER)) {
-            throw new Error(`invalid value, reinterpreted i32/f32 too large: [${ctx.params[0]}]`);
+        
+        if (this.#waitableSet) {
+          this.#waitableSet.removeWaitable(this);
+        }
+        
+        this.#waitableSet = waitableSet;
+        
+        if (waitableSet) {
+          this.#waitableSet.addWaitable(this);
+        }
+      }
+      
+      drop() {
+        _debugLog('[Waitable#drop()] args', {
+          componentIdx: this.#componentIdx,
+          waitable: this,
+        });
+        if (this.hasPendingEvent()) {
+          throw new Error('waitables with pending events cannot be dropped');
+        }
+        this.join(null);
+      }
+      
+      async waitForPendingEvent(args) {
+        const { cstate } = args;
+        if (!cstate) { throw new TypeError('missing component state'); }
+        
+        if (this.#waitableSet !== null || this.#hasSyncWaiter) {
+          throw new Error("waitable is already in a set/has a sync waiter");
+        }
+        this.#hasSyncWaiter = true;
+        await cstate.waitUntil({
+          cancellable: false,
+          readyFn: () => this.hasPendingEvent(),
+        });
+        this.#hasSyncWaiter = false;
+      }
+      
+    }
+    
+    const ERR_CTX_TABLES = {};
+    
+    function contextGet(ctx) {
+      const { componentIdx, slot } = ctx;
+      if (componentIdx === undefined) { throw new TypeError("missing component idx"); }
+      if (slot === undefined) { throw new TypeError("missing slot"); }
+      
+      const currentTaskMeta = _getGlobalCurrentTaskMeta(componentIdx);
+      if (!currentTaskMeta) {
+        throw new Error(`missing/incomplete global current task meta for component idx [${componentIdx}] during context set`);
+      }
+      const taskID = currentTaskMeta.taskID;
+      
+      const taskMeta = getCurrentTask(componentIdx, taskID);
+      if (!taskMeta) { throw new Error('failed to retrieve current task'); }
+      
+      let task = taskMeta.task;
+      if (!task) { throw new Error('invalid/missing current task in metadata while getting context'); }
+      
+      _debugLog('[contextGet()] args', {
+        slot,
+        storage: task.storage,
+        taskID: task.id(),
+        componentIdx: task.componentIdx(),
+      });
+      
+      if (slot < 0 || slot >= task.storage.length) { throw new Error('invalid slot for current task'); }
+      
+      return task.storage[slot];
+    }
+    
+    
+    function contextSet(ctx, value) {
+      const { componentIdx, slot } = ctx;
+      if (componentIdx === undefined) { throw new TypeError("missing component idx"); }
+      if (slot === undefined) { throw new TypeError("missing slot"); }
+      if (!(_typeCheckValidI32(value))) { throw new Error('invalid value for context set (not valid i32)'); }
+      
+      const currentTaskMeta = _getGlobalCurrentTaskMeta(componentIdx);
+      if (!currentTaskMeta) {
+        throw new Error(`missing/incomplete global current task meta for component idx [${componentIdx}] during context set`);
+      }
+      const taskID = currentTaskMeta.taskID;
+      
+      const taskMeta = getCurrentTask(componentIdx, taskID);
+      if (!taskMeta) { throw new Error('failed to retrieve current task'); }
+      
+      let task = taskMeta.task;
+      if (!task) { throw new Error('invalid/missing current task in metadata while setting context'); }
+      
+      _debugLog('[contextSet()] args', {
+        slot,
+        value,
+        storage: task.storage,
+        taskID: task.id(),
+        componentIdx: task.componentIdx(),
+      });
+      
+      if (slot < 0 || slot >= task.storage.length) { throw new Error('invalid slot for current task'); }
+      task.storage[slot] = value;
+    }
+    
+    const ASYNC_TASKS_BY_COMPONENT_IDX = new Map();
+    
+    class AsyncTask {
+      static _ID = 0n;
+      
+      static State = {
+        INITIAL: 'initial',
+        CANCELLED: 'cancelled',
+        CANCEL_PENDING: 'cancel-pending',
+        CANCEL_DELIVERED: 'cancel-delivered',
+        RESOLVED: 'resolved',
+      }
+      
+      static BlockResult = {
+        CANCELLED: 'block.cancelled',
+        NOT_CANCELLED: 'block.not-cancelled',
+      }
+      
+      #id;
+      #componentIdx;
+      #state;
+      #isAsync;
+      #isManualAsync;
+      #entryFnName = null;
+      
+      #onResolveHandlers = [];
+      #completionPromise = null;
+      #rejected = false;
+      
+      #exitPromise = null;
+      #onExitHandlers = [];
+      
+      #memoryIdx = null;
+      #memory = null;
+      
+      #callbackFn = null;
+      #callbackFnName = null;
+      
+      #postReturnFn = null;
+      
+      #getCalleeParamsFn = null;
+      
+      #stringEncoding = null;
+      
+      #parentSubtask = null;
+      
+      #errHandling;
+      
+      #backpressurePromise;
+      #backpressureWaiters = 0n;
+      
+      #returnLowerFns = null;
+      
+      #subtasks = [];
+      
+      #entered = false;
+      #exited = false;
+      #errored = null;
+      
+      cancelled = false;
+      cancelRequested = false;
+      alwaysTaskReturn = false;
+      
+      returnCalls =  0;
+      storage = [0, 0];
+      borrowedHandles = {};
+      
+      tmpRetI64HighBits = 0|0;
+      
+      constructor(opts) {
+        this.#id = ++AsyncTask._ID;
+        
+        if (opts?.componentIdx === undefined) {
+          throw new TypeError('missing component id during task creation');
+        }
+        this.#componentIdx = opts.componentIdx;
+        
+        this.#state = AsyncTask.State.INITIAL;
+        this.#isAsync = opts?.isAsync ?? false;
+        this.#isManualAsync = opts?.isManualAsync ?? false;
+        this.#entryFnName = opts.entryFnName;
+        
+        const {
+          promise: completionPromise,
+          resolve: resolveCompletionPromise,
+          reject: rejectCompletionPromise,
+        } = promiseWithResolvers();
+        this.#completionPromise = completionPromise;
+        
+        this.#onResolveHandlers.push((results) => {
+          if (this.#parentSubtask !== null) { return; }
+          if (!this.#isAsync) { return; }
+          
+          if (this.#errored !== null) {
+            rejectCompletionPromise(this.#errored);
+            return;
+          } else if (this.#rejected) {
+            rejectCompletionPromise(results);
+            return;
           }
-          ctx.params[0] = Number(ctx.params[0]);
+          
+          resolveCompletionPromise(results);
+        });
+        
+        const {
+          promise: exitPromise,
+          resolve: resolveExitPromise,
+          reject: rejectExitPromise,
+        } = promiseWithResolvers();
+        this.#exitPromise = exitPromise;
+        
+        this.#onExitHandlers.push(() => {
+          resolveExitPromise();
+        });
+        
+        if (opts.callbackFn) { this.#callbackFn = opts.callbackFn; }
+        if (opts.callbackFnName) { this.#callbackFnName = opts.callbackFnName; }
+        
+        if (opts.getCalleeParamsFn) { this.#getCalleeParamsFn = opts.getCalleeParamsFn; }
+        
+        if (opts.stringEncoding) { this.#stringEncoding = opts.stringEncoding; }
+        
+        if (opts.parentSubtask) { this.#parentSubtask = opts.parentSubtask; }
+        
+        
+        if (opts.errHandling) { this.#errHandling = opts.errHandling; }
+      }
+      
+      taskState() { return this.#state; }
+      id() { return this.#id; }
+      componentIdx() { return this.#componentIdx; }
+      entryFnName() { return this.#entryFnName; }
+      
+      completionPromise() { return this.#completionPromise; }
+      exitPromise() { return this.#exitPromise; }
+      
+      isAsync() { return this.#isAsync; }
+      isSync() { return !this.isAsync(); }
+      
+      getErrHandling() { return this.#errHandling; }
+      
+      hasCallback() { return this.#callbackFn !== null; }
+      
+      getReturnMemoryIdx() { return this.#memoryIdx; }
+      setReturnMemoryIdx(idx) {
+        if (idx === null) { return; }
+        this.#memoryIdx = idx;
+      }
+      
+      getReturnMemory() { return this.#memory; }
+      setReturnMemory(m) {
+        if (m === null) { return; }
+        this.#memory = m;
+      }
+      
+      setReturnLowerFns(fns) { this.#returnLowerFns = fns; }
+      getReturnLowerFns() { return this.#returnLowerFns; }
+      
+      setParentSubtask(subtask) {
+        if (!subtask || !(subtask instanceof AsyncSubtask)) { return }
+        if (this.#parentSubtask) { throw new Error('parent subtask can only be set once'); }
+        this.#parentSubtask = subtask;
+      }
+      
+      getParentSubtask() { return this.#parentSubtask; }
+      
+      // TODO(threads): this is very inefficient, we can pass along a root task,
+      // and ideally do not need this once thread support is in place
+      getRootTask() {
+        let currentSubtask = this.getParentSubtask();
+        let task = this;
+        while (currentSubtask) {
+          task = currentSubtask.getParentTask();
+          currentSubtask = task.getParentSubtask();
+        }
+        return task;
+      }
+      
+      setPostReturnFn(f) {
+        if (!f) { return; }
+        if (this.#postReturnFn) { throw new Error('postReturn fn can only be set once'); }
+        this.#postReturnFn = f;
+      }
+      
+      setCallbackFn(f, name) {
+        if (!f) { return; }
+        if (this.#callbackFn) { throw new Error('callback fn can only be set once'); }
+        this.#callbackFn = f;
+        this.#callbackFnName = name;
+      }
+      
+      getCallbackFnName() {
+        if (!this.#callbackFnName) { return undefined; }
+        return this.#callbackFnName;
+      }
+      
+      async runCallbackFn(...args) {
+        if (!this.#callbackFn) { throw new Error('no callback function has been set for task'); }
+        return _withGlobalCurrentTaskMetaAsync({
+          taskID: this.#id,
+          componentIdx: this.#componentIdx,
+          fn: () => { return this.#callbackFn.apply(null, args); }
+        });
+      }
+      
+      getCalleeParams() {
+        if (!this.#getCalleeParamsFn) { throw new Error('missing/invalid getCalleeParamsFn'); }
+        return this.#getCalleeParamsFn();
+      }
+      
+      mayBlock() { return this.isAsync() || this.isResolvedState() }
+      
+      mayEnter(task) {
+        const cstate = getOrCreateAsyncState(this.#componentIdx);
+        if (cstate.hasBackpressure()) {
+          _debugLog('[AsyncTask#mayEnter()] disallowed due to backpressure', { taskID: this.#id });
+          return false;
+        }
+        if (!cstate.callingSyncImport()) {
+          _debugLog('[AsyncTask#mayEnter()] disallowed due to sync import call', { taskID: this.#id });
+          return false;
+        }
+        const callingSyncExportWithSyncPending = cstate.callingSyncExport && !task.isAsync;
+        if (!callingSyncExportWithSyncPending) {
+          _debugLog('[AsyncTask#mayEnter()] disallowed due to sync export w/ sync pending', { taskID: this.#id });
+          return false;
+        }
+        return true;
+      }
+      
+      enterSync() {
+        if (this.needsExclusiveLock()) {
+          const cstate = getOrCreateAsyncState(this.#componentIdx);
+          // TODO(???): it is *very possible* for a the line below to fail if
+          // an async function is already running (and holding the exclusive lock)
+          //
+          // It's not really possible to fix this unless we turn every sync export into
+          // an async export that will use the regular async enabled `enter()`.
+          cstate.exclusiveLock();
+        }
+        return true;
+      }
+      
+      async enter(opts) {
+        _debugLog('[AsyncTask#enter()] args', {
+          taskID: this.#id,
+          componentIdx: this.#componentIdx,
+          subtaskID: this.getParentSubtask()?.id(),
+          args: opts,
+          entryFnName: this.#entryFnName,
+        });
+        
+        if (this.#entered) {
+          throw new Error(`task with ID [${this.#id}] should not be entered twice`);
         }
         
-        const [newVal, newCtx] = liftFn(ctx);
-        val = { tag, val: newVal };
-        ctx = newCtx;
+        const cstate = getOrCreateAsyncState(this.#componentIdx);
+        
+        if (opts?.isHost) {
+          this.#entered = true;
+          return this.#entered;
+        }
+        
+        await cstate.nextTaskExecutionSlot({ task: this });
+        
+        // If a task is synchronous then we can avoid component-relevant
+        // tracking and immediately enter.
+        if (this.isSync()) {
+          this.#entered = true;
+          
+          // TODO(breaking): remove once manually-specifying async fns is removed
+          // It is currently possible for an actually sync export to be specified
+          // as async via JSPI
+          if (this.#isManualAsync) {
+            if (this.needsExclusiveLock()) { cstate.exclusiveLock(); }
+          }
+          
+          return this.#entered;
+        }
+        
+        // Perform intial backpressure check
+        if (cstate.hasBackpressure() || this.needsExclusiveLock() && cstate.isExclusivelyLocked()) {
+          cstate.addBackpressureWaiter();
+          
+          const result = await this.waitUntil({
+            readyFn: () => {
+              return !(cstate.hasBackpressure()
+              || this.needsExclusiveLock() && cstate.isExclusivelyLocked());
+            },
+            cancellable: true,
+          });
+          
+          cstate.removeBackpressureWaiter();
+          
+          if (result === AsyncTask.BlockResult.CANCELLED) {
+            this.cancel();
+            return false;
+          }
+        }
+        
+        // Lock the component state or keep trying until we can/do
+        try {
+          if (this.needsExclusiveLock()) { cstate.exclusiveLock(); }
+        } catch {
+          // Continuously attempt to lock until we can
+          while (cstate.hasBackpressure() || this.needsExclusiveLock() && cstate.isExclusivelyLocked()) {
+            try {
+              if (this.needsExclusiveLock()) { cstate.exclusiveLock(); }
+              break;
+            } catch(err) {
+              cstate.addBackpressureWaiter();
+              const result = await this.waitUntil({
+                readyFn: () => {
+                  return !(cstate.hasBackpressure()
+                  || this.needsExclusiveLock() && cstate.isExclusivelyLocked());
+                },
+                cancellable: true,
+              });
+              cstate.removeBackpressureWaiter();
+              if (result === AsyncTask.BlockResult.CANCELLED) {
+                this.cancel();
+                return false;
+              }
+            }
+          }
+        }
+        
+        this.#entered = true;
+        return this.#entered;
       }
       
-      if (origUseParams) {
-        if (variantFlatCount === undefined || variantFlatCount === null) {
-          _debugLog('[_liftFlatVariant()] variant with unknown flat count', { ctx, meta });
-          throw new Error('cannot lift variant with unknown flat count');
-        }
-        if (caseFlatCount === undefined || caseFlatCount === null) {
-          _debugLog('[_liftFlatVariant()] case with unknown flat count', { ctx, meta, case: meta.caseMetas[caseIdx] });
-          throw new Error('cannot lift case with unknown flat count');
-        }
-        // NOTE: enums can be tightly packed and do not have a descriminant
-        const remainingPayloadParams = variantFlatCount - caseFlatCount - (isEnum ? 0 : 1);
-        if (remainingPayloadParams < 0) {
-          throw new Error(`invalid variant flat count metadata`);
-        }
-        if (ctx.params.length < remainingPayloadParams) {
-          throw new Error(`expected at least [${remainingPayloadParams}] remaining variant payload params, but got [${ctx.params.length}]`);
-        }
-        ctx.params = ctx.params.slice(remainingPayloadParams);
+      isRunningState() { return this.#state !== AsyncTask.State.RESOLVED; }
+      isResolvedState() { return this.#state === AsyncTask.State.RESOLVED; }
+      isResolved() { return this.#state === AsyncTask.State.RESOLVED; }
+      
+      async waitUntil(opts) {
+        const { readyFn, cancellable } = opts;
+        _debugLog('[AsyncTask#waitUntil()] args', { taskID: this.#id, args: { cancellable } });
+        
+        // TODO(fix): check for cancel
+        // TODO(fix): determinism
+        // TODO(threads): add this thread to waiting list
+        
+        const keepGoing = await this.suspendUntil({
+          readyFn,
+          cancellable,
+        });
+        
+        return keepGoing;
       }
       
-      if (ctx.storagePtr !== undefined) {
-        const rem = ctx.storagePtr % variantAlign32;
-        if (rem !== 0) { ctx.storagePtr += variantAlign32 - rem; }
+      async yieldUntil(opts) {
+        const { readyFn, cancellable } = opts;
+        _debugLog('[AsyncTask#yieldUntil()]', {
+          taskID: this.#id,
+          args: {
+            cancellable,
+          },
+          componentIdx: this.#componentIdx,
+        });
+        
+        const keepGoing = await this.suspendUntil({ readyFn, cancellable });
+        if (keepGoing) {
+          return {
+            code: ASYNC_EVENT_CODE.NONE,
+            payload0: 0,
+            payload1: 0,
+          };
+        }
+        
+        return {
+          code: ASYNC_EVENT_CODE.TASK_CANCELLED,
+          payload0: 0,
+          payload1: 0,
+        };
       }
       
-      ctx.inVariant = wasInVariant;
+      async suspendUntil(opts) {
+        const { cancellable, readyFn } = opts;
+        _debugLog('[AsyncTask#suspendUntil()] args', {
+          taskID: this.#id,
+          args: {
+            cancellable,
+          },
+          componentIdx: this.#componentIdx,
+        });
+        
+        const pendingCancelled = this.deliverPendingCancel({ cancellable });
+        if (pendingCancelled) { return false; }
+        
+        const completed = await this.immediateSuspendUntil({ readyFn, cancellable });
+        return completed;
+      }
+      
+      // TODO(threads): equivalent to thread.suspend_until()
+      async immediateSuspendUntil(opts) {
+        const { cancellable, readyFn } = opts;
+        _debugLog('[AsyncTask#immediateSuspendUntil()] args', {
+          args: {
+            cancellable,
+            readyFn,
+          },
+          taskID: this.#id,
+          componentIdx: this.#componentIdx,
+        });
+        
+        const ready = readyFn();
+        if (ready && ASYNC_DETERMINISM === 'random') {
+          const coinFlip = _coinFlip();
+          if (coinFlip) { return true }
+        }
+        
+        const keepGoing = await this.immediateSuspend({ cancellable, readyFn });
+        return keepGoing;
+      }
+      
+      async immediateSuspend(opts) { // NOTE: equivalent to thread.suspend()
+      // TODO(threads): store readyFn on the thread
+      const { cancellable, readyFn } = opts;
+      _debugLog('[AsyncTask#immediateSuspend()] args', { cancellable, readyFn });
+      
+      const pendingCancelled = this.deliverPendingCancel({ cancellable });
+      if (pendingCancelled) { return false; }
+      
+      const cstate = getOrCreateAsyncState(this.#componentIdx);
+      const keepGoing = await cstate.suspendTask({ task: this, readyFn });
+      return keepGoing;
+    }
+    
+    deliverPendingCancel(opts) {
+      const { cancellable } = opts;
+      _debugLog('[AsyncTask#deliverPendingCancel()]', {
+        args: { cancellable },
+        taskID: this.#id,
+        componentIdx: this.#componentIdx,
+      });
+      
+      if (cancellable && this.#state === AsyncTask.State.PENDING_CANCEL) {
+        this.#state = AsyncTask.State.CANCEL_DELIVERED;
+        return true;
+      }
+      
+      return false;
+    }
+    
+    isCancelled() { return this.cancelled }
+    
+    cancel(args) {
+      _debugLog('[AsyncTask#cancel()] args', { });
+      if (this.taskState() !== AsyncTask.State.CANCEL_DELIVERED) {
+        throw new Error(`(component [${this.#componentIdx}]) task [${this.#id}] invalid task state [${this.taskState()}] for cancellation`);
+      }
+      if (this.borrowedHandles.length > 0) { throw new Error('task still has borrow handles'); }
+      this.cancelled = true;
+      this.onResolve(args?.error ?? new Error('task cancelled'));
+      this.#state = AsyncTask.State.RESOLVED;
+    }
+    
+    onResolve(taskValue) {
+      const handlers = this.#onResolveHandlers;
+      this.#onResolveHandlers = [];
+      for (const f of handlers) {
+        try {
+          f(taskValue);
+        } catch (err) {
+          _debugLog("[AsyncTask#onResolve] error during task resolve handler", err);
+          throw err;
+        }
+      }
+      
+      if (this.#parentSubtask) {
+        const meta = this.#parentSubtask.getCallMetadata();
+        // Run the rturn fn if it has not already been called -- this *should* have happened in
+        // `task.return`, but some paths do not go through task.return (e.g. async lower of sync fn
+        // which goes through prepare + async-start-call)
+        if (meta.returnFn && !meta.returnFnCalled) {
+          _debugLog('[AsyncTask#onResolve()] running returnFn', {
+            componentIdx: this.#componentIdx,
+            taskID: this.#id,
+            subtaskID: this.#parentSubtask.id(),
+          });
+          const memory = meta.getMemoryFn();
+          meta.returnFn.apply(null, [taskValue, meta.resultPtr]);
+          meta.returnFnCalled = true;
+        }
+      }
+      
+      if (this.#postReturnFn) {
+        _debugLog('[AsyncTask#onResolve()] running post return ', {
+          componentIdx: this.#componentIdx,
+          taskID: this.#id,
+        });
+        try {
+          this.#postReturnFn(taskValue);
+        } catch (err) {
+          _debugLog("[AsyncTask#onResolve] error during task resolve handler", err);
+          throw err;
+        }
+      }
+      
+      if (this.#parentSubtask) {
+        this.#parentSubtask.onResolve(taskValue);
+      }
+    }
+    
+    registerOnResolveHandler(f) {
+      this.#onResolveHandlers.push(f);
+    }
+    
+    isRejected() { return this.#rejected; }
+    
+    isErrored() { return this.#errored; }
+    setErrored(err) { this.#errored = err; }
+    
+    reject(taskErr) {
+      _debugLog('[AsyncTask#reject()] args', {
+        componentIdx: this.#componentIdx,
+        taskID: this.#id,
+        parentSubtask: this.#parentSubtask,
+        parentSubtaskID: this.#parentSubtask?.id(),
+        entryFnName: this.entryFnName(),
+        callbackFnName: this.#callbackFnName,
+        errMsg: taskErr.message,
+      });
+      
+      if (this.isResolvedState() || this.#rejected) { return; }
+      
+      this.#rejected = true;
+      this.cancelRequested = true;
+      this.#state = AsyncTask.State.PENDING_CANCEL;
+      const cancelled = this.deliverPendingCancel({ cancellable: true });
+      
+      // TODO: do cleanup here to reset the machinery so we can run again?
+      
+      this.cancel({ error: taskErr });
+    }
+    
+    resolve(results) {
+      _debugLog('[AsyncTask#resolve()] args', {
+        componentIdx: this.#componentIdx,
+        taskID: this.#id,
+        entryFnName: this.entryFnName(),
+        callbackFnName: this.#callbackFnName,
+      });
+      
+      if (this.#state === AsyncTask.State.RESOLVED) {
+        throw new Error(`(component [${this.#componentIdx}]) task [${this.#id}]  is already resolved (did you forget to wait for an import?)`);
+      }
+      
+      if (this.borrowedHandles.length > 0) {
+        throw new Error('task still has borrow handles');
+      }
+      
+      this.#state = AsyncTask.State.RESOLVED;
+      
+      switch (results.length) {
+        case 0:
+        this.onResolve(undefined);
+        break;
+        case 1:
+        this.onResolve(results[0]);
+        break;
+        default:
+        _debugLog('[AsyncTask#resolve()] unexpected number of results', {
+          componentIdx: this.#componentIdx,
+          results,
+          taskID: this.#id,
+          subtaskID: this.#parentSubtask?.id(),
+          entryFnName: this.#entryFnName,
+          callbackFnName: this.#callbackFnName,
+        });
+        throw new Error('unexpected number of results');
+      }
+    }
+    
+    exit(args) {
+      _debugLog('[AsyncTask#exit()]', {
+        componentIdx: this.#componentIdx,
+        taskID: this.#id,
+      });
+      
+      if (this.#exited)  { throw new Error("task has already exited"); }
+      
+      if (this.#state !== AsyncTask.State.RESOLVED) {
+        throw new Error(`(component [${this.#componentIdx}]) task [${this.#id}] exited without resolution`);
+      }
+      
+      if (this.borrowedHandles > 0) {
+        throw new Error('task [${this.#id}] exited without clearing borrowed handles');
+      }
+      
+      const state = getOrCreateAsyncState(this.#componentIdx);
+      if (!state) { throw new Error('missing async state for component [' + this.#componentIdx + ']'); }
+      
+      // Exempt the host from exclusive lock check
+      if (this.#componentIdx !== -1 && !args?.skipExclusiveLockCheck) {
+        if (this.needsExclusiveLock() && !state.isExclusivelyLocked()) {
+          throw new Error(`task [${this.#id}] exit: component [${this.#componentIdx}] should have been exclusively locked`);
+        }
+      }
+      
+      state.exclusiveRelease();
+      
+      for (const f of this.#onExitHandlers) {
+        try {
+          f();
+        } catch (err) {
+          console.error("error during task exit handler", err);
+          throw err;
+        }
+      }
+      
+      this.#exited = true;
+      clearCurrentTask(this.#componentIdx, this.id());
+    }
+    
+    needsExclusiveLock() {
+      return !this.#isAsync || this.hasCallback();
+    }
+    
+    createSubtask(args) {
+      _debugLog('[AsyncTask#createSubtask()] args', args);
+      const { componentIdx, childTask, callMetadata, fnName, isAsync, isManualAsync } = args;
+      
+      const cstate = getOrCreateAsyncState(this.#componentIdx);
+      if (!cstate) {
+        throw new Error(`invalid/missing async state for component idx [${componentIdx}]`);
+      }
+      
+      const waitable = new Waitable({
+        componentIdx: this.#componentIdx,
+        target: `subtask (internal ID [${this.#id}])`,
+      });
+      
+      const newSubtask = new AsyncSubtask({
+        componentIdx,
+        childTask,
+        parentTask: this,
+        callMetadata,
+        isAsync,
+        isManualAsync,
+        fnName,
+        waitable,
+      });
+      this.#subtasks.push(newSubtask);
+      newSubtask.setTarget(`subtask (internal ID [${newSubtask.id()}], waitable [${waitable.idx()}], component [${componentIdx}])`);
+      waitable.setIdx(cstate.handles.insert(newSubtask));
+      waitable.setTarget(`waitable for subtask (waitable id [${waitable.idx()}], subtask internal ID [${newSubtask.id()}])`);
+      return newSubtask;
+    }
+    
+    getLatestSubtask() {
+      return this.#subtasks.at(-1);
+    }
+    
+    getSubtaskByWaitableRep(rep) {
+      if (rep === undefined) { throw new TypeError('missing rep'); }
+      return this.#subtasks.find(s => s.waitableRep() === rep);
+    }
+    
+    currentSubtask() {
+      _debugLog('[AsyncTask#currentSubtask()]');
+      if (this.#subtasks.length === 0) { return undefined; }
+      return this.#subtasks.at(-1);
+    }
+    
+    removeSubtask(subtask) {
+      if (this.#subtasks.length === 0) {
+        throw new Error('cannot end current subtask: no current subtask');
+      }
+      this.#subtasks = this.#subtasks.filter(t => t !== subtask);
+      return subtask;
+    }
+  }
+  
+  const ASYNC_EVENT_CODE = {
+    NONE: 0,
+    SUBTASK: 1,
+    STREAM_READ: 2,
+    STREAM_WRITE: 3,
+    FUTURE_READ: 4,
+    FUTURE_WRITE: 5,
+    TASK_CANCELLED: 6,
+  };
+  
+  function getCurrentTask(componentIdx, taskID) {
+    let usedGlobal = false;
+    if (componentIdx === undefined || componentIdx === null) {
+      throw new Error('missing component idx'); // TODO(fix)
+      // componentIdx = ASYNC_CURRENT_COMPONENT_IDXS.at(-1);
+      // usedGlobal = true;
+    }
+    
+    const taskMetas = ASYNC_TASKS_BY_COMPONENT_IDX.get(componentIdx);
+    if (taskMetas === undefined || taskMetas.length === 0) { return undefined; }
+    
+    if (taskID) {
+      return taskMetas.find(meta => meta.task.id() === taskID);
+    }
+    
+    const taskMeta = taskMetas[taskMetas.length - 1];
+    if (!taskMeta || !taskMeta.task) { return undefined; }
+    
+    return taskMeta;
+  }
+  
+  let dv = new DataView(new ArrayBuffer());
+  const dataView = mem => dv.buffer === mem.buffer ? dv : dv = new DataView(mem.buffer);
+  
+  function toUint64(val) {
+    const converted = BigInt(val)
+    
+    return BigInt.asUintN(64, converted);
+  }
+  
+  
+  function toUint32(val) {
+    
+    return val >>> 0;
+  }
+  
+  const utf16Decoder = new TextDecoder('utf-16');
+  const TEXT_DECODER_UTF8 = new TextDecoder();
+  const TEXT_ENCODER_UTF8 = new TextEncoder();
+  
+  function _utf8AllocateAndEncode(s, realloc, memory) {
+    if (typeof s !== 'string') {
+      throw new TypeError('expected a string, received [' + typeof s + ']');
+    }
+    if (s.length === 0) { return { ptr: 1, len: 0 }; }
+    let buf = TEXT_ENCODER_UTF8.encode(s);
+    let ptr = realloc(0, 0, 1, buf.length);
+    new Uint8Array(memory.buffer).set(buf, ptr);
+    const res = { ptr, len: buf.length, codepoints: [...s].length };
+    return res;
+  }
+  
+  
+  const T_FLAG = 1 << 30;
+  
+  function rscTableCreateOwn(table, rep) {
+    const free = table[0] & ~T_FLAG;
+    table._createdReps.add(rep);
+    if (free === 0) {
+      table.push(0);
+      table.push(rep | T_FLAG);
+      return (table.length >> 1) - 1;
+    }
+    table[0] = table[free << 1];
+    table[free << 1] = 0;
+    table[(free << 1) + 1] = rep | T_FLAG;
+    return free;
+  }
+  
+  function rscTableRemove(table, handle) {
+    const scope = table[handle << 1];
+    const val = table[(handle << 1) + 1];
+    const own = (val & T_FLAG) !== 0;
+    const rep = val & ~T_FLAG;
+    if (val === 0 || (scope & T_FLAG) !== 0) {
+      throw new TypeError("Invalid handle");
+    }
+    table[handle << 1] = table[0] | T_FLAG;
+    table[0] = handle | T_FLAG;
+    return { rep, scope, own };
+  }
+  
+  let curResourceBorrows = [];
+  
+  function createNewCurrentTask(args) {
+    _debugLog('[createNewCurrentTask()] args', args);
+    const {
+      componentIdx,
+      isAsync,
+      isManualAsync,
+      entryFnName,
+      parentSubtaskID,
+      callbackFnName,
+      getCallbackFn,
+      getParamsFn,
+      stringEncoding,
+      errHandling,
+      getCalleeParamsFn,
+      resultPtr,
+      callingWasmExport,
+    } = args;
+    if (componentIdx === undefined || componentIdx === null) {
+      throw new Error('missing/invalid component instance index while starting task');
+    }
+    let taskMetas = ASYNC_TASKS_BY_COMPONENT_IDX.get(componentIdx);
+    const callbackFn = getCallbackFn ? getCallbackFn() : null;
+    
+    const newTask = new AsyncTask({
+      componentIdx,
+      isAsync,
+      isManualAsync,
+      entryFnName,
+      callbackFn,
+      callbackFnName,
+      stringEncoding,
+      getCalleeParamsFn,
+      resultPtr,
+      errHandling,
+    });
+    
+    const newTaskID = newTask.id();
+    const newTaskMeta = { id: newTaskID, componentIdx, task: newTask };
+    
+    // NOTE: do not track host tasks
+    ASYNC_CURRENT_TASK_IDS.push(newTaskID);
+    ASYNC_CURRENT_COMPONENT_IDXS.push(componentIdx);
+    
+    if (!taskMetas) {
+      taskMetas = [newTaskMeta];
+      ASYNC_TASKS_BY_COMPONENT_IDX.set(componentIdx, [newTaskMeta]);
+    } else {
+      taskMetas.push(newTaskMeta);
+    }
+    
+    return [newTask, newTaskID];
+  }
+  
+  function _lowerImportBackwardsCompat(args) {
+    const params = [...arguments].slice(1);
+    _debugLog('[_lowerImportBackwardsCompat()] args', { args, params });
+    const {
+      functionIdx,
+      componentIdx,
+      isAsync,
+      isManualAsync,
+      paramLiftFns,
+      resultLowerFns,
+      hasResultPointer,
+      funcTypeIsAsync,
+      metadata,
+      memoryIdx,
+      getMemoryFn,
+      getReallocFn,
+      importFn,
+      stringEncoding,
+    } = args;
+    
+    let meta = _getGlobalCurrentTaskMeta(componentIdx);
+    let createdTask;
+    
+    // Some components depend on initialization logic (i.e. `_initialize` or some such
+    // core wasm export) that is embedded in the component, but is not executed or wizer'd
+    // away before the transpiled component is attempted to be used.
+    //
+    // These components execut their initialization logic *when they are imported* in the
+    // transpiled context -- so we may get a call to an export that is lowered without going
+    // through `CallWasm` or `CallInterface`.
+    //
+    if (!meta) {
+      if (funcTypeIsAsync || (isAsync && !isManualAsync)) {
+        throw new Error('p3 async wasm exports cannot use backwards compat auto-task init');
+      }
+      
+      const [newTask, newTaskID] = createNewCurrentTask({
+        componentIdx,
+        isAsync,
+        isManualAsync,
+        callingWasmExport: false,
+      });
+      createdTask = newTask;
+      
+      // Since we're managing the task creation ourselves we must clear ourselves
+      createdTask.registerOnResolveHandler(() => {
+        _clearCurrentTask({
+          taskID: task.id(),
+          componentIdx: task.componentIdx(),
+        });
+      });
+      
+      _setGlobalCurrentTaskMeta({
+        componentIdx,
+        taskID: newTaskID,
+      });
+      
+      meta = _getGlobalCurrentTaskMeta(componentIdx);
+    }
+    
+    const { taskID } = meta;
+    
+    const taskMeta = getCurrentTask(componentIdx, taskID);
+    if (!taskMeta) {
+      throw new Error('invalid/missing async task meta');
+    }
+    
+    const task = taskMeta.task;
+    if (!task) { throw new Error('invalid/missing async task'); }
+    
+    const cstate = getOrCreateAsyncState(componentIdx);
+    
+    // TODO: re-enable this check -- postReturn can call imports though,
+    // and that breaks things.
+    //
+    // if (!cstate.mayLeave) {
+      //     throw new Error(`cannot leave instance [${componentIdx}]`);
+      // }
+      
+      if (!task.mayBlock() && funcTypeIsAsync && !isAsync) {
+        throw new Error("non async exports cannot synchronously call async functions");
+      }
+      
+      // If there is an existing task, this should be part of a subtask
+      const memory = getMemoryFn();
+      // Canonical ABI lower appends result storage as a trailing
+      // param when async lower has any flat result, or sync lower
+      // has more than one flat result.
+      const resultPtr = hasResultPointer ? params[params.length - 1] : undefined;
+      const subtask = task.createSubtask({
+        componentIdx,
+        parentTask: task,
+        fnName: importFn.fnName,
+        isAsync,
+        isManualAsync,
+        callMetadata: {
+          memoryIdx,
+          memory,
+          realloc: getReallocFn?.(),
+          getReallocFn,
+          resultPtr,
+          lowers: resultLowerFns,
+          stringEncoding,
+        }
+      });
+      task.setReturnMemoryIdx(memoryIdx);
+      task.setReturnMemory(getMemoryFn());
+      
+      subtask.onStart();
+      
+      // If dealing with a sync lowered sync function, we can directly return results
+      //
+      // TODO(breaking): remove once we get rid of manual async import specification,
+      // as func types cannot be detected in that case only (and we don't need that w/ p3)
+      if (!isManualAsync && !isAsync && !funcTypeIsAsync) {
+        if (createdTask) { createdTask.enterSync(); }
+        
+        const res = importFn(...params);
+        
+        // TODO(breaking): remove once we get rid of manual async import specification,
+        // as func types cannot be detected in that case only (and we don't need that w/ p3)
+        if (!funcTypeIsAsync && !subtask.isReturned()) {
+          throw new Error('post-execution subtasks must either be async or returned');
+        }
+        
+        const syncRes = subtask.getResult();
+        if (createdTask) { createdTask.resolve([syncRes]); }
+        
+        return syncRes;
+      }
+      
+      // Sync-lowered async functions requires async behavior because the callee *can* block,
+      // but this call must *act* synchronously and return immediately with the result
+      // (i.e. not returning until the work is done)
+      //
+      // TODO(breaking): remove checking for manual async specification here, once we can go p3-only
+      //
+      if (!isManualAsync && !isAsync && funcTypeIsAsync) {
+        const { promise, resolve } = new Promise();
+        queueMicrotask(async () => {
+          if (!subtask.isResolvedState()) {
+            await task.suspendUntil({ readyFn: () => task.isResolvedState() });
+          }
+          resolve(subtask.getResult());
+        });
+        return promise;
+      }
+      
+      // NOTE: at this point we know that we are working with an async lowered import
+      
+      const subtaskState = subtask.getStateNumber();
+      if (subtaskState < 0 || subtaskState >= 2**4) {
+        throw new Error('invalid subtask state, out of valid range');
+      }
+      
+      subtask.setOnProgressFn(() => {
+        subtask.setPendingEvent(() => {
+          if (subtask.isResolved()) { subtask.deliverResolve(); }
+          const event = {
+            code: ASYNC_EVENT_CODE.SUBTASK,
+            payload0: subtask.waitableRep(),
+            payload1: subtask.getStateNumber(),
+          }
+          return event;
+        });
+      });
+      
+      // This is a hack to maintain backwards compatibility with
+      // manually-specified async imports, used in wasm exports that are
+      // not actually async (but are specified as so).
+      //
+      // This is not normal p3 sync behavior but instead anticipating that
+      // the caller that is doing manual async will be waiting for a promise that
+      // resolves to the *actual* result.
+      //
+      // TODO(breaking): remove once manually specified async is removed
+      //
+      // There are a few cases:
+      // 1. sync function with async types (e.g. `f: func() -> stream<u32>`)
+      // 2. async function with async types (e.g. `f: async func() -> stream<u32>`)
+      // 3. async function with sync types (e.g. `f: async func() -> list<u32>`)
+      // 4. sync function with non-async types (e.g. `f: func() -> list<u32>`)
+      //
+      // This hack *only* applies to 4 -- the case where an async JS host function
+      // is supplied to a Wasm export which does *not* need to do any async abi
+      // lifting/lowering (async ABI did not exist when JSPI integratiton was
+      // initially merged to enable asynchronously returning values from the host)
+      //
+      const requiresManualAsyncResult = !isAsync && !funcTypeIsAsync && isManualAsync;
+      let manualAsyncResult;
+      if (requiresManualAsyncResult) {
+        manualAsyncResult = promiseWithResolvers();
+      }
+      
+      queueMicrotask(async () => {
+        try {
+          _debugLog('[_lowerImportBackwardsCompat()] calling lowered import', { importFn, params });
+          if (createdTask) { await createdTask.enter(); }
+          
+          const asyncRes = await importFn(...params);
+          if (requiresManualAsyncResult) {
+            manualAsyncResult.resolve(subtask.getResult());
+          }
+          
+          if (createdTask) { createdTask.resolve([asyncRes]); }
+          
+          
+        } catch (err) {
+          _debugLog("[_lowerImportBackwardsCompat()] import fn error:", err);
+          if (requiresManualAsyncResult) {
+            manualAsyncResult.reject(err);
+          }
+          throw err;
+        }
+      });
+      
+      if (requiresManualAsyncResult) { return manualAsyncResult.promise; }
+      
+      return Number(subtask.waitableRep()) << 4 | subtaskState;
+    }
+    
+    function _liftFlatU8(ctx) {
+      _debugLog('[_liftFlatU8()] args', { ctx });
+      let val;
+      
+      if (ctx.useDirectParams) {
+        if (ctx.params.length === 0) { throw new Error('expected at least a single i32 argument'); }
+        val = ctx.params[0];
+        ctx.params = ctx.params.slice(1);
+        return [val, ctx];
+      }
+      
+      if (ctx.storageLen !== undefined && ctx.storageLen < 1) {
+        throw new Error(`insufficient storage ([${ctx.storageLen}] bytes) for lift (u8 requires 1 byte)`);
+      }
+      
+      val = new DataView(ctx.memory.buffer).getUint8(ctx.storagePtr, true);
+      
+      ctx.storagePtr += 1;
+      if (ctx.storageLen !== undefined) { ctx.storageLen -= 1; }
       
       return [val, ctx];
     }
-  }
-  
-  function _liftFlatList(meta) {
-    const { elemLiftFn, elemSize32, elemAlign32, knownLen, typedArray } = meta;
     
-    const listValue =
-    typedArray === undefined
-    ? values => values
-    : values => new typedArray(values);
     
-    const readValuesAndReset = (ctx, originalPtr, originalLen, dataPtr, len) => {
-      ctx.storagePtr = dataPtr;
-      const val = [];
-      for (var i = 0; i < len; i++) {
-        const elemPtr = dataPtr + i * elemSize32;
-        ctx.storagePtr = elemPtr;
-        const [res, nextCtx] = elemLiftFn(ctx);
-        val.push(res);
-        ctx = nextCtx;
-        
-        ctx.storagePtr = Math.max(ctx.storagePtr, elemPtr + elemSize32);
-      }
-      if (originalPtr !== null) { ctx.storagePtr = originalPtr; }
-      if (originalLen !== null) { ctx.storageLen = originalLen; }
-      return [listValue(val), ctx];
-    };
-    
-    return function _liftFlatListInner(ctx) {
-      _debugLog('[_liftFlatList()] args', { ctx });
+    function _liftFlatU16(ctx) {
+      _debugLog('[_liftFlatU16()] args', { ctx });
+      let val;
       
-      let liftResults;
-      if (knownLen !== undefined) { // list with known length
       if (ctx.useDirectParams) {
-        _debugLog('memory unexpectedly missing while lifting unknown length list', { ctx });
-        liftResults = [listValue(ctx.params.slice(0, knownLen)), ctx];
-        ctx.params = ctx.params.slice(knownLen);
-      } else { // indirect params
-      if (ctx.memory === null) {
-        _debugLog('memory unexpectedly missing while lifting known length list', { knownLen, ctx });
-        throw new Error(`memory missing while lifting known length (${knownLen}) list`);
+        if (ctx.params.length === 0) { throw new Error('expected at least a single i32 argument'); }
+        val = ctx.params[0];
+        ctx.params = ctx.params.slice(1);
+        return [val, ctx];
       }
       
-      const originalLen = ctx.storageLen;
-      const originalPtr = ctx.storagePtr;
+      if (ctx.storageLen !== undefined && ctx.storageLen < 2) {
+        throw new Error(`insufficient storage ([${ctx.storageLen}] bytes) for lift (u16 requires 2 bytes)`);
+      }
       
-      ctx.storageLen = knownLen * elemSize32;
-      liftResults = readValuesAndReset(ctx, null, originalLen, ctx.storagePtr, knownLen);
+      val = new DataView(ctx.memory.buffer).getUint16(ctx.storagePtr, true);
+      
+      ctx.storagePtr += 2;
+      if (ctx.storageLen !== undefined) { ctx.storageLen -= 2; }
+      
+      const rem = ctx.storagePtr % 2;
+      if (rem !== 0) { ctx.storagePtr += (2 - rem); }
+      
+      return [val, ctx];
     }
     
-  } else { // unknown length list
-  
-  if (ctx.useDirectParams) {
-    // unknown length list ptr w/ direct params
-    const dataPtr = ctx.params[0];
-    const len = ctx.params[1];
-    ctx.params = ctx.params.slice(2);
     
-    ctx.useDirectParams = false;
-    const originalPtr = ctx.storagePtr;
-    const originalLen = ctx.storageLen;
-    ctx.storageLen = len * elemSize32;
+    function _liftFlatU32(ctx) {
+      _debugLog('[_liftFlatU32()] args', { ctx });
+      let val;
+      
+      if (ctx.useDirectParams) {
+        if (ctx.params.length === 0) { throw new Error('expected at least a single i34 argument'); }
+        val = ctx.params[0];
+        ctx.params = ctx.params.slice(1);
+        return [val, ctx];
+      }
+      
+      if (ctx.storageLen !== undefined && ctx.storageLen < 4) {
+        throw new Error(`insufficient storage ([${ctx.storageLen}] bytes) for lift (u32 requires 4 bytes)`);
+      }
+      val = new DataView(ctx.memory.buffer).getUint32(ctx.storagePtr, true);
+      ctx.storagePtr += 4;
+      if (ctx.storageLen !== undefined) { ctx.storageLen -= 4; }
+      
+      return [val, ctx];
+    }
     
-    liftResults = readValuesAndReset(ctx, originalPtr, originalLen, dataPtr, len);
     
-    ctx.useDirectParams = true;
-  } else {
-    // unknown length list ptr w/ in-memory params
-    const originalLen = ctx.storageLen;
-    ctx.storageLen = 8;
+    function _liftFlatU64(ctx) {
+      _debugLog('[_liftFlatU64()] args', { ctx });
+      let val;
+      
+      if (ctx.useDirectParams) {
+        if (ctx.params.length === 0) { throw new Error('expected at least one single i64 argument'); }
+        if (typeof ctx.params[0] !== 'bigint') { throw new Error('expected bigint'); }
+        val = ctx.params[0];
+        ctx.params = ctx.params.slice(1);
+        return [val, ctx];
+      }
+      
+      if (ctx.storageLen !== undefined && ctx.storageLen < 8) {
+        throw new Error(`insufficient storage ([${ctx.storageLen}] bytes) for lift (u64 requires 8 bytes)`);
+      }
+      
+      val = new DataView(ctx.memory.buffer).getBigUint64(ctx.storagePtr, true);
+      ctx.storagePtr += 8;
+      if (ctx.storageLen !== undefined) { ctx.storageLen -= 8; }
+      
+      return [val, ctx];
+    }
     
-    const dataPtrLiftRes = _liftFlatU32(ctx);
-    const dataPtr = dataPtrLiftRes[0];
-    ctx = dataPtrLiftRes[1];
     
-    const lenLiftRes = _liftFlatU32(ctx);
-    const len = lenLiftRes[0];
-    ctx = lenLiftRes[1];
+    function _liftFlatFloat64(ctx) {
+      _debugLog('[_liftFlatFloat64()] args', { ctx });
+      let val;
+      
+      if (ctx.useDirectParams) {
+        if (ctx.params.length === 0) {
+          throw new Error('expected at least one single f64 argument');
+        }
+        val = ctx.params[0];
+        ctx.params = ctx.params.slice(1);
+        
+        if (ctx.inVariant) {
+          const dv = new DataView(new ArrayBuffer(8));
+          dv.setBigInt64(0, val);
+          val = dv.getFloat64(0);
+        }
+        
+        return [val, ctx];
+      }
+      
+      if (ctx.storageLen !== undefined && ctx.storageLen < 8) {
+        throw new Error(`insufficient storage ([${ctx.storageLen}] bytes) for lift (f64 requires 8 bytes)`);
+      }
+      
+      val = new DataView(ctx.memory.buffer).getFloat64(ctx.storagePtr, true);
+      ctx.storagePtr += 8;
+      if (ctx.storageLen !== undefined) { ctx.storageLen -= 8; }
+      
+      return [val, ctx];
+    }
     
-    const originalPtr = ctx.storagePtr;
-    ctx.storagePtr = dataPtr;
     
-    ctx.storageLen = len * elemSize32;
-    liftResults = readValuesAndReset(ctx, originalPtr, originalLen, dataPtr, len);
+    function _liftFlatStringAny(ctx) {
+      switch (ctx.stringEncoding) {
+        case 'utf8':
+        return _liftFlatStringUTF8(ctx);
+        case 'utf16':
+        return _liftFlatStringUTF16(ctx);
+        default:
+        throw new Error(`missing/unrecognized/unsupported string encoding [${ctx.stringEncoding}]`);
+      }
+    }
+    
+    function _liftFlatStringUTF8(ctx) {
+      _debugLog('[_liftFlatStringUTF8()] args', { ctx });
+      let val;
+      
+      if (ctx.useDirectParams) {
+        if (ctx.params.length < 2) { throw new Error('expected at least two u32 arguments'); }
+        let offset = ctx.params[0];
+        if (typeof offset === 'bigint') { offset = Number(offset); }
+        if (!Number.isSafeInteger(offset)) { throw new Error('invalid offset'); }
+        const len = ctx.params[1];
+        if (!Number.isSafeInteger(len)) {  throw new Error('invalid len'); }
+        val = TEXT_DECODER_UTF8.decode(new DataView(ctx.memory.buffer, offset, len));
+        ctx.params = ctx.params.slice(2);
+        return [val, ctx];
+      }
+      
+      const rem = ctx.storagePtr % 4;
+      if (rem !== 0) { ctx.storagePtr += (4 - rem); }
+      
+      const dv = new DataView(ctx.memory.buffer);
+      const start = dv.getUint32(ctx.storagePtr, true);
+      const codeUnits = dv.getUint32(ctx.storagePtr + 4, true);
+      
+      val = TEXT_DECODER_UTF8.decode(new Uint8Array(ctx.memory.buffer, start, codeUnits));
+      
+      ctx.storagePtr += 8;
+      if (ctx.storageLen !== undefined) { ctx.storagelen -= 8; }
+      
+      return [val, ctx];
+    }
+    
+    function _liftFlatStringUTF16(ctx) {
+      _debugLog('[_liftFlatStringUTF16()] args', { ctx });
+      let val;
+      
+      if (ctx.useDirectParams) {
+        if (ctx.params.length < 2) { throw new Error('expected at least two u32 arguments'); }
+        let offset = ctx.params[0];
+        if (typeof offset === 'bigint') { offset = Number(offset); }
+        if (!Number.isSafeInteger(offset)) {  throw new Error('invalid offset'); }
+        const len = ctx.params[1];
+        if (!Number.isSafeInteger(len)) {  throw new Error('invalid len'); }
+        val = utf16Decoder.decode(new DataView(ctx.memory.buffer, offset, len));
+        ctx.params = ctx.params.slice(2);
+        return [val, ctx];
+      }
+      
+      const data = new DataView(ctx.memory.buffer)
+      const start = data.getUint32(ctx.storagePtr, vals[0], true);
+      const codeUnits = data.getUint32(ctx.storagePtr, vals[0] + 4, true);
+      val = utf16Decoder.decode(new Uint16Array(ctx.memory.buffer, start, codeUnits));
+      ctx.storagePtr = ctx.storagePtr + 2 * codeUnits;
+      if (ctx.storageLen !== undefined) { ctx.storageLen = ctx.storageLen - 2 * codeUnits }
+      
+      return [val, ctx];
+    }
+    
+    function _liftFlatVariant(meta) {
+      const {
+        caseMetas,
+        variantSize32,
+        variantAlign32,
+        variantPayloadOffset32,
+        variantFlatCount,
+        isEnum,
+      } = meta;
+      
+      return function _liftFlatVariantInner(ctx) {
+        _debugLog('[_liftFlatVariant()] args', { ctx });
+        const origUseParams = ctx.useDirectParams;
+        
+        // If we're in the process of lifting a variant, we note
+        // we are during any lifting that happens (e.g. to accomodate f32/f64 mechanics)
+        const wasInVariant = ctx.inVariant;
+        ctx.inVariant = true;
+        
+        let caseIdx;
+        let liftRes;
+        const originalPtr = ctx.storagePtr;
+        const numCases =  caseMetas.length;
+        if (caseMetas.length < 256) {
+          liftRes = _liftFlatU8(ctx);
+        } else if (numCases >= 256 && numCases < 65536) {
+          liftRes = _liftFlatU16(ctx);
+        } else if (numCases >= 65536 && numCases < 4_294_967_296) {
+          liftRes = _liftFlatU32(ctx);
+        } else {
+          throw new Error(`unsupported number of variant cases [${numCases}]`);
+        }
+        caseIdx = liftRes[0];
+        ctx = liftRes[1];
+        
+        const [
+        tag,
+        liftFn,
+        caseSize32,
+        caseAlign32,
+        caseFlatCount,
+        ] = caseMetas[caseIdx];
+        
+        if (variantPayloadOffset32 === undefined) {
+          throw new Error('unexpectedly missing payload offset');
+        }
+        
+        if (originalPtr !== undefined) {
+          ctx.storagePtr = originalPtr + variantPayloadOffset32;
+        }
+        
+        let val;
+        if (liftFn === null) {
+          val = { tag };
+          // NOTE: here we need to move past the entire object in memory
+          // despite moving to the payload which we now know is missing/unnecessary
+          if (originalPtr !== undefined) {
+            ctx.storagePtr = originalPtr + variantSize32;
+          }
+        } else {
+          if (ctx.useDirectParams && ctx.params && liftFn !== _liftFlatFloat64 && typeof ctx.params[0] === 'bigint') {
+            if (ctx.params[0] > BigInt(Number.MAX_SAFE_INTEGER)) {
+              throw new Error(`invalid value, reinterpreted i32/f32 too large: [${ctx.params[0]}]`);
+            }
+            ctx.params[0] = Number(ctx.params[0]);
+          }
+          
+          const [newVal, newCtx] = liftFn(ctx);
+          val = { tag, val: newVal };
+          ctx = newCtx;
+        }
+        
+        if (origUseParams) {
+          if (variantFlatCount === undefined || variantFlatCount === null) {
+            _debugLog('[_liftFlatVariant()] variant with unknown flat count', { ctx, meta });
+            throw new Error('cannot lift variant with unknown flat count');
+          }
+          if (caseFlatCount === undefined || caseFlatCount === null) {
+            _debugLog('[_liftFlatVariant()] case with unknown flat count', { ctx, meta, case: meta.caseMetas[caseIdx] });
+            throw new Error('cannot lift case with unknown flat count');
+          }
+          // NOTE: enums can be tightly packed and do not have a descriminant
+          const remainingPayloadParams = variantFlatCount - caseFlatCount - (isEnum ? 0 : 1);
+          if (remainingPayloadParams < 0) {
+            throw new Error(`invalid variant flat count metadata`);
+          }
+          if (ctx.params.length < remainingPayloadParams) {
+            throw new Error(`expected at least [${remainingPayloadParams}] remaining variant payload params, but got [${ctx.params.length}]`);
+          }
+          ctx.params = ctx.params.slice(remainingPayloadParams);
+        }
+        
+        if (ctx.storagePtr !== undefined) {
+          const rem = ctx.storagePtr % variantAlign32;
+          if (rem !== 0) { ctx.storagePtr += variantAlign32 - rem; }
+        }
+        
+        ctx.inVariant = wasInVariant;
+        
+        return [val, ctx];
+      }
+    }
+    
+    function _liftFlatList(meta) {
+      const { elemLiftFn, elemSize32, elemAlign32, knownLen, typedArray } = meta;
+      
+      const listValue =
+      typedArray === undefined
+      ? values => values
+      : values => new typedArray(values);
+      
+      const readValuesAndReset = (ctx, originalPtr, originalLen, dataPtr, len) => {
+        ctx.storagePtr = dataPtr;
+        const val = [];
+        for (var i = 0; i < len; i++) {
+          const elemPtr = dataPtr + i * elemSize32;
+          ctx.storagePtr = elemPtr;
+          const [res, nextCtx] = elemLiftFn(ctx);
+          val.push(res);
+          ctx = nextCtx;
+          
+          ctx.storagePtr = Math.max(ctx.storagePtr, elemPtr + elemSize32);
+        }
+        if (originalPtr !== null) { ctx.storagePtr = originalPtr; }
+        if (originalLen !== null) { ctx.storageLen = originalLen; }
+        return [listValue(val), ctx];
+      };
+      
+      return function _liftFlatListInner(ctx) {
+        _debugLog('[_liftFlatList()] args', { ctx });
+        
+        let liftResults;
+        if (knownLen !== undefined) { // list with known length
+        if (ctx.useDirectParams) {
+          _debugLog('memory unexpectedly missing while lifting unknown length list', { ctx });
+          liftResults = [listValue(ctx.params.slice(0, knownLen)), ctx];
+          ctx.params = ctx.params.slice(knownLen);
+        } else { // indirect params
+        if (ctx.memory === null) {
+          _debugLog('memory unexpectedly missing while lifting known length list', { knownLen, ctx });
+          throw new Error(`memory missing while lifting known length (${knownLen}) list`);
+        }
+        
+        const originalLen = ctx.storageLen;
+        const originalPtr = ctx.storagePtr;
+        
+        ctx.storageLen = knownLen * elemSize32;
+        liftResults = readValuesAndReset(ctx, null, originalLen, ctx.storagePtr, knownLen);
+      }
+      
+    } else { // unknown length list
+    
+    if (ctx.useDirectParams) {
+      // unknown length list ptr w/ direct params
+      const dataPtr = ctx.params[0];
+      const len = ctx.params[1];
+      ctx.params = ctx.params.slice(2);
+      
+      ctx.useDirectParams = false;
+      const originalPtr = ctx.storagePtr;
+      const originalLen = ctx.storageLen;
+      ctx.storageLen = len * elemSize32;
+      
+      liftResults = readValuesAndReset(ctx, originalPtr, originalLen, dataPtr, len);
+      
+      ctx.useDirectParams = true;
+    } else {
+      // unknown length list ptr w/ in-memory params
+      const originalLen = ctx.storageLen;
+      ctx.storageLen = 8;
+      
+      const dataPtrLiftRes = _liftFlatU32(ctx);
+      const dataPtr = dataPtrLiftRes[0];
+      ctx = dataPtrLiftRes[1];
+      
+      const lenLiftRes = _liftFlatU32(ctx);
+      const len = lenLiftRes[0];
+      ctx = lenLiftRes[1];
+      
+      const originalPtr = ctx.storagePtr;
+      ctx.storagePtr = dataPtr;
+      
+      ctx.storageLen = len * elemSize32;
+      liftResults = readValuesAndReset(ctx, originalPtr, originalLen, dataPtr, len);
+    }
   }
-}
-
-return liftResults;
+  
+  return liftResults;
 }
 }
 
@@ -4093,13 +3897,6 @@ class ComponentAsyncState {
   
 }
 
-const base64Compile = str => WebAssembly.compile(
-typeof Buffer !== 'undefined'
-? Buffer.from(str, 'base64')
-: Uint8Array.from(atob(str), b => b.charCodeAt(0))
-);
-
-
 const isNode = typeof process !== 'undefined' && process.versions && process.versions.node;
 let _fs;
 async function fetchCompile (url) {
@@ -4137,1025 +3934,1216 @@ const isLE = new Uint8Array(new Uint16Array([1]).buffer)[0] === 1;
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
-const instantiateCore = WebAssembly.instantiate;
 
+if (!getCoreModule) getCoreModule = (name) => fetchCompile(new URL(`./${name}`, import.meta.url));
+const module0 = getCoreModule('falco-component.core.wasm');
+const module1 = getCoreModule('falco-component.core2.wasm');
+const module2 = getCoreModule('falco-component.core3.wasm');
+const module3 = getCoreModule('falco-component.core4.wasm');
 
-let exports0;
-let exports1;
+const { getArguments, getEnvironment } = imports['wasi:cli/environment'];
 
-const _trampoline1 = function() {
-  _debugLog('[iface="wasi:clocks/monotonic-clock@0.2.12", function="now"] [Instruction::CallInterface] (sync, @ enter)');
-  const hostProvided = true;
-  
-  let parentTask;
-  let task;
-  let subtask;
-  
-  const createTask = () => {
-    const results = createNewCurrentTask({
-      componentIdx: -1,
-      isAsync: false,
-      entryFnName: 'now',
-      getCallbackFn: () => null,
-      callbackFnName: null,
-      errHandling: 'none',
-      callingWasmExport: false,
-    });
-    task = results[0];
-  };
-  
-  taskCreation: {
-    parentTask = getCurrentTask(
-    0,
-    _getGlobalCurrentTaskMeta(0)?.taskID,
-    )?.task;
-    
-    if (!parentTask) {
-      createTask();
-      break taskCreation;
-    }
-    
-    createTask();
-    
-    if (hostProvided) {
-      subtask = parentTask.getLatestSubtask();
-      if (!subtask) {
-        throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
-      }
-      task.setParentSubtask(subtask);
-    }
-  }
-  
-  const started = task.enterSync();
-  
-  let ret;
-  
-  try {
-    ret = _withGlobalCurrentTaskMeta({
-      componentIdx: task.componentIdx(),
-      taskID: task.id(),
-      fn: () => now(),
-    })
-    ;
-  } catch (err) {
-    
-    _debugLog('[Instruction::CallInterface] error during sync call', {
-      taskID: task.id(),
-      subtaskID: task.getParentSubtask()?.id(),
-      err,
-    });
-    task.setErrored(err);
-    task.reject(err);
-    task.exit();
-    throw err;
-    
-  }
-  
-  _debugLog('[iface="wasi:clocks/monotonic-clock@0.2.12", function="now"][Instruction::Return]', {
-    funcName: 'now',
-    paramCount: 1,
-    async: false,
-    postReturn: false
-  });
-  task.resolve([toUint64(ret)]);
-  task.exit();
-  return toUint64(ret);
+if (getArguments=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'getArguments', was 'getArguments' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
 }
-_trampoline1.fnName = 'wasi:clocks/monotonic-clock@0.2.12#now';
-
-const handleTable3 = [T_FLAG, 0];
-handleTable3._createdReps = new Set();
 
 
-const captureTable3= new Map();
-let captureCnt3= 0;
+if (getEnvironment=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'getEnvironment', was 'getEnvironment' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
 
-HANDLE_TABLES[3] = handleTable3;
+const { exit } = imports['wasi:cli/exit'];
 
-const handleTable1 = [T_FLAG, 0];
-handleTable1._createdReps = new Set();
+if (exit=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'exit', was 'exit' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { getStderr } = imports['wasi:cli/stderr'];
+
+if (getStderr=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'getStderr', was 'getStderr' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { getStdin } = imports['wasi:cli/stdin'];
+
+if (getStdin=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'getStdin', was 'getStdin' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { getStdout } = imports['wasi:cli/stdout'];
+
+if (getStdout=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'getStdout', was 'getStdout' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { TerminalInput } = imports['wasi:cli/terminal-input'];
+
+if (TerminalInput=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'TerminalInput', was 'TerminalInput' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { TerminalOutput } = imports['wasi:cli/terminal-output'];
+
+if (TerminalOutput=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'TerminalOutput', was 'TerminalOutput' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { getTerminalStderr } = imports['wasi:cli/terminal-stderr'];
+
+if (getTerminalStderr=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'getTerminalStderr', was 'getTerminalStderr' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { getTerminalStdin } = imports['wasi:cli/terminal-stdin'];
+
+if (getTerminalStdin=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'getTerminalStdin', was 'getTerminalStdin' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { getTerminalStdout } = imports['wasi:cli/terminal-stdout'];
+
+if (getTerminalStdout=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'getTerminalStdout', was 'getTerminalStdout' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { now, subscribeDuration, subscribeInstant } = imports['wasi:clocks/monotonic-clock'];
+
+if (now=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'now', was 'now' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
 
 
-const captureTable1= new Map();
-let captureCnt1= 0;
+if (subscribeDuration=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'subscribeDuration', was 'subscribeDuration' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
 
-HANDLE_TABLES[1] = handleTable1;
 
-const _trampoline6 = function(arg0) {
-  var handle1 = arg0;
+if (subscribeInstant=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'subscribeInstant', was 'subscribeInstant' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { now: now$1 } = imports['wasi:clocks/wall-clock'];
+
+if (now$1=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'now$1', was 'now' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { getDirectories } = imports['wasi:filesystem/preopens'];
+
+if (getDirectories=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'getDirectories', was 'getDirectories' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { Descriptor, filesystemErrorCode } = imports['wasi:filesystem/types'];
+
+if (Descriptor=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'Descriptor', was 'Descriptor' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+
+if (filesystemErrorCode=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'filesystemErrorCode', was 'filesystemErrorCode' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { Error: Error$1 } = imports['wasi:io/error'];
+
+if (Error$1=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'Error$1', was 'Error' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { Pollable, poll } = imports['wasi:io/poll'];
+
+if (Pollable=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'Pollable', was 'Pollable' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+
+if (poll=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'poll', was 'poll' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { InputStream, OutputStream } = imports['wasi:io/streams'];
+
+if (InputStream=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'InputStream', was 'InputStream' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+
+if (OutputStream=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'OutputStream', was 'OutputStream' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+const { getRandomBytes } = imports['wasi:random/random'];
+
+if (getRandomBytes=== undefined) {
+  const err = new Error("unexpectedly undefined instance import 'getRandomBytes', was 'getRandomBytes' available at instantiation?");
+  console.error("ERROR:", err.toString());
+  throw err;
+}
+
+let gen = (function* _initGenerator () {
+  let exports0;
+  let exports1;
   
-  var rep2 = handleTable3[(handle1 << 1) + 1] & ~T_FLAG;
-  var rsc0 = captureTable3.get(rep2);
-  if (!rsc0) {
-    rsc0 = Object.create(InputStream.prototype);
-    Object.defineProperty(rsc0, symbolRscHandle, { writable: true, value: handle1});
-    Object.defineProperty(rsc0, symbolRscRep, { writable: true, value: rep2});
-  }
-  
-  curResourceBorrows.push(rsc0);
-  _debugLog('[iface="wasi:io/streams@0.2.12", function="[method]input-stream.subscribe"] [Instruction::CallInterface] (sync, @ enter)');
-  const hostProvided = true;
-  
-  let parentTask;
-  let task;
-  let subtask;
-  
-  const createTask = () => {
-    const results = createNewCurrentTask({
-      componentIdx: -1,
-      isAsync: false,
-      entryFnName: 'subscribe',
-      getCallbackFn: () => null,
-      callbackFnName: null,
-      errHandling: 'none',
-      callingWasmExport: false,
-    });
-    task = results[0];
-  };
-  
-  taskCreation: {
-    parentTask = getCurrentTask(
-    0,
-    _getGlobalCurrentTaskMeta(0)?.taskID,
-    )?.task;
+  const _trampoline1 = function() {
+    _debugLog('[iface="wasi:clocks/monotonic-clock@0.2.12", function="now"] [Instruction::CallInterface] (sync, @ enter)');
+    const hostProvided = true;
     
-    if (!parentTask) {
-      createTask();
-      break taskCreation;
-    }
+    let parentTask;
+    let task;
+    let subtask;
     
-    createTask();
+    const createTask = () => {
+      const results = createNewCurrentTask({
+        componentIdx: -1,
+        isAsync: false,
+        entryFnName: 'now',
+        getCallbackFn: () => null,
+        callbackFnName: null,
+        errHandling: 'none',
+        callingWasmExport: false,
+      });
+      task = results[0];
+    };
     
-    if (hostProvided) {
-      subtask = parentTask.getLatestSubtask();
-      if (!subtask) {
-        throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
+    taskCreation: {
+      parentTask = getCurrentTask(
+      0,
+      _getGlobalCurrentTaskMeta(0)?.taskID,
+      )?.task;
+      
+      if (!parentTask) {
+        createTask();
+        break taskCreation;
       }
-      task.setParentSubtask(subtask);
+      
+      createTask();
+      
+      if (hostProvided) {
+        subtask = parentTask.getLatestSubtask();
+        if (!subtask) {
+          throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
+        }
+        task.setParentSubtask(subtask);
+      }
     }
-  }
-  
-  const started = task.enterSync();
-  
-  let ret;
-  
-  try {
-    ret = _withGlobalCurrentTaskMeta({
-      componentIdx: task.componentIdx(),
-      taskID: task.id(),
-      fn: () => rsc0.subscribe(),
-    })
-    ;
-  } catch (err) {
     
-    _debugLog('[Instruction::CallInterface] error during sync call', {
-      taskID: task.id(),
-      subtaskID: task.getParentSubtask()?.id(),
-      err,
+    const started = task.enterSync();
+    
+    let ret;
+    
+    try {
+      ret = _withGlobalCurrentTaskMeta({
+        componentIdx: task.componentIdx(),
+        taskID: task.id(),
+        fn: () => now(),
+      })
+      ;
+    } catch (err) {
+      
+      _debugLog('[Instruction::CallInterface] error during sync call', {
+        taskID: task.id(),
+        subtaskID: task.getParentSubtask()?.id(),
+        err,
+      });
+      task.setErrored(err);
+      task.reject(err);
+      task.exit();
+      throw err;
+      
+    }
+    
+    _debugLog('[iface="wasi:clocks/monotonic-clock@0.2.12", function="now"][Instruction::Return]', {
+      funcName: 'now',
+      paramCount: 1,
+      async: false,
+      postReturn: false
     });
-    task.setErrored(err);
-    task.reject(err);
+    task.resolve([toUint64(ret)]);
     task.exit();
-    throw err;
+    return toUint64(ret);
+  }
+  _trampoline1.fnName = 'wasi:clocks/monotonic-clock@0.2.12#now';
+  
+  const handleTable3 = [T_FLAG, 0];
+  handleTable3._createdReps = new Set();
+  
+  
+  const captureTable3= new Map();
+  let captureCnt3= 0;
+  
+  HANDLE_TABLES[3] = handleTable3;
+  
+  const handleTable1 = [T_FLAG, 0];
+  handleTable1._createdReps = new Set();
+  
+  
+  const captureTable1= new Map();
+  let captureCnt1= 0;
+  
+  HANDLE_TABLES[1] = handleTable1;
+  
+  const _trampoline6 = function(arg0) {
+    var handle1 = arg0;
     
+    var rep2 = handleTable3[(handle1 << 1) + 1] & ~T_FLAG;
+    var rsc0 = captureTable3.get(rep2);
+    if (!rsc0) {
+      rsc0 = Object.create(InputStream.prototype);
+      Object.defineProperty(rsc0, symbolRscHandle, { writable: true, value: handle1});
+      Object.defineProperty(rsc0, symbolRscRep, { writable: true, value: rep2});
+    }
+    
+    curResourceBorrows.push(rsc0);
+    _debugLog('[iface="wasi:io/streams@0.2.12", function="[method]input-stream.subscribe"] [Instruction::CallInterface] (sync, @ enter)');
+    const hostProvided = true;
+    
+    let parentTask;
+    let task;
+    let subtask;
+    
+    const createTask = () => {
+      const results = createNewCurrentTask({
+        componentIdx: -1,
+        isAsync: false,
+        entryFnName: 'subscribe',
+        getCallbackFn: () => null,
+        callbackFnName: null,
+        errHandling: 'none',
+        callingWasmExport: false,
+      });
+      task = results[0];
+    };
+    
+    taskCreation: {
+      parentTask = getCurrentTask(
+      0,
+      _getGlobalCurrentTaskMeta(0)?.taskID,
+      )?.task;
+      
+      if (!parentTask) {
+        createTask();
+        break taskCreation;
+      }
+      
+      createTask();
+      
+      if (hostProvided) {
+        subtask = parentTask.getLatestSubtask();
+        if (!subtask) {
+          throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
+        }
+        task.setParentSubtask(subtask);
+      }
+    }
+    
+    const started = task.enterSync();
+    
+    let ret;
+    
+    try {
+      ret = _withGlobalCurrentTaskMeta({
+        componentIdx: task.componentIdx(),
+        taskID: task.id(),
+        fn: () => rsc0.subscribe(),
+      })
+      ;
+    } catch (err) {
+      
+      _debugLog('[Instruction::CallInterface] error during sync call', {
+        taskID: task.id(),
+        subtaskID: task.getParentSubtask()?.id(),
+        err,
+      });
+      task.setErrored(err);
+      task.reject(err);
+      task.exit();
+      throw err;
+      
+    }
+    
+    for (const rsc of curResourceBorrows) {
+      rsc[symbolRscHandle] = undefined;
+    }
+    curResourceBorrows = [];
+    
+    if (!(ret instanceof Pollable)) {
+      throw new TypeError('Resource error: Not a valid \"Pollable\" resource.');
+    }
+    var handle3 = ret[symbolRscHandle];
+    if (!handle3) {
+      const rep = ret[symbolRscRep] || ++captureCnt1;
+      captureTable1.set(rep, ret);
+      handle3 = rscTableCreateOwn(handleTable1, rep);
+    }
+    
+    _debugLog('[iface="wasi:io/streams@0.2.12", function="[method]input-stream.subscribe"][Instruction::Return]', {
+      funcName: '[method]input-stream.subscribe',
+      paramCount: 1,
+      async: false,
+      postReturn: false
+    });
+    task.resolve([handle3]);
+    task.exit();
+    return handle3;
+  }
+  _trampoline6.fnName = 'wasi:io/streams@0.2.12#subscribe';
+  
+  const handleTable2 = [T_FLAG, 0];
+  handleTable2._createdReps = new Set();
+  
+  
+  const captureTable2= new Map();
+  let captureCnt2= 0;
+  
+  HANDLE_TABLES[2] = handleTable2;
+  
+  const _trampoline7 = function(arg0) {
+    var handle1 = arg0;
+    
+    var rep2 = handleTable2[(handle1 << 1) + 1] & ~T_FLAG;
+    var rsc0 = captureTable2.get(rep2);
+    if (!rsc0) {
+      rsc0 = Object.create(OutputStream.prototype);
+      Object.defineProperty(rsc0, symbolRscHandle, { writable: true, value: handle1});
+      Object.defineProperty(rsc0, symbolRscRep, { writable: true, value: rep2});
+    }
+    
+    curResourceBorrows.push(rsc0);
+    _debugLog('[iface="wasi:io/streams@0.2.12", function="[method]output-stream.subscribe"] [Instruction::CallInterface] (sync, @ enter)');
+    const hostProvided = true;
+    
+    let parentTask;
+    let task;
+    let subtask;
+    
+    const createTask = () => {
+      const results = createNewCurrentTask({
+        componentIdx: -1,
+        isAsync: false,
+        entryFnName: 'subscribe',
+        getCallbackFn: () => null,
+        callbackFnName: null,
+        errHandling: 'none',
+        callingWasmExport: false,
+      });
+      task = results[0];
+    };
+    
+    taskCreation: {
+      parentTask = getCurrentTask(
+      0,
+      _getGlobalCurrentTaskMeta(0)?.taskID,
+      )?.task;
+      
+      if (!parentTask) {
+        createTask();
+        break taskCreation;
+      }
+      
+      createTask();
+      
+      if (hostProvided) {
+        subtask = parentTask.getLatestSubtask();
+        if (!subtask) {
+          throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
+        }
+        task.setParentSubtask(subtask);
+      }
+    }
+    
+    const started = task.enterSync();
+    
+    let ret;
+    
+    try {
+      ret = _withGlobalCurrentTaskMeta({
+        componentIdx: task.componentIdx(),
+        taskID: task.id(),
+        fn: () => rsc0.subscribe(),
+      })
+      ;
+    } catch (err) {
+      
+      _debugLog('[Instruction::CallInterface] error during sync call', {
+        taskID: task.id(),
+        subtaskID: task.getParentSubtask()?.id(),
+        err,
+      });
+      task.setErrored(err);
+      task.reject(err);
+      task.exit();
+      throw err;
+      
+    }
+    
+    for (const rsc of curResourceBorrows) {
+      rsc[symbolRscHandle] = undefined;
+    }
+    curResourceBorrows = [];
+    
+    if (!(ret instanceof Pollable)) {
+      throw new TypeError('Resource error: Not a valid \"Pollable\" resource.');
+    }
+    var handle3 = ret[symbolRscHandle];
+    if (!handle3) {
+      const rep = ret[symbolRscRep] || ++captureCnt1;
+      captureTable1.set(rep, ret);
+      handle3 = rscTableCreateOwn(handleTable1, rep);
+    }
+    
+    _debugLog('[iface="wasi:io/streams@0.2.12", function="[method]output-stream.subscribe"][Instruction::Return]', {
+      funcName: '[method]output-stream.subscribe',
+      paramCount: 1,
+      async: false,
+      postReturn: false
+    });
+    task.resolve([handle3]);
+    task.exit();
+    return handle3;
+  }
+  _trampoline7.fnName = 'wasi:io/streams@0.2.12#subscribe';
+  
+  const _trampoline8 = function(arg0) {
+    _debugLog('[iface="wasi:clocks/monotonic-clock@0.2.12", function="subscribe-duration"] [Instruction::CallInterface] (sync, @ enter)');
+    const hostProvided = true;
+    
+    let parentTask;
+    let task;
+    let subtask;
+    
+    const createTask = () => {
+      const results = createNewCurrentTask({
+        componentIdx: -1,
+        isAsync: false,
+        entryFnName: 'subscribeDuration',
+        getCallbackFn: () => null,
+        callbackFnName: null,
+        errHandling: 'none',
+        callingWasmExport: false,
+      });
+      task = results[0];
+    };
+    
+    taskCreation: {
+      parentTask = getCurrentTask(
+      0,
+      _getGlobalCurrentTaskMeta(0)?.taskID,
+      )?.task;
+      
+      if (!parentTask) {
+        createTask();
+        break taskCreation;
+      }
+      
+      createTask();
+      
+      if (hostProvided) {
+        subtask = parentTask.getLatestSubtask();
+        if (!subtask) {
+          throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
+        }
+        task.setParentSubtask(subtask);
+      }
+    }
+    
+    const started = task.enterSync();
+    
+    let ret;
+    
+    try {
+      ret = _withGlobalCurrentTaskMeta({
+        componentIdx: task.componentIdx(),
+        taskID: task.id(),
+        fn: () => subscribeDuration(BigInt.asUintN(64, BigInt(arg0))),
+      })
+      ;
+    } catch (err) {
+      
+      _debugLog('[Instruction::CallInterface] error during sync call', {
+        taskID: task.id(),
+        subtaskID: task.getParentSubtask()?.id(),
+        err,
+      });
+      task.setErrored(err);
+      task.reject(err);
+      task.exit();
+      throw err;
+      
+    }
+    
+    
+    if (!(ret instanceof Pollable)) {
+      throw new TypeError('Resource error: Not a valid \"Pollable\" resource.');
+    }
+    var handle0 = ret[symbolRscHandle];
+    if (!handle0) {
+      const rep = ret[symbolRscRep] || ++captureCnt1;
+      captureTable1.set(rep, ret);
+      handle0 = rscTableCreateOwn(handleTable1, rep);
+    }
+    
+    _debugLog('[iface="wasi:clocks/monotonic-clock@0.2.12", function="subscribe-duration"][Instruction::Return]', {
+      funcName: 'subscribe-duration',
+      paramCount: 1,
+      async: false,
+      postReturn: false
+    });
+    task.resolve([handle0]);
+    task.exit();
+    return handle0;
+  }
+  _trampoline8.fnName = 'wasi:clocks/monotonic-clock@0.2.12#subscribeDuration';
+  
+  const _trampoline9 = function(arg0) {
+    _debugLog('[iface="wasi:clocks/monotonic-clock@0.2.12", function="subscribe-instant"] [Instruction::CallInterface] (sync, @ enter)');
+    const hostProvided = true;
+    
+    let parentTask;
+    let task;
+    let subtask;
+    
+    const createTask = () => {
+      const results = createNewCurrentTask({
+        componentIdx: -1,
+        isAsync: false,
+        entryFnName: 'subscribeInstant',
+        getCallbackFn: () => null,
+        callbackFnName: null,
+        errHandling: 'none',
+        callingWasmExport: false,
+      });
+      task = results[0];
+    };
+    
+    taskCreation: {
+      parentTask = getCurrentTask(
+      0,
+      _getGlobalCurrentTaskMeta(0)?.taskID,
+      )?.task;
+      
+      if (!parentTask) {
+        createTask();
+        break taskCreation;
+      }
+      
+      createTask();
+      
+      if (hostProvided) {
+        subtask = parentTask.getLatestSubtask();
+        if (!subtask) {
+          throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
+        }
+        task.setParentSubtask(subtask);
+      }
+    }
+    
+    const started = task.enterSync();
+    
+    let ret;
+    
+    try {
+      ret = _withGlobalCurrentTaskMeta({
+        componentIdx: task.componentIdx(),
+        taskID: task.id(),
+        fn: () => subscribeInstant(BigInt.asUintN(64, BigInt(arg0))),
+      })
+      ;
+    } catch (err) {
+      
+      _debugLog('[Instruction::CallInterface] error during sync call', {
+        taskID: task.id(),
+        subtaskID: task.getParentSubtask()?.id(),
+        err,
+      });
+      task.setErrored(err);
+      task.reject(err);
+      task.exit();
+      throw err;
+      
+    }
+    
+    
+    if (!(ret instanceof Pollable)) {
+      throw new TypeError('Resource error: Not a valid \"Pollable\" resource.');
+    }
+    var handle0 = ret[symbolRscHandle];
+    if (!handle0) {
+      const rep = ret[symbolRscRep] || ++captureCnt1;
+      captureTable1.set(rep, ret);
+      handle0 = rscTableCreateOwn(handleTable1, rep);
+    }
+    
+    _debugLog('[iface="wasi:clocks/monotonic-clock@0.2.12", function="subscribe-instant"][Instruction::Return]', {
+      funcName: 'subscribe-instant',
+      paramCount: 1,
+      async: false,
+      postReturn: false
+    });
+    task.resolve([handle0]);
+    task.exit();
+    return handle0;
+  }
+  _trampoline9.fnName = 'wasi:clocks/monotonic-clock@0.2.12#subscribeInstant';
+  
+  const _trampoline11 = function() {
+    _debugLog('[iface="wasi:cli/stderr@0.2.12", function="get-stderr"] [Instruction::CallInterface] (sync, @ enter)');
+    const hostProvided = true;
+    
+    let parentTask;
+    let task;
+    let subtask;
+    
+    const createTask = () => {
+      const results = createNewCurrentTask({
+        componentIdx: -1,
+        isAsync: false,
+        entryFnName: 'getStderr',
+        getCallbackFn: () => null,
+        callbackFnName: null,
+        errHandling: 'none',
+        callingWasmExport: false,
+      });
+      task = results[0];
+    };
+    
+    taskCreation: {
+      parentTask = getCurrentTask(
+      0,
+      _getGlobalCurrentTaskMeta(0)?.taskID,
+      )?.task;
+      
+      if (!parentTask) {
+        createTask();
+        break taskCreation;
+      }
+      
+      createTask();
+      
+      if (hostProvided) {
+        subtask = parentTask.getLatestSubtask();
+        if (!subtask) {
+          throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
+        }
+        task.setParentSubtask(subtask);
+      }
+    }
+    
+    const started = task.enterSync();
+    
+    let ret;
+    
+    try {
+      ret = _withGlobalCurrentTaskMeta({
+        componentIdx: task.componentIdx(),
+        taskID: task.id(),
+        fn: () => getStderr(),
+      })
+      ;
+    } catch (err) {
+      
+      _debugLog('[Instruction::CallInterface] error during sync call', {
+        taskID: task.id(),
+        subtaskID: task.getParentSubtask()?.id(),
+        err,
+      });
+      task.setErrored(err);
+      task.reject(err);
+      task.exit();
+      throw err;
+      
+    }
+    
+    
+    if (!(ret instanceof OutputStream)) {
+      throw new TypeError('Resource error: Not a valid \"OutputStream\" resource.');
+    }
+    var handle0 = ret[symbolRscHandle];
+    if (!handle0) {
+      const rep = ret[symbolRscRep] || ++captureCnt2;
+      captureTable2.set(rep, ret);
+      handle0 = rscTableCreateOwn(handleTable2, rep);
+    }
+    
+    _debugLog('[iface="wasi:cli/stderr@0.2.12", function="get-stderr"][Instruction::Return]', {
+      funcName: 'get-stderr',
+      paramCount: 1,
+      async: false,
+      postReturn: false
+    });
+    task.resolve([handle0]);
+    task.exit();
+    return handle0;
+  }
+  _trampoline11.fnName = 'wasi:cli/stderr@0.2.12#getStderr';
+  
+  const _trampoline12 = function() {
+    _debugLog('[iface="wasi:cli/stdin@0.2.12", function="get-stdin"] [Instruction::CallInterface] (sync, @ enter)');
+    const hostProvided = true;
+    
+    let parentTask;
+    let task;
+    let subtask;
+    
+    const createTask = () => {
+      const results = createNewCurrentTask({
+        componentIdx: -1,
+        isAsync: false,
+        entryFnName: 'getStdin',
+        getCallbackFn: () => null,
+        callbackFnName: null,
+        errHandling: 'none',
+        callingWasmExport: false,
+      });
+      task = results[0];
+    };
+    
+    taskCreation: {
+      parentTask = getCurrentTask(
+      0,
+      _getGlobalCurrentTaskMeta(0)?.taskID,
+      )?.task;
+      
+      if (!parentTask) {
+        createTask();
+        break taskCreation;
+      }
+      
+      createTask();
+      
+      if (hostProvided) {
+        subtask = parentTask.getLatestSubtask();
+        if (!subtask) {
+          throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
+        }
+        task.setParentSubtask(subtask);
+      }
+    }
+    
+    const started = task.enterSync();
+    
+    let ret;
+    
+    try {
+      ret = _withGlobalCurrentTaskMeta({
+        componentIdx: task.componentIdx(),
+        taskID: task.id(),
+        fn: () => getStdin(),
+      })
+      ;
+    } catch (err) {
+      
+      _debugLog('[Instruction::CallInterface] error during sync call', {
+        taskID: task.id(),
+        subtaskID: task.getParentSubtask()?.id(),
+        err,
+      });
+      task.setErrored(err);
+      task.reject(err);
+      task.exit();
+      throw err;
+      
+    }
+    
+    
+    if (!(ret instanceof InputStream)) {
+      throw new TypeError('Resource error: Not a valid \"InputStream\" resource.');
+    }
+    var handle0 = ret[symbolRscHandle];
+    if (!handle0) {
+      const rep = ret[symbolRscRep] || ++captureCnt3;
+      captureTable3.set(rep, ret);
+      handle0 = rscTableCreateOwn(handleTable3, rep);
+    }
+    
+    _debugLog('[iface="wasi:cli/stdin@0.2.12", function="get-stdin"][Instruction::Return]', {
+      funcName: 'get-stdin',
+      paramCount: 1,
+      async: false,
+      postReturn: false
+    });
+    task.resolve([handle0]);
+    task.exit();
+    return handle0;
+  }
+  _trampoline12.fnName = 'wasi:cli/stdin@0.2.12#getStdin';
+  
+  const _trampoline13 = function() {
+    _debugLog('[iface="wasi:cli/stdout@0.2.12", function="get-stdout"] [Instruction::CallInterface] (sync, @ enter)');
+    const hostProvided = true;
+    
+    let parentTask;
+    let task;
+    let subtask;
+    
+    const createTask = () => {
+      const results = createNewCurrentTask({
+        componentIdx: -1,
+        isAsync: false,
+        entryFnName: 'getStdout',
+        getCallbackFn: () => null,
+        callbackFnName: null,
+        errHandling: 'none',
+        callingWasmExport: false,
+      });
+      task = results[0];
+    };
+    
+    taskCreation: {
+      parentTask = getCurrentTask(
+      0,
+      _getGlobalCurrentTaskMeta(0)?.taskID,
+      )?.task;
+      
+      if (!parentTask) {
+        createTask();
+        break taskCreation;
+      }
+      
+      createTask();
+      
+      if (hostProvided) {
+        subtask = parentTask.getLatestSubtask();
+        if (!subtask) {
+          throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
+        }
+        task.setParentSubtask(subtask);
+      }
+    }
+    
+    const started = task.enterSync();
+    
+    let ret;
+    
+    try {
+      ret = _withGlobalCurrentTaskMeta({
+        componentIdx: task.componentIdx(),
+        taskID: task.id(),
+        fn: () => getStdout(),
+      })
+      ;
+    } catch (err) {
+      
+      _debugLog('[Instruction::CallInterface] error during sync call', {
+        taskID: task.id(),
+        subtaskID: task.getParentSubtask()?.id(),
+        err,
+      });
+      task.setErrored(err);
+      task.reject(err);
+      task.exit();
+      throw err;
+      
+    }
+    
+    
+    if (!(ret instanceof OutputStream)) {
+      throw new TypeError('Resource error: Not a valid \"OutputStream\" resource.');
+    }
+    var handle0 = ret[symbolRscHandle];
+    if (!handle0) {
+      const rep = ret[symbolRscRep] || ++captureCnt2;
+      captureTable2.set(rep, ret);
+      handle0 = rscTableCreateOwn(handleTable2, rep);
+    }
+    
+    _debugLog('[iface="wasi:cli/stdout@0.2.12", function="get-stdout"][Instruction::Return]', {
+      funcName: 'get-stdout',
+      paramCount: 1,
+      async: false,
+      postReturn: false
+    });
+    task.resolve([handle0]);
+    task.exit();
+    return handle0;
+  }
+  _trampoline13.fnName = 'wasi:cli/stdout@0.2.12#getStdout';
+  
+  const _trampoline16 = function(arg0) {
+    let variant0;
+    switch (arg0) {
+      case 0: {
+        variant0= {
+          tag: 'ok',
+          val: undefined
+        };
+        break;
+      }
+      case 1: {
+        variant0= {
+          tag: 'err',
+          val: undefined
+        };
+        break;
+      }
+      default: {
+        throw new TypeError('invalid variant discriminant for expected');
+      }
+    }
+    _debugLog('[iface="wasi:cli/exit@0.2.12", function="exit"] [Instruction::CallInterface] (sync, @ enter)');
+    const hostProvided = true;
+    
+    let parentTask;
+    let task;
+    let subtask;
+    
+    const createTask = () => {
+      const results = createNewCurrentTask({
+        componentIdx: -1,
+        isAsync: false,
+        entryFnName: 'exit',
+        getCallbackFn: () => null,
+        callbackFnName: null,
+        errHandling: 'none',
+        callingWasmExport: false,
+      });
+      task = results[0];
+    };
+    
+    taskCreation: {
+      parentTask = getCurrentTask(
+      0,
+      _getGlobalCurrentTaskMeta(0)?.taskID,
+      )?.task;
+      
+      if (!parentTask) {
+        createTask();
+        break taskCreation;
+      }
+      
+      createTask();
+      
+      if (hostProvided) {
+        subtask = parentTask.getLatestSubtask();
+        if (!subtask) {
+          throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
+        }
+        task.setParentSubtask(subtask);
+      }
+    }
+    
+    const started = task.enterSync();
+    
+    let ret;
+    
+    try {
+      _withGlobalCurrentTaskMeta({
+        componentIdx: task.componentIdx(),
+        taskID: task.id(),
+        fn: () => exit(variant0),
+      })
+      ;
+    } catch (err) {
+      
+      _debugLog('[Instruction::CallInterface] error during sync call', {
+        taskID: task.id(),
+        subtaskID: task.getParentSubtask()?.id(),
+        err,
+      });
+      task.setErrored(err);
+      task.reject(err);
+      task.exit();
+      throw err;
+      
+    }
+    
+    _debugLog('[iface="wasi:cli/exit@0.2.12", function="exit"][Instruction::Return]', {
+      funcName: 'exit',
+      paramCount: 0,
+      async: false,
+      postReturn: false
+    });
+    task.resolve([ret]);
+    task.exit();
+  }
+  _trampoline16.fnName = 'wasi:cli/exit@0.2.12#exit';
+  let exports2;
+  let memory0;
+  let realloc0;
+  let realloc0Async;
+  
+  const handleTable0 = [T_FLAG, 0];
+  handleTable0._createdReps = new Set();
+  
+  
+  const captureTable0= new Map();
+  let captureCnt0= 0;
+  
+  HANDLE_TABLES[0] = handleTable0;
+  
+  const _trampoline17 = function(arg0, arg1) {
+    var handle1 = arg0;
+    
+    var rep2 = handleTable2[(handle1 << 1) + 1] & ~T_FLAG;
+    var rsc0 = captureTable2.get(rep2);
+    if (!rsc0) {
+      rsc0 = Object.create(OutputStream.prototype);
+      Object.defineProperty(rsc0, symbolRscHandle, { writable: true, value: handle1});
+      Object.defineProperty(rsc0, symbolRscRep, { writable: true, value: rep2});
+    }
+    
+    curResourceBorrows.push(rsc0);
+    _debugLog('[iface="wasi:io/streams@0.2.12", function="[method]output-stream.check-write"] [Instruction::CallInterface] (sync, @ enter)');
+    const hostProvided = true;
+    
+    let parentTask;
+    let task;
+    let subtask;
+    
+    const createTask = () => {
+      const results = createNewCurrentTask({
+        componentIdx: -1,
+        isAsync: false,
+        entryFnName: 'checkWrite',
+        getCallbackFn: () => null,
+        callbackFnName: null,
+        errHandling: 'result-catch-handler',
+        callingWasmExport: false,
+      });
+      task = results[0];
+    };
+    
+    taskCreation: {
+      parentTask = getCurrentTask(
+      0,
+      _getGlobalCurrentTaskMeta(0)?.taskID,
+      )?.task;
+      
+      if (!parentTask) {
+        createTask();
+        break taskCreation;
+      }
+      
+      createTask();
+      
+      if (hostProvided) {
+        subtask = parentTask.getLatestSubtask();
+        if (!subtask) {
+          throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
+        }
+        task.setParentSubtask(subtask);
+      }
+    }
+    
+    const started = task.enterSync();
+    
+    let ret;
+    try {
+      ret = { tag: 'ok', val: _withGlobalCurrentTaskMeta({
+        componentIdx: task.componentIdx(),
+        taskID: task.id(),
+        fn: () => rsc0.checkWrite(),
+      })
+    };
+  } catch (e) {
+    ret = { tag: 'err', val: getErrorPayload(e) };
   }
   
   for (const rsc of curResourceBorrows) {
     rsc[symbolRscHandle] = undefined;
   }
   curResourceBorrows = [];
-  
-  if (!(ret instanceof Pollable)) {
-    throw new TypeError('Resource error: Not a valid \"Pollable\" resource.');
-  }
-  var handle3 = ret[symbolRscHandle];
-  if (!handle3) {
-    const rep = ret[symbolRscRep] || ++captureCnt1;
-    captureTable1.set(rep, ret);
-    handle3 = rscTableCreateOwn(handleTable1, rep);
-  }
-  
-  _debugLog('[iface="wasi:io/streams@0.2.12", function="[method]input-stream.subscribe"][Instruction::Return]', {
-    funcName: '[method]input-stream.subscribe',
-    paramCount: 1,
-    async: false,
-    postReturn: false
-  });
-  task.resolve([handle3]);
-  task.exit();
-  return handle3;
-}
-_trampoline6.fnName = 'wasi:io/streams@0.2.12#subscribe';
-
-const handleTable2 = [T_FLAG, 0];
-handleTable2._createdReps = new Set();
-
-
-const captureTable2= new Map();
-let captureCnt2= 0;
-
-HANDLE_TABLES[2] = handleTable2;
-
-const _trampoline7 = function(arg0) {
-  var handle1 = arg0;
-  
-  var rep2 = handleTable2[(handle1 << 1) + 1] & ~T_FLAG;
-  var rsc0 = captureTable2.get(rep2);
-  if (!rsc0) {
-    rsc0 = Object.create(OutputStream.prototype);
-    Object.defineProperty(rsc0, symbolRscHandle, { writable: true, value: handle1});
-    Object.defineProperty(rsc0, symbolRscRep, { writable: true, value: rep2});
-  }
-  
-  curResourceBorrows.push(rsc0);
-  _debugLog('[iface="wasi:io/streams@0.2.12", function="[method]output-stream.subscribe"] [Instruction::CallInterface] (sync, @ enter)');
-  const hostProvided = true;
-  
-  let parentTask;
-  let task;
-  let subtask;
-  
-  const createTask = () => {
-    const results = createNewCurrentTask({
-      componentIdx: -1,
-      isAsync: false,
-      entryFnName: 'subscribe',
-      getCallbackFn: () => null,
-      callbackFnName: null,
-      errHandling: 'none',
-      callingWasmExport: false,
-    });
-    task = results[0];
-  };
-  
-  taskCreation: {
-    parentTask = getCurrentTask(
-    0,
-    _getGlobalCurrentTaskMeta(0)?.taskID,
-    )?.task;
-    
-    if (!parentTask) {
-      createTask();
-      break taskCreation;
-    }
-    
-    createTask();
-    
-    if (hostProvided) {
-      subtask = parentTask.getLatestSubtask();
-      if (!subtask) {
-        throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
-      }
-      task.setParentSubtask(subtask);
-    }
-  }
-  
-  const started = task.enterSync();
-  
-  let ret;
-  
-  try {
-    ret = _withGlobalCurrentTaskMeta({
-      componentIdx: task.componentIdx(),
-      taskID: task.id(),
-      fn: () => rsc0.subscribe(),
-    })
-    ;
-  } catch (err) {
-    
-    _debugLog('[Instruction::CallInterface] error during sync call', {
-      taskID: task.id(),
-      subtaskID: task.getParentSubtask()?.id(),
-      err,
-    });
-    task.setErrored(err);
-    task.reject(err);
-    task.exit();
-    throw err;
-    
-  }
-  
-  for (const rsc of curResourceBorrows) {
-    rsc[symbolRscHandle] = undefined;
-  }
-  curResourceBorrows = [];
-  
-  if (!(ret instanceof Pollable)) {
-    throw new TypeError('Resource error: Not a valid \"Pollable\" resource.');
-  }
-  var handle3 = ret[symbolRscHandle];
-  if (!handle3) {
-    const rep = ret[symbolRscRep] || ++captureCnt1;
-    captureTable1.set(rep, ret);
-    handle3 = rscTableCreateOwn(handleTable1, rep);
-  }
-  
-  _debugLog('[iface="wasi:io/streams@0.2.12", function="[method]output-stream.subscribe"][Instruction::Return]', {
-    funcName: '[method]output-stream.subscribe',
-    paramCount: 1,
-    async: false,
-    postReturn: false
-  });
-  task.resolve([handle3]);
-  task.exit();
-  return handle3;
-}
-_trampoline7.fnName = 'wasi:io/streams@0.2.12#subscribe';
-
-const _trampoline8 = function(arg0) {
-  _debugLog('[iface="wasi:clocks/monotonic-clock@0.2.12", function="subscribe-duration"] [Instruction::CallInterface] (sync, @ enter)');
-  const hostProvided = true;
-  
-  let parentTask;
-  let task;
-  let subtask;
-  
-  const createTask = () => {
-    const results = createNewCurrentTask({
-      componentIdx: -1,
-      isAsync: false,
-      entryFnName: 'subscribeDuration',
-      getCallbackFn: () => null,
-      callbackFnName: null,
-      errHandling: 'none',
-      callingWasmExport: false,
-    });
-    task = results[0];
-  };
-  
-  taskCreation: {
-    parentTask = getCurrentTask(
-    0,
-    _getGlobalCurrentTaskMeta(0)?.taskID,
-    )?.task;
-    
-    if (!parentTask) {
-      createTask();
-      break taskCreation;
-    }
-    
-    createTask();
-    
-    if (hostProvided) {
-      subtask = parentTask.getLatestSubtask();
-      if (!subtask) {
-        throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
-      }
-      task.setParentSubtask(subtask);
-    }
-  }
-  
-  const started = task.enterSync();
-  
-  let ret;
-  
-  try {
-    ret = _withGlobalCurrentTaskMeta({
-      componentIdx: task.componentIdx(),
-      taskID: task.id(),
-      fn: () => subscribeDuration(BigInt.asUintN(64, BigInt(arg0))),
-    })
-    ;
-  } catch (err) {
-    
-    _debugLog('[Instruction::CallInterface] error during sync call', {
-      taskID: task.id(),
-      subtaskID: task.getParentSubtask()?.id(),
-      err,
-    });
-    task.setErrored(err);
-    task.reject(err);
-    task.exit();
-    throw err;
-    
-  }
-  
-  
-  if (!(ret instanceof Pollable)) {
-    throw new TypeError('Resource error: Not a valid \"Pollable\" resource.');
-  }
-  var handle0 = ret[symbolRscHandle];
-  if (!handle0) {
-    const rep = ret[symbolRscRep] || ++captureCnt1;
-    captureTable1.set(rep, ret);
-    handle0 = rscTableCreateOwn(handleTable1, rep);
-  }
-  
-  _debugLog('[iface="wasi:clocks/monotonic-clock@0.2.12", function="subscribe-duration"][Instruction::Return]', {
-    funcName: 'subscribe-duration',
-    paramCount: 1,
-    async: false,
-    postReturn: false
-  });
-  task.resolve([handle0]);
-  task.exit();
-  return handle0;
-}
-_trampoline8.fnName = 'wasi:clocks/monotonic-clock@0.2.12#subscribeDuration';
-
-const _trampoline9 = function(arg0) {
-  _debugLog('[iface="wasi:clocks/monotonic-clock@0.2.12", function="subscribe-instant"] [Instruction::CallInterface] (sync, @ enter)');
-  const hostProvided = true;
-  
-  let parentTask;
-  let task;
-  let subtask;
-  
-  const createTask = () => {
-    const results = createNewCurrentTask({
-      componentIdx: -1,
-      isAsync: false,
-      entryFnName: 'subscribeInstant',
-      getCallbackFn: () => null,
-      callbackFnName: null,
-      errHandling: 'none',
-      callingWasmExport: false,
-    });
-    task = results[0];
-  };
-  
-  taskCreation: {
-    parentTask = getCurrentTask(
-    0,
-    _getGlobalCurrentTaskMeta(0)?.taskID,
-    )?.task;
-    
-    if (!parentTask) {
-      createTask();
-      break taskCreation;
-    }
-    
-    createTask();
-    
-    if (hostProvided) {
-      subtask = parentTask.getLatestSubtask();
-      if (!subtask) {
-        throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
-      }
-      task.setParentSubtask(subtask);
-    }
-  }
-  
-  const started = task.enterSync();
-  
-  let ret;
-  
-  try {
-    ret = _withGlobalCurrentTaskMeta({
-      componentIdx: task.componentIdx(),
-      taskID: task.id(),
-      fn: () => subscribeInstant(BigInt.asUintN(64, BigInt(arg0))),
-    })
-    ;
-  } catch (err) {
-    
-    _debugLog('[Instruction::CallInterface] error during sync call', {
-      taskID: task.id(),
-      subtaskID: task.getParentSubtask()?.id(),
-      err,
-    });
-    task.setErrored(err);
-    task.reject(err);
-    task.exit();
-    throw err;
-    
-  }
-  
-  
-  if (!(ret instanceof Pollable)) {
-    throw new TypeError('Resource error: Not a valid \"Pollable\" resource.');
-  }
-  var handle0 = ret[symbolRscHandle];
-  if (!handle0) {
-    const rep = ret[symbolRscRep] || ++captureCnt1;
-    captureTable1.set(rep, ret);
-    handle0 = rscTableCreateOwn(handleTable1, rep);
-  }
-  
-  _debugLog('[iface="wasi:clocks/monotonic-clock@0.2.12", function="subscribe-instant"][Instruction::Return]', {
-    funcName: 'subscribe-instant',
-    paramCount: 1,
-    async: false,
-    postReturn: false
-  });
-  task.resolve([handle0]);
-  task.exit();
-  return handle0;
-}
-_trampoline9.fnName = 'wasi:clocks/monotonic-clock@0.2.12#subscribeInstant';
-
-const _trampoline11 = function() {
-  _debugLog('[iface="wasi:cli/stderr@0.2.12", function="get-stderr"] [Instruction::CallInterface] (sync, @ enter)');
-  const hostProvided = true;
-  
-  let parentTask;
-  let task;
-  let subtask;
-  
-  const createTask = () => {
-    const results = createNewCurrentTask({
-      componentIdx: -1,
-      isAsync: false,
-      entryFnName: 'getStderr',
-      getCallbackFn: () => null,
-      callbackFnName: null,
-      errHandling: 'none',
-      callingWasmExport: false,
-    });
-    task = results[0];
-  };
-  
-  taskCreation: {
-    parentTask = getCurrentTask(
-    0,
-    _getGlobalCurrentTaskMeta(0)?.taskID,
-    )?.task;
-    
-    if (!parentTask) {
-      createTask();
-      break taskCreation;
-    }
-    
-    createTask();
-    
-    if (hostProvided) {
-      subtask = parentTask.getLatestSubtask();
-      if (!subtask) {
-        throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
-      }
-      task.setParentSubtask(subtask);
-    }
-  }
-  
-  const started = task.enterSync();
-  
-  let ret;
-  
-  try {
-    ret = _withGlobalCurrentTaskMeta({
-      componentIdx: task.componentIdx(),
-      taskID: task.id(),
-      fn: () => getStderr(),
-    })
-    ;
-  } catch (err) {
-    
-    _debugLog('[Instruction::CallInterface] error during sync call', {
-      taskID: task.id(),
-      subtaskID: task.getParentSubtask()?.id(),
-      err,
-    });
-    task.setErrored(err);
-    task.reject(err);
-    task.exit();
-    throw err;
-    
-  }
-  
-  
-  if (!(ret instanceof OutputStream)) {
-    throw new TypeError('Resource error: Not a valid \"OutputStream\" resource.');
-  }
-  var handle0 = ret[symbolRscHandle];
-  if (!handle0) {
-    const rep = ret[symbolRscRep] || ++captureCnt2;
-    captureTable2.set(rep, ret);
-    handle0 = rscTableCreateOwn(handleTable2, rep);
-  }
-  
-  _debugLog('[iface="wasi:cli/stderr@0.2.12", function="get-stderr"][Instruction::Return]', {
-    funcName: 'get-stderr',
-    paramCount: 1,
-    async: false,
-    postReturn: false
-  });
-  task.resolve([handle0]);
-  task.exit();
-  return handle0;
-}
-_trampoline11.fnName = 'wasi:cli/stderr@0.2.12#getStderr';
-
-const _trampoline12 = function() {
-  _debugLog('[iface="wasi:cli/stdin@0.2.12", function="get-stdin"] [Instruction::CallInterface] (sync, @ enter)');
-  const hostProvided = true;
-  
-  let parentTask;
-  let task;
-  let subtask;
-  
-  const createTask = () => {
-    const results = createNewCurrentTask({
-      componentIdx: -1,
-      isAsync: false,
-      entryFnName: 'getStdin',
-      getCallbackFn: () => null,
-      callbackFnName: null,
-      errHandling: 'none',
-      callingWasmExport: false,
-    });
-    task = results[0];
-  };
-  
-  taskCreation: {
-    parentTask = getCurrentTask(
-    0,
-    _getGlobalCurrentTaskMeta(0)?.taskID,
-    )?.task;
-    
-    if (!parentTask) {
-      createTask();
-      break taskCreation;
-    }
-    
-    createTask();
-    
-    if (hostProvided) {
-      subtask = parentTask.getLatestSubtask();
-      if (!subtask) {
-        throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
-      }
-      task.setParentSubtask(subtask);
-    }
-  }
-  
-  const started = task.enterSync();
-  
-  let ret;
-  
-  try {
-    ret = _withGlobalCurrentTaskMeta({
-      componentIdx: task.componentIdx(),
-      taskID: task.id(),
-      fn: () => getStdin(),
-    })
-    ;
-  } catch (err) {
-    
-    _debugLog('[Instruction::CallInterface] error during sync call', {
-      taskID: task.id(),
-      subtaskID: task.getParentSubtask()?.id(),
-      err,
-    });
-    task.setErrored(err);
-    task.reject(err);
-    task.exit();
-    throw err;
-    
-  }
-  
-  
-  if (!(ret instanceof InputStream)) {
-    throw new TypeError('Resource error: Not a valid \"InputStream\" resource.');
-  }
-  var handle0 = ret[symbolRscHandle];
-  if (!handle0) {
-    const rep = ret[symbolRscRep] || ++captureCnt3;
-    captureTable3.set(rep, ret);
-    handle0 = rscTableCreateOwn(handleTable3, rep);
-  }
-  
-  _debugLog('[iface="wasi:cli/stdin@0.2.12", function="get-stdin"][Instruction::Return]', {
-    funcName: 'get-stdin',
-    paramCount: 1,
-    async: false,
-    postReturn: false
-  });
-  task.resolve([handle0]);
-  task.exit();
-  return handle0;
-}
-_trampoline12.fnName = 'wasi:cli/stdin@0.2.12#getStdin';
-
-const _trampoline13 = function() {
-  _debugLog('[iface="wasi:cli/stdout@0.2.12", function="get-stdout"] [Instruction::CallInterface] (sync, @ enter)');
-  const hostProvided = true;
-  
-  let parentTask;
-  let task;
-  let subtask;
-  
-  const createTask = () => {
-    const results = createNewCurrentTask({
-      componentIdx: -1,
-      isAsync: false,
-      entryFnName: 'getStdout',
-      getCallbackFn: () => null,
-      callbackFnName: null,
-      errHandling: 'none',
-      callingWasmExport: false,
-    });
-    task = results[0];
-  };
-  
-  taskCreation: {
-    parentTask = getCurrentTask(
-    0,
-    _getGlobalCurrentTaskMeta(0)?.taskID,
-    )?.task;
-    
-    if (!parentTask) {
-      createTask();
-      break taskCreation;
-    }
-    
-    createTask();
-    
-    if (hostProvided) {
-      subtask = parentTask.getLatestSubtask();
-      if (!subtask) {
-        throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
-      }
-      task.setParentSubtask(subtask);
-    }
-  }
-  
-  const started = task.enterSync();
-  
-  let ret;
-  
-  try {
-    ret = _withGlobalCurrentTaskMeta({
-      componentIdx: task.componentIdx(),
-      taskID: task.id(),
-      fn: () => getStdout(),
-    })
-    ;
-  } catch (err) {
-    
-    _debugLog('[Instruction::CallInterface] error during sync call', {
-      taskID: task.id(),
-      subtaskID: task.getParentSubtask()?.id(),
-      err,
-    });
-    task.setErrored(err);
-    task.reject(err);
-    task.exit();
-    throw err;
-    
-  }
-  
-  
-  if (!(ret instanceof OutputStream)) {
-    throw new TypeError('Resource error: Not a valid \"OutputStream\" resource.');
-  }
-  var handle0 = ret[symbolRscHandle];
-  if (!handle0) {
-    const rep = ret[symbolRscRep] || ++captureCnt2;
-    captureTable2.set(rep, ret);
-    handle0 = rscTableCreateOwn(handleTable2, rep);
-  }
-  
-  _debugLog('[iface="wasi:cli/stdout@0.2.12", function="get-stdout"][Instruction::Return]', {
-    funcName: 'get-stdout',
-    paramCount: 1,
-    async: false,
-    postReturn: false
-  });
-  task.resolve([handle0]);
-  task.exit();
-  return handle0;
-}
-_trampoline13.fnName = 'wasi:cli/stdout@0.2.12#getStdout';
-
-const _trampoline16 = function(arg0) {
-  let variant0;
-  switch (arg0) {
-    case 0: {
-      variant0= {
-        tag: 'ok',
-        val: undefined
-      };
+  var variant5 = ret;
+  switch (variant5.tag) {
+    case 'ok': {
+      const e = variant5.val;
+      dataView(memory0).setInt8(arg1 + 0, 0, true);
+      dataView(memory0).setBigInt64(arg1 + 8, toUint64(e), true);
+      
       break;
     }
-    case 1: {
-      variant0= {
-        tag: 'err',
-        val: undefined
-      };
+    case 'err': {
+      const e = variant5.val;
+      dataView(memory0).setInt8(arg1 + 0, 1, true);
+      var variant4 = e;
+      switch (variant4.tag) {
+        case 'last-operation-failed': {
+          const e = variant4.val;
+          dataView(memory0).setInt8(arg1 + 8, 0, true);
+          
+          if (!(e instanceof Error$1)) {
+            throw new TypeError('Resource error: Not a valid \"Error\" resource.');
+          }
+          var handle3 = e[symbolRscHandle];
+          if (!handle3) {
+            const rep = e[symbolRscRep] || ++captureCnt0;
+            captureTable0.set(rep, e);
+            handle3 = rscTableCreateOwn(handleTable0, rep);
+          }
+          
+          dataView(memory0).setInt32(arg1 + 12, handle3, true);
+          break;
+        }
+        case 'closed': {
+          dataView(memory0).setInt8(arg1 + 8, 1, true);
+          break;
+        }
+        default: {
+          throw new TypeError(`invalid variant tag value \`${JSON.stringify(variant4.tag)}\` (received \`${variant4}\`) specified for \`StreamError\``);
+        }
+      }
+      
       break;
     }
     default: {
-      throw new TypeError('invalid variant discriminant for expected');
+      _debugLog("ERROR: invalid value (expected result as object with 'tag' member)", { value: variant5, valueType: typeof variant5});
+      throw new TypeError('invalid variant specified for result');
     }
   }
-  _debugLog('[iface="wasi:cli/exit@0.2.12", function="exit"] [Instruction::CallInterface] (sync, @ enter)');
-  const hostProvided = true;
-  
-  let parentTask;
-  let task;
-  let subtask;
-  
-  const createTask = () => {
-    const results = createNewCurrentTask({
-      componentIdx: -1,
-      isAsync: false,
-      entryFnName: 'exit',
-      getCallbackFn: () => null,
-      callbackFnName: null,
-      errHandling: 'none',
-      callingWasmExport: false,
-    });
-    task = results[0];
-  };
-  
-  taskCreation: {
-    parentTask = getCurrentTask(
-    0,
-    _getGlobalCurrentTaskMeta(0)?.taskID,
-    )?.task;
-    
-    if (!parentTask) {
-      createTask();
-      break taskCreation;
-    }
-    
-    createTask();
-    
-    if (hostProvided) {
-      subtask = parentTask.getLatestSubtask();
-      if (!subtask) {
-        throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
-      }
-      task.setParentSubtask(subtask);
-    }
-  }
-  
-  const started = task.enterSync();
-  
-  let ret;
-  
-  try {
-    _withGlobalCurrentTaskMeta({
-      componentIdx: task.componentIdx(),
-      taskID: task.id(),
-      fn: () => exit(variant0),
-    })
-    ;
-  } catch (err) {
-    
-    _debugLog('[Instruction::CallInterface] error during sync call', {
-      taskID: task.id(),
-      subtaskID: task.getParentSubtask()?.id(),
-      err,
-    });
-    task.setErrored(err);
-    task.reject(err);
-    task.exit();
-    throw err;
-    
-  }
-  
-  _debugLog('[iface="wasi:cli/exit@0.2.12", function="exit"][Instruction::Return]', {
-    funcName: 'exit',
+  _debugLog('[iface="wasi:io/streams@0.2.12", function="[method]output-stream.check-write"][Instruction::Return]', {
+    funcName: '[method]output-stream.check-write',
     paramCount: 0,
     async: false,
     postReturn: false
   });
   task.resolve([ret]);
   task.exit();
-}
-_trampoline16.fnName = 'wasi:cli/exit@0.2.12#exit';
-let exports2;
-let memory0;
-let realloc0;
-let realloc0Async;
-
-const handleTable0 = [T_FLAG, 0];
-handleTable0._createdReps = new Set();
-
-
-const captureTable0= new Map();
-let captureCnt0= 0;
-
-HANDLE_TABLES[0] = handleTable0;
-
-const _trampoline17 = function(arg0, arg1) {
-  var handle1 = arg0;
-  
-  var rep2 = handleTable2[(handle1 << 1) + 1] & ~T_FLAG;
-  var rsc0 = captureTable2.get(rep2);
-  if (!rsc0) {
-    rsc0 = Object.create(OutputStream.prototype);
-    Object.defineProperty(rsc0, symbolRscHandle, { writable: true, value: handle1});
-    Object.defineProperty(rsc0, symbolRscRep, { writable: true, value: rep2});
-  }
-  
-  curResourceBorrows.push(rsc0);
-  _debugLog('[iface="wasi:io/streams@0.2.12", function="[method]output-stream.check-write"] [Instruction::CallInterface] (sync, @ enter)');
-  const hostProvided = true;
-  
-  let parentTask;
-  let task;
-  let subtask;
-  
-  const createTask = () => {
-    const results = createNewCurrentTask({
-      componentIdx: -1,
-      isAsync: false,
-      entryFnName: 'checkWrite',
-      getCallbackFn: () => null,
-      callbackFnName: null,
-      errHandling: 'result-catch-handler',
-      callingWasmExport: false,
-    });
-    task = results[0];
-  };
-  
-  taskCreation: {
-    parentTask = getCurrentTask(
-    0,
-    _getGlobalCurrentTaskMeta(0)?.taskID,
-    )?.task;
-    
-    if (!parentTask) {
-      createTask();
-      break taskCreation;
-    }
-    
-    createTask();
-    
-    if (hostProvided) {
-      subtask = parentTask.getLatestSubtask();
-      if (!subtask) {
-        throw new Error(`Missing subtask (in parent task [${parentTask.id()}]) for host import, has the import been lowered? (ensure asyncImports are set properly)`);
-      }
-      task.setParentSubtask(subtask);
-    }
-  }
-  
-  const started = task.enterSync();
-  
-  let ret;
-  try {
-    ret = { tag: 'ok', val: _withGlobalCurrentTaskMeta({
-      componentIdx: task.componentIdx(),
-      taskID: task.id(),
-      fn: () => rsc0.checkWrite(),
-    })
-  };
-} catch (e) {
-  ret = { tag: 'err', val: getErrorPayload(e) };
-}
-
-for (const rsc of curResourceBorrows) {
-  rsc[symbolRscHandle] = undefined;
-}
-curResourceBorrows = [];
-var variant5 = ret;
-switch (variant5.tag) {
-  case 'ok': {
-    const e = variant5.val;
-    dataView(memory0).setInt8(arg1 + 0, 0, true);
-    dataView(memory0).setBigInt64(arg1 + 8, toUint64(e), true);
-    
-    break;
-  }
-  case 'err': {
-    const e = variant5.val;
-    dataView(memory0).setInt8(arg1 + 0, 1, true);
-    var variant4 = e;
-    switch (variant4.tag) {
-      case 'last-operation-failed': {
-        const e = variant4.val;
-        dataView(memory0).setInt8(arg1 + 8, 0, true);
-        
-        if (!(e instanceof Error$1)) {
-          throw new TypeError('Resource error: Not a valid \"Error\" resource.');
-        }
-        var handle3 = e[symbolRscHandle];
-        if (!handle3) {
-          const rep = e[symbolRscRep] || ++captureCnt0;
-          captureTable0.set(rep, e);
-          handle3 = rscTableCreateOwn(handleTable0, rep);
-        }
-        
-        dataView(memory0).setInt32(arg1 + 12, handle3, true);
-        break;
-      }
-      case 'closed': {
-        dataView(memory0).setInt8(arg1 + 8, 1, true);
-        break;
-      }
-      default: {
-        throw new TypeError(`invalid variant tag value \`${JSON.stringify(variant4.tag)}\` (received \`${variant4}\`) specified for \`StreamError\``);
-      }
-    }
-    
-    break;
-  }
-  default: {
-    _debugLog("ERROR: invalid value (expected result as object with 'tag' member)", { value: variant5, valueType: typeof variant5});
-    throw new TypeError('invalid variant specified for result');
-  }
-}
-_debugLog('[iface="wasi:io/streams@0.2.12", function="[method]output-stream.check-write"][Instruction::Return]', {
-  funcName: '[method]output-stream.check-write',
-  paramCount: 0,
-  async: false,
-  postReturn: false
-});
-task.resolve([ret]);
-task.exit();
 }
 _trampoline17.fnName = 'wasi:io/streams@0.2.12#checkWrite';
 
@@ -13222,222 +13210,214 @@ null,
   importFn: _trampoline41,
 },
 );
+Promise.all([module0, module1, module2, module3]).catch(() => {});
+({ exports: exports0 } = yield instantiateCore(yield module2));
+({ exports: exports1 } = yield instantiateCore(yield module0, {
+  wasi_snapshot_preview1: {
+    args_get: exports0['2'],
+    args_sizes_get: exports0['3'],
+    clock_time_get: exports0['4'],
+    environ_get: exports0['5'],
+    environ_sizes_get: exports0['6'],
+    fd_close: exports0['10'],
+    fd_fdstat_get: exports0['14'],
+    fd_fdstat_set_flags: exports0['15'],
+    fd_prestat_dir_name: exports0['17'],
+    fd_prestat_get: exports0['16'],
+    fd_read: exports0['11'],
+    fd_write: exports0['7'],
+    'fd_write [v2]': exports0['7'],
+    path_filestat_get: exports0['12'],
+    path_open: exports0['13'],
+    poll_oneoff: exports0['9'],
+    proc_exit: exports0['1'],
+    random_get: exports0['8'],
+    'random_get [v2]': exports0['8'],
+    sched_yield: exports0['0'],
+  },
+}));
+({ exports: exports2 } = yield instantiateCore(yield module1, {
+  __main_module__: {
+    cabi_realloc: exports1.cabi_realloc,
+  },
+  env: {
+    memory: exports1.memory,
+  },
+  'wasi:cli/environment@0.2.12': {
+    'get-arguments': exports0['34'],
+    'get-environment': exports0['35'],
+  },
+  'wasi:cli/exit@0.2.12': {
+    exit: trampoline16,
+  },
+  'wasi:cli/stderr@0.2.12': {
+    'get-stderr': trampoline11,
+  },
+  'wasi:cli/stdin@0.2.12': {
+    'get-stdin': trampoline12,
+  },
+  'wasi:cli/stdout@0.2.12': {
+    'get-stdout': trampoline13,
+  },
+  'wasi:cli/terminal-input@0.2.12': {
+    '[resource-drop]terminal-input': trampoline14,
+  },
+  'wasi:cli/terminal-output@0.2.12': {
+    '[resource-drop]terminal-output': trampoline15,
+  },
+  'wasi:cli/terminal-stderr@0.2.12': {
+    'get-terminal-stderr': exports0['42'],
+  },
+  'wasi:cli/terminal-stdin@0.2.12': {
+    'get-terminal-stdin': exports0['40'],
+  },
+  'wasi:cli/terminal-stdout@0.2.12': {
+    'get-terminal-stdout': exports0['41'],
+  },
+  'wasi:clocks/monotonic-clock@0.2.12': {
+    now: trampoline1,
+    'subscribe-duration': trampoline8,
+    'subscribe-instant': trampoline9,
+  },
+  'wasi:clocks/wall-clock@0.2.12': {
+    now: exports0['36'],
+  },
+  'wasi:filesystem/preopens@0.2.6': {
+    'get-directories': exports0['37'],
+  },
+  'wasi:filesystem/types@0.2.12': {
+    '[method]descriptor.append-via-stream': exports0['31'],
+    '[method]descriptor.get-flags': exports0['25'],
+    '[method]descriptor.get-type': exports0['33'],
+    '[method]descriptor.metadata-hash-at': exports0['30'],
+    '[method]descriptor.open-at': exports0['27'],
+    '[method]descriptor.read-via-stream': exports0['28'],
+    '[method]descriptor.stat': exports0['32'],
+    '[method]descriptor.stat-at': exports0['26'],
+    '[method]descriptor.write-via-stream': exports0['29'],
+    '[resource-drop]descriptor': trampoline3,
+    '[resource-drop]directory-entry-stream': trampoline2,
+    'filesystem-error-code': exports0['24'],
+  },
+  'wasi:io/error@0.2.12': {
+    '[resource-drop]error': trampoline0,
+  },
+  'wasi:io/poll@0.2.12': {
+    '[resource-drop]pollable': trampoline10,
+    poll: exports0['38'],
+  },
+  'wasi:io/streams@0.2.12': {
+    '[method]input-stream.blocking-read': exports0['21'],
+    '[method]input-stream.read': exports0['22'],
+    '[method]input-stream.subscribe': trampoline6,
+    '[method]output-stream.blocking-flush': exports0['20'],
+    '[method]output-stream.blocking-write-and-flush': exports0['23'],
+    '[method]output-stream.check-write': exports0['18'],
+    '[method]output-stream.subscribe': trampoline7,
+    '[method]output-stream.write': exports0['19'],
+    '[resource-drop]input-stream': trampoline5,
+    '[resource-drop]output-stream': trampoline4,
+  },
+  'wasi:random/random@0.2.12': {
+    'get-random-bytes': exports0['39'],
+  },
+}));
+memory0 = exports1.memory;
+realloc0 = exports2.cabi_import_realloc;
 
-const $init = (() => {
-  let gen = (function* _initGenerator () {
-    const module0 = fetchCompile(new URL('./falco-component.core.wasm', import.meta.url));
-    const module1 = fetchCompile(new URL('./falco-component.core2.wasm', import.meta.url));
-    const module2 = base64Compile('AGFzbQEAAAABbxBgAAF/YAF/AGACf38Bf2ADf35/AX9gBH9/f38Bf2ABfwF/YAV/f39/fwF/YAl/f39/f35+f38Bf2ADf39/AX9gAn9/AGAEf39/fwBgA39+fwBgBX9/f39/AGAHf39/f39/fwBgA39/fwBgAn5/AAMsKwABAgIDAgIEAgQFBAYHAgICCAkKCQsLCgkJDA0LCwwJCQkBAQEBDg8BAQEEBQFwASsrB9kBLAEwAAABMQABATIAAgEzAAMBNAAEATUABQE2AAYBNwAHATgACAE5AAkCMTAACgIxMQALAjEyAAwCMTMADQIxNAAOAjE1AA8CMTYAEAIxNwARAjE4ABICMTkAEwIyMAAUAjIxABUCMjIAFgIyMwAXAjI0ABgCMjUAGQIyNgAaAjI3ABsCMjgAHAIyOQAdAjMwAB4CMzEAHwIzMgAgAjMzACECMzQAIgIzNQAjAjM2ACQCMzcAJQIzOAAmAjM5ACcCNDAAKAI0MQApAjQyACoIJGltcG9ydHMBAAq7BCsHAEEAEQAACwkAIABBAREBAAsLACAAIAFBAhECAAsLACAAIAFBAxECAAsNACAAIAEgAkEEEQMACwsAIAAgAUEFEQIACwsAIAAgAUEGEQIACw8AIAAgASACIANBBxEEAAsLACAAIAFBCBECAAsPACAAIAEgAiADQQkRBAALCQAgAEEKEQUACw8AIAAgASACIANBCxEEAAsRACAAIAEgAiADIARBDBEGAAsZACAAIAEgAiADIAQgBSAGIAcgCEENEQcACwsAIAAgAUEOEQIACwsAIAAgAUEPEQIACwsAIAAgAUEQEQIACw0AIAAgASACQRERCAALCwAgACABQRIRCQALDwAgACABIAIgA0ETEQoACwsAIAAgAUEUEQkACw0AIAAgASACQRURCwALDQAgACABIAJBFhELAAsPACAAIAEgAiADQRcRCgALCwAgACABQRgRCQALCwAgACABQRkRCQALEQAgACABIAIgAyAEQRoRDAALFQAgACABIAIgAyAEIAUgBkEbEQ0ACw0AIAAgASACQRwRCwALDQAgACABIAJBHRELAAsRACAAIAEgAiADIARBHhEMAAsLACAAIAFBHxEJAAsLACAAIAFBIBEJAAsLACAAIAFBIREJAAsJACAAQSIRAQALCQAgAEEjEQEACwkAIABBJBEBAAsJACAAQSURAQALDQAgACABIAJBJhEOAAsLACAAIAFBJxEPAAsJACAAQSgRAQALCQAgAEEpEQEACwkAIABBKhEBAAsALwlwcm9kdWNlcnMBDHByb2Nlc3NlZC1ieQENd2l0LWNvbXBvbmVudAcwLjI2MS4wAM4SBG5hbWUAExJ3aXQtY29tcG9uZW50OnNoaW0BsRIrAChhZGFwdC13YXNpX3NuYXBzaG90X3ByZXZpZXcxLXNjaGVkX3lpZWxkASZhZGFwdC13YXNpX3NuYXBzaG90X3ByZXZpZXcxLXByb2NfZXhpdAIlYWRhcHQtd2FzaV9zbmFwc2hvdF9wcmV2aWV3MS1hcmdzX2dldAMrYWRhcHQtd2FzaV9zbmFwc2hvdF9wcmV2aWV3MS1hcmdzX3NpemVzX2dldAQrYWRhcHQtd2FzaV9zbmFwc2hvdF9wcmV2aWV3MS1jbG9ja190aW1lX2dldAUoYWRhcHQtd2FzaV9zbmFwc2hvdF9wcmV2aWV3MS1lbnZpcm9uX2dldAYuYWRhcHQtd2FzaV9zbmFwc2hvdF9wcmV2aWV3MS1lbnZpcm9uX3NpemVzX2dldAclYWRhcHQtd2FzaV9zbmFwc2hvdF9wcmV2aWV3MS1mZF93cml0ZQgnYWRhcHQtd2FzaV9zbmFwc2hvdF9wcmV2aWV3MS1yYW5kb21fZ2V0CShhZGFwdC13YXNpX3NuYXBzaG90X3ByZXZpZXcxLXBvbGxfb25lb2ZmCiVhZGFwdC13YXNpX3NuYXBzaG90X3ByZXZpZXcxLWZkX2Nsb3NlCyRhZGFwdC13YXNpX3NuYXBzaG90X3ByZXZpZXcxLWZkX3JlYWQMLmFkYXB0LXdhc2lfc25hcHNob3RfcHJldmlldzEtcGF0aF9maWxlc3RhdF9nZXQNJmFkYXB0LXdhc2lfc25hcHNob3RfcHJldmlldzEtcGF0aF9vcGVuDiphZGFwdC13YXNpX3NuYXBzaG90X3ByZXZpZXcxLWZkX2Zkc3RhdF9nZXQPMGFkYXB0LXdhc2lfc25hcHNob3RfcHJldmlldzEtZmRfZmRzdGF0X3NldF9mbGFncxArYWRhcHQtd2FzaV9zbmFwc2hvdF9wcmV2aWV3MS1mZF9wcmVzdGF0X2dldBEwYWRhcHQtd2FzaV9zbmFwc2hvdF9wcmV2aWV3MS1mZF9wcmVzdGF0X2Rpcl9uYW1lEkFpbmRpcmVjdC13YXNpOmlvL3N0cmVhbXNAMC4yLjEyLVttZXRob2Rdb3V0cHV0LXN0cmVhbS5jaGVjay13cml0ZRM7aW5kaXJlY3Qtd2FzaTppby9zdHJlYW1zQDAuMi4xMi1bbWV0aG9kXW91dHB1dC1zdHJlYW0ud3JpdGUURGluZGlyZWN0LXdhc2k6aW8vc3RyZWFtc0AwLjIuMTItW21ldGhvZF1vdXRwdXQtc3RyZWFtLmJsb2NraW5nLWZsdXNoFUJpbmRpcmVjdC13YXNpOmlvL3N0cmVhbXNAMC4yLjEyLVttZXRob2RdaW5wdXQtc3RyZWFtLmJsb2NraW5nLXJlYWQWOWluZGlyZWN0LXdhc2k6aW8vc3RyZWFtc0AwLjIuMTItW21ldGhvZF1pbnB1dC1zdHJlYW0ucmVhZBdOaW5kaXJlY3Qtd2FzaTppby9zdHJlYW1zQDAuMi4xMi1bbWV0aG9kXW91dHB1dC1zdHJlYW0uYmxvY2tpbmctd3JpdGUtYW5kLWZsdXNoGDtpbmRpcmVjdC13YXNpOmZpbGVzeXN0ZW0vdHlwZXNAMC4yLjEyLWZpbGVzeXN0ZW0tZXJyb3ItY29kZRlCaW5kaXJlY3Qtd2FzaTpmaWxlc3lzdGVtL3R5cGVzQDAuMi4xMi1bbWV0aG9kXWRlc2NyaXB0b3IuZ2V0LWZsYWdzGkBpbmRpcmVjdC13YXNpOmZpbGVzeXN0ZW0vdHlwZXNAMC4yLjEyLVttZXRob2RdZGVzY3JpcHRvci5zdGF0LWF0G0BpbmRpcmVjdC13YXNpOmZpbGVzeXN0ZW0vdHlwZXNAMC4yLjEyLVttZXRob2RdZGVzY3JpcHRvci5vcGVuLWF0HEhpbmRpcmVjdC13YXNpOmZpbGVzeXN0ZW0vdHlwZXNAMC4yLjEyLVttZXRob2RdZGVzY3JpcHRvci5yZWFkLXZpYS1zdHJlYW0dSWluZGlyZWN0LXdhc2k6ZmlsZXN5c3RlbS90eXBlc0AwLjIuMTItW21ldGhvZF1kZXNjcmlwdG9yLndyaXRlLXZpYS1zdHJlYW0eSWluZGlyZWN0LXdhc2k6ZmlsZXN5c3RlbS90eXBlc0AwLjIuMTItW21ldGhvZF1kZXNjcmlwdG9yLm1ldGFkYXRhLWhhc2gtYXQfSmluZGlyZWN0LXdhc2k6ZmlsZXN5c3RlbS90eXBlc0AwLjIuMTItW21ldGhvZF1kZXNjcmlwdG9yLmFwcGVuZC12aWEtc3RyZWFtID1pbmRpcmVjdC13YXNpOmZpbGVzeXN0ZW0vdHlwZXNAMC4yLjEyLVttZXRob2RdZGVzY3JpcHRvci5zdGF0IUFpbmRpcmVjdC13YXNpOmZpbGVzeXN0ZW0vdHlwZXNAMC4yLjEyLVttZXRob2RdZGVzY3JpcHRvci5nZXQtdHlwZSIyaW5kaXJlY3Qtd2FzaTpjbGkvZW52aXJvbm1lbnRAMC4yLjEyLWdldC1hcmd1bWVudHMjNGluZGlyZWN0LXdhc2k6Y2xpL2Vudmlyb25tZW50QDAuMi4xMi1nZXQtZW52aXJvbm1lbnQkKmluZGlyZWN0LXdhc2k6Y2xvY2tzL3dhbGwtY2xvY2tAMC4yLjEyLW5vdyU3aW5kaXJlY3Qtd2FzaTpmaWxlc3lzdGVtL3ByZW9wZW5zQDAuMi42LWdldC1kaXJlY3RvcmllcyYhaW5kaXJlY3Qtd2FzaTppby9wb2xsQDAuMi4xMi1wb2xsJzNpbmRpcmVjdC13YXNpOnJhbmRvbS9yYW5kb21AMC4yLjEyLWdldC1yYW5kb20tYnl0ZXMoOmluZGlyZWN0LXdhc2k6Y2xpL3Rlcm1pbmFsLXN0ZGluQDAuMi4xMi1nZXQtdGVybWluYWwtc3RkaW4pPGluZGlyZWN0LXdhc2k6Y2xpL3Rlcm1pbmFsLXN0ZG91dEAwLjIuMTItZ2V0LXRlcm1pbmFsLXN0ZG91dCo8aW5kaXJlY3Qtd2FzaTpjbGkvdGVybWluYWwtc3RkZXJyQDAuMi4xMi1nZXQtdGVybWluYWwtc3RkZXJy');
-    const module3 = base64Compile('AGFzbQEAAAABchFgAAF/YAF/AGACf38Bf2ADf35/AX9gBH9/f38Bf2ABfwF/YAV/f39/fwF/YAl/f39/f35+f38Bf2ADf39/AX9gAn9/AGAEf39/fwBgA39+fwBgBX9/f39/AGAHf39/f39/fwBgA39/fwBgAn5/AGAAAAKhBC0GYWN0dWFsATAAAAZhY3R1YWwBMQABBmFjdHVhbAEyAAIGYWN0dWFsATMAAgZhY3R1YWwBNAADBmFjdHVhbAE1AAIGYWN0dWFsATYAAgZhY3R1YWwBNwAEBmFjdHVhbAE4AAIGYWN0dWFsATkABAZhY3R1YWwCMTAABQZhY3R1YWwCMTEABAZhY3R1YWwCMTIABgZhY3R1YWwCMTMABwZhY3R1YWwCMTQAAgZhY3R1YWwCMTUAAgZhY3R1YWwCMTYAAgZhY3R1YWwCMTcACAZhY3R1YWwCMTgACQZhY3R1YWwCMTkACgZhY3R1YWwCMjAACQZhY3R1YWwCMjEACwZhY3R1YWwCMjIACwZhY3R1YWwCMjMACgZhY3R1YWwCMjQACQZhY3R1YWwCMjUACQZhY3R1YWwCMjYADAZhY3R1YWwCMjcADQZhY3R1YWwCMjgACwZhY3R1YWwCMjkACwZhY3R1YWwCMzAADAZhY3R1YWwCMzEACQZhY3R1YWwCMzIACQZhY3R1YWwCMzMACQZhY3R1YWwCMzQAAQZhY3R1YWwCMzUAAQZhY3R1YWwCMzYAAQZhY3R1YWwCMzcAAQZhY3R1YWwCMzgADgZhY3R1YWwCMzkADwZhY3R1YWwCNDAAAQZhY3R1YWwCNDEAAQZhY3R1YWwCNDIAAQRtYWluC19pbml0aWFsaXplABAEc2hpbQgkaW1wb3J0cwFwASsrCAErCTEBAEEACysAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqAC8JcHJvZHVjZXJzAQxwcm9jZXNzZWQtYnkBDXdpdC1jb21wb25lbnQHMC4yNjEuMADPAQRuYW1lABUUd2l0LWNvbXBvbmVudDpmaXh1cHMBsAEsAAEwAQExAgEyAwEzBAE0BQE1BgE2BwE3CAE4CQE5CgIxMAsCMTEMAjEyDQIxMw4CMTQPAjE1EAIxNhECMTcSAjE4EwIxORQCMjAVAjIxFgIyMhcCMjMYAjI0GQIyNRoCMjYbAjI3HAIyOB0CMjkeAjMwHwIzMSACMzIhAjMzIgIzNCMCMzUkAjM2JQIzNyYCMzgnAjM5KAI0MCkCNDEqAjQyKwtfaW5pdGlhbGl6ZQ');
-    ({ exports: exports0 } = yield instantiateCore(yield module2));
-    ({ exports: exports1 } = yield instantiateCore(yield module0, {
-      wasi_snapshot_preview1: {
-        args_get: exports0['2'],
-        args_sizes_get: exports0['3'],
-        clock_time_get: exports0['4'],
-        environ_get: exports0['5'],
-        environ_sizes_get: exports0['6'],
-        fd_close: exports0['10'],
-        fd_fdstat_get: exports0['14'],
-        fd_fdstat_set_flags: exports0['15'],
-        fd_prestat_dir_name: exports0['17'],
-        fd_prestat_get: exports0['16'],
-        fd_read: exports0['11'],
-        fd_write: exports0['7'],
-        'fd_write [v2]': exports0['7'],
-        path_filestat_get: exports0['12'],
-        path_open: exports0['13'],
-        poll_oneoff: exports0['9'],
-        proc_exit: exports0['1'],
-        random_get: exports0['8'],
-        'random_get [v2]': exports0['8'],
-        sched_yield: exports0['0'],
-      },
-    }));
-    ({ exports: exports2 } = yield instantiateCore(yield module1, {
-      __main_module__: {
-        cabi_realloc: exports1.cabi_realloc,
-      },
-      env: {
-        memory: exports1.memory,
-      },
-      'wasi:cli/environment@0.2.12': {
-        'get-arguments': exports0['34'],
-        'get-environment': exports0['35'],
-      },
-      'wasi:cli/exit@0.2.12': {
-        exit: trampoline16,
-      },
-      'wasi:cli/stderr@0.2.12': {
-        'get-stderr': trampoline11,
-      },
-      'wasi:cli/stdin@0.2.12': {
-        'get-stdin': trampoline12,
-      },
-      'wasi:cli/stdout@0.2.12': {
-        'get-stdout': trampoline13,
-      },
-      'wasi:cli/terminal-input@0.2.12': {
-        '[resource-drop]terminal-input': trampoline14,
-      },
-      'wasi:cli/terminal-output@0.2.12': {
-        '[resource-drop]terminal-output': trampoline15,
-      },
-      'wasi:cli/terminal-stderr@0.2.12': {
-        'get-terminal-stderr': exports0['42'],
-      },
-      'wasi:cli/terminal-stdin@0.2.12': {
-        'get-terminal-stdin': exports0['40'],
-      },
-      'wasi:cli/terminal-stdout@0.2.12': {
-        'get-terminal-stdout': exports0['41'],
-      },
-      'wasi:clocks/monotonic-clock@0.2.12': {
-        now: trampoline1,
-        'subscribe-duration': trampoline8,
-        'subscribe-instant': trampoline9,
-      },
-      'wasi:clocks/wall-clock@0.2.12': {
-        now: exports0['36'],
-      },
-      'wasi:filesystem/preopens@0.2.6': {
-        'get-directories': exports0['37'],
-      },
-      'wasi:filesystem/types@0.2.12': {
-        '[method]descriptor.append-via-stream': exports0['31'],
-        '[method]descriptor.get-flags': exports0['25'],
-        '[method]descriptor.get-type': exports0['33'],
-        '[method]descriptor.metadata-hash-at': exports0['30'],
-        '[method]descriptor.open-at': exports0['27'],
-        '[method]descriptor.read-via-stream': exports0['28'],
-        '[method]descriptor.stat': exports0['32'],
-        '[method]descriptor.stat-at': exports0['26'],
-        '[method]descriptor.write-via-stream': exports0['29'],
-        '[resource-drop]descriptor': trampoline3,
-        '[resource-drop]directory-entry-stream': trampoline2,
-        'filesystem-error-code': exports0['24'],
-      },
-      'wasi:io/error@0.2.12': {
-        '[resource-drop]error': trampoline0,
-      },
-      'wasi:io/poll@0.2.12': {
-        '[resource-drop]pollable': trampoline10,
-        poll: exports0['38'],
-      },
-      'wasi:io/streams@0.2.12': {
-        '[method]input-stream.blocking-read': exports0['21'],
-        '[method]input-stream.read': exports0['22'],
-        '[method]input-stream.subscribe': trampoline6,
-        '[method]output-stream.blocking-flush': exports0['20'],
-        '[method]output-stream.blocking-write-and-flush': exports0['23'],
-        '[method]output-stream.check-write': exports0['18'],
-        '[method]output-stream.subscribe': trampoline7,
-        '[method]output-stream.write': exports0['19'],
-        '[resource-drop]input-stream': trampoline5,
-        '[resource-drop]output-stream': trampoline4,
-      },
-      'wasi:random/random@0.2.12': {
-        'get-random-bytes': exports0['39'],
-      },
-    }));
-    memory0 = exports1.memory;
-    realloc0 = exports2.cabi_import_realloc;
-    
-    try {
-      realloc0Async = WebAssembly.promising(exports2.cabi_import_realloc);
-    } catch(err) {
-      realloc0Async = exports2.cabi_import_realloc;
-    }
-    
-    ({ exports: exports3 } = yield instantiateCore(yield module3, {
-      actual: {
-        '0': exports2.sched_yield,
-        '1': exports2.proc_exit,
-        '10': exports2.fd_close,
-        '11': exports2.fd_read,
-        '12': exports2.path_filestat_get,
-        '13': exports2.path_open,
-        '14': exports2.fd_fdstat_get,
-        '15': exports2.fd_fdstat_set_flags,
-        '16': exports2.fd_prestat_get,
-        '17': exports2.fd_prestat_dir_name,
-        '18': trampoline17,
-        '19': trampoline18,
-        '2': exports2.args_get,
-        '20': trampoline19,
-        '21': trampoline20,
-        '22': trampoline21,
-        '23': trampoline22,
-        '24': trampoline23,
-        '25': trampoline24,
-        '26': trampoline25,
-        '27': trampoline26,
-        '28': trampoline27,
-        '29': trampoline28,
-        '3': exports2.args_sizes_get,
-        '30': trampoline29,
-        '31': trampoline30,
-        '32': trampoline31,
-        '33': trampoline32,
-        '34': trampoline33,
-        '35': trampoline34,
-        '36': trampoline35,
-        '37': trampoline36,
-        '38': trampoline37,
-        '39': trampoline38,
-        '4': exports2.clock_time_get,
-        '40': trampoline39,
-        '41': trampoline40,
-        '42': trampoline41,
-        '5': exports2.environ_get,
-        '6': exports2.environ_sizes_get,
-        '7': exports2.fd_write,
-        '8': exports2.random_get,
-        '9': exports2.poll_oneoff,
-      },
-      main: {
-        _initialize: exports1._initialize,
-      },
-      shim: {
-        $imports: exports0.$imports,
-      },
-    }));
-    realloc1 = exports1.cabi_realloc;
-    
-    try {
-      realloc1Async = WebAssembly.promising(exports1.cabi_realloc);
-    } catch(err) {
-      realloc1Async = exports1.cabi_realloc;
-    }
-    
-    exports1Lint = exports1.lint;
-    exports1Format = exports1.format;
-    exports1Parse = exports1.parse;
-    exports1Tokenize = exports1.tokenize;
-  })();
-  let promise, resolve, reject;
-  function runNext (value) {
-    try {
-      let done;
-      do {
-        ({ value, done } = gen.next(value));
-      } while (!(value instanceof Promise) && !done);
-      if (done) {
-        if (resolve) resolve(value);
-        else return value;
-      }
-      if (!promise) promise = new Promise((_resolve, _reject) => (resolve = _resolve, reject = _reject));
-      value.then(runNext, reject);
-    }
-    catch (e) {
-      if (reject) reject(e);
-      else throw e;
-    }
-  }
-  const maybeSyncReturn = runNext(null);
-  return promise || maybeSyncReturn;
+try {
+  realloc0Async = WebAssembly.promising(exports2.cabi_import_realloc);
+} catch(err) {
+  realloc0Async = exports2.cabi_import_realloc;
+}
+
+({ exports: exports3 } = yield instantiateCore(yield module3, {
+  actual: {
+    '0': exports2.sched_yield,
+    '1': exports2.proc_exit,
+    '10': exports2.fd_close,
+    '11': exports2.fd_read,
+    '12': exports2.path_filestat_get,
+    '13': exports2.path_open,
+    '14': exports2.fd_fdstat_get,
+    '15': exports2.fd_fdstat_set_flags,
+    '16': exports2.fd_prestat_get,
+    '17': exports2.fd_prestat_dir_name,
+    '18': trampoline17,
+    '19': trampoline18,
+    '2': exports2.args_get,
+    '20': trampoline19,
+    '21': trampoline20,
+    '22': trampoline21,
+    '23': trampoline22,
+    '24': trampoline23,
+    '25': trampoline24,
+    '26': trampoline25,
+    '27': trampoline26,
+    '28': trampoline27,
+    '29': trampoline28,
+    '3': exports2.args_sizes_get,
+    '30': trampoline29,
+    '31': trampoline30,
+    '32': trampoline31,
+    '33': trampoline32,
+    '34': trampoline33,
+    '35': trampoline34,
+    '36': trampoline35,
+    '37': trampoline36,
+    '38': trampoline37,
+    '39': trampoline38,
+    '4': exports2.clock_time_get,
+    '40': trampoline39,
+    '41': trampoline40,
+    '42': trampoline41,
+    '5': exports2.environ_get,
+    '6': exports2.environ_sizes_get,
+    '7': exports2.fd_write,
+    '8': exports2.random_get,
+    '9': exports2.poll_oneoff,
+  },
+  main: {
+    _initialize: exports1._initialize,
+  },
+  shim: {
+    $imports: exports0.$imports,
+  },
+}));
+realloc1 = exports1.cabi_realloc;
+
+try {
+  realloc1Async = WebAssembly.promising(exports1.cabi_realloc);
+} catch(err) {
+  realloc1Async = exports1.cabi_realloc;
+}
+
+exports1Lint = exports1.lint;
+exports1Format = exports1.format;
+exports1Parse = exports1.parse;
+exports1Tokenize = exports1.tokenize;
+
+return { format, lint, parse, tokenize,  };
 })();
-
-await $init;
-
-export { format, lint, parse, tokenize,  }
+let promise, resolve, reject;
+function runNext (value) {
+  try {
+    let done;
+    do {
+      ({ value, done } = gen.next(value));
+    } while (!(value instanceof Promise) && !done);
+    if (done) {
+      if (resolve) return resolve(value);
+      else return value;
+    }
+    if (!promise) promise = new Promise((_resolve, _reject) => (resolve = _resolve, reject = _reject));
+    value.then(nextVal => done ? resolve() : runNext(nextVal), reject);
+  }
+  catch (e) {
+    if (reject) reject(e);
+    else throw e;
+  }
+}
+const maybeSyncReturn = runNext(null);
+return promise || maybeSyncReturn;
+};

@@ -4,12 +4,17 @@
 // same `lintText` / `formatText` facade the native (binary-spawning) backend in
 // ./index.js exposes, so the LSP server can switch backends with minimal change.
 //
-// Unlike the native backend, the component is reactor-style: importing the
-// transpiled module runs its top-level `await $init`, instantiating the
-// WebAssembly reactor exactly once. The exported `lint` / `format` / `parse`
-// functions are then called repeatedly on in-memory strings -- no child
-// process, temp files, or filesystem. jco maps the WIT `result<string, string>`
-// to "return the ok string / throw on err".
+// Unlike the native backend, the component is reactor-style: one instance is
+// created lazily and its exported `lint` / `format` / `parse` functions are
+// called repeatedly on in-memory strings -- no child process, temp files, or
+// filesystem. jco maps the WIT `result<string, string>` to "return the ok
+// string / throw on err".
+//
+// A failed call (a trap, or a stack overflow on very deeply nested VCL) can
+// leave the component's Go runtime corrupted, so later calls trap or the
+// runtime tries to exit the process. So the component is transpiled in jco's
+// instantiation mode: after any such failure we drop the instance and create a
+// fresh one on the next call, and WASI exit throws instead of ending Node.
 //
 // The component has no filesystem, so `include` statements are resolved from an
 // in-memory module map the host supplies via the lint options (`includes` +
@@ -17,11 +22,100 @@
 // See ../component (built with `make wasm-component` on the falco branch named
 // in DEVELOPMENT.md, "Updating falco") and resolver/map.go in that repo.
 
+import { readFile } from "node:fs/promises";
+
 import {
-  lint as componentLint,
-  format as componentFormat,
-  parse as componentParse,
-} from "../component/falco-component.js";
+  environment,
+  stderr,
+  stdin,
+  stdout,
+  terminalInput,
+  terminalOutput,
+  terminalStderr,
+  terminalStdin,
+  terminalStdout,
+} from "@bytecodealliance/preview2-shim/cli";
+import {
+  monotonicClock,
+  wallClock,
+} from "@bytecodealliance/preview2-shim/clocks";
+import { preopens, types } from "@bytecodealliance/preview2-shim/filesystem";
+import { error, poll, streams } from "@bytecodealliance/preview2-shim/io";
+import { random } from "@bytecodealliance/preview2-shim/random";
+
+import { instantiate } from "../component/falco-component.js";
+
+// The shim's exit ends the whole process. The component only calls it when its
+// runtime hits a fatal error, so throw instead; the instance is then replaced.
+const exit = {
+  exit(status) {
+    throw new Error(`falco component exited (${status?.tag ?? "unknown"})`);
+  },
+};
+
+// Keyed by interface name without version, as the generated code reads them.
+const wasiImports = {
+  "wasi:cli/environment": environment,
+  "wasi:cli/exit": exit,
+  "wasi:cli/stderr": stderr,
+  "wasi:cli/stdin": stdin,
+  "wasi:cli/stdout": stdout,
+  "wasi:cli/terminal-input": terminalInput,
+  "wasi:cli/terminal-output": terminalOutput,
+  "wasi:cli/terminal-stderr": terminalStderr,
+  "wasi:cli/terminal-stdin": terminalStdin,
+  "wasi:cli/terminal-stdout": terminalStdout,
+  "wasi:clocks/monotonic-clock": monotonicClock,
+  "wasi:clocks/wall-clock": wallClock,
+  "wasi:filesystem/preopens": preopens,
+  "wasi:filesystem/types": types,
+  "wasi:io/error": error,
+  "wasi:io/poll": poll,
+  "wasi:io/streams": streams,
+  "wasi:random/random": random,
+};
+
+// Compile each core module once; instances are cheap to recreate from them.
+const coreModules = new Map();
+function getCoreModule(name) {
+  if (!coreModules.has(name)) {
+    const url = new URL(`../component/${name}`, import.meta.url);
+    coreModules.set(
+      name,
+      readFile(url).then((bytes) => WebAssembly.compile(bytes)),
+    );
+  }
+  return coreModules.get(name);
+}
+
+let instancePromise = null;
+function getInstance() {
+  if (!instancePromise) {
+    const pending = instantiate(getCoreModule, wasiImports);
+    instancePromise = pending;
+    pending.catch(() => {
+      if (instancePromise === pending) instancePromise = null;
+    });
+  }
+  return instancePromise;
+}
+
+// An ordinary `err` result arrives as jco's ComponentError, which carries a
+// `payload`; the instance is fine. Anything else means the call failed inside
+// the component, so drop the instance and start fresh on the next call.
+async function callComponent(fn) {
+  const pending = getInstance();
+  const instance = await pending;
+  try {
+    return fn(instance);
+  } catch (e) {
+    const isErrResult = e !== null && typeof e === "object" && "payload" in e;
+    if (!isErrResult && instancePromise === pending) {
+      instancePromise = null;
+    }
+    throw e;
+  }
+}
 
 // Synthetic file name the component uses for the main (in-memory) source. It is
 // the map key in lint output and the `Token.File` of main-source diagnostics;
@@ -107,7 +201,7 @@ export async function lintText(
   if (includePaths && includePaths.length > 0)
     options.includePaths = includePaths;
 
-  const raw = componentLint(text, JSON.stringify(options));
+  const raw = await callComponent((c) => c.lint(text, JSON.stringify(options)));
   const result = JSON.parse(raw);
 
   rewriteMainName(result, vclFileName);
@@ -127,7 +221,7 @@ export async function lintText(
  * @throws {Error} On a parse error (the component returns `err` for parse).
  */
 export async function parseAST(text) {
-  return JSON.parse(componentParse(text));
+  return JSON.parse(await callComponent((c) => c.parse(text)));
 }
 
 /**
@@ -141,9 +235,8 @@ export async function parseAST(text) {
  */
 export async function formatText(text, { config } = {}) {
   try {
-    const formatted = componentFormat(
-      text,
-      config ? JSON.stringify(config) : "",
+    const formatted = await callComponent((c) =>
+      c.format(text, config ? JSON.stringify(config) : ""),
     );
     return { formatted, error: null };
   } catch (err) {
