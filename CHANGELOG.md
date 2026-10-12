@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Add a WASI Component Model linting backend (`falco-js/src/wasm.mjs`) wrapping the jco-transpiled falco component: reactor-style (instantiated once, called repeatedly on in-memory strings, no child process or temp files), platform-independent, and resolving `include` statements from a host-supplied in-memory module map (`includes` + `includePaths`)
 - Resolve `include`d modules for linting by walking the include graph and supplying each reachable module's contents to the linter (preferring open/edited buffers over disk, matched by file path so this also works on Windows and for file names containing characters such as `+` or parentheses), with a size budget that falls back to linting the main file alone (reported as a single notice, without flagging each `include` as unresolvable)
 - Warm the linter's wasm component at server startup so the first document lint is not delayed by the one-time module compile
+- Lint VCL snippets annotated with `# @scope: <subroutine>` (e.g. `# @scope: deliver`) in that subroutine's scope, with end-to-end tests and README documentation
 
 ### Changed
 

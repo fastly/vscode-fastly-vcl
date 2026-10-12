@@ -164,6 +164,43 @@ suite("Should lint includes from unsaved buffers", () => {
   });
 });
 
+suite("Should lint VCL snippets", () => {
+  test("Lints an annotated snippet in its scope", async () => {
+    await testDiagnostics(getDocUri("snippetDeliver.vcl"), [
+      {
+        message: 'Variable "client.display.width" is deprecated',
+        range: toRange(2, 24, 2, 24),
+        severity: vscode.DiagnosticSeverity.Warning,
+        source: "vcl",
+      },
+    ]);
+  });
+
+  test("Reports variables used outside the snippet scope", async () => {
+    await testDiagnostics(getDocUri("snippetWrongScope.vcl"), [
+      {
+        message:
+          'Variable "resp.http.Server" could not access in scope of RECV \nSee reference documentation: https://developer.fastly.com/reference/vcl/variables/client-response/resp-http/',
+        range: toRange(2, 6, 2, 6),
+        severity: vscode.DiagnosticSeverity.Error,
+        source: "vcl",
+      },
+    ]);
+  });
+
+  test("Reports a snippet without a @scope annotation", async () => {
+    await testDiagnostics(getDocUri("snippetMissingScope.vcl"), [
+      {
+        message:
+          "VCL snippet requires @scope annotation (e.g., # @scope: deliver)",
+        range: toRange(1, 0, 1, 0),
+        severity: vscode.DiagnosticSeverity.Error,
+        source: "vcl",
+      },
+    ]);
+  });
+});
+
 function toRange(sLine: number, sChar: number, eLine: number, eChar: number) {
   const start = new vscode.Position(sLine, sChar);
   const end = new vscode.Position(eLine, eChar);

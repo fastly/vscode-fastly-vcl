@@ -20,6 +20,15 @@ Real-time linting surfaces syntax errors and best-practice violations directly i
 
 ![Diagnostics](images/diagnostics.png)
 
+[VCL snippets](https://www.fastly.com/documentation/guides/full-site-delivery/fastly-vcl/vcl-snippets/about-vcl-snippets/) contain statements without a surrounding `sub vcl_*` block. Annotate a snippet file with the subroutine it runs in, so that it is linted in that scope:
+
+```vcl
+# @scope: deliver
+unset resp.http.Server;
+```
+
+The scope can be `recv`, `hash`, `hit`, `miss`, `pass`, `fetch`, `error`, `deliver` or `log`. A file containing only statements and no valid `@scope` annotation is reported as an error.
+
 ### Contextual completions and signature help
 
 As you type, intelligent completions suggest functions, variables, and headers available in your current subroutine.
