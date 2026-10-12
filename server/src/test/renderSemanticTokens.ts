@@ -25,8 +25,8 @@ async function renderWithTags(filePath: string): Promise<string> {
     text: content,
   });
 
-  // Parse with falco to get AST
-  const { lintText } = await import("../../../falco-js/src/index.js");
+  // Parse with the falco WASI component to get the AST
+  const { lintText } = await import("../../../falco-js/src/wasm.mjs");
   const lintResult = await lintText(content, {
     vclFileName: absolutePath,
     diagnosticsOnly: false,

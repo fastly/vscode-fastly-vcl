@@ -17,7 +17,6 @@
  * ## Configuration
  *
  * - `fastly.vcl.formattingEnabled` - Enable/disable formatting
- * - `fastly.vcl.falcoPath` - Custom path to falco binary
  */
 
 import {
@@ -29,11 +28,14 @@ import {
 
 import { documentCache } from "../shared/documentCache";
 import { getDocumentSettings, connection } from "../server";
-import type { FormatResult } from "../../../falco-js/src/index";
+import { importESM } from "../shared/esmImport";
+import { join } from "node:path";
+import { pathToFileURL } from "node:url";
+import type { FormatResult } from "../../../falco-js/src/wasm.mjs";
 
 type FormatTextFn = (
   text: string,
-  options?: { falcoPath?: string },
+  options?: { config?: Record<string, unknown> },
 ) => Promise<FormatResult>;
 
 /**
@@ -53,10 +55,14 @@ export async function resolve(
     return null;
   }
 
-  // Dynamic import of falco-js to handle platform-specific unavailability
+  // Load the WASI component backend (ESM) via a real import() so require()
+  // does not try to load an async ES module.
   let formatText: FormatTextFn | null = null;
   try {
-    const falcoJs = await import("../../../falco-js/src/index.js");
+    const wasmUrl = pathToFileURL(
+      join(__dirname, "../../../falco-js/src/wasm.mjs"),
+    ).href;
+    const falcoJs = await importESM(wasmUrl);
     formatText = falcoJs.formatText;
   } catch (e) {
     connection.console.error(
@@ -72,9 +78,7 @@ export async function resolve(
   const text = vclDoc.getText();
 
   try {
-    const result = await formatText(text, {
-      falcoPath: settings.falcoPath || undefined,
-    });
+    const result = await formatText(text, {});
 
     if (result.error) {
       connection.console.warn(`Formatting failed: ${result.error}`);

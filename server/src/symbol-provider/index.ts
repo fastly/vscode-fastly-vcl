@@ -76,7 +76,8 @@ function getSymbol(vcl: VclDocument, node: ASTNode): DocumentSymbol | null {
     case "DECLARE": // Variables:
     case "INCLUDE": // Files:
       return {
-        name: node.Name.Value,
+        // falco puts an include's name in Module, not Name.
+        name: (node.Name || node.Module).Value,
         kind:
           node.Token.Type === "INCLUDE"
             ? SymbolKind.Module

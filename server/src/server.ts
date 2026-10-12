@@ -29,6 +29,15 @@ import * as linter from "./linter";
 // Create a connection for the server (Node-IPC transport).
 export const connection = createConnection(ProposedFeatures.all);
 
+// Node exits on an unhandled rejection by default. Log it instead, so one
+// failed request cannot take the server down; VS Code stops restarting it after
+// a few crashes. Older jco glue for the falco component leaked such a rejection
+// after a stack overflow inside it, even when the caller handled the error;
+// this keeps a regression there from killing the server.
+process.on("unhandledRejection", (reason) => {
+  console.error("Unhandled rejection in the VCL language server:", reason);
+});
+
 let globalConfig: ConfigSettings = CONFIG;
 let hasConfigurationCapability = false;
 let hasWorkspaceFolderCapability = false;
@@ -100,6 +109,8 @@ connection.onInitialized(() => {
       connection.console.log("Workspace folder changed.");
     });
   }
+  // Compile the linter's wasm component now so the first document lint isn't slow.
+  linter.warmupLinter();
 });
 
 // Cache the settings of all open documents.

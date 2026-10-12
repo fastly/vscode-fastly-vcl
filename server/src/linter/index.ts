@@ -22,8 +22,10 @@
  *
  * - `fastly.vcl.lintingEnabled` - Enable/disable linting
  * - `fastly.vcl.maxLintingIssues` - Maximum number of issues to report
- * - `fastly.vcl.falcoPath` - Custom path to falco binary
  */
+
+import { fileURLToPath, pathToFileURL } from "node:url";
+import { join } from "node:path";
 
 import {
   Diagnostic,
@@ -32,6 +34,8 @@ import {
 } from "vscode-languageserver/node";
 
 import { VclDocument } from "../shared/vclDocument";
+import { buildIncludeClosure } from "./includeClosure";
+import { importESM } from "../shared/esmImport";
 import { updateDocumentSymbols } from "../symbol-provider";
 import { debounce } from "../shared/utils";
 import { ASTNode } from "../shared/ast";
@@ -98,31 +102,95 @@ export interface LintResult {
   Vcl?: Vcl;
 }
 
-export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
-  // Use relative path to falco-js since the npm workspace symlink is excluded from the packaged extension
-  const { lintText } = await import("../../../falco-js/src/index.js").catch(
-    (e) => {
-      // falco isn't available for Windows yet, fail gracefully.
-      console.error(`Diagnostic service unavailable.`, e.message);
-      return { lintText: null };
-    },
-  );
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type LintTextFn = (text: string, options?: any) => Promise<LintResult>;
 
-  const settings = await getDocumentSettings(vclDoc.uri);
-  if (!lintText || !settings.lintingEnabled) {
+// The WASI component backend (wasm.mjs) is an ES module: falco-js is not a
+// workspace symlink and the component has top-level await, so it must be loaded
+// via a real dynamic import (see importESM) -- require() cannot load it. The
+// import (and the underlying 9.5 MB wasm compile) is memoized so it happens once.
+let backendPromise: Promise<{ lintText: LintTextFn } | null> | null = null;
+
+function loadBackend(): Promise<{ lintText: LintTextFn } | null> {
+  if (!backendPromise) {
+    const wasmUrl = pathToFileURL(
+      join(__dirname, "../../../falco-js/src/wasm.mjs"),
+    ).href;
+    backendPromise = importESM(wasmUrl).catch((e) => {
+      console.error(`Diagnostic service unavailable.`, e.message);
+      return null;
+    });
+  }
+  return backendPromise;
+}
+
+/**
+ * Warm the linter backend: trigger the dynamic import and the one-time wasm
+ * compile up front (e.g. at server init) so the first real lint isn't slow.
+ */
+export async function warmupLinter(): Promise<void> {
+  const backend = await loadBackend();
+  if (!backend) {
     return;
   }
+  try {
+    await backend.lintText("sub vcl_recv {\n#FASTLY RECV\n}\n", {});
+  } catch {
+    // Warmup is best-effort; real lints surface any genuine error.
+  }
+}
+
+export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
+  const backend = await loadBackend();
+
+  const settings = await getDocumentSettings(vclDoc.uri);
+  if (!backend || !settings.lintingEnabled) {
+    return;
+  }
+  const { lintText } = backend;
 
   console.debug("lint", vclDoc.uri);
-  // Remove file://
-  const vclDocPath = vclDoc.uri.slice(7);
+  const vclDocPath = fileURLToPath(vclDoc.uri);
+
+  // The component has no filesystem, so resolve `include`d modules from disk /
+  // open buffers here and hand their contents to the linter.
+  const closure = buildIncludeClosure(vclDoc.getText(), vclDocPath);
 
   // TODO: Cache the AST and walk it for context-aware completions, colorization, etc
-  const lintResult = (await lintText(vclDoc.getText(), {
-    vclFileName: vclDocPath,
-    diagnosticsOnly: false, // Set to false to return the full AST (for parseable VCL only)
-    falcoPath: settings.falcoPath || undefined,
-  })) as LintResult;
+  let lintResult: LintResult;
+  try {
+    lintResult = await lintText(vclDoc.getText(), {
+      vclFileName: vclDocPath,
+      diagnosticsOnly: false, // Set to false to return the full AST (for parseable VCL only)
+      includes: closure.includes,
+      // Over budget, no modules are supplied, so every include would be
+      // reported as unresolvable. The notice added below explains instead.
+      rules: closure.overBudget
+        ? { "include/module-load-failed": "IGNORE" }
+        : undefined,
+    });
+  } catch (e) {
+    // The component throws on fatal errors, such as a stack overflow on very
+    // deeply nested expressions. Keep the last good AST and symbols, and
+    // replace any stale diagnostics with one saying linting failed.
+    const reason = e instanceof Error ? e.message : String(e);
+    console.error("lint failed", vclDoc.uri, e);
+    connection.sendDiagnostics({
+      uri: vclDoc.uri,
+      diagnostics: [
+        {
+          severity: DiagnosticSeverity.Warning,
+          range: {
+            start: Position.create(0, 0),
+            end: Position.create(0, 0),
+          },
+          message: `The VCL linter failed on this file: ${reason}`,
+          source: "vcl",
+        },
+      ],
+    });
+    return;
+  }
 
   vclDoc.AST = lintResult.Vcl?.AST;
 
@@ -181,6 +249,29 @@ export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
 
     problems++;
     diagnostics.push(diagnostic);
+  }
+
+  for (const cycle of closure.cycles) {
+    const at = Position.create(cycle.line, cycle.character);
+    diagnostics.unshift({
+      severity: DiagnosticSeverity.Warning,
+      range: { start: at, end: at },
+      message: `Cyclic include: ${cycle.chain.map((m) => `"${m}"`).join(" -> ")}. The repeated include was skipped when linting.`,
+      source: "vcl",
+    });
+  }
+
+  if (closure.overBudget) {
+    diagnostics.unshift({
+      severity: DiagnosticSeverity.Information,
+      range: {
+        start: Position.create(0, 0),
+        end: Position.create(0, 0),
+      },
+      message:
+        "Included files are too large for the VCL linter; cross-file checks were skipped and only this file was linted.",
+      source: "vcl",
+    });
   }
 
   connection.sendDiagnostics({ uri: vclDoc.uri, diagnostics });
