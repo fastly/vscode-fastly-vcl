@@ -60,6 +60,12 @@ The test renders `client/testFixture/semanticTokens.vcl` with XML tags showing t
 npx tsx server/src/test/renderSemanticTokens.ts client/testFixture/semanticTokens.vcl > test/semantic-tokens-results/semanticTokens.vcl.xml
 ```
 
+To check that selection ranges are properly nested (each parent contains its child) at every position in every fixture under `client/testFixture`:
+
+```bash
+npm run test:selection-ranges
+```
+
 To check that the falco wrapper recovers after the component fails, for example after a stack overflow on deeply nested VCL:
 
 ```bash
@@ -161,6 +167,7 @@ CI runs automatically on all pull requests via GitHub Actions with [Dagger](http
 - Colorization tests (`npm run test:colorization`)
 - Semantic tokens tests (`npm run test:semantic-tokens`)
 - falco recovery tests (`npm run test:falco`)
+- Selection ranges tests (`npm run test:selection-ranges`)
 - LSP e2e tests (`npm run test:e2e`)
 - Package building (`npm run package`)
 

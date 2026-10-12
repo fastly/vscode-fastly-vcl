@@ -63,12 +63,23 @@ function getSelectionRangeAtPosition(
   // Remove duplicate ranges (same start and end)
   const uniqueRanges = deduplicateRanges(containingRanges);
 
+  // Keep only ranges that contain the previous one. A larger range is not
+  // necessarily a parent: ranges that merely touch the cursor or partially
+  // overlap would make VS Code reject the whole chain.
+  const nestedRanges: NodeRange[] = [];
+  for (const nodeRange of uniqueRanges) {
+    const innermost = nestedRanges[nestedRanges.length - 1];
+    if (!innermost || rangeContainsRange(nodeRange.range, innermost.range)) {
+      nestedRanges.push(nodeRange);
+    }
+  }
+
   // Build the SelectionRange chain from innermost to outermost
   let selectionRange: SelectionRange | undefined;
 
-  for (let i = uniqueRanges.length - 1; i >= 0; i--) {
+  for (let i = nestedRanges.length - 1; i >= 0; i--) {
     selectionRange = {
-      range: uniqueRanges[i].range,
+      range: nestedRanges[i].range,
       parent: selectionRange,
     };
   }
@@ -218,14 +229,19 @@ function getNodeRange(node: ASTNode, doc: VclDocument): NodeRange | null {
     }
 
     case "STRING": {
-      // String literal
+      // String literal. Token.Position points at the opening quote and
+      // Literal excludes the quotes; Token.Offset is the length of the
+      // quote characters (2 for "...", 4 for {"..."})
       if (node.Token.Literal) {
         return {
           range: {
             start: { line: startLine, character: startChar },
             end: {
               line: startLine,
-              character: startChar + node.Token.Literal.length,
+              character:
+                startChar +
+                node.Token.Literal.length +
+                (node.Token.Offset || 0),
             },
           },
           type: tokenType,
@@ -366,6 +382,16 @@ function rangeContainsPosition(range: Range, position: Position): boolean {
     return false;
   }
   return true;
+}
+
+/**
+ * Checks if the outer range contains the inner range.
+ */
+function rangeContainsRange(outer: Range, inner: Range): boolean {
+  return (
+    rangeContainsPosition(outer, inner.start) &&
+    rangeContainsPosition(outer, inner.end)
+  );
 }
 
 /**

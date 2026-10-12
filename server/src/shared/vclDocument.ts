@@ -124,9 +124,10 @@ export class VclDocument {
       closed: 0,
     };
     for (let l = position.line; l < this._doc.lineCount; l++) {
+      // Blank out strings rather than removing them so columns stay correct
       const line = this.getLine({ line: l, character: 0 }).replace(
         /"([^"]*)"/g,
-        "",
+        (match) => " ".repeat(match.length),
       );
       br.open += (line.match(/\{/g) || []).length;
       br.closed += (line.match(/\}/g) || []).length;
