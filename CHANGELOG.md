@@ -31,11 +31,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Fixed
 
-- Fix Expand Selection being silently replaced by VS Code's generic word/bracket selection: the language server sometimes returned ranges that did not nest (string literals were two characters short, and ranges that only touched the cursor or partially overlapped were chained as parents), so VS Code rejected the whole response
-- Fix the end column of blocks whose closing brace follows a string literal on the same line (e.g. `acl internal { "10.0.0.0"/8; }`), which affected selection ranges and document symbol ranges
-
-### Fixed
-
 - Exclude server test output (`server/out/test/**`) from the packaged extension
 - Fix a language server crash on cyclic `include`s: the include that closes a cycle is now skipped when linting and reported as a warning on the main file's `include` that leads into it
 - Fix a language server crash when the linter fails on a file, for example a stack overflow on very deeply nested expressions: the failure is now reported as a warning on that file, the falco component is replaced with a fresh instance (a stack overflow can corrupt it, and its runtime could then end the server process), and unhandled promise rejections are logged instead of exiting the server
@@ -43,6 +38,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Fix documentation links for names containing underscores (e.g. `std.replace_prefix`) or placeholders (e.g. `backend.{NAME}.healthy`)
 - Fix intermittent CI failures where VS Code's renderer crashed during the end-to-end tests: the Dagger test container now has a 1 GiB `/dev/shm` instead of the default 64 MiB, which the renderer could exhaust
 - Fix stale version numbers in the README's install command and DEVELOPMENT.md's `vsce ls` step (which takes no `.vsix` argument)
+- Fix Expand Selection being silently replaced by VS Code's generic word/bracket selection: the language server sometimes returned ranges that did not nest (string literals were two characters short, and ranges that only touched the cursor or partially overlapped were chained as parents), so VS Code rejected the whole response
+- Fix the end column of blocks whose closing brace follows a string literal on the same line (e.g. `acl internal { "10.0.0.0"/8; }`), which affected selection ranges and document symbol ranges
 
 ## [2.0.8] - 2026-01-30
 
