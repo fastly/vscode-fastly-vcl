@@ -14,9 +14,12 @@ export class VscodeFastlyVcl {
    */
   @func()
   base(): Container {
+    // /dev/shm is enlarged from the default 64 MiB, which VS Code's renderer
+    // can exhaust during the e2e tests and then crash (code 133)
     return dag
       .container()
       .from("node:22-bookworm-slim")
+      .withMountedTemp("/dev/shm", { size: 1024 ** 3 })
       .withExec(["apt-get", "update"])
       .withExec([
         "apt-get",
