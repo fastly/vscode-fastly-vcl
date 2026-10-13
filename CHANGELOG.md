@@ -41,6 +41,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Fix a language server crash when the linter fails on a file, for example a stack overflow on very deeply nested expressions: the failure is now reported as a warning on that file, the falco component is replaced with a fresh instance (a stack overflow can corrupt it, and its runtime could then end the server process), and unhandled promise rejections are logged instead of exiting the server
 - Fix document symbols (Outline, breadcrumbs, Go to Symbol) being empty for any file containing an `include` statement; includes now appear as module symbols
 - Fix documentation links for names containing underscores (e.g. `std.replace_prefix`) or placeholders (e.g. `backend.{NAME}.healthy`)
+- Fix intermittent CI failures where VS Code's renderer crashed during the end-to-end tests: the Dagger test container now has a 1 GiB `/dev/shm` instead of the default 64 MiB, which the renderer could exhaust
 
 ## [2.0.8] - 2026-01-30
 
