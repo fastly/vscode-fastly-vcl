@@ -144,7 +144,12 @@ export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
   const backend = await loadBackend();
 
   const settings = await getDocumentSettings(vclDoc.uri);
-  if (!backend || !settings.lintingEnabled) {
+  if (!settings.lintingEnabled) {
+    // Clear any diagnostics published while linting was enabled.
+    connection.sendDiagnostics({ uri: vclDoc.uri, diagnostics: [] });
+    return;
+  }
+  if (!backend) {
     return;
   }
   const { lintText } = backend;
