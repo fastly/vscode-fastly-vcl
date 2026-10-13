@@ -42,6 +42,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Fix document symbols (Outline, breadcrumbs, Go to Symbol) being empty for any file containing an `include` statement; includes now appear as module symbols
 - Fix documentation links for names containing underscores (e.g. `std.replace_prefix`) or placeholders (e.g. `backend.{NAME}.healthy`)
 - Fix intermittent CI failures where VS Code's renderer crashed during the end-to-end tests: the Dagger test container now has a 1 GiB `/dev/shm` instead of the default 64 MiB, which the renderer could exhaust
+- Fix stale version numbers in the README's install command and DEVELOPMENT.md's `vsce ls` step (which takes no `.vsix` argument)
 
 ## [2.0.8] - 2026-01-30
 

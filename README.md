@@ -123,10 +123,10 @@ Alternatively, to install the extension from GitHub:
 
 Uninstall (or disable) any previously-enabled VCL extensions.
 
-Download the [latest GitHub release](https://github.com/fastly/vscode-fastly-vcl/releases/) and then run:
+Download the `.vsix` file from the [latest GitHub release](https://github.com/fastly/vscode-fastly-vcl/releases/) and then run (replacing `<version>` with the release version):
 
 ```bash
-code --install-extension vscode-fastly-vcl-2.0.4.vsix
+code --install-extension vscode-fastly-vcl-<version>.vsix
 ```
 
 ## Requirements
