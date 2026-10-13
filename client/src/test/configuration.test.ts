@@ -18,7 +18,7 @@ suite("Should respond to configuration changes", () => {
     await waitForDiagnosticsCount(docUri, (count) => count > 0);
   });
 
-  test.skip("Disabling linting clears diagnostics", async () => {
+  test("Disabling linting clears diagnostics", async () => {
     await activate(docUri);
 
     // Verify diagnostics exist with linting enabled (default)

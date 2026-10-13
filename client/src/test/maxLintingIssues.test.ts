@@ -80,10 +80,11 @@ async function waitForDiagnosticsToStabilize(
       }
     });
 
-    // Check periodically if diagnostics have stabilized
+    // Check periodically if diagnostics have arrived and stabilized
     const checkInterval = setInterval(() => {
       const timeSinceLastChange = Date.now() - lastChangeTime;
-      if (timeSinceLastChange >= stableMs) {
+      const hasDiagnostics = vscode.languages.getDiagnostics(docUri).length > 0;
+      if (hasDiagnostics && timeSinceLastChange >= stableMs) {
         clearInterval(checkInterval);
         disposable.dispose();
         resolve();

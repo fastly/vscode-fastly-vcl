@@ -38,6 +38,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Fix documentation links for names containing underscores (e.g. `std.replace_prefix`) or placeholders (e.g. `backend.{NAME}.healthy`)
 - Fix intermittent CI failures where VS Code's renderer crashed during the end-to-end tests: the Dagger test container now has a 1 GiB `/dev/shm` instead of the default 64 MiB, which the renderer could exhaust
 - Fix stale version numbers in the README's install command and DEVELOPMENT.md's `vsce ls` step (which takes no `.vsix` argument)
+- Fix `fastly.vcl.lintingEnabled` and `fastly.vcl.maxLintingIssues` changes not applying to already-open documents: changing a setting now re-lints every open document, and disabling linting clears its diagnostics; re-enable the previously skipped configuration test
 - Fix Expand Selection being silently replaced by VS Code's generic word/bracket selection: the language server sometimes returned ranges that did not nest (string literals were two characters short, and ranges that only touched the cursor or partially overlapped were chained as parents), so VS Code rejected the whole response
 - Fix the end column of blocks whose closing brace follows a string literal on the same line (e.g. `acl internal { "10.0.0.0"/8; }`), which affected selection ranges and document symbol ranges
 

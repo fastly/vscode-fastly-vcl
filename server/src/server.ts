@@ -140,8 +140,7 @@ connection.onDidChangeConfiguration((change) => {
   } else {
     globalConfig = <ConfigSettings>(change.settings.fastly.vcl || CONFIG);
   }
-  if (!documentCache.isEmpty() || !hasDiagnosticRelatedInformationCapability)
-    return;
+  if (documentCache.isEmpty()) return;
   // Revalidate all open documents.
   for (const document of documentCache.all()) {
     linter.validateVCLDocument(document);
