@@ -6,6 +6,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-10-14
+
+This release replaces the native falco binary with a bundled WebAssembly build. Breaking changes:
+
+- The `fastly.vcl.falcoPath` setting has been removed and is ignored if set
+- falco no longer reports unused subroutine parameters as warnings
+- Formatting now collapses consecutive blank lines between top-level declarations
+
 ### Added
 
 - Add a WASI Component Model linting backend (`falco-js/src/wasm.mjs`) wrapping the jco-transpiled falco component: reactor-style (instantiated once, called repeatedly on in-memory strings, no child process or temp files), platform-independent, and resolving `include` statements from a host-supplied in-memory module map (`includes` + `includePaths`)
