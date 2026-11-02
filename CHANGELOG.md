@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Changed
+
+- Update the transitive dev dependency `qs` to 6.17.1
+
 ## [4.0.0] - 2026-11-02
 
 This release runs the extension in VS Code's web worker extension host instead of Node, so it also works in vscode.dev and github.dev. Breaking changes:
