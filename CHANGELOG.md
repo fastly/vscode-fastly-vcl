@@ -6,6 +6,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+### Changed
+
+- Update the transitive dev dependency `qs` to 6.17.1
+- Update the transitive dev dependencies `@azure/identity` to 4.14.1 and `@azure/msal-node` to 7.1.2
+
 ## [4.0.0] - 2026-11-02
 
 This release runs the extension in VS Code's web worker extension host instead of Node, so it also works in vscode.dev and github.dev. Breaking changes:
