@@ -109,7 +109,7 @@ The LSP tests run in the same web worker extension host as the extension, so:
 
 - test code cannot use Node APIs; tests find their fixtures through the workspace folder (`client/testFixture`, opened by the test runners) and write files with `workspace.fs`
 - `scripts/bundle.mjs` bundles every `client/src/test/*.test.ts` into `client/dist/test/index.js`, using mocha's browser build
-- mocha must stay on version 11: mocha 12's browser build never finishes a run in VS Code's web worker extension host, so VS Code never exits
+- `scripts/bundle.mjs` bundles `mocha/mocha.js` as CommonJS: mocha 12's package is `"type": "module"`, and inlined as ESM the UMD header in `mocha.js` overwrites the e2e bundle's `module.exports`, so VS Code calls mocha's `run` instead of ours and never exits
 - on macOS, desktop runs create a socket at `.vscode-test/user-data/1.14-main.sock` inside the checkout, which must stay under 104 bytes: run them from a checkout with a short path
 
 ### Updating LSP metadata

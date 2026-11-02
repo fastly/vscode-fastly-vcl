@@ -15,7 +15,8 @@
 // (falco-js/component/THIRD_PARTY_LICENSES.txt, from scripts/falco-licenses.mjs).
 
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { readFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
 
 import * as esbuild from "esbuild";
 
@@ -24,6 +25,39 @@ const watch = process.argv.includes("--watch");
 const testFiles = readdirSync("client/src/test")
   .filter((f) => f.endsWith(".test.ts"))
   .sort();
+
+// mocha.js is a UMD script, but mocha 12's package.json says "type": "module",
+// so esbuild would inline it as ESM. Its UMD check would then find the test
+// bundle's own `module` and replace our exported `run` with the mocha instance,
+// and VS Code would never get the result. Loading it from another namespace
+// makes esbuild detect it as CommonJS and wrap it.
+const mochaAsCommonJs = {
+  name: "mocha-as-commonjs",
+  setup(build) {
+    build.onResolve({ filter: /^mocha\/mocha\.js$/ }, async (args) => {
+      if (args.pluginData === "mocha-as-commonjs") {
+        return undefined;
+      }
+      const result = await build.resolve(args.path, {
+        kind: args.kind,
+        resolveDir: args.resolveDir,
+        pluginData: "mocha-as-commonjs",
+      });
+      if (result.errors.length > 0) {
+        return { errors: result.errors };
+      }
+      return { path: result.path, namespace: "mocha-as-commonjs" };
+    });
+    build.onLoad(
+      { filter: /.*/, namespace: "mocha-as-commonjs" },
+      async (args) => ({
+        contents: await readFile(args.path, "utf8"),
+        loader: "js",
+        resolveDir: dirname(args.path),
+      }),
+    );
+  },
+};
 
 const common = {
   bundle: true,
@@ -58,6 +92,7 @@ const builds = [
     format: "cjs",
     external: ["vscode"],
     loader: { ".xml": "text" },
+    plugins: [mochaAsCommonJs],
     // The `assert` polyfill and its `util` dependency read these Node globals;
     // without `process.stderr`, building a failed assertion's message throws
     // "process is not defined" and hides the real failure.
