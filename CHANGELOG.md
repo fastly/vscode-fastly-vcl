@@ -11,8 +11,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Update the transitive dev dependency `qs` to 6.17.1
 - Update the transitive dev dependencies `@azure/identity` to 4.14.1 and `@azure/msal-node` to 7.1.2
 - Update the dev dependency mocha to 12.0.3 (and `serialize-javascript` to 7.1.4). The e2e bundle now bundles `mocha.js` as CommonJS: mocha 12's package is `"type": "module"`, so esbuild inlined it as ESM and its UMD header replaced the suite's exported `run`, which kept VS Code from exiting after the tests passed
-- Update the dev dependencies `@vscode/vsce` to 4.1.0, eslint to 10.14.0, typescript-eslint to 8.72.1 and `vscode-languageserver-textdocument` to 1.0.16
-- Pin `@types/vscode` to `~1.82.0` to match `engines.vscode`, so the type-checker rejects VS Code APIs newer than the minimum supported version
 
 ## [4.0.0] - 2026-11-02
 
