@@ -24,20 +24,19 @@
  * - `fastly.vcl.maxLintingIssues` - Maximum number of issues to report
  */
 
-import { fileURLToPath, pathToFileURL } from "node:url";
-import { join } from "node:path";
-
 import {
+  CancellationTokenSource,
   Diagnostic,
   DiagnosticSeverity,
   Position,
-} from "vscode-languageserver/node";
+} from "vscode-languageserver/browser";
 
 import { VclDocument } from "../shared/vclDocument";
-import { buildIncludeClosure } from "./includeClosure";
-import { importESM } from "../shared/esmImport";
+import { buildIncludeClosure, ReadFile, ReadResult } from "./includeClosure";
+import { LintTracker, SettleOptions } from "./lintTracker";
+import { documentCache } from "../shared/documentCache";
+import { lintText as falcoLintText } from "../../../falco-js/src/wasm.mjs";
 import { updateDocumentSymbols } from "../symbol-provider";
-import { debounce } from "../shared/utils";
 import { ASTNode } from "../shared/ast";
 
 import {
@@ -102,84 +101,105 @@ export interface LintResult {
   Vcl?: Vcl;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type LintTextFn = (text: string, options?: any) => Promise<LintResult>;
+const lintText = falcoLintText as (
+  ...args: Parameters<typeof falcoLintText>
+) => Promise<LintResult>;
 
-// The WASI component backend (wasm.mjs) is an ES module: falco-js is not a
-// workspace symlink and the component has top-level await, so it must be loaded
-// via a real dynamic import (see importESM) -- require() cannot load it. The
-// import (and the underlying 9.5 MB wasm compile) is memoized so it happens once.
-let backendPromise: Promise<{ lintText: LintTextFn } | null> | null = null;
-
-function loadBackend(): Promise<{ lintText: LintTextFn } | null> {
-  if (!backendPromise) {
-    const wasmUrl = pathToFileURL(
-      join(__dirname, "../../../falco-js/src/wasm.mjs"),
-    ).href;
-    backendPromise = importESM(wasmUrl).catch((e) => {
-      console.error(`Diagnostic service unavailable.`, e.message);
-      return null;
-    });
+/**
+ * Warm the linter backend: trigger the one-time wasm fetch and compile up
+ * front (e.g. at server init) so the first real lint isn't slow.
+ */
+export async function warmupLinter(): Promise<void> {
+  try {
+    await lintText("sub vcl_recv {\n#FASTLY RECV\n}\n", {});
+  } catch (e) {
+    // Real lints surface any genuine error; log so a missing component shows.
+    console.error("VCL linter warmup failed", e);
   }
-  return backendPromise;
+}
+
+// The server has no file system access, so files that are not open (included
+// modules) are read by the client through workspace.fs. Must match the
+// handler in client/src/extension.ts.
+const READ_FILE_REQUEST = "fastly.vcl/readFile";
+
+// buildIncludeClosure bounds how long reads take and aborts the ones it no
+// longer needs; cancel those requests so the client can drop them.
+const readFile: ReadFile = async (uri, signal) => {
+  const source = new CancellationTokenSource();
+  const cancel = () => source.cancel();
+  signal.addEventListener("abort", cancel, { once: true });
+  try {
+    return await connection.sendRequest<ReadResult>(
+      READ_FILE_REQUEST,
+      { uri },
+      source.token,
+    );
+  } finally {
+    signal.removeEventListener("abort", cancel);
+    source.dispose();
+  }
+};
+
+// VS Code caches document symbols per document version and LSP has no request
+// to refresh them, so a symbols request answered before the document's lint
+// finishes would leave the Outline empty until the next edit; requests wait
+// via lintSettled. Lints of one document can also overlap, since resolving
+// includes awaits the client; only the latest may publish.
+const lints = new LintTracker();
+
+export function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
+  const isLatest = lints.start(vclDoc.uri);
+  return lints.track(vclDoc.uri, lintDocument(vclDoc, isLatest));
 }
 
 /**
- * Warm the linter backend: trigger the dynamic import and the one-time wasm
- * compile up front (e.g. at server init) so the first real lint isn't slow.
+ * Wait for the document's lint in progress or queued after an edit, if any,
+ * so its AST is current. See LintTracker.settled for the options.
  */
-export async function warmupLinter(): Promise<void> {
-  const backend = await loadBackend();
-  if (!backend) {
-    return;
-  }
-  try {
-    await backend.lintText("sub vcl_recv {\n#FASTLY RECV\n}\n", {});
-  } catch {
-    // Warmup is best-effort; real lints surface any genuine error.
-  }
+export function lintSettled(
+  uri: string,
+  options?: SettleOptions,
+): Promise<void> {
+  return lints.settled(uri, options);
 }
 
-export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
-  const backend = await loadBackend();
+/**
+ * Stop a closed document's lint in progress from publishing, and drop its
+ * queued lint.
+ */
+export function forgetDocument(uri: string): void {
+  lints.forget(uri);
+}
 
-  const settings = await getDocumentSettings(vclDoc.uri);
-  if (!settings.lintingEnabled) {
-    // Clear any diagnostics published while linting was enabled.
-    connection.sendDiagnostics({ uri: vclDoc.uri, diagnostics: [] });
-    return;
-  }
-  if (!backend) {
-    return;
-  }
-  const { lintText } = backend;
+async function lintDocument(
+  vclDoc: VclDocument,
+  isLatest: () => boolean,
+): Promise<void> {
+  // Snapshot the text: getting settings and resolving includes await the
+  // client, during which the document can change.
+  const text = vclDoc.getText();
+  const version = vclDoc.doc.version;
+  // Publish only while this is the document's latest lint, for the same open
+  // document and text: a newer lint (after an edit or a settings change) or
+  // closing the document supersedes it, so its results or failure never
+  // replace newer ones, and the AST is never marked current for other text.
+  const isCurrent = () =>
+    isLatest() &&
+    documentCache.get(vclDoc.uri) === vclDoc &&
+    vclDoc.doc.version === version;
 
-  console.debug("lint", vclDoc.uri);
-  const vclDocPath = fileURLToPath(vclDoc.uri);
-
-  // The component has no filesystem, so resolve `include`d modules from disk /
-  // open buffers here and hand their contents to the linter.
-  const closure = buildIncludeClosure(vclDoc.getText(), vclDocPath);
-
-  // TODO: Cache the AST and walk it for context-aware completions, colorization, etc
-  let lintResult: LintResult;
   try {
-    lintResult = await lintText(vclDoc.getText(), {
-      vclFileName: vclDocPath,
-      diagnosticsOnly: false, // Set to false to return the full AST (for parseable VCL only)
-      includes: closure.includes,
-      // Over budget, no modules are supplied, so every include would be
-      // reported as unresolvable. The notice added below explains instead.
-      rules: closure.overBudget
-        ? { "include/module-load-failed": "IGNORE" }
-        : undefined,
-    });
+    await lintAndPublish(vclDoc, text, isLatest, isCurrent);
   } catch (e) {
-    // The component throws on fatal errors, such as a stack overflow on very
-    // deeply nested expressions. Keep the last good AST and symbols, and
+    // E.g. the component throws on fatal errors, such as a stack overflow on
+    // very deeply nested expressions. Keep the last good AST and symbols, and
     // replace any stale diagnostics with one saying linting failed.
     const reason = e instanceof Error ? e.message : String(e);
     console.error("lint failed", vclDoc.uri, e);
+    if (!isCurrent()) {
+      return;
+    }
     connection.sendDiagnostics({
       uri: vclDoc.uri,
       diagnostics: [
@@ -194,6 +214,47 @@ export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
         },
       ],
     });
+  }
+}
+
+async function lintAndPublish(
+  vclDoc: VclDocument,
+  text: string,
+  isLatest: () => boolean,
+  isCurrent: () => boolean,
+): Promise<void> {
+  const settings = await getDocumentSettings(vclDoc.uri);
+  if (!settings.lintingEnabled) {
+    // Clear any diagnostics published while linting was enabled.
+    if (isLatest()) {
+      connection.sendDiagnostics({ uri: vclDoc.uri, diagnostics: [] });
+    }
+    return;
+  }
+
+  console.debug("lint", vclDoc.uri);
+  // The main source's key in falco's results. Any unique name works; the URI
+  // also covers documents with no file path (untitled, virtual workspaces).
+  const vclDocPath = vclDoc.uri;
+
+  // The component has no filesystem, so resolve `include`d modules from open
+  // buffers / the client's file system here and hand their contents to the
+  // linter.
+  const closure = await buildIncludeClosure(text, vclDoc.uri, readFile);
+
+  // TODO: Cache the AST and walk it for context-aware completions, colorization, etc
+  const lintResult = await lintText(text, {
+    vclFileName: vclDocPath,
+    diagnosticsOnly: false, // Set to false to return the full AST (for parseable VCL only)
+    includes: closure.includes,
+    // Over budget, no modules are supplied, so every include would be
+    // reported as unresolvable. The notice added below explains instead.
+    rules: closure.overBudget
+      ? { "include/module-load-failed": "IGNORE" }
+      : undefined,
+  });
+
+  if (!isCurrent()) {
     return;
   }
 
@@ -282,7 +343,8 @@ export async function validateVCLDocument(vclDoc: VclDocument): Promise<void> {
   connection.sendDiagnostics({ uri: vclDoc.uri, diagnostics });
 }
 
-export const debouncedVCLLint = debounce(
-  validateVCLDocument,
-  DEBOUNCE_INTERVAL,
-);
+export function debouncedVCLLint(vclDoc: VclDocument): void {
+  lints.debounce(vclDoc.uri, DEBOUNCE_INTERVAL, () => {
+    validateVCLDocument(vclDoc);
+  });
+}

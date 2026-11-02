@@ -5,8 +5,7 @@
 
 import * as vscode from "vscode";
 import * as assert from "assert";
-import * as fs from "fs";
-import { getDocUri, getDocPath, activate } from "./helper";
+import { getDocUri, activate } from "./helper";
 
 suite("Should get diagnostics", () => {
   const docUri = getDocUri("diagnostics.vcl");
@@ -88,30 +87,40 @@ suite("Should survive linter failures", () => {
   const docUri = getDocUri("lintFailure.vcl");
 
   test("Reports a failed lint as a warning", async () => {
-    await testDiagnostics(docUri, [
-      {
-        message:
-          "The VCL linter failed on this file: Maximum call stack size exceeded",
-        range: toRange(0, 0, 0, 0),
-        severity: vscode.DiagnosticSeverity.Warning,
-        source: "vcl",
-      },
-    ]);
+    await activate(docUri);
+    const diagnostics = await waitForDiagnostics(docUri, 1);
+    assert.equal(diagnostics.length, 1);
+    const [diagnostic] = diagnostics;
+    // The stack overflow message is the JS engine's: V8 (Chromium, desktop),
+    // SpiderMonkey ("too much recursion") or JavaScriptCore.
+    assert.match(
+      diagnostic.message,
+      /^The VCL linter failed on this file: (Maximum call stack size exceeded|too much recursion)/,
+    );
+    assert.deepEqual(diagnostic.range, toRange(0, 0, 0, 0));
+    assert.equal(diagnostic.severity, vscode.DiagnosticSeverity.Warning);
   });
 });
 
 suite("Should lint alone when includes are over budget", () => {
   const docUri = getDocUri("overBudgetMain.vcl");
-  const modulePath = getDocPath("overBudgetModule.vcl");
+  const moduleUri = getDocUri("overBudgetModule.vcl");
 
   // Just over the server's 6 MiB include budget (MAX_TOTAL_SOURCE_BYTES).
-  suiteSetup(() => {
+  suiteSetup(async () => {
     const line = "# " + "x".repeat(1022) + "\n";
-    fs.writeFileSync(modulePath, line.repeat(6 * 1024 + 1));
+    await vscode.workspace.fs.writeFile(
+      moduleUri,
+      new TextEncoder().encode(line.repeat(6 * 1024 + 1)),
+    );
   });
 
-  suiteTeardown(() => {
-    fs.rmSync(modulePath, { force: true });
+  suiteTeardown(async () => {
+    try {
+      await vscode.workspace.fs.delete(moduleUri);
+    } catch {
+      // Already gone.
+    }
   });
 
   test("Reports only the skipped cross-file checks", async () => {
@@ -247,7 +256,8 @@ async function testDiagnostics(
 async function waitForDiagnostics(
   docUri: vscode.Uri,
   minCount: number,
-  timeout = 5000,
+  // Generous: on a cold start the first lints can take several seconds.
+  timeout = 30000,
 ): Promise<vscode.Diagnostic[]> {
   const start = Date.now();
   while (Date.now() - start < timeout) {

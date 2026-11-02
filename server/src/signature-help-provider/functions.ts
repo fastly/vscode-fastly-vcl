@@ -3,7 +3,7 @@ import {
   SignatureHelp,
   SignatureInformation,
   MarkupKind,
-} from "vscode-languageserver/node";
+} from "vscode-languageserver/browser";
 
 import { slugify, DOCS_URL, ensureFullStop } from "../shared/utils";
 import { documentCache } from "../shared/documentCache";

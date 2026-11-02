@@ -13,8 +13,11 @@
       "args": [
         "--extensionDevelopmentPath=${workspaceRoot}"
       ],
+      // The extension is browser-only: it runs in the web worker extension
+      // host, so debug that instead of the Node one.
+      "debugWebWorkerHost": true,
       "outFiles": [
-        "${workspaceRoot}/client/out/**/*.js"
+        "${workspaceRoot}/client/dist/**/*.js"
       ],
       "preLaunchTask": {
         "type": "npm",
@@ -28,12 +31,17 @@
       "runtimeExecutable": "${execPath}",
       "args": [
         "--extensionDevelopmentPath=${workspaceRoot}",
-        "--extensionTestsPath=${workspaceRoot}/client/out/test/index",
+        "--extensionTestsPath=${workspaceRoot}/client/dist/test/index.js",
         "${workspaceRoot}/client/testFixture"
       ],
+      "debugWebWorkerHost": true,
       "outFiles": [
-        "${workspaceRoot}/client/out/test/**/*.js"
-      ]
+        "${workspaceRoot}/client/dist/**/*.js"
+      ],
+      "preLaunchTask": {
+        "type": "npm",
+        "script": "build"
+      }
     }
   ]
 }

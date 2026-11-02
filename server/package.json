@@ -7,18 +7,14 @@
 		"url": "https://github.com/fastly/vscode-fastly-vcl.git"
 	},
 	"license": "MIT",
-	"engines": {
-		"node": "*"
-	},
-	"main": "./out/server",
 	"version": "0.4.0",
-	"dependencies": {
-		"vscode-languageserver": "^9.0.1",
-		"vscode-languageserver-textdocument": "^1.0.15"
-	},
 	"scripts": {
 		"build": "tsc -b",
 		"compile": "tsc -b",
 		"watch": "tsc -b -w"
+	},
+	"devDependencies": {
+		"vscode-languageserver": "^9.0.1",
+		"vscode-languageserver-textdocument": "^1.0.15"
 	}
 }

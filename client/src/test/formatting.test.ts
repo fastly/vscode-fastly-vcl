@@ -1,8 +1,9 @@
 import * as vscode from "vscode";
 import * as assert from "assert";
-import * as path from "path";
-import * as fs from "fs";
 import { getDocUri, activate } from "./helper";
+// Bundled as text (see scripts/bundle.mjs): the tests run in a web worker.
+import expectedBefore from "../../../test/formatting-results/formatting.vcl.before.xml";
+import expectedAfter from "../../../test/formatting-results/formatting.vcl.after.xml";
 
 interface DecodedToken {
   line: number;
@@ -11,16 +12,6 @@ interface DecodedToken {
   tokenType: string;
   tokenModifiers: string[];
 }
-
-// Path to expected XML results
-const formattingResultsPath = path.join(
-  __dirname,
-  "..",
-  "..",
-  "..",
-  "test",
-  "formatting-results",
-);
 
 suite("Should format documents", () => {
   const docUri = getDocUri("formatting.vcl");
@@ -67,14 +58,15 @@ suite("Should format documents", () => {
       );
 
       // Revert the changes for other tests
-      await vscode.commands.executeCommand("undo");
+      await restoreText(doc, originalText);
     }
   });
 
   test("Returns empty array when document is already formatted", async () => {
     // Format the document first
     await activate(docUri);
-    await vscode.workspace.openTextDocument(docUri);
+    const doc = await vscode.workspace.openTextDocument(docUri);
+    const originalText = doc.getText();
 
     // Format once
     const firstEdits = (await vscode.commands.executeCommand(
@@ -102,7 +94,7 @@ suite("Should format documents", () => {
       );
 
       // Revert for other tests
-      await vscode.commands.executeCommand("undo");
+      await restoreText(doc, originalText);
     }
   });
 
@@ -111,7 +103,8 @@ suite("Should format documents", () => {
   test("Semantic tokens match expected XML before and after formatting", async () => {
     await activate(docUri);
 
-    await vscode.workspace.openTextDocument(docUri);
+    const doc = await vscode.workspace.openTextDocument(docUri);
+    const originalText = doc.getText();
 
     // Wait for initial semantic tokens (linter needs to run first)
     await new Promise((resolve) => setTimeout(resolve, 1500));
@@ -119,13 +112,6 @@ suite("Should format documents", () => {
 
     // Get XML before formatting
     const xmlBefore = await renderTokensAsXml(docUri);
-
-    // Load expected "before" XML
-    const expectedBeforePath = path.join(
-      formattingResultsPath,
-      "formatting.vcl.before.xml",
-    );
-    const expectedBefore = fs.readFileSync(expectedBeforePath, "utf-8");
 
     // Compare before formatting
     assert.strictEqual(
@@ -157,13 +143,6 @@ suite("Should format documents", () => {
     // Get XML after formatting
     const xmlAfter = await renderTokensAsXml(docUri);
 
-    // Load expected "after" XML
-    const expectedAfterPath = path.join(
-      formattingResultsPath,
-      "formatting.vcl.after.xml",
-    );
-    const expectedAfter = fs.readFileSync(expectedAfterPath, "utf-8");
-
     // Compare after formatting
     assert.strictEqual(
       xmlAfter.trim(),
@@ -172,7 +151,7 @@ suite("Should format documents", () => {
     );
 
     // Revert for other tests
-    await vscode.commands.executeCommand("undo");
+    await restoreText(doc, originalText);
   }).timeout(15000);
 });
 
@@ -310,4 +289,16 @@ async function renderTokensAsXml(docUri: vscode.Uri): Promise<string> {
   }
 
   return lines.join("\n");
+}
+
+// Put back a document's text. Unlike the "undo" command, this does not depend
+// on the editor having focus, which a desktop test window may not have.
+async function restoreText(doc: vscode.TextDocument, text: string) {
+  const edit = new vscode.WorkspaceEdit();
+  edit.replace(
+    doc.uri,
+    new vscode.Range(doc.positionAt(0), doc.positionAt(doc.getText().length)),
+    text,
+  );
+  await vscode.workspace.applyEdit(edit);
 }

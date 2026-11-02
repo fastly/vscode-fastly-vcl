@@ -15,7 +15,7 @@
  * which are generated from Fastly's official VCL documentation.
  */
 
-import { Hover, HoverParams } from "vscode-languageserver/node";
+import { Hover, HoverParams } from "vscode-languageserver/browser";
 
 import { documentCache } from "../shared/documentCache";
 import { HEADER_RX } from "../shared/utils";

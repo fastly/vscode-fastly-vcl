@@ -27,7 +27,10 @@
  *    the function description, available subroutine scope, and a link to the
  *    Fastly documentation.
  */
-import { SignatureHelpParams, SignatureHelp } from "vscode-languageserver/node";
+import {
+  SignatureHelpParams,
+  SignatureHelp,
+} from "vscode-languageserver/browser";
 
 import * as functions from "./functions";
 

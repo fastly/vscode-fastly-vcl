@@ -1,38 +1,34 @@
-import * as path from "path";
-import Mocha from "mocha";
-import { glob } from "node:fs";
+// Test runner for the e2e suite. It runs in the extension's host, which for a
+// browser-only extension is a web worker on desktop and on the web, so it uses
+// mocha's browser build. scripts/bundle.mjs bundles this file followed by every
+// *.test.ts file into client/dist/test/index.js.
+//
+// mocha 12's browser build never completes a run in VS Code's web worker
+// extension host (the run callback never fires, so VS Code never exits); stay
+// on mocha 11.
+import "mocha/mocha.js";
+
+mocha.setup({
+  ui: "tdd",
+  // The default HTML reporter needs a DOM; without one mocha logs to the console.
+  reporter: undefined,
+  color: true,
+  timeout: 100000,
+});
 
 export function run(): Promise<void> {
-  const mocha = new Mocha({
-    ui: "tdd",
-    color: true,
-  });
-  mocha.timeout(100000);
-
-  const testsRoot = __dirname;
-
   return new Promise((resolve, reject) => {
-    glob("**.test.js", { cwd: testsRoot }, (err, files) => {
-      if (err) {
-        return reject(err);
-      }
-
-      // Add files to the test suite
-      files.forEach((f) => mocha.addFile(path.resolve(testsRoot, f)));
-
-      try {
-        // Run the mocha test
-        mocha.run((failures: number) => {
-          if (failures > 0) {
-            reject(new Error(`${failures} tests failed.`));
-          } else {
-            resolve();
-          }
-        });
-      } catch (err) {
-        console.error(err);
-        reject(err);
-      }
-    });
+    try {
+      mocha.run((failures: number) => {
+        if (failures > 0) {
+          reject(new Error(`${failures} tests failed.`));
+        } else {
+          resolve();
+        }
+      });
+    } catch (err) {
+      console.error(err);
+      reject(err);
+    }
   });
 }

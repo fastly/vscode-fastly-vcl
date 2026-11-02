@@ -1,5 +1,3 @@
-import * as fs from "fs";
-
 export function slugify(str: string): string {
   // Docs URLs drop placeholders: backend.{NAME}.healthy -> backend-healthy
   return str

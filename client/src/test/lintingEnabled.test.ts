@@ -5,7 +5,7 @@
 
 import * as vscode from "vscode";
 import * as assert from "assert";
-import { getDocUri, activate } from "./helper";
+import { getDocUri, activate, waitForDiagnosticsCount } from "./helper";
 
 suite("Should respect lintingEnabled setting", () => {
   // Use dedicated fixture to avoid conflicts with other tests
@@ -54,33 +54,3 @@ suite("Should respect lintingEnabled setting", () => {
     });
   });
 });
-
-async function waitForDiagnosticsCount(
-  docUri: vscode.Uri,
-  predicate: (count: number) => boolean,
-  timeout = 5000,
-): Promise<boolean> {
-  return new Promise((resolve) => {
-    // Check immediately
-    if (predicate(vscode.languages.getDiagnostics(docUri).length)) {
-      resolve(true);
-      return;
-    }
-
-    // Listen for changes
-    const disposable = vscode.languages.onDidChangeDiagnostics((e) => {
-      if (e.uris.some((uri) => uri.toString() === docUri.toString())) {
-        if (predicate(vscode.languages.getDiagnostics(docUri).length)) {
-          disposable.dispose();
-          resolve(true);
-        }
-      }
-    });
-
-    // Timeout
-    setTimeout(() => {
-      disposable.dispose();
-      resolve(predicate(vscode.languages.getDiagnostics(docUri).length));
-    }, timeout);
-  });
-}

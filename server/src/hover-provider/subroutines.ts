@@ -1,4 +1,4 @@
-import { Hover, MarkupKind } from "vscode-languageserver/node";
+import { Hover, MarkupKind } from "vscode-languageserver/browser";
 
 import {
   slugify,

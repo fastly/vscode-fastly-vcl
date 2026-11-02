@@ -1,11 +1,13 @@
 import {
+  BrowserMessageReader,
+  BrowserMessageWriter,
   createConnection,
   ProposedFeatures,
   InitializeParams,
   DidChangeConfigurationNotification,
   TextDocumentSyncKind,
   InitializeResult,
-} from "vscode-languageserver/node";
+} from "vscode-languageserver/browser";
 
 import { ConfigSettings, CONFIG } from "./config";
 import { documentCache } from "./shared/documentCache";
@@ -25,17 +27,26 @@ import * as selectionRangeProvider from "./selection-range-provider";
 import * as semanticTokensProvider from "./semantic-tokens-provider";
 import * as formattingProvider from "./formatting-provider";
 import * as linter from "./linter";
+import { setComponentBaseUrl } from "../../falco-js/src/wasm.mjs";
 
-// Create a connection for the server (Node-IPC transport).
-export const connection = createConnection(ProposedFeatures.all);
+// The server runs in a Web Worker started by the client; messages arrive on
+// the worker's global scope.
+export const connection = createConnection(
+  ProposedFeatures.all,
+  new BrowserMessageReader(self),
+  new BrowserMessageWriter(self),
+);
 
-// Node exits on an unhandled rejection by default. Log it instead, so one
-// failed request cannot take the server down; VS Code stops restarting it after
-// a few crashes. Older jco glue for the falco component leaked such a rejection
-// after a stack overflow inside it, even when the caller handled the error;
-// this keeps a regression there from killing the server.
-process.on("unhandledRejection", (reason) => {
-  console.error("Unhandled rejection in the VCL language server:", reason);
+// Log unhandled rejections with context instead of leaving them to the
+// browser's generic "Uncaught (in promise)". Older jco glue for the falco
+// component leaked such a rejection after a stack overflow inside it, even when
+// the caller handled the error.
+self.addEventListener("unhandledrejection", (event) => {
+  event.preventDefault();
+  console.error(
+    "Unhandled rejection in the VCL language server:",
+    event.reason,
+  );
 });
 
 let globalConfig: ConfigSettings = CONFIG;
@@ -45,6 +56,13 @@ export let hasDiagnosticRelatedInformationCapability = false;
 
 connection.onInitialize((params: InitializeParams) => {
   const capabilities = params.capabilities;
+
+  // The worker cannot locate the falco component itself (its location is a
+  // blob: URL inside VS Code), so the client says where it is.
+  const falcoComponentUrl = params.initializationOptions?.falcoComponentUrl;
+  if (typeof falcoComponentUrl === "string") {
+    setComponentBaseUrl(falcoComponentUrl);
+  }
 
   // If client doesn't support the `workspace/configuration`, fall back on global settings.
   hasConfigurationCapability = !!capabilities.workspace?.configuration;
@@ -140,12 +158,18 @@ connection.onDidChangeConfiguration((change) => {
   } else {
     globalConfig = <ConfigSettings>(change.settings.fastly.vcl || CONFIG);
   }
-  if (documentCache.isEmpty()) return;
-  // Revalidate all open documents.
+  relintAll();
+});
+
+function relintAll(): void {
   for (const document of documentCache.all()) {
     linter.validateVCLDocument(document);
   }
-});
+}
+
+// Sent by the client when the workspace becomes trusted, so includes it could
+// not read in Restricted Mode resolve. Must match client/src/extension.ts.
+connection.onNotification("fastly.vcl/relint", relintAll);
 
 connection.onDidOpenTextDocument((params) => {
   // Lint the newly opened document.
@@ -167,6 +191,7 @@ connection.onDidCloseTextDocument((params) => {
   // Only cache open documents and their settings.
   documentSettings.delete(params.textDocument.uri);
   documentCache.delete(params.textDocument.uri);
+  linter.forgetDocument(params.textDocument.uri);
 });
 
 connection.onCompletion(completionsProvider.query);
@@ -179,7 +204,20 @@ connection.onHover(hoverProvider.resolve);
 
 connection.onDefinition(definitionProvider.resolve);
 
-connection.onDocumentSymbol((params) => {
+// How long a symbols request waits for the lint once the document has symbols.
+const SYMBOLS_LINT_WAIT = 10_000;
+
+connection.onDocumentSymbol(async (params, token) => {
+  // Symbols come from the lint's AST, and VS Code keeps the answer for the
+  // document's version, so wait for the lint. Until the document's first lint
+  // finishes, wait for as long as it takes (e.g. the falco component's first
+  // download on the web): answering early would leave the Outline empty.
+  // After that, a slow lint only delays updates, so stop waiting after a while.
+  const uri = params.textDocument.uri;
+  await linter.lintSettled(uri, {
+    token,
+    timeout: documentCache.get(uri)?.AST ? SYMBOLS_LINT_WAIT : undefined,
+  });
   const document = documentCache.get(params.textDocument.uri);
   if (!document) return [];
   return symbolProvider.getSymbolInformation(document);

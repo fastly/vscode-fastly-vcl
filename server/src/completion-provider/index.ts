@@ -32,7 +32,7 @@ import {
   CompletionItem,
   CompletionItemKind,
   TextDocumentPositionParams,
-} from "vscode-languageserver/node";
+} from "vscode-languageserver/browser";
 
 import { documentCache } from "../shared/documentCache";
 

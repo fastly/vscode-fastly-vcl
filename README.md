@@ -111,6 +111,16 @@ Smart expanding selection lets you progressively select larger syntactic units u
 
 ![Selection ranges](images/selection-ranges.gif)
 
+## VS Code for the Web
+
+The extension runs entirely in the browser, so it also works in [vscode.dev](https://vscode.dev) and [github.dev](https://github.dev): open a repository with `.vcl` files and you get the same highlighting, completion, linting and formatting as on the desktop. `include`d files are read from the workspace.
+
+## Remote windows and Restricted Mode
+
+In remote windows (Remote-SSH, WSL, Dev Containers, Codespaces) the extension runs on your machine and reads `include`d files through the remote connection. Install it locally rather than on the remote host: it can't start when installed on the remote, for example from a dev container's `extensions` list.
+
+In an untrusted workspace ([Restricted Mode](https://code.visualstudio.com/docs/editor/workspace-trust)) the extension reads `include`d files only inside the workspace folders. Includes elsewhere are reported as missing until you trust the workspace.
+
 ## Installation
 
 ### From Marketplace
@@ -131,7 +141,7 @@ code --install-extension vscode-fastly-vcl-<version>.vsix
 
 ## Requirements
 
-[NodeJS](https://nodejs.org) LTS.
+Visual Studio Code 1.82 or later, or VS Code for the Web. Nothing else: the linter and formatter ([falco](https://github.com/ysugimoto/falco)) are built in.
 
 ## Extension Settings
 

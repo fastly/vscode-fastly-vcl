@@ -25,6 +25,17 @@ export interface WasmFormatOptions {
   config?: Record<string, unknown>;
 }
 
+export interface ComponentLoadOptions {
+  /** Ms to download a core module before the call fails (default: 60000). */
+  loadTimeout?: number;
+}
+
+/** Directory URL holding the component's core wasm modules (default: ../component). */
+export function setComponentBaseUrl(
+  url: string | URL,
+  options?: ComponentLoadOptions,
+): void;
+
 export function lintText(
   text: string,
   options?: WasmLintOptions,

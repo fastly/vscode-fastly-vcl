@@ -10,8 +10,15 @@
  *
  * Resolution mirrors falco's FileResolver: a module `"x"` is looked up as
  * `x.vcl` (extension optional) relative to the including file's directory and
- * each configured include path. Open/edited buffers are preferred over disk so
- * unsaved edits to an included file are linted.
+ * each configured include path. Open/edited buffers are preferred over the
+ * file system so unsaved edits to an included file are linted. Other files are
+ * read by the caller-supplied `readFile` (the client, via `workspace.fs`), and
+ * all locations are URIs.
+ *
+ * Reads go to the client and can be slow (a remote or network file system), so
+ * each file is read at most once per closure, the includes of a file are
+ * resolved concurrently, and reads not finished by a deadline count as
+ * missing files and are cancelled.
  *
  * The component has no guard against cyclic includes: it recurses until the
  * JS stack overflows, which kills the language server. So after collecting the
@@ -20,10 +27,35 @@
  * cycle so the caller can surface it.
  */
 
-import { readFileSync } from "node:fs";
-import { dirname, join, isAbsolute } from "node:path";
-
 import { documentCache } from "../shared/documentCache";
+import { dirnameUri, isAbsolutePath, resolveUri, uriKey } from "../shared/uri";
+
+/** The result of reading a file that is too large to lint. */
+export interface TooLarge {
+  tooLarge: true;
+}
+
+/** A file's text, TooLarge, or null if it cannot be read. */
+export type ReadResult = string | TooLarge | null;
+
+/**
+ * Read a file by URI. `signal` aborts when the result is no longer needed.
+ */
+export type ReadFile = (
+  uri: string,
+  signal: AbortSignal,
+) => Promise<ReadResult>;
+
+const isTooLarge = (result: unknown): result is TooLarge =>
+  typeof result === "object" &&
+  result !== null &&
+  (result as TooLarge).tooLarge === true;
+
+/** Default time, in ms, for reading all of a closure's files. */
+export const INCLUDE_READ_DEADLINE = 5000;
+
+const encoder = new TextEncoder();
+const byteLength = (text: string) => encoder.encode(text).length;
 
 // Conservative cap below the component's effective per-call input limit (a
 // 16 MiB bump arena, roughly halved by the canonical-ABI lowering buffer), with
@@ -33,6 +65,8 @@ export const MAX_TOTAL_SOURCE_BYTES = 6 * 1024 * 1024;
 // Matches `include "module";` -- the module name as written (slashes allowed,
 // quotes excluded), plus the optional trailing semicolon so a blanked include
 // leaves no stray `;`. Mirrors the pattern the native falco-js wrapper used.
+// Only use it through matchAll (findIncludes), which iterates a copy: closures
+// are built concurrently and must not share its lastIndex.
 const INCLUDE_RE = /include\s+"([^"]+)"(?:\s*;)?/g;
 
 export interface IncludeCycle {
@@ -136,97 +170,180 @@ function breakCycles(
   return cycles;
 }
 
-/** Prefer an open/edited buffer; otherwise read a fresh copy from disk. */
-function readSource(path: string): string | null {
-  const cached = documentCache.findByPath(path);
-  if (cached) {
-    return cached.getText();
-  }
-  try {
-    return readFileSync(path, "utf8");
-  } catch {
-    return null;
-  }
+type Read = (uri: string) => Promise<ReadResult>;
+
+/**
+ * A reader for one closure: prefers an open/edited buffer, otherwise reads a
+ * fresh copy, at most once per file. Once `signal` aborts, reads in flight and
+ * later ones count as missing.
+ */
+function closureReader(readFile: ReadFile, signal: AbortSignal): Read {
+  const results = new Map<string, Promise<ReadResult>>();
+  const aborted = new Promise<null>((resolve) => {
+    if (signal.aborted) {
+      resolve(null);
+    } else {
+      signal.addEventListener("abort", () => resolve(null), { once: true });
+    }
+  });
+
+  const read = async (uri: string): Promise<ReadResult> => {
+    const cached = documentCache.findByUri(uri);
+    if (cached) {
+      return cached.getText();
+    }
+    if (signal.aborted) {
+      return null;
+    }
+    try {
+      const result = await Promise.race([readFile(uri, signal), aborted]);
+      return typeof result === "string" || isTooLarge(result) ? result : null;
+    } catch {
+      return null;
+    }
+  };
+
+  return (uri) => {
+    const key = uriKey(uri);
+    let result = results.get(key);
+    if (!result) {
+      result = read(uri);
+      results.set(key, result);
+    }
+    return result;
+  };
 }
 
 /** Resolve a module name to a file, mirroring falco's FileResolver search. */
-function resolveModule(
+async function resolveModule(
   module: string,
-  includerDir: string,
-  includePaths: string[],
-): { path: string; content: string } | null {
+  includerDir: string | null,
+  includeDirs: string[],
+  read: Read,
+): Promise<{ uri: string; content: string } | TooLarge | null> {
   const bases = module.endsWith(".vcl") ? [module] : [`${module}.vcl`, module];
 
+  // The includer's directory is often also a search directory.
+  const candidates = new Map<string, string>();
   for (const base of bases) {
-    if (isAbsolute(base)) {
-      const content = readSource(base);
-      if (content !== null) {
-        return { path: base, content };
-      }
-      continue;
-    }
-    for (const dir of [includerDir, ...includePaths]) {
-      const path = join(dir, base);
-      const content = readSource(path);
-      if (content !== null) {
-        return { path, content };
+    const dirs = isAbsolutePath(base)
+      ? [includerDir]
+      : [includerDir, ...includeDirs];
+    for (const dir of dirs) {
+      const uri = resolveUri(base, dir);
+      if (uri !== null && !candidates.has(uriKey(uri))) {
+        candidates.set(uriKey(uri), uri);
       }
     }
   }
+
+  // In order: the first candidate that exists wins.
+  for (const uri of candidates.values()) {
+    const content = await read(uri);
+    if (isTooLarge(content)) {
+      return content;
+    }
+    if (content !== null) {
+      return { uri, content };
+    }
+  }
   return null;
+}
+
+export interface IncludeClosureOptions {
+  /** Time in ms for all reads; later ones count as missing files. */
+  deadline?: number;
 }
 
 /**
  * Collect the contents of every module reachable from `mainText`.
  *
  * @param mainText - The main document's source.
- * @param mainPath - The main document's filesystem path (its directory is the
- *   primary include search root).
- * @param configuredIncludePaths - Additional include search directories.
+ * @param mainUri - The main document's URI (its directory is the primary
+ *   include search root).
+ * @param readFile - Reads files that are not open in the editor.
+ * @param configuredIncludeDirs - Additional include search directory URIs.
+ * @param options - See IncludeClosureOptions.
  */
-export function buildIncludeClosure(
+export async function buildIncludeClosure(
   mainText: string,
-  mainPath: string,
-  configuredIncludePaths: string[] = [],
-): IncludeClosure {
-  const mainDir = dirname(mainPath);
-  const includePaths = [mainDir, ...configuredIncludePaths];
+  mainUri: string,
+  readFile: ReadFile,
+  configuredIncludeDirs: string[] = [],
+  { deadline = INCLUDE_READ_DEADLINE }: IncludeClosureOptions = {},
+): Promise<IncludeClosure> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), deadline);
+  try {
+    return await collect(
+      mainText,
+      mainUri,
+      closureReader(readFile, controller.signal),
+      configuredIncludeDirs,
+    );
+  } finally {
+    clearTimeout(timer);
+    // Cancel reads still in flight, e.g. after going over budget.
+    controller.abort();
+  }
+}
+
+async function collect(
+  mainText: string,
+  mainUri: string,
+  read: Read,
+  configuredIncludeDirs: string[],
+): Promise<IncludeClosure> {
+  const mainDir = dirnameUri(mainUri);
+  const includeDirs = [
+    ...(mainDir === null ? [] : [mainDir]),
+    ...configuredIncludeDirs,
+  ];
   const includes: Record<string, string> = {};
   const seen = new Set<string>();
-  let totalBytes = Buffer.byteLength(mainText, "utf8");
+  let totalBytes = byteLength(mainText);
 
-  const queue: Array<{ text: string; dir: string }> = [
+  // Breadth-first, one level of the include graph at a time: the modules a
+  // level includes are resolved concurrently, then taken in order, so the
+  // first include of a module name wins as in a sequential walk.
+  let level: Array<{ text: string; dir: string | null }> = [
     { text: mainText, dir: mainDir },
   ];
 
-  while (queue.length > 0) {
-    const item = queue.shift();
-    if (!item) {
-      break;
-    }
-    const { text, dir } = item;
-    INCLUDE_RE.lastIndex = 0;
-    let match: RegExpExecArray | null;
-    while ((match = INCLUDE_RE.exec(text)) !== null) {
-      const module = match[1];
-      if (seen.has(module)) {
-        continue;
+  while (level.length > 0) {
+    const wanted: Array<{ module: string; dir: string | null }> = [];
+    for (const { text, dir } of level) {
+      for (const { module } of findIncludes(text)) {
+        if (!seen.has(module)) {
+          seen.add(module);
+          wanted.push({ module, dir });
+        }
       }
-      seen.add(module);
+    }
+    const resolved = await Promise.all(
+      wanted.map(({ module, dir }) =>
+        resolveModule(module, dir, includeDirs, read),
+      ),
+    );
 
-      const resolved = resolveModule(module, dir, includePaths);
-      if (!resolved) {
+    level = [];
+    for (const [i, { module }] of wanted.entries()) {
+      const found = resolved[i];
+      if (!found) {
         // Unresolved: let the component report it in-band as it lints.
         continue;
       }
 
-      totalBytes += Buffer.byteLength(resolved.content, "utf8");
+      if (isTooLarge(found)) {
+        return { includes: {}, overBudget: true, cycles: [] };
+      }
+      totalBytes += byteLength(found.content);
       if (totalBytes > MAX_TOTAL_SOURCE_BYTES) {
         return { includes: {}, overBudget: true, cycles: [] };
       }
 
-      includes[module] = resolved.content;
-      queue.push({ text: resolved.content, dir: dirname(resolved.path) });
+      includes[module] = found.content;
+      level.push({ text: found.content, dir: dirnameUri(found.uri) });
     }
   }
 

@@ -63,8 +63,10 @@ function assertUnchangedTokens(testFixurePath, done) {
     }, done);
 }
 
+// Only themes in the stored results count: themes new in VS Code are added
+// to the results file without failing.
 function hasThemeChange(d, p) {
-  let keys = Object.keys(d);
+  let keys = Object.keys(p);
   for (let key of keys) {
     if (d[key] !== p[key]) {
       return true;

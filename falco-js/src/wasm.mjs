@@ -21,8 +21,11 @@
 // `includePaths`); the component itself walks the include graph transitively.
 // See ../component (built with `make wasm-component` on the falco branch named
 // in DEVELOPMENT.md, "Updating falco") and resolver/map.go in that repo.
-
-import { readFile } from "node:fs/promises";
+//
+// Runs in Node and in browsers (including VS Code's web worker extension host).
+// In a bundled classic worker `import.meta.url` is unavailable and the worker's
+// own location is a blob: URL, so the host passes the component's location via
+// setComponentBaseUrl().
 
 import {
   environment,
@@ -75,15 +78,76 @@ const wasiImports = {
   "wasi:random/random": random,
 };
 
+let componentBaseUrl = null;
+
+// A download that takes longer (a stalled connection) fails, so the next call
+// retries it instead of every call waiting forever. The modules are ~10 MB.
+const DEFAULT_LOAD_TIMEOUT = 60_000;
+let loadTimeout = DEFAULT_LOAD_TIMEOUT;
+
 // Compile each core module once; instances are cheap to recreate from them.
 const coreModules = new Map();
+
+/**
+ * Set the URL of the directory holding the component's core wasm modules.
+ * Defaults to ../component next to this file. Call before the first lint.
+ *
+ * @param {string | URL} url - Directory URL; a trailing slash is added if missing.
+ * @param {object} [opts]
+ * @param {number} [opts.loadTimeout=60000] - Ms to download a module before
+ *   the call fails (and the next one retries).
+ */
+export function setComponentBaseUrl(
+  url,
+  { loadTimeout: timeout = DEFAULT_LOAD_TIMEOUT } = {},
+) {
+  const href = String(url);
+  componentBaseUrl = new URL(href.endsWith("/") ? href : `${href}/`);
+  loadTimeout = timeout;
+  // Never reuse modules or an instance loaded from the previous location.
+  coreModules.clear();
+  instancePromise = null;
+}
+
+async function readBytes(url) {
+  if (url.protocol === "file:" && globalThis.process?.versions?.node) {
+    const { readFile } = await import("node:fs/promises");
+    return readFile(url);
+  }
+  // In desktop VS Code's web worker extension host the URL is a file: URL. VS
+  // Code wraps the workers an extension starts so that fetch rewrites file: to
+  // vscode-file:, which serves extension files (as it does for the worker's
+  // own script).
+  const signal = AbortSignal.timeout(loadTimeout);
+  try {
+    const response = await fetch(url, { signal });
+    if (!response.ok) {
+      throw new Error(`Failed to load ${url}: HTTP ${response.status}`);
+    }
+    return new Uint8Array(await response.arrayBuffer());
+  } catch (e) {
+    if (signal.aborted) {
+      throw new Error(`Timed out loading ${url} after ${loadTimeout} ms`);
+    }
+    throw e;
+  }
+}
+
 function getCoreModule(name) {
   if (!coreModules.has(name)) {
-    const url = new URL(`../component/${name}`, import.meta.url);
-    coreModules.set(
-      name,
-      readFile(url).then((bytes) => WebAssembly.compile(bytes)),
+    const base = componentBaseUrl ?? new URL("../component/", import.meta.url);
+    const compiled = readBytes(new URL(name, base)).then((bytes) =>
+      WebAssembly.compile(bytes),
     );
+    // After a failed load (e.g. a network error or a stall on the web), forget
+    // every load so the next lint retries them instead of failing forever or
+    // waiting on downloads that stalled along with this one.
+    compiled.catch(() => {
+      if (coreModules.get(name) === compiled) {
+        coreModules.clear();
+      }
+    });
+    coreModules.set(name, compiled);
   }
   return coreModules.get(name);
 }

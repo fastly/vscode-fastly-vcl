@@ -29,7 +29,7 @@ import {
   DocumentHighlightParams,
   DocumentHighlight,
   DocumentHighlightKind,
-} from "vscode-languageserver/node";
+} from "vscode-languageserver/browser";
 
 import { documentCache } from "../shared/documentCache";
 import { getSymbolInformation } from "../symbol-provider";

@@ -1,5 +1,4 @@
 import * as vscode from "vscode";
-import * as path from "path";
 
 export let doc: vscode.TextDocument;
 export let editor: vscode.TextEditor;
@@ -42,15 +41,52 @@ async function waitForLspReady(docUri: vscode.Uri, timeout = 30000) {
   }
 }
 
+/**
+ * Wait until the number of diagnostics for `docUri` satisfies `predicate`.
+ * Resolves to whether it did before `timeout` ms passed.
+ */
+export async function waitForDiagnosticsCount(
+  docUri: vscode.Uri,
+  predicate: (count: number) => boolean,
+  // Generous: on a cold start the first lints can take several seconds.
+  timeout = 30000,
+): Promise<boolean> {
+  const satisfied = () =>
+    predicate(vscode.languages.getDiagnostics(docUri).length);
+  if (satisfied()) {
+    return true;
+  }
+  return new Promise((resolve) => {
+    const finish = () => {
+      clearTimeout(timer);
+      disposable.dispose();
+      resolve(satisfied());
+    };
+    const disposable = vscode.languages.onDidChangeDiagnostics((e) => {
+      if (
+        e.uris.some((uri) => uri.toString() === docUri.toString()) &&
+        satisfied()
+      ) {
+        finish();
+      }
+    });
+    const timer = setTimeout(finish, timeout);
+  });
+}
+
 async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export const getDocPath = (p: string) => {
-  return path.resolve(__dirname, "../../testFixture", p);
-};
+// The tests may run in a web worker host (desktop and browser), so fixtures
+// are found through the workspace: the runners open client/testFixture as the
+// workspace folder.
 export const getDocUri = (p: string) => {
-  return vscode.Uri.file(getDocPath(p));
+  const root = vscode.workspace.workspaceFolders?.[0]?.uri;
+  if (!root) {
+    throw new Error("Open client/testFixture as the workspace folder");
+  }
+  return vscode.Uri.joinPath(root, p);
 };
 
 export async function setTestContent(content: string): Promise<boolean> {

@@ -1,4 +1,4 @@
-import { Hover, MarkupKind } from "vscode-languageserver/node";
+import { Hover, MarkupKind } from "vscode-languageserver/browser";
 
 import { slugify, DOCS_URL, ensureFullStop } from "../shared/utils";
 import vclVariables from "../metadata/variables.json";

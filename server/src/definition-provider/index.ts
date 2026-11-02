@@ -16,7 +16,7 @@ import {
   DefinitionParams,
   Location,
   Position,
-} from "vscode-languageserver/node";
+} from "vscode-languageserver/browser";
 
 import { documentCache } from "../shared/documentCache";
 import { findSymbolByName } from "../symbol-provider";

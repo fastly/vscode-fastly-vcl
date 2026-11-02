@@ -4,7 +4,7 @@ import {
   InsertTextFormat,
   MarkupKind,
   TextDocumentPositionParams,
-} from "vscode-languageserver/node";
+} from "vscode-languageserver/browser";
 
 import {
   slugify,

@@ -4,7 +4,7 @@ import {
   CompletionItemTag,
   MarkupKind,
   TextDocumentPositionParams,
-} from "vscode-languageserver/node";
+} from "vscode-languageserver/browser";
 
 import { slugify, DOCS_URL, HEADER_RX, ensureFullStop } from "../shared/utils";
 

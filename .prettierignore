@@ -3,6 +3,9 @@
 node_modules
 client/out
 server/out
+client/dist
+server/dist
+.vscode-test-web
 *.vcl
 *.json
 test/formatting-results/
