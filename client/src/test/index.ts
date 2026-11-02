@@ -3,9 +3,8 @@
 // mocha's browser build. scripts/bundle.mjs bundles this file followed by every
 // *.test.ts file into client/dist/test/index.js.
 //
-// mocha 12's browser build never completes a run in VS Code's web worker
-// extension host (the run callback never fires, so VS Code never exits); stay
-// on mocha 11.
+// scripts/bundle.mjs makes esbuild treat mocha.js as CommonJS; otherwise mocha
+// replaces this module's exported `run` and VS Code never exits.
 import "mocha/mocha.js";
 
 mocha.setup({
