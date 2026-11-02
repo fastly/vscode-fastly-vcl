@@ -1,17 +1,16 @@
 {
 	"compilerOptions": {
 		"target": "es2020",
-		"lib": ["es2020", "dom"],
+		"lib": ["es2022", "webworker"],
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"ignoreDeprecations": "6.0",
-		"sourceMap": true,
 		"strict": true,
-		"outDir": "out",
+		"noEmit": true,
 		"rootDir": "src",
 		"esModuleInterop": true,
 		"resolveJsonModule": true
 	},
 	"include": ["src", "src/**/*.json"],
-	"exclude": ["node_modules", ".vscode-test"]
+	"exclude": ["node_modules", ".vscode-test", "src/test"]
 }

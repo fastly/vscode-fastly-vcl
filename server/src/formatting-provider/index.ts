@@ -24,19 +24,11 @@ import {
   TextEdit,
   Range,
   Position,
-} from "vscode-languageserver/node";
+} from "vscode-languageserver/browser";
 
 import { documentCache } from "../shared/documentCache";
 import { getDocumentSettings, connection } from "../server";
-import { importESM } from "../shared/esmImport";
-import { join } from "node:path";
-import { pathToFileURL } from "node:url";
-import type { FormatResult } from "../../../falco-js/src/wasm.mjs";
-
-type FormatTextFn = (
-  text: string,
-  options?: { config?: Record<string, unknown> },
-) => Promise<FormatResult>;
+import { formatText } from "../../../falco-js/src/wasm.mjs";
 
 /**
  * Handle document formatting request.
@@ -52,26 +44,6 @@ export async function resolve(
 
   // Check if formatting is enabled
   if (!settings.formattingEnabled) {
-    return null;
-  }
-
-  // Load the WASI component backend (ESM) via a real import() so require()
-  // does not try to load an async ES module.
-  let formatText: FormatTextFn | null = null;
-  try {
-    const wasmUrl = pathToFileURL(
-      join(__dirname, "../../../falco-js/src/wasm.mjs"),
-    ).href;
-    const falcoJs = await importESM(wasmUrl);
-    formatText = falcoJs.formatText;
-  } catch (e) {
-    connection.console.error(
-      `Formatting service unavailable: ${e instanceof Error ? e.message : String(e)}`,
-    );
-    return null;
-  }
-
-  if (!formatText) {
     return null;
   }
 

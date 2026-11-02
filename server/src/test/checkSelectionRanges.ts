@@ -9,7 +9,7 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import { Range, SelectionRange } from "vscode-languageserver/node";
+import { Range, SelectionRange } from "vscode-languageserver/browser";
 
 import { resolve } from "../selection-range-provider";
 import { documentCache } from "../shared/documentCache";

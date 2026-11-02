@@ -1,6 +1,5 @@
 import path from "path";
 import Mocha from "mocha";
-import { glob } from "node:fs";
 
 export function run(testsRoot, cb) {
   // Create the mocha test
@@ -9,22 +8,18 @@ export function run(testsRoot, cb) {
     timeout: 30_000,
   });
 
-  glob("**/**.test.js", { cwd: testsRoot }, (err, files) => {
-    if (err) {
-      return cb(err);
-    }
+  // Only the colorization suite: the other *.test.js files here are
+  // standalone Node scripts, and semanticTokens.test.js calls process.exit,
+  // which would end the extension host before mocha reports.
+  mocha.addFile(path.resolve(testsRoot, "colorization.test.js"));
 
-    // Add files to the test suite
-    files.forEach((f) => mocha.addFile(path.resolve(testsRoot, f)));
-
-    try {
-      // Run the mocha test
-      mocha.run((failures) => {
-        cb(null, failures);
-      });
-    } catch (err) {
-      console.error(err);
-      cb(err);
-    }
-  });
+  try {
+    // Run the mocha test
+    mocha.run((failures) => {
+      cb(null, failures);
+    });
+  } catch (err) {
+    console.error(err);
+    cb(err);
+  }
 }

@@ -5,7 +5,7 @@
 
 import * as vscode from "vscode";
 import * as assert from "assert";
-import { getDocUri, activate } from "./helper";
+import { getDocUri, activate, waitForDiagnosticsCount } from "./helper";
 
 suite("Should respond to configuration changes", () => {
   const docUri = getDocUri("diagnostics.vcl");
@@ -21,12 +21,10 @@ suite("Should respond to configuration changes", () => {
   test("Disabling linting clears diagnostics", async () => {
     await activate(docUri);
 
-    // Verify diagnostics exist with linting enabled (default)
-    const initialDiagnostics = vscode.languages.getDiagnostics(docUri);
-    assert.ok(
-      initialDiagnostics.length > 0,
-      "Expected diagnostics with linting enabled",
-    );
+    // Verify diagnostics exist with linting enabled (default). activate()
+    // only waits for the server to answer, not for the first lint.
+    const linted = await waitForDiagnosticsCount(docUri, (count) => count > 0);
+    assert.ok(linted, "Expected diagnostics with linting enabled");
 
     // Disable linting (use global config since no workspace is open in tests)
     const config = vscode.workspace.getConfiguration("fastly.vcl");
@@ -43,33 +41,3 @@ suite("Should respond to configuration changes", () => {
     );
   });
 });
-
-async function waitForDiagnosticsCount(
-  docUri: vscode.Uri,
-  predicate: (count: number) => boolean,
-  timeout = 5000,
-): Promise<boolean> {
-  return new Promise((resolve) => {
-    // Check immediately
-    if (predicate(vscode.languages.getDiagnostics(docUri).length)) {
-      resolve(true);
-      return;
-    }
-
-    // Listen for changes
-    const disposable = vscode.languages.onDidChangeDiagnostics((e) => {
-      if (e.uris.some((uri) => uri.toString() === docUri.toString())) {
-        if (predicate(vscode.languages.getDiagnostics(docUri).length)) {
-          disposable.dispose();
-          resolve(true);
-        }
-      }
-    });
-
-    // Timeout
-    setTimeout(() => {
-      disposable.dispose();
-      resolve(predicate(vscode.languages.getDiagnostics(docUri).length));
-    }, timeout);
-  });
-}

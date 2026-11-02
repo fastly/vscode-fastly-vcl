@@ -9,24 +9,25 @@
     "type": "git",
     "url": "https://github.com/fastly/vscode-fastly-vcl.git"
   },
-  "version": "3.0.0",
+  "version": "4.0.0",
   "engines": {
     "vscode": "^1.82.0",
     "node": ">=22"
   },
   "activationEvents": [],
-  "main": "./client/out/extension",
+  "browser": "./client/dist/extension.js",
   "workspaces": [
     "./client",
     "./server"
   ],
   "scripts": {
-    "build": "tsc -b ./client && tsc -b ./server",
-    "clean": "rm -rf client/out server/out",
+    "build": "tsc -b ./client && tsc -b ./server && tsc -p ./server/src/test && node scripts/bundle.mjs",
+    "clean": "rm -rf client/out server/out client/dist server/dist",
     "dagger:ci": "DAGGER_NO_NAG=1 dagger call ci --source=.",
     "dagger:lint": "DAGGER_NO_NAG=1 dagger call lint --source=.",
     "dagger:test": "DAGGER_NO_NAG=1 dagger call test --source=.",
-    "dev": "tsc -b -w ./client ./server",
+    "dagger:test-web": "DAGGER_NO_NAG=1 dagger call test-web --source=.",
+    "dev": "tsc -b -w ./client ./server & node scripts/bundle.mjs --watch",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint ./client/src --ext .ts,.tsx",
@@ -34,14 +35,16 @@
     "prebuild": "npm run clean",
     "prepackage": "npm run build && npm run lint",
     "pretest:e2e": "npm run build",
+    "pretest:e2e:web": "npm run build",
     "publish": "vsce package",
     "test:colorization": "node ./test/runTest.mjs",
     "test:semantic-tokens": "node ./test/semanticTokens.test.js",
-    "test:falco": "node ./test/falcoRecovery.test.mjs",
+    "test:falco": "node --test --test-timeout=60000 test/falcoRecovery.test.mjs test/falcoComponentUrl.test.mjs",
     "test:selection-ranges": "npx tsx server/src/test/checkSelectionRanges.ts",
+    "test:unit": "tsx --test --test-timeout=10000 server/src/test/*.test.ts",
     "test:e2e": "sh ./scripts/e2e.sh",
-    "test:e2e:coverage": "c8 sh ./scripts/e2e.sh",
-    "test": "npm run test:colorization && npm run test:semantic-tokens && npm run test:falco && npm run test:selection-ranges && npm run test:e2e",
+    "test:e2e:web": "vscode-test-web --browserType=${BROWSER:-chromium} --headless --quality=stable --extensionDevelopmentPath=. --extensionTestsPath=client/dist/test/index.js client/testFixture",
+    "test": "npm run test:unit && npm run test:colorization && npm run test:semantic-tokens && npm run test:falco && npm run test:selection-ranges && npm run test:e2e",
     "vscode:prepublish": "npm run build && npm run lint && npm run test"
   },
   "categories": [
@@ -102,38 +105,24 @@
     }
   },
   "devDependencies": {
+    "@bytecodealliance/preview2-shim": "^0.19.0",
     "@eslint/js": "^10.0.1",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.20.5",
     "@types/vscode": "^1.82.0",
     "@vscode/test-electron": "^3.1.0",
+    "@vscode/test-web": "^0.0.81",
     "@vscode/vsce": "^4.0.0",
-    "c8": "^12.0.0",
+    "assert": "^2.1.0",
+    "esbuild": "^0.28.2",
     "eslint": "^10.12.0",
-    "mocha": "^12.0.3",
+    "mocha": "^11.8.0",
     "prettier": "^3.9.10",
+    "tsx": "^4.23.15",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.71.1"
-  },
-  "dependencies": {
-    "@bytecodealliance/preview2-shim": "^0.19.0",
+    "typescript-eslint": "^8.71.1",
     "vscode-jsonrpc": "^8.2.1",
     "vscode-languageserver": "^9.0.1",
     "vscode-languageserver-textdocument": "^1.0.15"
-  },
-  "c8": {
-    "include": [
-      "client/out/**/*.js",
-      "server/out/**/*.js"
-    ],
-    "exclude": [
-      "client/out/test/**"
-    ],
-    "reporter": [
-      "text",
-      "lcov",
-      "html"
-    ],
-    "report-dir": "coverage"
   }
 }

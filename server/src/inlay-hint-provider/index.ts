@@ -12,7 +12,7 @@ import {
   InlayHint,
   InlayHintKind,
   InlayHintParams,
-} from "vscode-languageserver/node";
+} from "vscode-languageserver/browser";
 
 import { documentCache } from "../shared/documentCache";
 import { walkAST, ASTNode } from "../shared/ast";

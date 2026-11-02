@@ -58,11 +58,15 @@ export class VscodeFastlyVcl {
         exclude: [
           ".dagger",
           ".git",
+          ".superpowers",
           ".vscode-test",
           "*.vsix",
+          ".vscode-test-web",
+          "client/dist",
           "client/out",
           "coverage",
           "node_modules",
+          "server/dist",
           "server/out",
         ],
       })
@@ -112,6 +116,33 @@ export class VscodeFastlyVcl {
   }
 
   /**
+   * Run the e2e suite in VS Code for the Web, in Chromium, Firefox and WebKit
+   */
+  @func()
+  async testWeb(source: Directory): Promise<string> {
+    const built = this.build(source).withExec([
+      "npx",
+      "playwright",
+      "install",
+      "--with-deps",
+      "chromium",
+      "firefox",
+      "webkit",
+    ]);
+    const results: string[] = [];
+    for (const browser of ["chromium", "firefox", "webkit"]) {
+      results.push(`--- ${browser} ---`);
+      results.push(
+        await built
+          .withEnvVariable("BROWSER", browser)
+          .withExec(["npm", "run", "test:e2e:web"])
+          .stdout(),
+      );
+    }
+    return results.join("\n");
+  }
+
+  /**
    * Package the extension as a .vsix file
    */
   @func()
@@ -142,6 +173,10 @@ export class VscodeFastlyVcl {
     // Run tests (needs xvfb)
     results.push("\n=== Tests ===");
     results.push(await this.test(source));
+
+    // Run the e2e suite in VS Code for the Web
+    results.push("\n=== Web Tests ===");
+    results.push(await this.testWeb(source));
 
     // Package the extension
     results.push("\n=== Package ===");

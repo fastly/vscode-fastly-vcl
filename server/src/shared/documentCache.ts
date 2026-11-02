@@ -1,26 +1,17 @@
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
-import { fileURLToPath } from "node:url";
-
 import {
   TextDocumentItem,
   DidChangeTextDocumentParams,
-} from "vscode-languageserver/node";
+} from "vscode-languageserver/browser";
 
 import { VclDocument } from "./vclDocument";
 
-import { LANGUAGE_ID } from "./utils";
+import { uriKey } from "./uri";
 
 export class DocumentCache {
   private _documents: Map<string, VclDocument>;
 
   constructor() {
     this._documents = new Map();
-  }
-
-  private _loadContent(uri: string): VclDocument {
-    const text = readFileSync(uri, "utf8");
-    return new VclDocument(uri, LANGUAGE_ID, 1, text);
   }
 
   public isEmpty(): boolean {
@@ -47,34 +38,20 @@ export class DocumentCache {
     doc?.update(contentChanges, textDocument.version);
   }
 
-  public get(
-    uri: string,
-    alwaysCache: boolean = true,
-  ): VclDocument | undefined {
-    let doc = this._documents.get(uri);
-    if (!doc && alwaysCache) {
-      doc = this._loadContent(uri);
-      this._documents.set(uri, doc);
-    }
-    return doc;
+  /** An open document; the cache holds only documents the client has opened. */
+  public get(uri: string): VclDocument | undefined {
+    return this._documents.get(uri);
   }
 
   /**
-   * Find a cached document by filesystem path. Compares decoded paths rather
-   * than URI strings, because the client's URIs encode characters differently
-   * from Node's pathToFileURL (`c%3A` and lowercase drive letters on Windows,
-   * `%2B` for `+`, and so on).
+   * Find an open document by URI, however it is encoded (see uriKey): the
+   * client's URIs encode characters differently from URIs built here
+   * (`c%3A` and lowercase drive letters on Windows, `%2B` for `+`, and so on).
    */
-  public findByPath(path: string): VclDocument | undefined {
-    const target = normalizePath(path);
-    for (const [uri, doc] of this._documents) {
-      let docPath: string;
-      try {
-        docPath = fileURLToPath(uri);
-      } catch {
-        continue; // Not a file: URI.
-      }
-      if (normalizePath(docPath) === target) {
+  public findByUri(uri: string): VclDocument | undefined {
+    const target = uriKey(uri);
+    for (const [docUri, doc] of this._documents) {
+      if (uriKey(docUri) === target) {
         return doc;
       }
     }
@@ -88,12 +65,6 @@ export class DocumentCache {
   public all(): IterableIterator<VclDocument> {
     return this._documents.values();
   }
-}
-
-// Windows paths are case-insensitive, and drive letters arrive in either case.
-function normalizePath(path: string): string {
-  const resolved = resolve(path);
-  return process.platform === "win32" ? resolved.toLowerCase() : resolved;
 }
 
 export const documentCache = new DocumentCache();

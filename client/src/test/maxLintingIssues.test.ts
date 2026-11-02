@@ -69,9 +69,11 @@ suite("Should respect maxLintingIssues setting", () => {
 async function waitForDiagnosticsToStabilize(
   docUri: vscode.Uri,
   stableMs = 100,
-  timeout = 5000,
+  // Generous: on a cold start (e.g. a freshly downloaded VS Code) the first
+  // lints can take several seconds.
+  timeout = 30000,
 ): Promise<void> {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     let lastChangeTime = Date.now();
 
     const disposable = vscode.languages.onDidChangeDiagnostics((e) => {
@@ -91,11 +93,12 @@ async function waitForDiagnosticsToStabilize(
       }
     }, 50);
 
-    // Timeout fallback
+    // Fail with the real reason instead of letting the assertions below
+    // report a missing diagnostic.
     setTimeout(() => {
       clearInterval(checkInterval);
       disposable.dispose();
-      resolve();
+      reject(new Error(`No diagnostics for ${docUri} after ${timeout}ms`));
     }, timeout);
   });
 }

@@ -5,12 +5,24 @@
 - `package.json` - this is the manifest file in which you declare your language support and define the location of the grammar file that has been copied into your extension.
 - `syntaxes/vcl.tmLanguage.json` - this is the Text mate grammar file that is used for tokenization.
 - `language-configuration.json` - this is the language configuration, defining the tokens that are used for comments and brackets.
-- `client/` - this is the Language Server Protocol client that connects to the local LSP server.
+- `client/` - this is the Language Server Protocol client, which starts the server as a Web Worker.
 - `server/` - this is the Language Server Protocol server that provides completions, hover, diagnostics, and other IDE features.
+- `falco-js/` - a wrapper around falco's WASI component, which lints and formats VCL.
+- `scripts/bundle.mjs` - bundles the client, the server and the e2e tests with esbuild, and writes `ThirdPartyNotices.txt` (shipped in the package, not committed) with the licenses of the npm packages bundled into the client and server, followed by `falco-js/component/THIRD_PARTY_LICENSES.txt`.
+- `scripts/falco-licenses.mjs` - writes `falco-js/component/THIRD_PARTY_LICENSES.txt`, the licenses of the software in the falco component (see "Updating falco").
+
+## Architecture
+
+The extension is browser-only: its `package.json` has a `browser` entry point and no `main`, so VS Code runs it in the web worker extension host, on the desktop as well as on [vscode.dev](https://vscode.dev) and [github.dev](https://github.dev).
+
+- The client (`client/dist/extension.js`) starts the language server (`server/dist/server.js`) as a Web Worker using `vscode-languageclient/browser`. VS Code loads the worker with `importScripts()` from a `blob:` URL, so the server bundle is a classic script, not an ES module.
+- The server has no file system. It works on URIs, and reads files that are not open in the editor (`include`d modules) by sending a `fastly.vcl/readFile` request to the client, which reads them with `workspace.fs` (`client/src/readFile.ts`). VS Code runs browser-only extensions in Restricted Mode too, so the client decides what may be read: regular files up to the linter's budget, on a file system the window uses, and only inside the workspace folders when the workspace is untrusted or the file system is virtual.
+- falco's core wasm modules are not bundled. The worker cannot locate them itself, so the client passes their location in `initializationOptions.falcoComponentUrl`, and the server fetches them from `falco-js/component/`.
+- Client and server code must not use Node APIs (`fs`, `path`, `url`, `process`, `Buffer`). The server is type-checked against the WebWorker library, without Node types.
 
 ## Building and running this extension
 
-You'll need [Node.js](https://nodejs.org) and [npm](https://www.npmjs.com/):
+To build and test the extension you'll need [Node.js](https://nodejs.org) and [npm](https://www.npmjs.com/) (the extension itself does not need them):
 
 ```term
 brew install npm
@@ -30,15 +42,21 @@ falco ships as a WASI Component Model module vendored at `falco-js/component/` (
 ### Local development server
 
 1. Open this folder in VS Code.
-1. Run `Cmd+Shift+B` to start compiling the client in watch mode.
+1. Run `Cmd+Shift+B` to start type-checking and bundling in watch mode (`npm run dev`).
 1. Press `Cmd+Shift+D` to switch to the **Run and Debug View** in the sidebar.
 1. Select `Fastly VCL Client` from the drop down.
-1. Press **▷** to run the launch config with the debugger attached (`F5`).
+1. Press **▷** to run the launch config with the debugger attached to the web worker extension host (`F5`).
 1. In the [Extension Development Host](https://code.visualstudio.com/api/get-started/your-first-extension#:~:text=Then%2C%20inside%20the%20editor%2C%20press%20F5.%20This%20will%20compile%20and%20run%20the%20extension%20in%20a%20new%20Extension%20Development%20Host%20window.) instance of VSCode, open a document in `Fastly VCL` language mode.
 1. Save the file with a `.vcl` extension.
 1. Use it as a scratchpad to try out all the features!
 
 ### Testing
+
+To run the language server's unit tests (Node's test runner, via tsx):
+
+```bash
+npm run test:unit
+```
 
 To run the grammar tests:
 
@@ -46,7 +64,7 @@ To run the grammar tests:
 npm run test:colorization
 ```
 
-The test cases are stored as markdown files under `test/colorize-fixtures`. Grammar test results are stored under `test/colorize-results`, which are automatically generated from the fixtures.
+The test cases are stored as markdown files under `test/colorize-fixtures`. Grammar test results are stored under `test/colorize-results`, which are automatically generated from the fixtures. A run that finds different tokens or colors rewrites the results and fails; review the diff and commit it if the change is intended. Themes new in VS Code are added to the results without failing.
 
 To run the semantic tokens tests:
 
@@ -66,25 +84,33 @@ To check that selection ranges are properly nested (each parent contains its chi
 npm run test:selection-ranges
 ```
 
-To check that the falco wrapper recovers after the component fails, for example after a stack overflow on deeply nested VCL:
+To check that the falco wrapper recovers after the component fails, for example after a stack overflow on deeply nested VCL, and that it loads the component from a URL, retrying failed and stalled downloads:
 
 ```bash
 npm run test:falco
 ```
 
-To run the LSP tests:
+To run the LSP tests in desktop VS Code:
 
 ```bash
 npm run test:e2e
 ```
 
-To run the LSP tests with code coverage:
+To run the same tests in VS Code for the Web, in Chromium (default), Firefox or WebKit:
 
 ```bash
-npm run test:e2e:coverage
+npm run test:e2e:web
+BROWSER=firefox npm run test:e2e:web
 ```
 
-Coverage reports are generated in `coverage/` (text, lcov, and HTML formats).
+The first run downloads VS Code for the Web; install the browsers once with `npx playwright install chromium firefox webkit`.
+
+The LSP tests run in the same web worker extension host as the extension, so:
+
+- test code cannot use Node APIs; tests find their fixtures through the workspace folder (`client/testFixture`, opened by the test runners) and write files with `workspace.fs`
+- `scripts/bundle.mjs` bundles every `client/src/test/*.test.ts` into `client/dist/test/index.js`, using mocha's browser build
+- mocha must stay on version 11: mocha 12's browser build never finishes a run in VS Code's web worker extension host, so VS Code never exits
+- on macOS, desktop runs create a socket at `.vscode-test/user-data/1.14-main.sock` inside the checkout, which must stay under 104 bytes: run them from a checkout with a short path
 
 ### Updating LSP metadata
 
@@ -118,9 +144,10 @@ make wasm-component            # writes wasm/falco-component.wasm
 
 # In this repository
 npx @bytecodealliance/jco@1.24.3 transpile <falco-checkout>/wasm/falco-component.wasm --instantiation async -o falco-js/component
+node scripts/falco-licenses.mjs <falco-checkout> 1.24.3
 ```
 
-The `--instantiation async` flag is required: `falco-js/src/wasm.mjs` creates instances itself, so it can replace one after a failed call. Then update the commit in the table above, run `npm test`, and note the new falco build in `CHANGELOG.md`. Keep the jco version in step with `@bytecodealliance/preview2-shim` in `package.json` and `falco-js/package.json`, since the generated code imports it at runtime.
+The `--instantiation async` flag is required: `falco-js/src/wasm.mjs` creates instances itself, so it can replace one after a failed call. `scripts/falco-licenses.mjs` regenerates `falco-js/component/THIRD_PARTY_LICENSES.txt`, the licenses shipped for the component: falco, the Go modules it links (as `go list` resolves them in the checkout, including its `go.work`), the Go standard library, the WASI adapter (fetched from wasmtime on GitHub at the version the falco Makefile pins) and jco (from npm). Run it in the same checkout, with the same Go toolchain, as the build. Then update the commit in the table above, run `npm test`, and note the new falco build in `CHANGELOG.md`. Keep the jco version in step with `@bytecodealliance/preview2-shim` in `package.json` and `falco-js/package.json`, since the generated code imports it at runtime.
 
 ### Linting and formatting
 
@@ -168,7 +195,9 @@ CI runs automatically on all pull requests via GitHub Actions with [Dagger](http
 - Semantic tokens tests (`npm run test:semantic-tokens`)
 - falco recovery tests (`npm run test:falco`)
 - Selection ranges tests (`npm run test:selection-ranges`)
+- Unit tests (`npm run test:unit`)
 - LSP e2e tests (`npm run test:e2e`)
+- LSP e2e tests in VS Code for the Web, in Chromium, Firefox and WebKit (`npm run test:e2e:web`)
 - Package building (`npm run package`)
 
 #### Running CI locally with Dagger
@@ -191,6 +220,7 @@ Run individual steps:
 ```bash
 npm run dagger:lint          # Run linting
 npm run dagger:test          # Run tests
+npm run dagger:test-web      # Run the e2e tests in VS Code for the Web
 dagger call format-check --source=.
 dagger call package --source=.
 ```

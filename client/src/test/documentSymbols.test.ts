@@ -69,6 +69,28 @@ suite("Should provide document symbols", () => {
       `Expected subroutine symbol "vcl_recv", got: ${summary.join(", ")}`,
     );
   });
+
+  test("Returns include symbols requested before the first lint", async () => {
+    // Use a fixture no other test opens: VS Code caches document symbols per
+    // document version, so an early empty answer would stick.
+    const uri = getDocUri("symbolsInclude.vcl");
+    const ext = vscode.extensions.getExtension("fastly.vscode-fastly-vcl");
+    await ext?.activate();
+    await vscode.window.showTextDocument(
+      await vscode.workspace.openTextDocument(uri),
+    );
+
+    // Ask once, straight away, without waiting for the server to lint.
+    const symbols = ((await vscode.commands.executeCommand(
+      "vscode.executeDocumentSymbolProvider",
+      uri,
+    )) ?? []) as vscode.DocumentSymbol[];
+    const names = symbols.map((s) => s.name);
+    assert.ok(
+      names.includes("symbolsIncludeModule") && names.includes("vcl_recv"),
+      `Expected include and subroutine symbols, got: ${names.join(", ")}`,
+    );
+  });
 });
 
 async function waitForSymbolsOrDiagnostics(

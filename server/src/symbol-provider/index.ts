@@ -32,7 +32,7 @@ import {
   Position,
   Range,
   DocumentSymbol,
-} from "vscode-languageserver/node";
+} from "vscode-languageserver/browser";
 
 import { VclDocument } from "../shared/vclDocument";
 import { walkAST, ASTNode } from "../shared/ast";
