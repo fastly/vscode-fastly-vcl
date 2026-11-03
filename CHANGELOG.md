@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [4.0.1] - 2026-11-03
+
 ### Changed
 
 - Update the transitive dev dependency `qs` to 6.17.1
